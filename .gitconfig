@@ -1,6 +1,3 @@
-[gui]
-	fontdiff = -family Courier -size 14 -weight normal -slant roman -underline 0 -overstrike 0
-
 [user]
 	email = christoffer@eliesen.no
 	name = S. Christoffer Eliesen
@@ -8,11 +5,6 @@
 # DON'T GIVE AWAY YOUR GITHUB TOKEN TO OTHERS
 [github]
 	user = sce
-
-[giggle]
-	compact-mode = false
-	main-window-maximized = true
-	main-window-geometry = 700x596+2592+301
 
 [alias]
   st = status
