@@ -1,0 +1,54 @@
+[gui]
+	fontdiff = -family Courier -size 14 -weight normal -slant roman -underline 0 -overstrike 0
+
+[user]
+	email = christoffer@eliesen.no
+	name = S. Christoffer Eliesen
+
+# DON'T GIVE AWAY YOUR GITHUB TOKEN TO OTHERS
+[github]
+	user = sce
+
+[giggle]
+	compact-mode = false
+	main-window-maximized = true
+	main-window-geometry = 700x596+2592+301
+
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  dc = diff --cached
+  lg = log -p
+
+  #lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative --decorate
+
+  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative --decorate --all
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  interactive = auto
+  grep = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
