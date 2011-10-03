@@ -1,0 +1,3 @@
+[submodule ".config/awesome/revelation"]
+	path = .config/awesome/revelation
+	url = git://github.com/bioe007/awesome-revelation.git
