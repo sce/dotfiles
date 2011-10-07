@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ACTION=`zenity --width=90 --height=200 --list --radiolist --text="Select logout action" --title="Logout" --column "Choice" --column "Action" TRUE Shutdown FALSE Reboot FALSE LockScreen FALSE Suspend`
+ACTION=`zenity --width=90 --height=200 --list --radiolist --text="Select logout action" --title="Logout" --column "Choice" --column "Action" TRUE Shutdown FALSE Reboot FALSE Suspend FALSE LockScreen FALSE Logout`
 
 if [ -n "${ACTION}" ];then
   case $ACTION in
@@ -27,6 +27,10 @@ if [ -n "${ACTION}" ];then
   LockScreen)
     #slock
     gnome-screensaver-command -l
+    ;;
+  Logout)
+    #slock
+    gnome-session-save --logout
     ;;
   esac
 fi
