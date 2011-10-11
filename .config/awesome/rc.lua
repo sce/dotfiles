@@ -183,6 +183,7 @@ root.buttons(awful.util.table.join(
 
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "e",      revelation),
+    awful.key({ modkey,           }, "b",      function () awful.util.spawn("firefox -new-window") end),
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
