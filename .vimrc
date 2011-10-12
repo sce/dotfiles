@@ -25,6 +25,12 @@ set number
 set nocompatible
 filetype plugin on
 
+" .md == markdown
+au BufNewFile,BufRead *.md set filetype=markdown
+
+" .thor == ruby
+au BufNewFile,BufRead *.thor set filetype=ruby
+
 " set foldmethod=indent
 
 map <C-J> <C-W>j<C-W>_
