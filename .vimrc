@@ -23,7 +23,9 @@ set number
 :nmap <C-N><C-N> :set invnumber <CR> 
 
 set nocompatible
+filetype on
 filetype plugin on
+filetype indent on
 
 " .md == markdown
 au BufNewFile,BufRead *.md set filetype=markdown
