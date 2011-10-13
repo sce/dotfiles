@@ -39,6 +39,12 @@ map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 set wmh=0
 
+" map \n to squeese newlines
+map <Leader>n :s/\n\n\+/\r\r/g<CR>
+
+" map \h to split hash arguments to seperate lines
+map <Leader>h :s/, \+/,\r/g<CR>:=<CR>
+
 " nnoremap <C-N> :next<Enter>
 " nnoremap <C-P> :prev<Enter>
 
