@@ -74,7 +74,13 @@ map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 set wmh=0
 
-" map \n to squeese newlines
+" map \= to fix space around equal signs
+map <Leader>= :s/\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
+
+" map \s to squeeze whitespace
+map <Leader>s :s/\(\S\)\s\+/\1 /g<CR>
+
+" map \n to squeeze newlines
 map <Leader>n :s/\n\n\+/\r\r/g<CR>
 
 " map \h to split hash arguments to seperate lines
