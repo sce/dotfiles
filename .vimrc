@@ -74,17 +74,23 @@ map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 set wmh=0
 
-" map \= to fix space around equal signs
+" (mostly ruby specific):
+
+" map \= to fix air around equal signs
+" map <Leader>= :s/\s*=\s*/ = /g<CR>
 map <Leader>= :s/\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
 
-" map \s to squeeze whitespace
+" map \s to squeeze whitespace (while preserving indentation)
 map <Leader>s :s/\(\S\)\s\+/\1 /g<CR>
 
 " map \n to squeeze newlines
 map <Leader>n :s/\n\n\+/\r\r/g<CR>
 
-" map \h to split hash arguments to seperate lines
-map <Leader>h :s/, \+/,\r/g<CR>:=<CR>
+" map \h to split hash arguments into separate lines
+map <Leader>h :s/\s*,\s*\+/,\r/g<CR>
+
+" map \, to split statements into separate lines
+map <Leader>, :s/\s*;\s*/\r/g<CR>
 
 " nnoremap <C-N> :next<Enter>
 " nnoremap <C-P> :prev<Enter>
