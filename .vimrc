@@ -75,13 +75,13 @@ map <C-K> <C-W>k<C-W>_
 set wmh=0
 
 " (mostly ruby specific):
+" \%V means restrict to visual selection (if any)
 
-" map \= to fix air around equal signs
-" map <Leader>= :s/\s*=\s*/ = /g<CR>
-map <Leader>= :s/\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
+" map \= to fix space around equal signs
+map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
 
 " map \s to squeeze whitespace (while preserving indentation)
-map <Leader>s :s/\(\S\)\s\+/\1 /g<CR>
+map <Leader>s :s/\%V\(\S\)\s\+/\1 /g<CR>
 
 " map \n to squeeze newlines
 map <Leader>n :s/\n\n\+/\r\r/g<CR>
