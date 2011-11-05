@@ -30,4 +30,8 @@ synapse -s & # synapse (ctrl+space)
 
 #eval `gnome-keyring-daemon` # ssh/gpg agent
 
+# for some reason we need to start up nautilus to get background image (and
+# desktop icons ...) going.
+nautilus &
+
 exec awesome --config ~/.config/awesome/rc.lua
