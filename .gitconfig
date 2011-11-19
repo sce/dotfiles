@@ -14,6 +14,7 @@
   df = diff
   dc = diff --cached
   lg = log -p
+  cp = cherry-pick
 
   #lol = log --graph --decorate --pretty=oneline --abbrev-commit
   #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
