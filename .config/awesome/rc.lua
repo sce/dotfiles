@@ -72,7 +72,7 @@ myawesomemenu = {
 end_session_menu = {
    { "lock screen", function () awful.util.spawn('gnome-screensaver-command -l') end },
    { "logout",      function () awful.util.spawn("gnome-session-save --logout") end },
-   { "suspend",     function () awful.util.spawn('gnome-screensaver-command -l') awful.util.spawn('dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend') end },
+   { "suspend",     function () awful.util.spawn('gnome-screensaver-command -l') awful.util.spawn("gksudo 'dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend'") end },
    { "shutdown",    function () awful.util.spawn('gnome-session-save --shutdown-dialog') end },
 }
 
