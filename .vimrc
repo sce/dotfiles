@@ -87,7 +87,7 @@ map <Leader>s :s/\%V\(\S\)\s\+/\1 /g<CR>
 map <Leader>n :s/\n\n\+/\r\r/g<CR>
 
 " map \h to split hash arguments into separate lines
-map <Leader>h :s/\s*,\s*\+/,\r/g<CR>
+map <Leader>h :s/\s*,\s\+/,\r/g<CR>
 
 " map \, to split statements into separate lines
 map <Leader>, :s/\s*;\s*/\r/g<CR>
@@ -99,6 +99,9 @@ map <Leader>, :s/\s*;\s*/\r/g<CR>
 " map ,e :tabedit <C-R>=expand("%:h")<CR>
 " map <C-n> :tabnext<CR>
 " map <C-e> :tabedit <C-R>=expand("%:h")<CR>
+
+" max number of initial tabs when using -p
+set tabpagemax=20
 
 " CTRL+e to tab edit a file
 map <C-e> :tabedit
