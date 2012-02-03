@@ -4,6 +4,9 @@
 " behave like vim, not like vi
 set nocompatible
 
+set fileencoding=utf-8
+set encoding=utf-8
+
 " only a single space after ./?/! etc after using 'j' or 'gq'
 set nojoinspaces
 
