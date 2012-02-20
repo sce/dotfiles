@@ -6,6 +6,10 @@
 [github]
 	user = sce
 
+[status]
+  # Show detailed submodule info when doing git status:
+  submoduleSummary=true
+
 [alias]
   st = status
   ci = commit
