@@ -18,20 +18,26 @@
   df = diff
   dc = diff --cached
   lg = log -p
+
+  # search for commits that change trailing argument
   ps = log -p -S
+
   cp = cherry-pick
 
   #lol = log --graph --decorate --pretty=oneline --abbrev-commit
   #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
-  # --tags is needed to show all tags.
-  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --tags --date=iso
+  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso
 
-  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --tags--date=iso --all
+  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso --all
 
-  #lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   timeline = log --oneline --graph --decorate
+
+  # show reflog in full log format
+  gg = log -g
+
+  #lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
 
 [color]
   branch = auto
