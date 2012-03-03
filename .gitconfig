@@ -15,8 +15,8 @@
   ci = commit
   br = branch
   co = checkout
-  df = diff
-  dc = diff --cached
+  df = diff --submodule
+  dc = diff --cached --submodule
   lg = log -p
 
   # search for commits that change trailing argument
