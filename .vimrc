@@ -41,6 +41,9 @@ set ruler
 " add line numbers
 set number
 
+" make line numbers relative to current line
+" set relativenumber
+
 " change syntax/indent depending on file extension:
 filetype plugin indent on
 
