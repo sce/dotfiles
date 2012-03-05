@@ -8,7 +8,14 @@
 
 [status]
   # Show detailed submodule info when doing git status:
-  submoduleSummary=true
+  submoduleSummary = true
+
+[diff]
+  # Detected rename and copies.
+  renames = copies
+
+  # Don't show a/-b/ prefixes in diffs.
+  noprefix = true
 
 [alias]
   st = status
