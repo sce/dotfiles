@@ -18,18 +18,27 @@
   noprefix = true
 
 [alias]
+  sh = show --submodule
   st = status
   ci = commit
   br = branch
   co = checkout
   df = diff --submodule
   dc = diff --cached --submodule
+  cp = cherry-pick
   lg = log -p
 
   # search for commits that change trailing argument
   ps = log -p -S
 
-  cp = cherry-pick
+
+  # Remove untracked files from working tree:
+  # (-n) dry run, (-d) remove dirs, (-X) only files ignored by git.
+  ign = clean -ndX
+
+  # Nice. Git is acting very strange: There doesn't seem to be a single command
+  # which will actually list all ignored files, heh.
+  ign2 = ls-files --others --ignored --exclude-standard
 
   #lol = log --graph --decorate --pretty=oneline --abbrev-commit
   #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
