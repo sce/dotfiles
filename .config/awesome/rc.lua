@@ -39,12 +39,12 @@ layouts =
     awful.layout.suit.tile.top,
     -- 2 + 3 = 5
 
-    awful.layout.suit.fair,
+    -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
-    -- 1 + 4 + 5 = 10
+    -- 5 + 5 = 10
 
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
