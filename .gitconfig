@@ -6,23 +6,54 @@
 [github]
 	user = sce
 
+[status]
+  # Show detailed submodule info when doing git status:
+  submoduleSummary = true
+
+[diff]
+  # Detected rename and copies.
+  renames = copies
+
+  # Don't show a/-b/ prefixes in diffs.
+  noprefix = true
+
 [alias]
+  sh = show --submodule
   st = status
   ci = commit
   br = branch
   co = checkout
-  df = diff
-  dc = diff --cached
-  lg = log -p
-  ps = log -p -S
+  df = diff --submodule
+  dc = diff --cached --submodule
   cp = cherry-pick
+  lg = log -p
+
+  # search for commits that change trailing argument
+  ps = log -p -S
+
+
+  # Remove untracked files from working tree:
+  # (-n) dry run, (-d) remove dirs, (-X) only files ignored by git.
+  ign = clean -ndX
+
+  # Nice. Git is acting very strange: There doesn't seem to be a single command
+  # which will actually list all ignored files, heh.
+  ign2 = ls-files --others --ignored --exclude-standard
 
   #lol = log --graph --decorate --pretty=oneline --abbrev-commit
   #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
-  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative --decorate
+  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso
 
-  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative --decorate --all
+  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso --all
+
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  timeline = log --oneline --graph --decorate
+
+  # show reflog in full log format
+  gg = log -g
+
+  #lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
 
 [color]
   branch = auto
