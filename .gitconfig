@@ -43,9 +43,9 @@
   #lol = log --graph --decorate --pretty=oneline --abbrev-commit
   #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 
-  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso
+  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso
 
-  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%cd) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso --all
+  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso --all
 
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
   timeline = log --oneline --graph --decorate
