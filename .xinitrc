@@ -20,18 +20,19 @@
 #exec ck-launch-session gnome-session
 
 ## ALT 2:
-gnome-settings-daemon & # themes, screensaver
-gnome-power-manager   & # suspend etc.
-nm-applet             & # network manager
-gnome-volume-manager  & # automounting
+gnome-session & # need this in order for everything to work properly ...
+#gnome-settings-daemon & # themes, screensaver
+#gnome-power-manager   & # suspend etc.
+#nm-applet             & # network manager
+#gnome-volume-manager  & # automounting
 
-synapse -s & # synapse (ctrl+space)
+#synapse -s & # synapse (ctrl+space)
 (~/capslock.sh off) & # Map capslock to escape
 
 #eval `gnome-keyring-daemon` # ssh/gpg agent
 
 # for some reason we need to start up nautilus to get background image (and
 # desktop icons ...) going.
-nautilus &
+# nautilus &
 
 exec awesome --config ~/.config/awesome/rc.lua
