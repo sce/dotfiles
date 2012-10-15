@@ -31,6 +31,7 @@
   # search for commits that change trailing argument
   ps = log -p -S
 
+  fe = submodule foreach
 
   # Remove untracked files from working tree:
   # (-n) dry run, (-d) remove dirs, (-X) only files ignored by git.
@@ -47,7 +48,7 @@
 
   lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso --all
 
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist = log --pretty=format:\"%h %ad %s%d [%an]\" --graph --date=short
   timeline = log --oneline --graph --decorate
 
   # show reflog in full log format
