@@ -47,7 +47,7 @@ nm-applet             & # network manager
 dbus-daemon           & # not sure if I need this explicitly
 gnome-keyring-daemon  & # ssh/gpg agent
 bluetoothd            &
-syndaemon             & # disable touchpad when keyboard is being used
+#syndaemon             & # disable touchpad when keyboard is being used
 update-notifier       & # nag about updates
 
 synapse -s & # synapse (ctrl+space)
