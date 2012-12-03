@@ -18,13 +18,18 @@
   noprefix = true
 
 [alias]
+  # list aliases:
+  la = "!git config -l | grep alias | cut -c 7-"
+
   sh = show --submodule
   st = status -sb
   ci = commit
   br = branch
   co = checkout
   df = diff --submodule
-  dc = diff --cached --submodule
+  dc = !git df --cached
+  dfw = !git df --word-diff
+  dcw = !git dc --word-diff
   cp = cherry-pick
   lg = log -p
 
@@ -32,6 +37,11 @@
   ps = log -p -S
 
   fe = submodule foreach
+
+  # find file:
+  ff = !git ls-files | grep -i --color
+
+  gr = grep -Ii
 
   # Remove untracked files from working tree:
   # (-n) dry run, (-d) remove dirs, (-X) only files ignored by git.
