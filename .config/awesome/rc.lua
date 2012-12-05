@@ -15,7 +15,9 @@ require("revelation")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/sky/theme.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
@@ -321,14 +323,21 @@ awful.rules.rules = {
                      focus = true,
                      keys = clientkeys,
                      size_hints_honor = false,
+
+                     -- never start maximized/float:
+                     maximized_vertical   = false,
+                     maximized_horizontal = false,
+
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
       -- properties = { floating = true } },
-      properties = { size_hints_honor= true } },
+      properties = { size_hints_honor = true } },
     { rule = { class = "pinentry" },
-      properties = { floating = true } },
+      --properties = { floating = true } },
+      properties = { size_hints_honor = true } },
     { rule = { class = "gimp" },
-      properties = { floating = true } },
+      --properties = { floating = true } },
+      properties = { size_hints_honor = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
