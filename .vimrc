@@ -26,23 +26,50 @@ set confirm
 " Remove trailing whitespaces automaticaly on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" no delay when hitting escape
+set noesckeys
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " appearance:
 
-syntax on
-set background=dark
+" keep some lines of text at the bottom/top when scrolling.
+set scrolloff=2
 
-" keep some lines of text at the bottom when scrolling.
-set scrolloff=3
-
-" show a small ruler
+" always show cursor position
 set ruler
+
+" always show status line
+set laststatus=2
+
+" completion from list on command line.
+set wildmenu
 
 " add line numbers
 set number
 
 " make line numbers relative to current line
 " set relativenumber
+
+" gnome-terminal doesn't advertise its support for 256 colors, fix:
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+
+syntax on
+set background=dark
+colorscheme torte
+
+highlight StatusLine ctermfg=233 ctermbg=white
+
+set cursorline
+highlight CursorLine cterm=none ctermbg=233
+"highlight CursorLineNr cterm=bold ctermbg=233
+highlight CursorLineNr cterm=NONE ctermbg=233 ctermfg=blue
+highlight LineNr ctermbg=232
+highlight Visual ctermbg=235 cterm=bold
+
+" in order to let the terminal handle the background:
+highlight Normal ctermbg=none
 
 " change syntax/indent depending on file extension:
 filetype plugin indent on
