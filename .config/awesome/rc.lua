@@ -54,6 +54,9 @@ layouts =
 }
 -- }}}
 
+-- Define if we want to modify client.opacity
+use_composite = true
+
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
@@ -318,17 +321,20 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = true,
-                     keys = clientkeys,
-                     size_hints_honor = false,
+      properties = {
+        -- border_width = beautiful.border_width,
+        border_width = 0,
+        border_color = beautiful.border_normal,
+        focus = true,
+        keys = clientkeys,
+        size_hints_honor = false,
 
-                     -- never start maximized/float:
-                     maximized_vertical   = false,
-                     maximized_horizontal = false,
+        -- never start maximized/float:
+        maximized_vertical   = false,
+        maximized_horizontal = false,
 
-                     buttons = clientbuttons } },
+        buttons = clientbuttons
+      } },
     { rule = { class = "MPlayer" },
       -- properties = { floating = true } },
       properties = { size_hints_honor = true } },
@@ -371,6 +377,31 @@ client.add_signal("manage", function (c, startup)
     end
 end)
 
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.add_signal("focus", function(c)
+  -- if use_composite then c.opacity = beautiful.opacity.focus or 1 end
+  if use_composite then c.opacity = 1 end
+  c.border_color = beautiful.border_focus
+end)
+
+client.add_signal("unfocus", function(c)
+  c.border_color = beautiful.border_normal
+  -- if use_composite then c.opacity = beautiful.opacity.unfocus or 0.8 end
+  if use_composite then c.opacity = 0.85 end
+end)
 -- }}}
+
+
+-- Autostart stuff (since .xinitrc is ignored by lightdm without explicit setup):
+awful.util.spawn_with_shell('./run_once.sh gnome-settings-daemon') -- themes, screensaver
+awful.util.spawn_with_shell('./run_once.sh gnome-sound-applet')
+awful.util.spawn_with_shell('./run_once.sh update-notifier') -- nag about updates
+awful.util.spawn_with_shell('./run_once.sh synapse -s') -- synapse (ctrl+space)
+awful.util.spawn_with_shell('./run_once.sh capslock.sh off') -- Map capslock to escape
+awful.util.spawn_with_shell('./run_once.sh nm-applet') -- network manager
+
+-- for some reason we need to start up nautilus to get background image (and
+-- desktop icons ...) going.
+awful.util.spawn_with_shell('./run_once.sh nautilus')
+
+-- the screen setup needs to change (settings-daemon) before unagi is activated:
+awful.util.spawn_with_shell('sleep 5 && ./run_once.sh unagi') -- composite manager (for transparency)
