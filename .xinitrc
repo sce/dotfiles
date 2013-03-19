@@ -42,19 +42,22 @@
 
 #gnome-session & # need this in order for everything to work properly ...
 
-gnome-settings-daemon & # themes, screensaver
-nm-applet             & # network manager
-dbus-daemon           & # not sure if I need this explicitly
-gnome-keyring-daemon  & # ssh/gpg agent
-bluetoothd            &
-#syndaemon             & # disable touchpad when keyboard is being used
-update-notifier       & # nag about updates
+# gnome-settings-daemon & # themes, screensaver
+# nm-applet             & # network manager
+# dbus-daemon           & # not sure if I need this explicitly
+# gnome-keyring-daemon  & # ssh/gpg agent
+# bluetoothd            &
+# #syndaemon             & # disable touchpad when keyboard is being used
+# update-notifier       & # nag about updates
+#
+# synapse -s & # synapse (ctrl+space)
+# (~/capslock.sh off) & # Map capslock to escape
+#
+# # for some reason we need to start up nautilus to get background image (and
+# # desktop icons ...) going.
+# nautilus &
+#
+# exec awesome --config ~/.config/awesome/rc.lua
 
-synapse -s & # synapse (ctrl+space)
-(~/capslock.sh off) & # Map capslock to escape
-
-# for some reason we need to start up nautilus to get background image (and
-# desktop icons ...) going.
-nautilus &
-
+# exec gnome-session
 exec awesome --config ~/.config/awesome/rc.lua
