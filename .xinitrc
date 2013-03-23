@@ -60,4 +60,5 @@
 # exec awesome --config ~/.config/awesome/rc.lua
 
 # exec gnome-session
-exec awesome --config ~/.config/awesome/rc.lua
+#exec awesome --config ~/.config/awesome/rc.lua
+exec i3
