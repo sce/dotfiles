@@ -2,8 +2,11 @@
 require 'json'
 
 wss = JSON.parse(%x(i3-msg -t get_workspaces))
-last_ws = wss.map { |ws| ws["num"].to_i }.sort.last
-new_ws = last_ws + 1
+ws_nums = wss.map { |ws, i| ws["num"].to_i }.sort
+
+open_ws = nil
+is_open = ws_nums.find.each_with_index { |num, i| num != (open_ws = i+1) }
+new_ws = is_open && open_ws || ws_nums.last + 1
 
 if $0 =~ /i3-move-new-ws\.rb\z/
   %x(i3-msg move container to workspace #{new_ws})
