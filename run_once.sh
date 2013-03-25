@@ -1,4 +1,4 @@
 #!/bin/bash
 
 USER=$(whoami)
-pgrep -u $USER $@ > /dev/null || ($@ &)
+pgrep -u $USER -f $@ > /dev/null || ($@ &)
