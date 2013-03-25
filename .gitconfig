@@ -41,6 +41,7 @@
   # find file:
   ff = !git ls-files | grep -i --color
 
+  # -I = no binary
   gr = grep -Ii
 
   # Remove untracked files from working tree:
