@@ -25,9 +25,8 @@ font pango:DejaVu Sans Mono 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal
-
 bindsym $mod+b exec firefox
 
 # kill focused window
@@ -42,50 +41,49 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# change focus
+# vim keys changes focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # cursor keys changes workspace (on same output, like in awesome):
-bindsym $mod+Left workspace prev_on_output
+bindsym $mod+Left  workspace prev_on_output
 bindsym $mod+Right workspace next_on_output
 
-# prev/next on current display/output:
-#bindsym $mod+Down workspace prev_on_output
-#bindsym $mod+Up workspace next_on_output
+# cursor keys + Control changes output
+bindsym $mod+Control+Left  focus output left
+bindsym $mod+Control+Up    focus output left
+bindsym $mod+Control+Down  focus output right
+bindsym $mod+Control+Right focus output right
 
-# move focused window
+# shift moves focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# use shift+arrows to move containers:
-bindsym $mod+Shift+Left  move container to output left
-bindsym $mod+Shift+Down  move container to output down
-bindsym $mod+Shift+Up    move container to output up
-bindsym $mod+Shift+Right move container to output right
+# control+shift moves focused window to other outputs
+bindsym $mod+Control+Shift+h move to output left
+bindsym $mod+Control+Shift+j move to output down
+bindsym $mod+Control+Shift+k move to output up
+bindsym $mod+Control+Shift+l move to output right
 
-# use control to move entire workspace:
-bindsym $mod+Control+Left  move workspace to output left
-bindsym $mod+Control+Right move workspace to output right
-
-#bindsym $mod+Control+Down  focus output prev
-#bindsym $mod+Control+Up    focus output next
-
-bindsym $mod+Control+h focus output left
-bindsym $mod+Control+l focus output right
-
-# split in horizontal orientation
-bindsym $mod+semicolon split h
+# control+shift+arrows moves workspace to other outputs
+bindsym $mod+Control+Shift+Left  move workspace to output left
+bindsym $mod+Control+Shift+Down  move workspace to output down
+bindsym $mod+Control+Shift+Up    move workspace to output up
+bindsym $mod+Control+Shift+Right move workspace to output right
 
 # split in vertical orientation
 bindsym $mod+v split v
 
+# split in horizontal orientation
+bindsym $mod+Shift+v split h
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen global
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -98,11 +96,9 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# focus parent/child container (like in vim: a increments, x decrements)
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+x focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
