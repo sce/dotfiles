@@ -143,8 +143,10 @@ map <C-l> :tabnext<CR>
 " CTRL+h for previous tab
 map <C-h> :tabprevious<CR>
 
+
 " Map tab to autocomplete current word from words in current file:
-imap <Tab> <C-X><C-N>
+" imap <tab> <C-X><C-N>
+" (hmm, just use <C-N> directly in insert mode instead.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " filetype specifics:
