@@ -28,6 +28,7 @@ floating_modifier $mod
 # application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+b exec firefox
+bindsym $mod+Shift+b exec ~/bin/file-browser
 
 # application specifics
 for_window [class="Gkrellm"] floating enable
