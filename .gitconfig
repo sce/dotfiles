@@ -67,6 +67,10 @@
 
   #lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
 
+  # from https://coderwall.com/p/lypuua
+  pdiff = !TAG=$(git describe --no-abbrev --tags --match production-*) && git df $TAG
+  sdiff = !TAG=$(git describe --no-abbrev --tags --match staging-*) && git df $TAG
+
 [color]
   branch = auto
   diff = auto
