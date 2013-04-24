@@ -66,8 +66,8 @@ set $output-mod Mod4+control
 
 # vim keys changes output
 bindsym $output-mod+h focus output left
-bindsym $output-mod+j focus output left
-bindsym $output-mod+k focus output right
+bindsym $output-mod+j focus output down
+bindsym $output-mod+k focus output up
 bindsym $output-mod+l focus output right
 
 # $output-mod+shift moves focused window to other outputs
