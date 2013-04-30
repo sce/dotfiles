@@ -46,6 +46,9 @@ bindsym $mod+Shift+b exec ~/bin/file-browser
 # application specifics
 for_window [class="Gkrellm"] floating enable
 
+# lowercase "spotify" only applies to the login dialog, which is intended.
+for_window [title="spotify"] floating enable
+
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+c kill
