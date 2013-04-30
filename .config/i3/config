@@ -201,3 +201,5 @@ exec /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec /usr/bin/gnome-screensaver
 exec /usr/bin/gnome-sound-applet
 exec /usr/bin/nm-applet
+
+exec --no-startup-id nitrogen --restore
