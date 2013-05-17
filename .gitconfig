@@ -17,6 +17,10 @@
   # Don't show a/-b/ prefixes in diffs.
   noprefix = true
 
+[merge]
+  # Add common ancestor data in merge conflict diffs:
+  conflictstyle = diff3
+
 [alias]
   # list aliases:
   la = "!git config -l | grep alias | cut -c 7-"
