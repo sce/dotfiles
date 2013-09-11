@@ -51,6 +51,10 @@ for_window [class="Gnome-calculator"] floating enable
 # lowercase "spotify" only applies to the login dialog, which is intended.
 for_window [title="spotify"] floating enable
 
+assign [class="Thunderbird"] 9: mail
+assign [class="Spotify"] 9: mail
+assign [class="Pidgin"] 9: mail
+
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+c kill
