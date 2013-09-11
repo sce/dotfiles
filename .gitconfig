@@ -27,6 +27,7 @@
 
   sh = show --submodule
   st = status -sb
+  stu = status -sb --untracked=no
   ci = commit
   br = branch
   co = checkout
