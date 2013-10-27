@@ -227,5 +227,6 @@ exec /usr/bin/gnome-screensaver
 exec /usr/bin/gnome-sound-applet
 exec /usr/bin/update-notifier
 exec /usr/bin/nm-applet
+exec /usr/bin/gtk-redshift
 
 exec --no-startup-id nitrogen --restore
