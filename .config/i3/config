@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -39,10 +40,25 @@ new_window normal 1
 # Focusing the current workspace will go back to previous workspace:
 workspace_auto_back_and_forth yes
 
+# Instead of going to the next container, workspace or output simply wrap
+# inside the current container instead. (Use "focus parent" to escape current
+# container.)
+#force_focus_wrapping yes
+force_focus_wrapping no
+
 # application shortcuts
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec ~/bin/file-browser
+
+# too bad this stopped working on its own (gnome hotkeys not working in saucy
+# for some reason):
+bindsym control+$alt+l exec /usr/bin/gnome-screensaver-command --lock
+
+# ... and this too (pulseaudio/media hotkeys):
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 -- +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -- -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
 
 # application specifics
 for_window [class="Gkrellm"] floating enable
@@ -160,8 +176,10 @@ bindsym $mod+Shift+0 exec ~/bin/i3-move-new-ws.rb
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -204,9 +222,10 @@ bar {
 }
 
 # Give us a desktop environment:
-exec /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+exec /usr/bin/gnome-settings-daemon
 exec /usr/bin/gnome-screensaver
 exec /usr/bin/gnome-sound-applet
+exec /usr/bin/update-notifier
 exec /usr/bin/nm-applet
 
 exec --no-startup-id nitrogen --restore
