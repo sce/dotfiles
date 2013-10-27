@@ -131,6 +131,9 @@ map <Leader>h :s/\s*,\s\+/,\r/g<CR>
 " map \, to split statements into separate lines
 map <Leader>, :s/\s*;\s*/\r/g<CR>
 
+" map \- to split words into separate lines
+map <Leader>- :s/\s\+/\r/g<CR>
+
 " nnoremap <C-N> :next<Enter>
 " nnoremap <C-P> :prev<Enter>
 
