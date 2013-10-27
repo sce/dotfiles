@@ -29,6 +29,12 @@ autocmd BufWritePre * :%s/\s\+$//e
 " no delay when hitting escape
 set noesckeys
 
+" where to create backups, if turned on:
+set backupdir=~/.cache/vim/backup
+
+" where to store swap files:
+set directory=~/.cache/vim/
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " appearance:
 
