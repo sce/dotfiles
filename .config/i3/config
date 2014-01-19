@@ -47,18 +47,20 @@ workspace_auto_back_and_forth yes
 force_focus_wrapping no
 
 # application shortcuts
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec ~/bin/terminal
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec ~/bin/file-browser
 
 # too bad this stopped working on its own (gnome hotkeys not working in saucy
 # for some reason):
-bindsym control+$alt+l exec /usr/bin/gnome-screensaver-command --lock
+bindsym control+$alt+l exec ~/bin/screenlock
 
 # ... and this too (pulseaudio/media hotkeys):
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 -- +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -- -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
+set $sink 1
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink -- +3%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -- -3%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle
 
 # application specifics
 for_window [class="Gkrellm"] floating enable
@@ -67,6 +69,14 @@ for_window [class="Gnome-calculator"] floating enable
 
 # lowercase "spotify" only applies to the login dialog, which is intended.
 for_window [title="spotify"] floating enable
+
+for_window [class="Nautilus" instance="file_progress"] floating enable
+
+# print to pdf dialog:
+for_window [class="Firefox" instance="Toplevel"] floating enable
+
+# browser pop ups:
+#for_window [window_role="pop-up"] floating enable
 
 assign [class="Thunderbird"] 9: mail
 assign [class="Spotify"] 9: mail
@@ -82,7 +92,7 @@ bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
 # vim keys changes focus
 bindsym $mod+h focus left
@@ -221,12 +231,18 @@ bar {
         status_command i3status
 }
 
-# Give us a desktop environment:
-exec /usr/bin/gnome-settings-daemon
-exec /usr/bin/gnome-screensaver
-exec /usr/bin/gnome-sound-applet
-exec /usr/bin/update-notifier
-exec /usr/bin/nm-applet
-exec /usr/bin/gtk-redshift
+# (use --no-startup-id for commandline programs))
 
-exec --no-startup-id nitrogen --restore
+# Give us a desktop environment:
+# (by using a dummy session gnome-session will not try to start a wm)
+exec --no-startup-id gnome-session --session=gnome-dummy
+
+# Notifications must be handled by the desktop, so use a notification daemon:
+exec --no-startup-id ~/bin/notification-daemon
+
+# PolicyKit handles privilege escalation, but the one gnome uses is not easily
+# available, so use a replacement (e.g. lxpolkit):
+exec --no-startup-id ~/bin/polkit
+
+# Set wallpaper:
+exec --no-startup-id ~/bin/wallpaper
