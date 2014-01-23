@@ -2,21 +2,17 @@
 
 ACTIVE_SINK=`pacmd list-sinks|awk '/* index: /{print $3}'`
 
-function set_curlevel {
-  CURLEVEL=$(pacmd list-sinks|grep -A 15 '* index'|awk '/volume:/{ print $5 }'|head -1)
+function curlevel {
+  pacmd list-sinks|grep -A 15 '* index'|awk '/volume:/{ print $5 }'|head -1
 }
 
-function set_muted {
-  if [ ! "$MUTED" ]; then
-    MUTED=$(pacmd list-sinks|grep -A 15 '* index'|awk '/muted: /{ print $2 }')
-    [ "$MUTED" == "yes" ] && MUTED_TEXT="(MUTED)" || unset MUTED_TEXT
-  fi
+function muted {
+  local MUTED=$(pacmd list-sinks|grep -A 15 '* index'|awk '/muted: /{ print $2 }')
+  [ "$MUTED" == "yes" ] && echo "(MUTED)" || echo ""
 }
 
 function volume_text {
-  set_curlevel
-  set_muted
-  echo "Volume $CURLEVEL $MUTED_TEXT"
+  echo "Volume $(curlevel) $(muted)"
 }
 
 function notify_volume {
