@@ -9,6 +9,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# (use "exec" with "--no-startup-id" for commandline programs)
+
 set $mod Mod4
 set $alt Mod1
 
@@ -166,9 +168,6 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 
-# create new numeric workspace
-bindsym $mod+0 exec ~/bin/i3-new-ws.rb
-
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
@@ -180,8 +179,11 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 
+# create new numeric workspace
+bindsym $mod+0 exec --no-startup-id ~/bin/i3-new-ws.rb
+
 # move to new numeric workspace
-bindsym $mod+Shift+0 exec ~/bin/i3-move-new-ws.rb
+bindsym $mod+Shift+0 exec --no-startup-id ~/bin/i3-move-new-ws.rb
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -229,8 +231,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
-
-# (use --no-startup-id for commandline programs))
 
 # Give us a desktop environment:
 # (by using a dummy session gnome-session will not try to start a wm)
