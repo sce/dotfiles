@@ -67,6 +67,7 @@ bindsym XF86AudioMute exec --no-startup-id ~/bin/volmutetoggle
 for_window [class="Gkrellm"] floating enable
 for_window [class="Volumeicon"] floating enable
 for_window [class="Gnome-calculator"] floating enable
+for_window [class="Gcalctool"] floating enable
 
 # lowercase "spotify" only applies to the login dialog, which is intended.
 for_window [title="spotify"] floating enable
