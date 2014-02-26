@@ -35,6 +35,9 @@ set backupdir=~/.cache/vim/backup
 " where to store swap files:
 set directory=~/.cache/vim/
 
+" yes our tty is fast.
+set ttyfast
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " appearance:
 
@@ -62,6 +65,10 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 syntax on
+
+" try to fix slow syntax highlighting:
+set synmaxcol=90
+
 set background=dark
 colorscheme torte
 
@@ -173,10 +180,18 @@ hi Underlined gui=NONE
 let ruby_operators=1
 let ruby_space_errors=1
 
+" the end-keyword is colorized according to the opening statement, but that is
+" slow, so we turn it off:
+"let ruby_no_expensive = 1
+
+" turns out ruby syntax triggers a performance regression in the regular
+" expression engine, force old version (from
+" http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)
+set re=1
+
 " enable foldmethod=syntax for ruby files
 " let ruby_fold=1
 " let ruby_no_comment_fold = 1
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From http://amix.dk/vim/vimrc.html:
