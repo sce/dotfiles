@@ -113,7 +113,8 @@ set smartcase
 nnoremap <cr> :noh <cr>
 
 " CTRL+N twice to toggle line numbers
-:nmap <C-N><C-N> :set invnumber <CR>
+":nmap <C-N><C-N> :set invnumber <CR>
+:nmap <C-M><C-M> :set invnumber <CR>
 
 " CTRL+J changes to upper window, CTRL+K changes to lower.
 map <C-J> <C-W>j<C-W>_
@@ -122,6 +123,8 @@ set wmh=0
 
 " (mostly ruby specific):
 " \%V means restrict to visual selection (if any)
+
+let mapleader = ","
 
 " map \= to fix space around equal signs
 map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
@@ -159,6 +162,15 @@ map <C-l> :tabnext<CR>
 " CTRL+h for previous tab
 map <C-h> :tabprevious<CR>
 
+" run current ruby test file
+map <Leader>r :!time bundle exec ruby -Itest -Ilib %
+
+map <Leader>d :!git df %<CR>
+map <Leader>w :!git df -w %<CR>
+map <Leader>a :!git add -p %<CR>
+map <Leader>N :!git add -N %<CR>
+map <Leader>c :!git ci
+map <Leader>C :!git dc
 
 " Map tab to autocomplete current word from words in current file:
 " imap <tab> <C-X><C-N>
@@ -178,7 +190,7 @@ hi Underlined gui=NONE
 
 " add extra syntax to ruby files
 let ruby_operators=1
-let ruby_space_errors=1
+"let ruby_space_errors=1
 
 " the end-keyword is colorized according to the opening statement, but that is
 " slow, so we turn it off:
