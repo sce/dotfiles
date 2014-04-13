@@ -63,11 +63,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volup
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/voldown
 bindsym XF86AudioMute exec --no-startup-id ~/bin/volmutetoggle
 
+bindsym XF86Calculator exec ~/bin/calculator
+
 # application specifics
 for_window [class="Gkrellm"] floating enable
 for_window [class="Volumeicon"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gcalctool"] floating enable
+for_window [class="Polkit"] floating enable
 
 # lowercase "spotify" only applies to the login dialog, which is intended.
 for_window [title="spotify"] floating enable
@@ -232,6 +235,8 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# (use "exec" with "--no-startup-id" for commandline programs)
 
 # Give us a desktop environment:
 # (by using a dummy session gnome-session will not try to start a wm)
