@@ -1,0 +1,6 @@
+- .bash_history
+- .lesshst
+- .viminfo
+
+- .cache
+- .bundler/cache
