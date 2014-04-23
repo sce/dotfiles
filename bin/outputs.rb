@@ -104,7 +104,10 @@ class OutputCommands
     @list_enable ||= begin
       cmds = []
 
-      mode = "--auto"
+      # --auto doesn't work if the output has been explicitly disabled with
+      # --off for some reason, so force a specific mode.
+      #mode = "--auto"
+      mode = "--mode 1920x1080"
       rows = output_rows
 
       # Place each output next to the previous one.
