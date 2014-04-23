@@ -13,14 +13,14 @@
 #
 # List of patterns in backup.exclude are excluded from backup.
 
-# We use a full datetime timestamp to make sure we can do multiple backups per
-# day (for whatever reason) without collisions.
-TS=$(date +%Y%m%d.%H%M%S)
-
 HOST=
 SRC=
 EXCLUDE_FROM=backup.exclude
 LOG_FILE=backup.log
+
+# We use a full datetime timestamp to make sure we can do multiple backups per
+# day (for whatever reason) without collisions.
+TS=$(date +%Y%m%d.%H%M%S)
 
 DEST_ROOT=
 DEST_DIR=$DEST_ROOT/$TS
@@ -29,6 +29,8 @@ LINK_DEST=$DEST_ROOT/latest
 DEST=$HOST:$DEST_DIR
 
 [ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
+
+ssh $HOST "[ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT"
 
 # -a archive
 # -h human readable units
