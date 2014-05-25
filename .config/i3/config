@@ -76,6 +76,8 @@ for_window [class="Polkit"] floating enable
 for_window [title="spotify"] floating enable
 
 for_window [class="Nautilus" instance="file_progress"] floating enable
+for_window [class="Anki" title="Export"] floating enable
+for_window [class="Anki" title="Import"] floating enable
 
 # print to pdf dialog:
 for_window [class="Firefox" instance="Toplevel"] floating enable
