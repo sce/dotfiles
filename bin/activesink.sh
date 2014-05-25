@@ -2,6 +2,11 @@
 
 ACTIVE_SINK=`pacmd list-sinks|awk '/* index: /{print $3}'`
 
+if [ "$ACTIVE_SINK" == "" ]; then
+  notify-send -u critical "Volume: Failed to fetch active sink" "`pacmd list-sinks|head`"
+  exit 1
+fi
+
 function curlevel {
   pacmd list-sinks|grep -A 15 '* index'|awk '/volume:/{ print $5 }'|head -1
 }
