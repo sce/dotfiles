@@ -16,11 +16,15 @@
 
 HOST=
 SRC= # /home/$(whoami)/
-# This will put the incremental backups inside $(whoami):
+# Put the incremental backups inside hostname/user directory:
 DEST_ROOT= # /var/backups/$(hostname)/$(whoami)
 
 EXCLUDE_FROM=backup.exclude
 LOG_FILE=backup.log
+
+[ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
+
+# -----------------------------------------------------------------------------
 
 # We use a full datetime timestamp to make sure we can do multiple backups per
 # day (for whatever reason) without collisions.
@@ -37,12 +41,12 @@ DEST_DIR=$DEST_ROOT/$INCOMPLETE
 
 DEST=$HOST:$DEST_DIR
 
-[ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
+# -----------------------------------------------------------------------------
 
 ssh $HOST "(
   ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
-  [ -d \"$LINK_DEST\" ] && echo Latest backup is: \$(readlink $LINK_DEST)
-)"
+  [ -d \"$LINK_DEST\" ] && echo Latest backup is: \$(readlink $LINK_DEST) || true
+)" &&
 
 # -a archive
 # -h human readable units
@@ -55,7 +59,7 @@ ssh $HOST "(
 # --link-dest remote directory to hardlink to when file is unmodified
 # --exclude-from file with exclude filters
 
-OPTS="-ahvizH --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@"
+OPTS="-ahvizH --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@" &&
 
 rsync $OPTS $SRC $DEST &&
 
@@ -67,4 +71,4 @@ ssh $HOST "(
   echo \"Could not find $DEST_DIR: Not updating latest.\"
 )" ||
 
-echo "$0: rsync failed with $?: Not updating $LINK_DEST."
+echo "$0: something failed with code $?: Not updating $LINK_DEST."
