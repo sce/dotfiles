@@ -39,7 +39,10 @@ DEST=$HOST:$DEST_DIR
 
 [ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
 
-ssh $HOST "[ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT"
+ssh $HOST "(
+  ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
+  [ -d \"$LINK_DEST\" ] && echo Latest backup is: \$(readlink $LINK_DEST)
+)"
 
 # -a archive
 # -h human readable units
