@@ -90,8 +90,9 @@ OPTS="-ahvizH -T $RSYNC_TMP --progress --log-file=$LOG_FILE --link-dest=$LINK_DE
 # Trailing slash is important:
 rsync $OPTS $ENC_DIR/ $DEST &&
 
-# Copy config file too so that we can actually decrypt the backup:
-scp -p $ENC_CONFIG $DEST &&
+# Copy config file too so that we can actually decrypt the backup. (If this was
+# a dry run the destination directory will not exist.)
+(ssh $HOST "[ -d \"$DEST_DIR\" ]" && scp -p $ENC_CONFIG $DEST || true ) &&
 
 # Update link to latest (if trailing --dry-run was given then DEST_DIR won't
 # exist, and the link won't be updated).
