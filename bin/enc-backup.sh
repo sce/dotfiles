@@ -63,8 +63,11 @@ mkdir -p $ENC_DIR $RSYNC_TMP &&
 ENC_CONFIG=$ENC_CONFIG encfs --standard --reverse $SRC $ENC_DIR &&
 
 # Update backup-exclude:
-echo Generating $EXCLUDE_FROM_ENC ... &&
-encfsctl encode $SRC < $EXCLUDE_FROM > $EXCLUDE_FROM_ENC &&
+(
+  [ "$EXCLUDE_FROM" -nt "$EXCLUDE_FROM_ENC" ] &&
+  echo $EXCLUDE_FROM has changed, generating $EXCLUDE_FROM_ENC ... &&
+  encfsctl encode $SRC < $EXCLUDE_FROM > $EXCLUDE_FROM_ENC || true
+) &&
 
 ssh $HOST "(
   ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
