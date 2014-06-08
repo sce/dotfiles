@@ -27,7 +27,9 @@ DEST_ROOT= # /var/backups/$(hostname)/$(whoami).enc
 EXCLUDE_FROM=backup.exclude
 LOG_FILE=enc-backup.log
 
-[ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
+[ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] &&
+  echo Please edit $0 to setup correctly. &&
+  exit 1
 
 # -----------------------------------------------------------------------------
 
@@ -58,7 +60,7 @@ DEST=$HOST:$DEST_DIR
 # Setup reverse encryption (this will create the config file if it doesn't
 # already exist):
 mkdir -p $ENC_DIR $RSYNC_TMP &&
-ENC_CONFIG=$ENC_CONFIG encfs --reverse $SRC $ENC_DIR &&
+ENC_CONFIG=$ENC_CONFIG encfs --standard --reverse $SRC $ENC_DIR &&
 
 # Update backup-exclude:
 echo Generating $EXCLUDE_FROM_ENC ... &&
