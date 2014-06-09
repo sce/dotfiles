@@ -153,6 +153,9 @@ class OutputCommands
 end
 
 if ARGV.empty?
+  puts %(Currently connected outputs: %s.\n--help for help.) % OutputQuery.new.outputs.join(", ")
+
+elsif ARGV.any? { |a| a =~ /help/ }
   puts (<<-EOS).gsub(/^ {4}/, "") % [$0, OutputQuery.new.outputs.join(", ")]
     Place outputs in a matrix by assigning "yx" coordinates, or use "-" to
     disable a display.
