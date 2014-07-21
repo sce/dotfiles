@@ -4,6 +4,7 @@ dep "environments-console" do
     vim.managed
     keychain.managed
     encfs.managed
+    iotop.managed
   )
 
 end
@@ -30,12 +31,14 @@ dep 'environments-desktop' do
 
     humanity-icon-theme.managed
     light-theme-gnome.managed
+    disable-tracker
   )
 end
 
 dep "environments-dev" do
   requires %w(
     mariadb.managed
+    mariadb-server.managed
     rvm
   )
 end

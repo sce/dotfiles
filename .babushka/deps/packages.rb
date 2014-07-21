@@ -23,7 +23,11 @@ dep 'keychain.managed'
 dep 'smplayer.managed'
 dep 'thunderbird.managed'
 
-dep 'i3.managed'
+dep 'i3.managed' do
+  requires 'i3status.managed'
+end
+
+dep 'i3status.managed'
 
 dep 'nm-applet.managed' do
   installs {
@@ -53,7 +57,14 @@ end
 
 dep 'thunderbird'
 
-dep 'mariadb.managed'
+dep 'mariadb.managed' do
+  provides %w(mysql)
+end
+
+dep 'mariadb-server.managed' do
+  provides %w(mysqld_safe)
+end
+
 dep 'curl.managed'
 dep 'gkrellm.managed'
 
@@ -68,3 +79,5 @@ dep 'repoquery.managed' do
     via :yum, 'yum-utils'
   }
 end
+
+dep 'iotop.managed'
