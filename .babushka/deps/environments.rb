@@ -45,10 +45,11 @@ dep "environments-dev" do
 end
 
 dep "kira" do
-  requires "environments-console", "environments-desktop"
+  requires %w(environments-console environments-desktop)
   requires 'nvidia'
 end
 
 dep "ryuzaki" do
-  requires "environments-console", "environments-desktop"
+  requires %w(environments-console environments-desktop)
+  requires 'optimus'
 end
