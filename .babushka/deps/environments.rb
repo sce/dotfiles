@@ -12,9 +12,6 @@ end
 
 dep 'environments-desktop' do
   # infinality
-  # rpmfusion
-  #   codecs
-  #   flash
 
   requires %w(
     i3.managed
@@ -51,5 +48,5 @@ end
 
 dep "ryuzaki" do
   requires "environments-console", "environments-desktop"
-  requires %w(rpmfusion codecs)
+  requires %w(rpmfusion codecs flash)
 end

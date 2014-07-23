@@ -122,3 +122,11 @@ dep 'gstreamer1-libav.lib'
 dep 'gstreamer1-plugins-bad-free.lib'
 dep 'gstreamer1-plugins-good.lib'
 dep 'gstreamer1-plugins-ugly.lib'
+
+dep 'flash' do
+  requires %w(flash-plugin.lib nspluginwrapper.lib alsa-plugins-pulseaudio.lib)
+end
+
+dep 'nspluginwrapper.lib' do requires %w(adobe.repository) end
+dep 'flash-plugin.lib' do requires %w(adobe.repository) end
+dep 'alsa-plugins-pulseaudio.lib' do requires %w(adobe.repository) end
