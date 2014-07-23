@@ -11,8 +11,6 @@ dep "environments-console" do
 end
 
 dep 'environments-desktop' do
-  # infinality
-
   requires %w(
     i3.managed
     xfce4-terminal.managed
@@ -30,6 +28,11 @@ dep 'environments-desktop' do
     humanity-icon-theme.managed
     light-theme-gnome.managed
     disable-tracker
+
+    codecs
+    flash
+
+    infinality
   )
 end
 
@@ -48,5 +51,4 @@ end
 
 dep "ryuzaki" do
   requires "environments-console", "environments-desktop"
-  requires %w(rpmfusion codecs flash)
 end

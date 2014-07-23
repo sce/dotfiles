@@ -22,3 +22,9 @@ dep 'adobe.repository' do
     shell %(rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux), sudo: true
   }
 end
+
+dep 'infinality.repository' do
+  meet {
+    shell %(rpm -Uvh http://www.infinality.net/fedora/linux/infinality-repo-1.0-1.noarch.rpm), sudo: true
+  }
+end

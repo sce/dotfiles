@@ -90,6 +90,8 @@ end
 
 dep 'codecs' do
   requires %w(
+    rpmfusion.repository
+
     ffmpeg.lib
 
     gstreamer-plugins-bad.rpm
@@ -124,9 +126,23 @@ dep 'gstreamer1-plugins-good.lib'
 dep 'gstreamer1-plugins-ugly.lib'
 
 dep 'flash' do
+  requires 'rpmfusion.repository'
   requires %w(flash-plugin.lib nspluginwrapper.lib alsa-plugins-pulseaudio.lib)
 end
 
 dep 'nspluginwrapper.lib' do requires %w(adobe.repository) end
 dep 'flash-plugin.lib' do requires %w(adobe.repository) end
 dep 'alsa-plugins-pulseaudio.lib' do requires %w(adobe.repository) end
+
+dep 'infinality' do
+ requires %w(
+   fontconfig-infinality.lib
+   fontforge-infinality.rpm
+   freetype-infinality.rpm
+ )
+end
+
+# Need to use special "rpm" template for some of these, for some reason.
+dep 'fontconfig-infinality.lib' do requires 'infinality.repository' end
+dep 'fontforge-infinality.rpm' do requires 'infinality.repository' end
+dep 'freetype-infinality.rpm' do requires 'infinality.repository' end
