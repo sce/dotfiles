@@ -81,3 +81,44 @@ dep 'repoquery.managed' do
 end
 
 dep 'iotop.managed'
+
+dep 'sensors.managed' do
+  installs {
+    via :yum, %w(lm_sensors)
+  }
+end
+
+dep 'codecs' do
+  requires %w(
+    ffmpeg.lib
+
+    gstreamer-plugins-bad.rpm
+    gstreamer-plugins-bad-free.lib
+    gstreamer-plugins-bad-nonfree.lib
+    gstreamer-plugins-good.lib
+    gstreamer-plugins-ugly.rpm
+
+    gstreamer1-libav.lib
+
+    gstreamer1-plugins-bad-free.lib
+    gstreamer1-plugins-good.lib
+    gstreamer1-plugins-ugly.lib
+  )
+end
+
+# For some of these packages we need to use rpm instead of lib, or else the
+# "met?" test doesn't work for some reason.
+dep 'ffmpeg.lib'
+
+dep 'gstreamer-plugins-bad.rpm'
+dep 'gstreamer-plugins-bad-free.lib'
+dep 'gstreamer-plugins-bad-nonfree.lib'
+
+dep 'gstreamer-plugins-good.lib'
+dep 'gstreamer-plugins-ugly.rpm'
+
+dep 'gstreamer1-libav.lib'
+
+dep 'gstreamer1-plugins-bad-free.lib'
+dep 'gstreamer1-plugins-good.lib'
+dep 'gstreamer1-plugins-ugly.lib'

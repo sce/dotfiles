@@ -5,6 +5,7 @@ dep "environments-console" do
     keychain.managed
     encfs.managed
     iotop.managed
+    sensors.managed
   )
 
 end
@@ -50,5 +51,5 @@ end
 
 dep "ryuzaki" do
   requires "environments-console", "environments-desktop"
-  requires "environments-dev"
+  requires %w(rpmfusion codecs)
 end
