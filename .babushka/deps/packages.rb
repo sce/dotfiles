@@ -146,3 +146,10 @@ end
 dep 'fontconfig-infinality.lib' do requires 'infinality.repository' end
 dep 'fontforge-infinality.rpm' do requires 'infinality.repository' end
 dep 'freetype-infinality.rpm' do requires 'infinality.repository' end
+
+dep 'abrt.rm_lib' do
+  requires %w(abrt-libs.rm_lib abrt-gui-libs.rm_lib)
+end
+
+dep 'abrt-libs.rm_lib'
+dep 'abrt-gui-libs.rm_lib'
