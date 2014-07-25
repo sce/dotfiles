@@ -7,7 +7,8 @@ meta 'repository' do
     def repositories
       # the first two lines are headers, the last is footer.
       raw_shell(%(yum repolist)).stdout.split(/\n/)[2..-2].map do |line|
-        line.split(%r( |/)).first
+        # we just use the first part and remove prefix if it exists.
+        line.split(%r( |/)).first.sub(/^\*|^!/, "")
       end
     end
 
