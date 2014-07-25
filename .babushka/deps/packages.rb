@@ -126,7 +126,6 @@ dep 'gstreamer1-plugins-good.lib'
 dep 'gstreamer1-plugins-ugly.lib'
 
 dep 'flash' do
-  requires 'rpmfusion.repository'
   requires %w(flash-plugin.lib nspluginwrapper.lib alsa-plugins-pulseaudio.lib)
 end
 
@@ -146,3 +145,6 @@ end
 dep 'fontconfig-infinality.lib' do requires 'infinality.repository' end
 dep 'fontforge-infinality.rpm' do requires 'infinality.repository' end
 dep 'freetype-infinality.rpm' do requires 'infinality.repository' end
+
+# hw video decode support for intel graphics.
+dep 'libva-intel-driver.lib' do requires 'rpmfusion.repository' end

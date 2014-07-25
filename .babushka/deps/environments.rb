@@ -51,5 +51,5 @@ end
 
 dep "ryuzaki" do
   requires %w(environments-console environments-desktop)
-  requires 'optimus'
+  requires %w(optimus libva-intel-driver.lib)
 end
