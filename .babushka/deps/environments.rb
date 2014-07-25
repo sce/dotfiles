@@ -33,6 +33,7 @@ dep 'environments-desktop' do
     flash
 
     infinality
+    abrt.rm_lib
   )
 end
 
