@@ -24,6 +24,7 @@ dep 'environments-desktop' do
     lxpolkit.managed
     wallpaperd.managed
     dunst.managed
+    scrot.managed
 
     humanity-icon-theme.managed
     light-theme-gnome.managed

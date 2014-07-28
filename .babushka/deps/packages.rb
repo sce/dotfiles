@@ -24,10 +24,14 @@ dep 'smplayer.managed'
 dep 'thunderbird.managed'
 
 dep 'i3.managed' do
-  requires 'i3status.managed'
+  requires %w(i3status.managed i3lock.managed)
 end
 
 dep 'i3status.managed'
+dep 'i3lock.managed'
+
+# screenshot capture:
+dep 'scrot.managed'
 
 dep 'nm-applet.managed' do
   installs {
