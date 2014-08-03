@@ -6,6 +6,7 @@ dep "environments-console" do
     encfs.managed
     iotop.managed
     sensors.managed
+    mta
   )
 
 end

@@ -159,3 +159,9 @@ end
 
 dep 'abrt-libs.rm_lib'
 dep 'abrt-gui-libs.rm_lib'
+
+dep 'mta' do
+  requires 'postfix.managed'
+end
+
+dep 'postfix.managed'
