@@ -165,3 +165,18 @@ dep 'mta' do
 end
 
 dep 'postfix.managed'
+
+dep 'checkrestart', template: 'bin' do
+  installs {
+    via :apt, 'debian-goodies.managed'
+    via :yum, 'yum-utils.managed'
+  }
+
+  provides {
+    via :apt, 'checkrestart'
+    via :yum, 'needs-restarting'
+  }
+end
+
+dep 'debian-goodies.managed'
+dep 'yum-utils.managed'

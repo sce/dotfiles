@@ -47,6 +47,10 @@ dep "environments-dev" do
   )
 end
 
+dep "environments-server" do
+  requires %w(checkrestart)
+end
+
 dep "kira" do
   requires %w(environments-console environments-desktop)
   requires 'nvidia'
