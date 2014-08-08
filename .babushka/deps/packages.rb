@@ -196,3 +196,5 @@ end
 
 dep 'smartmontools.lib'
 dep 'smartd.enable'
+
+dep 'gftp', template: 'managed'

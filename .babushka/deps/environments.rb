@@ -40,6 +40,7 @@ dep "environments-dev" do
     mariadb.managed
     mariadb-server.managed
     rvm
+    gftp
   )
 end
 
@@ -74,6 +75,7 @@ dep "ryuzaki" do
     environments-console
     environments-desktop
     environments-monitoring
+    environments-dev
   )
   requires %w(optimus libva-intel-driver.lib)
 end
