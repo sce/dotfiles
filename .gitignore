@@ -6,3 +6,9 @@
 
 !.babushka/**
 .babushka/logs
+
+.bash_history
+.lesshst
+.viminfo
+
+.forward
