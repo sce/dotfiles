@@ -47,6 +47,9 @@ dep "environments-monitoring" do
   requires %w(
     iotop.managed
     sensors.managed
+    atop.managed
+    smartmontools
+    iftop.managed
   )
 end
 

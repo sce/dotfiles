@@ -186,3 +186,13 @@ dep 'systemctl.bin' do
     via :yum, 'systemd'
   }
 end
+
+dep 'atop.managed'
+dep 'iftop.managed'
+
+dep 'smartmontools' do
+  requires %w(smartmontools.lib smartd.enable)
+end
+
+dep 'smartmontools.lib'
+dep 'smartd.enable'
