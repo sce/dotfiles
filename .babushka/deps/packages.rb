@@ -180,3 +180,9 @@ end
 
 dep 'debian-goodies.managed'
 dep 'yum-utils.managed'
+
+dep 'systemctl.bin' do
+  installs {
+    via :yum, 'systemd'
+  }
+end
