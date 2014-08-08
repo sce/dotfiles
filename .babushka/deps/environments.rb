@@ -1,14 +1,10 @@
 dep "environments-console" do
-
   requires %w(
     vim.managed
     keychain.managed
     encfs.managed
-    iotop.managed
-    sensors.managed
     mta
   )
-
 end
 
 dep 'environments-desktop' do
@@ -47,16 +43,34 @@ dep "environments-dev" do
   )
 end
 
+dep "environments-monitoring" do
+  requires %w(
+    iotop.managed
+    sensors.managed
+  )
+end
+
 dep "environments-server" do
-  requires %w(checkrestart)
+  requires %w(
+    environments-monitoring
+    checkrestart
+  )
 end
 
 dep "kira" do
-  requires %w(environments-console environments-desktop)
+  requires %w(
+    environments-console
+    environments-desktop
+    environments-monitoring
+  )
   requires 'nvidia'
 end
 
 dep "ryuzaki" do
-  requires %w(environments-console environments-desktop)
+  requires %w(
+    environments-console
+    environments-desktop
+    environments-monitoring
+  )
   requires %w(optimus libva-intel-driver.lib)
 end
