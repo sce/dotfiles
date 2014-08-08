@@ -3,3 +3,6 @@
 
 !.config/awesome
 !*.sh
+
+!.babushka/**
+.babushka/logs
