@@ -4,6 +4,7 @@ dep "environments-console" do
     keychain.managed
     encfs.managed
     mta
+    rdfind
   )
 end
 

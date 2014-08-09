@@ -203,3 +203,19 @@ dep 'smartmontools.lib'
 dep 'smartd.enable'
 
 dep 'gftp', template: 'managed'
+
+dep 'rdfind' do
+  requires %w(rdfind.managed rdfind.src)
+end
+
+dep 'rdfind.managed', for: :ubuntu
+
+dep 'rdfind.src', :version, for: :fedora do
+  version.default!('1.3.4')
+  source "http://rdfind.pauldreik.se/rdfind-#{version}.tar.gz"
+  provides "rdfind = #{version}"
+
+  requires 'nettle-devel'
+end
+
+dep 'nettle-devel', template: 'lib'
