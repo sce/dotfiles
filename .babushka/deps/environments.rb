@@ -86,4 +86,6 @@ dep "turtle" do
     environments-console
     environments-monitoring
   )
+
+  requires %w(nut)
 end

@@ -225,3 +225,8 @@ dep 'rdfind.src', :version, for: :fedora do
 end
 
 dep 'nettle-devel', template: 'lib'
+
+# network ups tools:
+dep 'nut', template: 'managed' do
+  provides %w(upsd)
+end
