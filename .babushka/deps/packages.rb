@@ -77,7 +77,8 @@ dep 'gkrellm.managed'
 dep 'encfs.managed' do
   installs {
     via :yum, 'fuse-encfs'
-    otherwise 'fuse-encfs'
+    via :apt, 'encfs'
+    otherwise 'encfs'
   }
 end
 
@@ -200,7 +201,12 @@ dep 'smartmontools' do
 end
 
 dep 'smartmontools.lib'
-dep 'smartd.enable'
+dep 'smartd.enable' do
+  requires %w(smartd.systemd_enable smartd.sysv_enable)
+end
+
+dep 'smartd.systemd_enable', for: :fedora
+dep 'smartd.sysv_enable', for: :ubuntu
 
 dep 'gftp', template: 'managed'
 
