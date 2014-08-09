@@ -80,3 +80,10 @@ dep "ryuzaki" do
   )
   requires %w(optimus libva-intel-driver.lib)
 end
+
+dep "turtle" do
+  requires %w(
+    environments-console
+    environments-monitoring
+  )
+end
