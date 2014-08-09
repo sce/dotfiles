@@ -14,6 +14,7 @@ dep 'xorg-x11-drv-nouveau.lib'
 dep 'vim.managed' do
   installs {
     via :yum, 'vim-minimal'
+    otherwise 'vim'
   }
 end
 
@@ -36,6 +37,7 @@ dep 'scrot.managed'
 dep 'nm-applet.managed' do
   installs {
     via :yum, 'network-manager-applet'
+    otherwise 'network-manager-applet'
   }
 end
 
@@ -75,6 +77,7 @@ dep 'gkrellm.managed'
 dep 'encfs.managed' do
   installs {
     via :yum, 'fuse-encfs'
+    otherwise 'fuse-encfs'
   }
 end
 
@@ -168,13 +171,15 @@ dep 'postfix.managed'
 
 dep 'checkrestart', template: 'bin' do
   installs {
-    via :apt, 'debian-goodies.managed'
-    via :yum, 'yum-utils.managed'
+    via :apt, 'debian-goodies'
+    via :yum, 'yum-utils'
+    otherwise 'debian-goodies'
   }
 
   provides {
     via :apt, 'checkrestart'
     via :yum, 'needs-restarting'
+    otherwise 'needs-restarting'
   }
 end
 
