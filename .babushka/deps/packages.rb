@@ -230,3 +230,7 @@ dep 'nettle-devel', template: 'lib'
 dep 'nut', template: 'managed' do
   provides %w(upsd)
 end
+
+dep 'xchat', template: 'managed'
+dep 'gnome-tweak-tool', template: 'managed'
+dep 'qpdfview', template: 'managed'

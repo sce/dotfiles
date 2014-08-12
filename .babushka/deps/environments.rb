@@ -33,6 +33,10 @@ dep 'environments-desktop' do
 
     infinality
     abrt.rm_lib
+
+    xchat
+    gnome-tweak-tool
+    qpdfview
   )
 end
 
