@@ -40,7 +40,7 @@ case $ACTION in
     # symlink to the latest backup always works and that non-daily rotations
     # always work.
     CANDIDATES="${LATEST[*]:1}"
-    [ -n "$CANDIDATES" ] && find $CANDIDATES -mtime +7 -exec rm -rf {} +
+    [ -n "$CANDIDATES" ] && find $CANDIDATES -maxdepth 0 -mtime +7 -exec rm -rf {} +
     ;;
 
   weekly)
