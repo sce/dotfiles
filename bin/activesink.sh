@@ -21,7 +21,7 @@ function volume_text {
 }
 
 function notify_volume {
-  notify-send -u low "$(volume_text)"
+  notify-send -u low -t 100 "$(volume_text)"
 }
 
 INC="3%"
