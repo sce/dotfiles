@@ -80,6 +80,7 @@ ssh $HOST "(
 # -i show how files are changed
 # -z compress during transfer
 # -H find/transfer hard links
+# -x stay on one file system.
 # -T temporary directory used by rsync during transfer.
 #    We need to use -T because it's not possible to create files inside the
 #    reverse encrypted mount.
@@ -90,7 +91,7 @@ ssh $HOST "(
 # --inplace replace files in place. This fixes problems with permissions that
 #           for some reason is only happening with the encrypted files.
 
-OPTS="-ahvizH -T $RSYNC_TMP --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM_ENC --inplace $@" &&
+OPTS="-ahvizHx -T $RSYNC_TMP --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM_ENC --inplace $@" &&
 
 # Trailing slash is important:
 rsync $OPTS $ENC_DIR/ $DEST &&
