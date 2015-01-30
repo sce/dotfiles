@@ -57,6 +57,7 @@ bindsym $mod+Shift+b exec ~/bin/file-browser
 # too bad this stopped working on its own (gnome hotkeys not working in saucy
 # for some reason):
 bindsym control+$alt+l exec ~/bin/screenlock
+bindsym control+$alt+s exec ~/bin/suspend
 
 # ... and this too (pulseaudio/media hotkeys):
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volup
