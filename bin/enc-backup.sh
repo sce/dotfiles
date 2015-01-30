@@ -71,7 +71,7 @@ ENC_CONFIG=$ENC_CONFIG encfs --standard --reverse $SRC $ENC_DIR &&
 
 ssh $HOST "(
   ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
-  [ -d \"$LINK_DEST\" ] && echo Latest backup is: \$(readlink $LINK_DEST) || true
+  [ -d \"$LINK_DEST\" ] && echo \"Latest backup is: \$(readlink $LINK_DEST)\" || echo \"$LINK_DEST  not found: No earlier backup.\" && sleep 3
 )" &&
 
 # -a archive
