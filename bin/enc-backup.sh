@@ -51,7 +51,7 @@ LINK_DEST=$DEST_ROOT/latest
 # Destination directory has an "incomplete" suffix which we remove after we're
 # done.
 INCOMPLETE=$TS.incomplete
-DEST_DIR=$DEST_ROOT/$INCOMPLETE
+DEST_DIR=$DEST_ROOT/daily/$INCOMPLETE
 
 DEST=$HOST:$DEST_DIR
 
@@ -102,8 +102,8 @@ rsync $OPTS $ENC_DIR/ $DEST &&
 # Update link to latest (if trailing --dry-run was given then DEST_DIR won't
 # exist, and the link won't be updated).
 ssh $HOST "(
-  cd $DEST_ROOT && [ -d \"$INCOMPLETE\" ] &&
-  mv -iv $INCOMPLETE $TS && ln -snfv $TS $LINK_DEST ||
+  cd $DEST_ROOT && [ -d \"$DEST_DIR\" ] &&
+  mv -iv $DEST_DIR daily/$TS && ln -snfv daily/$TS $LINK_DEST ||
   echo \"Could not find $DEST_DIR: Not updating latest.\"
 )" ||
 
