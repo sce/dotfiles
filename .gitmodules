@@ -1,3 +1,6 @@
 [submodule ".config/awesome/revelation"]
 	path = .config/awesome/revelation
 	url = git://github.com/bioe007/awesome-revelation.git
+[submodule ".vim/bundle/rust.vim"]
+	path = .vim/bundle/rust.vim
+	url = https://github.com/wting/rust.vim.git
