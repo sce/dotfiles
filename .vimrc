@@ -205,6 +205,14 @@ set re=1
 " let ruby_fold=1
 " let ruby_no_comment_fold = 1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins:
+
+" activate pathogen to enable ~/.vim/bundle plugins:
+" https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From http://amix.dk/vim/vimrc.html:
 
