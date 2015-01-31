@@ -69,9 +69,11 @@ ENC_CONFIG=$ENC_CONFIG encfs --standard --reverse $SRC $ENC_DIR &&
   encfsctl encode $SRC < $EXCLUDE_FROM > $EXCLUDE_FROM_ENC || true
 ) &&
 
+echo "Destination is: $DEST" &&
+
 ssh $HOST "(
-  ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
-  [ -d \"$LINK_DEST\" ] && echo \"Latest backup is: \$(readlink $LINK_DEST)\" || echo \"$LINK_DEST  not found: No earlier backup.\" && sleep 3
+  ([ -d \"$DEST_ROOT/daily\" ] || mkdir -p $DEST_ROOT/daily) &&
+  [ -d \"$LINK_DEST\" ] && echo \"Latest backup is: \$(readlink $LINK_DEST)\" || echo \"$LINK_DEST not found: No earlier backup.\" && sleep 3
 )" &&
 
 # -a archive
