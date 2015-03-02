@@ -1,0 +1,22 @@
+# List of directories to search backgrounds in
+#path.search=/usr/share/backgrounds:~/Bilder/wallpapers
+path.search=~/Bilder/wallpapers
+
+# Supported modes are NUMBER, NAME, RANDOM, SET and STATIC
+config.mode=RANDOM
+
+# Interval in seconds background should be changed in RANDOM mode
+config.interval=7200
+
+# Path to background set configuration
+#config.set=/usr/share/backgrounds/cosmos/background-1.xml
+
+wallpaper.default.image=wallpaper
+wallpaper.default.mode=ZOOMED
+
+#wallpaper.1.image=one.jpg
+#wallpaper.1.mode=CENTERED
+#wallpaper.2.image=two.jpg
+#wallpaper.2.mode=FILLED
+#wallpaper.3.type=COLOR
+#wallpaper.3.color=#ffffff
