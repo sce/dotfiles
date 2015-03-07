@@ -31,7 +31,7 @@ LOG_FILE=enc-backup.log
   echo Please edit $0 to setup correctly. &&
   exit 1
 
-# -----------------------------------------------------------------------------
+# Setup -----------------------------------------------------------------------
 
 # We use a full datetime timestamp to make sure we can do multiple backups per
 # day (for whatever reason) without collisions.
@@ -55,7 +55,7 @@ DEST_DIR=$DEST_ROOT/daily/$INCOMPLETE
 
 DEST=$HOST:$DEST_DIR
 
-# -----------------------------------------------------------------------------
+# Execution -------------------------------------------------------------------
 
 # Setup reverse encryption (this will create the config file if it doesn't
 # already exist):
@@ -115,6 +115,7 @@ ssh $HOST "(
 
 echo "$0: something failed with code $?: Not updating $LINK_DEST."
 
-# Cleanup:
+# Cleanup ---------------------------------------------------------------------
+
 fusermount -u $ENC_DIR
 rmdir $ENC_DIR $RSYNC_TMP
