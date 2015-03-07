@@ -25,7 +25,6 @@ SRC= # /home/$(whoami)/
 DEST_ROOT= # /var/backups/$(hostname)/$(whoami).enc
 
 EXCLUDE_FROM=backup.exclude
-LOG_FILE=enc-backup.log
 
 [ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] &&
   echo Please edit $0 to setup correctly. &&
@@ -36,6 +35,8 @@ LOG_FILE=enc-backup.log
 # We use a full datetime timestamp to make sure we can do multiple backups per
 # day (for whatever reason) without collisions.
 TS=$(date +%Y%m%d.%H%M%S)
+
+LOG_FILE=.local/log/enc-backup-$TS.log
 
 ENC_DIR=/tmp/$(whoami)-$TS.enc
 ENC_CONFIG=$SRC/.encfs6.xml
@@ -57,6 +58,8 @@ DEST=$HOST:$DEST_DIR
 
 # Execution -------------------------------------------------------------------
 
+mkdir -vp $(dirname $LOG_FILE) &&
+
 # Setup reverse encryption (this will create the config file if it doesn't
 # already exist):
 mkdir -p $ENC_DIR $RSYNC_TMP &&
@@ -70,6 +73,7 @@ ENC_CONFIG=$ENC_CONFIG encfs --standard --reverse $SRC $ENC_DIR &&
 ) &&
 
 echo "Destination is: $DEST" &&
+echo "Using logfile: $LOG_FILE" &&
 
 ssh $HOST "(
   ([ -d \"$DEST_ROOT/daily\" ] || mkdir -p $DEST_ROOT/daily) &&
