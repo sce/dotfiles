@@ -1,6 +1,23 @@
+# history:
 .bash_history
 .lesshst
-.viminfo
+.viminf*
+.irb-history
 
+# cache:
 .cache
 .bundler/cache
+.local/share/tracker
+
+# java:
+.java/deployment/cache
+.icedtea
+
+# flash:
+.macromedia
+.adobe
+
+# temp stuff:
+Downloads
+Nedlastinger
+tmp
