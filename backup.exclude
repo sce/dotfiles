@@ -9,6 +9,8 @@
 .bundler/cache
 .local/share/tracker
 
+.config/chromium/Default/Application Cache/
+
 # java:
 .java/deployment/cache
 .icedtea
