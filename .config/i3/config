@@ -245,16 +245,5 @@ bar {
 
 # (use "exec" with "--no-startup-id" for commandline programs)
 
-# Give us a desktop environment:
-# (by using a dummy session gnome-session will not try to start a wm)
-exec --no-startup-id gnome-session --session=gnome-dummy
-
-# Notifications must be handled by the desktop, so use a notification daemon:
-exec --no-startup-id ~/bin/notification-daemon
-
-# PolicyKit handles privilege escalation, but the one gnome uses is not easily
-# available, so use a replacement (e.g. lxpolkit):
-exec --no-startup-id ~/bin/polkit
-
-# Set wallpaper:
-exec --no-startup-id ~/bin/wallpaper
+# Startup misc session progs (.config/i3/startup/*):
+exec --no-startup-id ~/.config/i3/startup.sh
