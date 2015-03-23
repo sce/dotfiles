@@ -81,6 +81,9 @@ for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Anki" title="Export"] floating enable
 for_window [class="Anki" title="Import"] floating enable
 
+# Due to focus follows mouse this popup works better if it's fullscreen:
+for_window [class="Soffice" title="Asiatisk lydskrift"] floating disable
+
 # print to pdf dialog:
 for_window [class="Firefox" instance="Toplevel"] floating enable
 
