@@ -9,6 +9,6 @@
 
 .bash_history
 .lesshst
-.viminfo
+.viminf*
 
 .forward
