@@ -102,6 +102,8 @@ ssh $HOST "(
 
 OPTS="-ahvizHxs -T $RSYNC_TMP --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM_ENC --inplace $@" &&
 
+echo "rsync $OPTS $ENC_DIR/ $DEST" &&
+
 # Trailing slash is important:
 rsync $OPTS $ENC_DIR/ $DEST &&
 
