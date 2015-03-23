@@ -37,6 +37,7 @@
   dcw = !git dc --word-diff
   cp = cherry-pick
   lg = log -p
+  fvars = fetch -va --recurse-submodules
 
   # search for commits that change trailing argument
   ps = log -p -S
