@@ -25,8 +25,8 @@ function notify_volume {
 }
 
 INC="3%"
-function volup { pactl set-sink-volume $ACTIVE_SINK -- +$INC; }
-function voldown { pactl set-sink-volume $ACTIVE_SINK -- -$INC; }
+function volup { pactl set-sink-volume $ACTIVE_SINK +$INC; }
+function voldown { pactl set-sink-volume $ACTIVE_SINK -$INC; }
 function mutetoggle { pactl set-sink-mute $ACTIVE_SINK toggle; unset MUTED; }
 
 case "$0" in
