@@ -1,17 +1,23 @@
 *
 !.*
 
-!bin
-!bin/**
-
-!.config/awesome
 !*.sh
-
-!.babushka/**
-.babushka/logs
 
 .bash_history
 .lesshst
 .viminf*
 
 .forward
+
+!bin
+!bin/**
+
+!.config/awesome
+!.config/i3
+!.config/i3/**
+
+!.babushka/**
+.babushka/logs
+
+!.vim/bundle
+!.vim/bundle/**
