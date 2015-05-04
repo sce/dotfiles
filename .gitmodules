@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/rust.vim"]
 	path = .vim/bundle/rust.vim
 	url = https://github.com/wting/rust.vim.git
+[submodule ".vim/bundle/vim-slim"]
+  path = .vim/bundle/vim-slim
+  url = https://github.com/slim-template/vim-slim.git
