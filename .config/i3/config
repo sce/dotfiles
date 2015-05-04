@@ -39,14 +39,17 @@ new_window normal 1
 # No header, px border:
 #new_window pixel 1
 
+# Layout for new containers: <default|stacking|tabbed>
+workspace_layout tabbed
+
 # Focusing the current workspace will go back to previous workspace:
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 
 # Instead of going to the next container, workspace or output simply wrap
 # inside the current container instead. (Use "focus parent" to escape current
 # container.)
-#force_focus_wrapping yes
-force_focus_wrapping no
+force_focus_wrapping yes
+#force_focus_wrapping no
 
 # application shortcuts
 #bindsym $mod+Return exec i3-sensible-terminal
