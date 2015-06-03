@@ -31,13 +31,13 @@ floating_modifier $mod
 # Hiding the borders that are adjacent to the edge of the screen looks nice,
 # but removes the vertical/horizontal hint when placing new windows.
 #hide_edge_borders <none|vertical|horizontal|both>
-#hide_edge_borders both
-hide_edge_borders vertical
+hide_edge_borders both
+#hide_edge_borders vertical
 
 # Window header + 1px border:
-new_window normal 1
-# No header, px border:
-#new_window pixel 1
+#new_window normal 1
+# No header, px border: (header still shows when tabbed, stacked):
+new_window pixel 1
 
 # Layout for new containers: <default|stacking|tabbed>
 workspace_layout tabbed
