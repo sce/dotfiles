@@ -20,15 +20,16 @@ SRC= # /home/$(whoami)/
 DEST_ROOT= # /var/backups/$(hostname)/$(whoami)
 
 EXCLUDE_FROM=backup.exclude
-LOG_FILE=backup.log
 
 [ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
 
-# -----------------------------------------------------------------------------
+# Setup -----------------------------------------------------------------------
 
 # We use a full datetime timestamp to make sure we can do multiple backups per
 # day (for whatever reason) without collisions.
 TS=$(date +%Y%m%d.%H%M%S)
+
+LOG_FILE=.local/log/enc-backup-$TS.log
 
 # Where rsync will look for similar files it can hardlink to instead of sending
 # over the wire:
@@ -41,7 +42,9 @@ DEST_DIR=$DEST_ROOT/$INCOMPLETE
 
 DEST=$HOST:$DEST_DIR
 
-# -----------------------------------------------------------------------------
+# Execution -------------------------------------------------------------------
+
+mkdir -vp $(dirname $LOG_FILE) &&
 
 ssh $HOST "(
   ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
@@ -54,12 +57,13 @@ ssh $HOST "(
 # -i show how files are changed
 # -z compress during transfer
 # -H find/transfer hard links
+# -x stay on one file system.
 
 # --progress show progress during transfer
 # --link-dest remote directory to hardlink to when file is unmodified
 # --exclude-from file with exclude filters
 
-OPTS="-ahvizH --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@" &&
+OPTS="-ahvizHx --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@" &&
 
 rsync $OPTS $SRC $DEST &&
 
