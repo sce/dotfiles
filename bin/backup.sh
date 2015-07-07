@@ -19,7 +19,11 @@ SRC= # /home/$(whoami)/
 # Put the incremental backups inside hostname/user directory:
 DEST_ROOT= # /var/backups/$(hostname)/$(whoami)
 
-EXCLUDE_FROM=backup.exclude
+# The work dir is the root directory from where this script expects to find
+# config, place logs etc.
+WORK_DIR=~
+
+EXCLUDE_FROM=$WORK_DIR/.config/backup.exclude
 
 [ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
 
@@ -29,7 +33,7 @@ EXCLUDE_FROM=backup.exclude
 # day (for whatever reason) without collisions.
 TS=$(date +%Y%m%d.%H%M%S)
 
-LOG_FILE=.local/log/enc-backup-$TS.log
+LOG_FILE=$WORK_DIR/.local/log/backup-$TS.log
 
 # Where rsync will look for similar files it can hardlink to instead of sending
 # over the wire:
