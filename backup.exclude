@@ -11,6 +11,11 @@
 
 .config/chromium/Default/Application Cache/
 
+.local/share/Steam/config/htmlcache
+.local/share/Steam/appcache
+.local/share/Steam/steam/cached
+.local/share/Steam/package
+
 # java:
 .java/deployment/cache
 .icedtea
