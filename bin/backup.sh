@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # This script will do an rsync backup of SRC directory to HOST.
+# If host is unset, this will be a local backup.
+#
 # It will place the backup in a timestamp directory in DEST_ROOT and create a
 # latest link to that directory when finished. The destination directory has an
 # "incomplete" suffix which is removed after rsync-ing is done.
@@ -14,10 +16,11 @@
 #
 # List of patterns in backup.exclude are excluded from backup.
 
-HOST=
-SRC= # /home/$(whoami)/
+#: ${HOST=default_host}
+#: ${SRC:=/home/$(whoami)/}
+
 # Put the incremental backups inside hostname/user directory:
-DEST_ROOT= # /var/backups/$(hostname)/$(whoami)
+#: ${DEST_ROOT:=/var/backups/$(hostname)/$(whoami)}
 
 # The work dir is the root directory from where this script expects to find
 # config, place logs etc.
@@ -25,7 +28,8 @@ WORK_DIR=~
 
 EXCLUDE_FROM=$WORK_DIR/.config/backup.exclude
 
-[ -z "$HOST" -o -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
+[ -z "$SRC" -o -z "$DEST_ROOT" ] && exit 1
+[ -z "$HOST" ] && echo "HOST is unset, this will be a local backup..."
 
 # Setup -----------------------------------------------------------------------
 
@@ -44,16 +48,29 @@ LINK_DEST=$DEST_ROOT/latest
 INCOMPLETE=$TS.incomplete
 DEST_DIR=$DEST_ROOT/$INCOMPLETE
 
-DEST=$HOST:$DEST_DIR
+if [ -z "$HOST" ]; then
+  DEST=$DEST_DIR
+else
+  DEST=$HOST:$DEST_DIR
+fi
 
 # Execution -------------------------------------------------------------------
 
-mkdir -vp $(dirname $LOG_FILE) &&
+mkdir -vp $(dirname $LOG_FILE) || exit 1
 
-ssh $HOST "(
-  ([ -d \"$DEST_ROOT\" ] || mkdir -p $DEST_ROOT) &&
-  [ -d \"$LINK_DEST\" ] && echo Latest backup is: \$(readlink $LINK_DEST) || true
-)" &&
+cmds=$(cat <<EOS
+  ([ -d "$DEST_ROOT" ] || mkdir -p $DEST_ROOT) &&
+  [ -d "$LINK_DEST" ] && echo "Latest backup is: \$(readlink $LINK_DEST)" || true
+EOS
+)
+
+if [ -z "$HOST" ]; then
+  bash -c "${cmds}"
+else
+  ssh $HOST "($cmds)"
+fi &&
+
+sleep 3 &&
 
 # -a archive
 # -h human readable units
@@ -67,16 +84,24 @@ ssh $HOST "(
 # --link-dest remote directory to hardlink to when file is unmodified
 # --exclude-from file with exclude filters
 
-OPTS="-ahvizHx --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@" &&
+#OPTS="-ahvizHx --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@" &&
+OPTS="-ahizHx --progress --log-file=$LOG_FILE --link-dest=$LINK_DEST --exclude-from=$EXCLUDE_FROM $@" &&
 
+echo rsync $OPTS $SRC $DEST >> $LOG_FILE &&
 rsync $OPTS $SRC $DEST &&
 
 # Update link to latest (if trailing --dry-run was given then DEST_DIR won't
 # exist, and the link won't be updated).
-ssh $HOST "(
-  cd $DEST_ROOT && [ -d \"$INCOMPLETE\" ] &&
+cmds=$(cat <<EOS
+  cd $DEST_ROOT && [ -d "$INCOMPLETE" ] &&
   mv -iv $INCOMPLETE $TS && ln -snfv $TS $LINK_DEST ||
-  echo \"Could not find $DEST_DIR: Not updating latest.\"
-)" ||
+  echo "Could not find $DEST_DIR: Not updating latest."
+EOS
+)
 
+if [ -z "$HOST" ]; then
+  bash -c "${cmds}"
+else
+  ssh $HOST "($cmds)"
+fi ||
 echo "$0: something failed with code $?: Not updating $LINK_DEST."
