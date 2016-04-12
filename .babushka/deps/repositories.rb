@@ -1,10 +1,13 @@
-dep 'rpmfusion.repository' do
+dep 'rpmfusion' do
+  requires %w(rpmfusion-free.repository rpmfusion-nonfree.repository)
+end
 
-  installs %w(rpmfusion-free rpmfusion-free-updates rpmfusion-nonfree rpmfusion-nonfree-updates)
-  url %W(
-    http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-#{release}.noarch.rpm
-    http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-#{release}.noarch.rpm
-  )
+dep 'rpmfusion-free.repository' do
+  url %(http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-#{release}.noarch.rpm)
+end
+
+dep 'rpmfusion-nonfree.repository' do
+  url %(http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-#{release}.noarch.rpm)
 end
 
 dep 'adobe.repository' do

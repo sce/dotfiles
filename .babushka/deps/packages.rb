@@ -98,7 +98,7 @@ end
 
 dep 'codecs' do
   requires %w(
-    rpmfusion.repository
+    rpmfusion
 
     ffmpeg.lib
 
