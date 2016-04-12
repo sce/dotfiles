@@ -20,7 +20,7 @@ dep 'environments-desktop' do
     nm-applet.managed
     redshift-gtk.managed
     lxpolkit.managed
-    wallpaperd.managed
+
     dunst.managed
     scrot.managed
 
@@ -31,7 +31,6 @@ dep 'environments-desktop' do
     codecs
     flash
 
-    infinality
     abrt.rm_lib
 
     xchat

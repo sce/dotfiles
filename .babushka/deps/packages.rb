@@ -50,7 +50,7 @@ dep 'lxpolkit.managed' do
   }
 end
 
-dep 'wallpaperd.managed'
+#dep 'wallpaperd.managed'
 dep 'dunst.managed'
 
 dep 'humanity-icon-theme.managed' do
