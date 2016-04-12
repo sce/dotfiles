@@ -1,7 +1,4 @@
 dep 'rpmfusion.repository' do
-  def release
-    raw_shell(%(rpm -E %fedora)).stdout.strip
-  end
 
   installs %w(rpmfusion-free rpmfusion-free-updates rpmfusion-nonfree rpmfusion-nonfree-updates)
   url %W(
