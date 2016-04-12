@@ -75,14 +75,22 @@ dep "kira" do
   requires 'nvidia'
 end
 
-dep "ryuzaki" do
+#dep "ryuzaki" do
+#  requires %w(
+#    environments-console
+#    environments-desktop
+#    environments-monitoring
+#    environments-dev
+#  )
+#  requires %w(optimus libva-intel-driver.lib)
+#end
+
+dep "ryuuzaki" do
   requires %w(
     environments-console
     environments-desktop
     environments-monitoring
-    environments-dev
   )
-  requires %w(optimus libva-intel-driver.lib)
 end
 
 dep "turtle" do
