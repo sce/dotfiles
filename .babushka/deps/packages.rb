@@ -46,7 +46,7 @@ dep 'redshift-gtk.managed'
 dep 'lxpolkit.managed' do
   met? {
     # Binary is not in path, so query manually:
-    '/usr/libexec/lxpolkit'.p.exists?
+    which 'lxpolkit' or '/usr/libexec/lxpolkit'.p.exists?
   }
 end
 
