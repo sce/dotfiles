@@ -18,3 +18,19 @@ end
 dep 'infinality.repository' do
   url %(http://www.infinality.net/fedora/linux/infinality-repo-1.0-1.noarch.rpm)
 end
+
+dep 'spot-chromium.copr', installs: "spot/chromium"
+
+dep 'russianfedora' do
+  requires %w(russianfedora-free.repository russianfedora-nonfree.repository)
+end
+
+dep 'russianfedora-free.repository' do
+  # no gpg-check ...
+  url %(http://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm)
+end
+
+dep 'russianfedora-nonfree.repository' do
+  # no gpg-check ...
+  url %(http://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm)
+end

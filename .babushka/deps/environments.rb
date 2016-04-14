@@ -29,6 +29,7 @@ dep 'environments-desktop' do
     disable-tracker
 
     codecs
+    chromium-full
     flash
 
     abrt.rm_lib

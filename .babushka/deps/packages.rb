@@ -234,3 +234,17 @@ end
 dep 'xchat', template: 'managed'
 dep 'gnome-tweak-tool', template: 'managed'
 dep 'qpdfview', template: 'managed'
+
+dep 'chromium-full' do
+  requires %w(chromium chromium-pepper-flash)
+end
+
+dep 'chromium-pepper-flash', template: 'lib' do
+  requires %w(russianfedora)
+end
+
+dep 'chromium', template: 'managed' do
+  #requires %w(spot-chromium.copr)
+  requires %w(russianfedora)
+  installs %w(chromium)
+end
