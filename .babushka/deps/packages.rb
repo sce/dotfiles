@@ -237,12 +237,14 @@ dep 'gnome-tweak-tool', template: 'managed'
 dep 'qpdfview', template: 'managed'
 
 dep 'chromium-full' do
-  requires %w(chromium chromium-pepper-flash)
+  requires %w(chromium chromium-pepper-flash chromium-widevinecdm-plugin)
 end
 
 dep 'chromium-pepper-flash', template: 'lib' do
   requires %w(russianfedora)
 end
+
+dep 'chromium-widevinecdm-plugin', template: 'lib'
 
 dep 'chromium', template: 'managed' do
   #requires %w(spot-chromium.copr)
