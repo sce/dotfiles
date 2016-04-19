@@ -19,6 +19,9 @@ dep 'infinality.repository' do
   url %(http://www.infinality.net/fedora/linux/infinality-repo-1.0-1.noarch.rpm)
 end
 
+#dep 'fedora-chromium-stable.repository' do
+#end
+
 dep 'spot-chromium.copr', installs: "spot/chromium"
 
 dep 'russianfedora' do

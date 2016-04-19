@@ -56,6 +56,7 @@ dep "environments-monitoring" do
     atop.managed
     smartmontools
     iftop.managed
+    powertop.managed
   )
 end
 

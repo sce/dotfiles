@@ -23,6 +23,7 @@ dep 'keychain.managed'
 
 dep 'smplayer.managed'
 dep 'thunderbird.managed'
+dep 'mpv', template: 'managed'
 
 dep 'i3.managed' do
   requires %w(i3status.managed i3lock.managed)
@@ -248,3 +249,13 @@ dep 'chromium', template: 'managed' do
   requires %w(russianfedora)
   installs %w(chromium)
 end
+
+dep 'firefox-full' do
+  requires %w(firefox flash)
+end
+
+dep 'firefox', template: 'managed'
+
+dep 'pavucontrol', template: 'managed'
+dep 'powertop.managed'
+dep 'xbacklight', template: 'managed'
