@@ -8,35 +8,58 @@ dep "environments-console" do
   )
 end
 
-dep 'environments-desktop' do
+dep 'i3-full' do
   requires %w(
     i3.managed
-    xfce4-terminal.managed
-
-    smplayer.managed
-    thunderbird
-    gkrellm.managed
-
-    nm-applet.managed
-    redshift-gtk.managed
     lxpolkit.managed
-
+    xfce4-terminal.managed
+    nm-applet.managed
     dunst.managed
+
+    i3-portable
+  )
+end
+
+dep 'i3-portable' do
+  requires %w(
+    xbacklight
+  )
+end
+
+dep 'multimedia' do
+  requires %w(
+    smplayer.managed
+    mpv
+
+    codecs
+
+    chromium-full
+    firefox-full
+
     scrot.managed
+  )
+end
+
+dep 'environments-desktop' do
+  requires %w(
+    i3-full
+    multimedia
+
+    disable-tracker
+    abrt.rm_lib
 
     humanity-icon-theme.managed
     light-theme-gnome.managed
-    disable-tracker
 
-    codecs
-    chromium-full
-    flash
-
-    abrt.rm_lib
+    thunderbird
+    gkrellm.managed
 
     xchat
-    gnome-tweak-tool
     qpdfview
+
+    gnome-tweak-tool
+    redshift-gtk.managed
+    pavucontrol
   )
 end
 
