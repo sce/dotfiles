@@ -261,3 +261,16 @@ dep 'firefox', template: 'managed'
 dep 'pavucontrol', template: 'managed'
 dep 'powertop.managed'
 dep 'xbacklight', template: 'managed'
+
+dep 'skype' do
+  # only 32bit, so requires these libs:
+  requires %w(libXv.i686 libXScrnSaver.i686 qt.i686 qt-x11.i686 pulseaudio-libs.i686 pulseaudio-libs-glib2.i686 alsa-plugins-pulseaudio.i686)
+end
+
+dep 'libXv.i686'
+dep 'libXScrnSaver.i686'
+dep 'qt.i686'
+dep 'qt-x11.i686'
+dep 'pulseaudio-libs.i686'
+dep 'pulseaudio-libs-glib2.i686'
+dep 'alsa-plugins-pulseaudio.i686'
