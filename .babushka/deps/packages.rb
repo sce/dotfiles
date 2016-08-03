@@ -24,7 +24,7 @@ dep 'keychain.managed'
 
 dep 'smplayer.managed'
 dep 'thunderbird.managed'
-dep 'mpv', template: 'managed'
+dep 'mpv', template: 'bin'
 
 dep 'i3.managed' do
   requires %w(i3status.managed i3lock.managed)
