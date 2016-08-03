@@ -28,7 +28,6 @@ end
 
 dep 'multimedia' do
   requires %w(
-    smplayer.managed
     mpv
 
     codecs
