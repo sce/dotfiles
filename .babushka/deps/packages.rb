@@ -13,7 +13,8 @@ dep 'xorg-x11-drv-nouveau.lib'
 # environments:
 dep 'vim.managed' do
   installs {
-    via :yum, 'vim-minimal'
+    #via :yum, 'vim-minimal'
+    via :yum, 'vim-enhanced'
     otherwise 'vim'
   }
 end
