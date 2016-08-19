@@ -2,6 +2,7 @@
 meta 'repository' do
   accepts_list_for :installs, :basename
   accepts_list_for :url, []
+  accepts_list_for :repo, []
 
   template {
     def release
@@ -26,6 +27,9 @@ meta 'repository' do
     meet {
       url.each do |rpm_url|
         shell %(rpm -Uvh #{rpm_url}), sudo: true
+      end
+      repo.each do |repo_url|
+        shell %(dnf config-manager --add-repo=%s) % repo_url, sudo: true
       end
     }
   }
