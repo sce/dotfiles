@@ -276,3 +276,11 @@ dep 'qt-x11.i686'
 dep 'pulseaudio-libs.i686'
 dep 'pulseaudio-libs-glib2.i686'
 dep 'alsa-plugins-pulseaudio.i686'
+
+dep 'spotify' do
+  requires %w(spotify-repository spotify-client)
+end
+
+dep 'spotify-client', template: 'managed' do
+  provides 'spotify'
+end

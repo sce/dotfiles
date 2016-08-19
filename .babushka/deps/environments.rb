@@ -36,6 +36,8 @@ dep 'multimedia' do
     firefox-full
 
     scrot.managed
+
+    spotify
   )
 end
 
