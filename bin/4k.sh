@@ -9,13 +9,13 @@ big_dpi=96
 big_dpi=144
 
 # built-in laptop monitor:
-main_res=1920x1440
 main_res=2048x1536
 main_res=1856x1392
 main_res=1792x1344
 
 main_res=1600x1200
 main_res=3840x2160
+main_res=1920x1440
 
 # second monitor: physically bigger (27"), so we want this to be primary:
 sec_res=1920x1200
@@ -23,8 +23,8 @@ sec_res=1920x1080
 sec_res=3840x2160
 
 # third monitor: 24":
-th_res=1920x1200 # native
 th_res=1920x1080
+th_res=1920x1200 # native
 xrandr --output $main --auto --mode $main_res --dpi $big_dpi
 
 sleep 1
@@ -46,7 +46,7 @@ sleep 1
 # the 4k monitor and way too big on the third one.
 # hmm, maybe just mirror the laptop monitor onto third display and scale appropriately?
 xrandr --output $second --right-of $main --mode $sec_res --auto --dpi $big_dpi --primary &&
-  xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto --scale 2x2
+  xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto --scale 1x1.2
 
 echo Done.
 
