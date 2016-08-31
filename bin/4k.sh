@@ -4,9 +4,9 @@ main=eDP-1
 second=HDMI-1
 third=DP-2
 
-#dpi=220
-dpi=96
-dpi=144
+#big_dpi=220
+big_dpi=96
+big_dpi=144
 
 # built-in laptop monitor:
 main_res=1920x1440
@@ -23,23 +23,30 @@ sec_res=1920x1080
 sec_res=3840x2160
 
 # third monitor: 24":
-th_res=1920x1200
+th_res=1920x1200 # native
 th_res=1920x1080
-xrandr --output $main --auto --mode $main_res --dpi $dpi
+xrandr --output $main --auto --mode $main_res --dpi $big_dpi
 
 sleep 1
 
 # using auto here will "turn off" the display if the monitor is disconnected:
-xrandr --output $second --auto --primary
-xrandr --output $third --auto
+#xrandr --output $second --auto --primary
+#xrandr --output $third --auto
+
+# the display driver can get confused when add/removing displays, so better turn off and on again:
+xrandr --output $second --off
+xrandr --output $third --off
 
 sleep 1
 
 # but if it's conncted we want to configure it properly:
 # (Machine doesn't support more than 8k horizontal resolution... so turn off main screen)
-xrandr --output $second --left-of $main --mode $sec_res --auto --dpi $dpi --primary &&
-  xrandr --output $main --off &&
-  xrandr --output $third --left-of $second --mode $th_res --auto --dpi 96
+# We need to scale the third monitor so the system thinks it has twice as big
+# resolution. Doing this will prevent the interface from being a nice size on
+# the 4k monitor and way too big on the third one.
+# hmm, maybe just mirror the laptop monitor onto third display and scale appropriately?
+xrandr --output $second --right-of $main --mode $sec_res --auto --dpi $big_dpi --primary &&
+  xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto --scale 2x2
 
 echo Done.
 
