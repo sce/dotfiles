@@ -28,9 +28,10 @@ th_res=1920x1200 # native
 
 script=$(basename $0)
 
+if [ "$script" == "4k.sh" ]; then
+  xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale-from 1920x1200
   # 1440 / 1200 = 0.83333
   #xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale 1x0.833
-  xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale-from 1920x1200
 
   sleep 1
 
@@ -48,6 +49,17 @@ script=$(basename $0)
   # hmm, maybe just mirror the laptop monitor onto third display and scale appropriately?
   xrandr --output $second --right-of $main --mode $sec_res --auto --dpi $big_dpi --primary &&
     xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto
+
+elif [ "$script" == "4k-single.sh" ]; then
+  xrandr \
+    --output $second --off \
+    --output $third --off \
+    --output $main --auto --transform none
+
+else
+  echo "Unknown script name: \"$script\""
+  exit 1
+fi
 
 echo Done.
 
