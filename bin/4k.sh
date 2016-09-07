@@ -29,7 +29,8 @@ th_res=1920x1200 # native
 script=$(basename $0)
 
   # 1440 / 1200 = 0.83333
-  xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale 1x0.833
+  #xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale 1x0.833
+  xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale-from 1920x1200
 
   sleep 1
 
