@@ -28,7 +28,6 @@ end
 
 dep 'multimedia' do
   requires %w(
-    smplayer.managed
     mpv
 
     codecs
@@ -37,6 +36,8 @@ dep 'multimedia' do
     firefox-full
 
     scrot.managed
+
+    spotify
   )
 end
 

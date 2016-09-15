@@ -37,3 +37,11 @@ dep 'russianfedora-nonfree.repository' do
   # no gpg-check ...
   url %(http://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm)
 end
+
+dep 'spotify-repository' do
+  requires %(fedora-spotify.repository)
+end
+
+dep 'fedora-spotify.repository' do
+  repo %(http://negativo17.org/repos/fedora-spotify.repo)
+end

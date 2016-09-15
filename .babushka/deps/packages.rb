@@ -13,7 +13,8 @@ dep 'xorg-x11-drv-nouveau.lib'
 # environments:
 dep 'vim.managed' do
   installs {
-    via :yum, 'vim-minimal'
+    #via :yum, 'vim-minimal'
+    via :yum, 'vim-enhanced'
     otherwise 'vim'
   }
 end
@@ -23,7 +24,7 @@ dep 'keychain.managed'
 
 dep 'smplayer.managed'
 dep 'thunderbird.managed'
-dep 'mpv', template: 'managed'
+dep 'mpv', template: 'bin'
 
 dep 'i3.managed' do
   requires %w(i3status.managed i3lock.managed)
@@ -135,7 +136,8 @@ dep 'gstreamer1-plugins-good.lib'
 dep 'gstreamer1-plugins-ugly.lib'
 
 dep 'flash' do
-  requires %w(flash-plugin.lib nspluginwrapper.lib alsa-plugins-pulseaudio.lib)
+  #requires %w(flash-plugin.lib nspluginwrapper.lib alsa-plugins-pulseaudio.lib)
+  requires %w(flash-plugin.lib alsa-plugins-pulseaudio.lib)
 end
 
 dep 'nspluginwrapper.lib' do requires %w(adobe.repository) end
@@ -274,3 +276,11 @@ dep 'qt-x11.i686'
 dep 'pulseaudio-libs.i686'
 dep 'pulseaudio-libs-glib2.i686'
 dep 'alsa-plugins-pulseaudio.i686'
+
+dep 'spotify' do
+  requires %w(spotify-repository spotify-client)
+end
+
+dep 'spotify-client', template: 'managed' do
+  provides 'spotify'
+end
