@@ -97,6 +97,43 @@ set ignorecase " ignore case when searching
 set smartcase  " but if we search for big letters, make search case sensitive again
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" filetype specifics:
+
+" .md == markdown
+au BufNewFile,BufRead *.md set filetype=markdown
+
+" .thor == ruby
+au BufNewFile,BufRead *.thor set filetype=ruby
+
+" remove annoying underlines when editing HTML code.
+hi Underlined gui=NONE
+
+" add extra syntax to ruby files
+let ruby_operators=1
+"let ruby_space_errors=1
+
+" the end-keyword is colorized according to the opening statement, but that is
+" slow, so we turn it off:
+"let ruby_no_expensive = 1
+
+" turns out ruby syntax triggers a performance regression in the regular
+" expression engine, force old version (from
+" http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)
+set re=1
+
+" enable foldmethod=syntax for ruby files
+" let ruby_fold=1
+" let ruby_no_comment_fold = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugins:
+
+" activate pathogen to enable ~/.vim/bundle plugins:
+" https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
 
 " turn off highlighted results (set nohlsearch) when pressing enter.
@@ -167,42 +204,6 @@ map <Leader>C :!git dc
 " imap <tab> <C-X><C-N>
 " (hmm, just use <C-N> directly in insert mode instead.
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" filetype specifics:
-
-" .md == markdown
-au BufNewFile,BufRead *.md set filetype=markdown
-
-" .thor == ruby
-au BufNewFile,BufRead *.thor set filetype=ruby
-
-" remove annoying underlines when editing HTML code.
-hi Underlined gui=NONE
-
-" add extra syntax to ruby files
-let ruby_operators=1
-"let ruby_space_errors=1
-
-" the end-keyword is colorized according to the opening statement, but that is
-" slow, so we turn it off:
-"let ruby_no_expensive = 1
-
-" turns out ruby syntax triggers a performance regression in the regular
-" expression engine, force old version (from
-" http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)
-set re=1
-
-" enable foldmethod=syntax for ruby files
-" let ruby_fold=1
-" let ruby_no_comment_fold = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins:
-
-" activate pathogen to enable ~/.vim/bundle plugins:
-" https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From http://amix.dk/vim/vimrc.html:
