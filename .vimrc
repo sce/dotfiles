@@ -1,33 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" behaviour:
+" setup:
 
 " behave like vim, not like vi
+" (has side effect for other options, so must be first)
 set nocompatible
 
 set fileencoding=utf-8
 set encoding=utf-8
-
-" only a single space after ./?/! etc after using 'j' or 'gq'
-set nojoinspaces
-
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-
-" tabs becomes spaces
-set expandtab
-
-" when formatting a paragraph of text, keep the indent of the first line
-set autoindent
-
-" ask what to do when quitting in a limbo state instead of just complaining
-set confirm
-
-" Remove trailing whitespaces automaticaly on save
-autocmd BufWritePre * :%s/\s\+$//e
-
-" no delay when hitting escape
-set noesckeys
 
 " where to create backups, if turned on:
 set backupdir=~/.cache/vim/backup
@@ -35,8 +14,44 @@ set backupdir=~/.cache/vim/backup
 " where to store swap files:
 set directory=~/.cache/vim/
 
+" gnome-terminal doesn't advertise its support for 256 colors, fix:
+if $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+
 " yes our tty is fast.
 set ttyfast
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" behaviour:
+
+" only a single space after ./?/! etc after using 'j' or 'gq'
+set nojoinspaces
+
+" no delay when hitting escape
+set noesckeys
+
+" completion from list on command line.
+set wildmenu
+
+" Remove trailing whitespaces automaticaly on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" use folding by default
+" set foldmethod=indent
+
+set confirm " ask what to do when quitting in a limbo state instead of just complaining
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indentation:
+
+set tabstop=2 " how many spaces a tab character counts as
+set shiftwidth=2 " number of spaces per autoindent (zero: use ts value)
+
+" numer of spaces per tab in insert mode (zero: off, negative: use ts value)
+set softtabstop=2
+set expandtab " tabs becomes spaces
+set autoindent " when formatting a paragraph of text, keep the indent of the first line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " appearance:
@@ -50,19 +65,10 @@ set ruler
 " always show status line
 set laststatus=2
 
-" completion from list on command line.
-set wildmenu
-
-" add line numbers
-set number
+set number " add line numbers
 
 " make line numbers relative to current line
 " set relativenumber
-
-" gnome-terminal doesn't advertise its support for 256 colors, fix:
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
 
 syntax on
 
@@ -86,9 +92,6 @@ highlight Normal ctermbg=none
 
 " change syntax/indent depending on file extension:
 filetype plugin indent on
-
-" use folding by default
-" set foldmethod=indent " or maybe not ...
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " searching:
