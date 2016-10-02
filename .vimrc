@@ -42,6 +42,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 set confirm " ask what to do when quitting in a limbo state instead of just complaining
 
+set mouse=a " enable mouse
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indentation:
 
@@ -133,6 +135,16 @@ set re=1
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
+" Toggle with "I" when focused:
+let NERDTreeShowHidden=1
+" let NERDTreeStatusline=1
+
+" changing tabs: never focus nerdtree:
+let g:nerdtree_tabs_focus_on_files=1
+
+" automatically find and select currently opened file in nerdtree.
+let g:nerdtree_tabs_autofind=1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
 
@@ -145,8 +157,17 @@ nnoremap <cr> :noh <cr>
 :nmap <C-M><C-M> :set invnumber <CR>
 
 " CTRL+J changes to upper window, CTRL+K changes to lower.
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+" change window + minimise/maximise::
+"map <C-J> <C-W>j<C-W>_
+"map <C-K> <C-W>k<C-W>_
+
+" my terminal is giving me escape character instead of "alt", so these
+" keybindings are actually <A-l> etc:
+map <ESC>j <C-W>j
+map <ESC>k <C-W>k
+map <ESC>h <C-W>h
+map <ESC>l <C-W>l
+
 set wmh=0
 
 " (mostly ruby specific):
@@ -199,6 +220,12 @@ map <Leader>a :!git add -p %<CR>
 map <Leader>N :!git add -N %<CR>
 map <Leader>c :!git ci
 map <Leader>C :!git dc
+
+" toggle nerdtree for all tabs
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+" select current file in nerdtree
+map <Leader>f <plug>NERDTreeTabsFind<CR>
 
 " Map tab to autocomplete current word from words in current file:
 " imap <tab> <C-X><C-N>
