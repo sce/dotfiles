@@ -46,10 +46,10 @@ set confirm " ask what to do when quitting in a limbo state instead of just comp
 " indentation:
 
 set tabstop=2 " how many spaces a tab character counts as
-set shiftwidth=2 " number of spaces per autoindent (zero: use ts value)
+set shiftwidth=0 " numer of spaces per autoindent (zero: use ts value)
 
 " numer of spaces per tab in insert mode (zero: off, negative: use ts value)
-set softtabstop=2
+set softtabstop=-1
 set expandtab " tabs becomes spaces
 set autoindent " when formatting a paragraph of text, keep the indent of the first line
 
@@ -57,7 +57,7 @@ set autoindent " when formatting a paragraph of text, keep the indent of the fir
 " appearance:
 
 " keep some lines of text at the bottom/top when scrolling.
-set scrolloff=2
+set scrolloff=3
 
 " always show cursor position
 set ruler
@@ -67,13 +67,15 @@ set laststatus=2
 
 set number " add line numbers
 
+set showcmd " show (long) commands being typed
+
 " make line numbers relative to current line
 " set relativenumber
 
 syntax on
 
 " try to fix slow syntax highlighting:
-set synmaxcol=90
+" set synmaxcol=90
 
 set background=dark
 colorscheme torte
