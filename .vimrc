@@ -56,17 +56,10 @@ set autoindent " when formatting a paragraph of text, keep the indent of the fir
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " appearance:
 
-" keep some lines of text at the bottom/top when scrolling.
-set scrolloff=3
-
-" always show cursor position
-set ruler
-
-" always show status line
-set laststatus=2
-
+set scrolloff=3 " keep some lines of text at the bottom/top when scrolling.
+set ruler " always show cursor position
+set laststatus=2 " always show status line
 set number " add line numbers
-
 set showcmd " show (long) commands being typed
 
 " make line numbers relative to current line
@@ -98,17 +91,10 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " searching:
 
-" search while you're typing the search string
-set incsearch
-
-" highlight search results
-set hlsearch
-
-" ignore case when searching
-set ignorecase
-
-" but if we search for big letters, make search case sensitive again
-set smartcase
+set incsearch  " search while you're typing the search string
+set hlsearch   " highlight search results
+set ignorecase " ignore case when searching
+set smartcase  " but if we search for big letters, make search case sensitive again
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
