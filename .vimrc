@@ -95,6 +95,9 @@ highlight Visual ctermbg=235 cterm=bold
 " in order to let the terminal handle the background:
 highlight Normal ctermbg=none
 
+" remove annoying underlines when editing HTML code.
+hi Underlined gui=NONE
+
 " change syntax/indent depending on file extension:
 filetype plugin indent on
 
@@ -107,9 +110,6 @@ au BufNewFile,BufRead *.md set filetype=markdown
 
 " .thor == ruby
 au BufNewFile,BufRead *.thor set filetype=ruby
-
-" remove annoying underlines when editing HTML code.
-hi Underlined gui=NONE
 
 " add extra syntax to ruby files
 let ruby_operators=1
