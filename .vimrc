@@ -95,6 +95,9 @@ highlight Visual ctermbg=235 cterm=bold
 " in order to let the terminal handle the background:
 highlight Normal ctermbg=none
 
+" hide vertical split line:
+highlight VertSplit ctermbg=black ctermfg=black
+
 " remove annoying underlines when editing HTML code.
 hi Underlined gui=NONE
 
