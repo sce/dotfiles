@@ -1,1 +1,2 @@
-/usr/bin/gnome-screenshot
+# interactive
+/usr/bin/gnome-screenshot -i

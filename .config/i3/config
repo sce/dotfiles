@@ -56,6 +56,7 @@ force_focus_wrapping yes
 bindsym $mod+Return exec ~/bin/terminal
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec ~/bin/file-browser
+bindsym $alt+s exec ~/bin/screenshot
 
 # too bad this stopped working on its own (gnome hotkeys not working in saucy
 # for some reason):
