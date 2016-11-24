@@ -45,3 +45,12 @@ end
 dep 'fedora-spotify.repository' do
   repo %(http://negativo17.org/repos/fedora-spotify.repo)
 end
+
+dep 'yarn-repository' do
+  requires %(yarn.repository)
+end
+
+# the dependency name must match the name of the repository (in dnf repolist)
+dep 'yarn.repository' do
+  repo %(https://dl.yarnpkg.com/rpm/yarn.repo)
+end
