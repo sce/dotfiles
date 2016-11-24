@@ -12,7 +12,8 @@ meta 'repository' do
 
     def repositories
       # the first two lines are headers, the last is footer.
-      raw_shell(%(dnf repolist)).stdout.split(/\n/)[2..-2].map do |line|
+      # 2016-11: the last is not footer anymore
+      raw_shell(%(dnf repolist)).stdout.split(/\n/)[2..-1].map do |line|
         # we just use the first part and remove prefix if it exists.
         line.split(%r( |/)).first.sub(/^\*|^!/, "")
       end
