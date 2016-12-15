@@ -29,7 +29,8 @@ th_res=1920x1200 # native
 script=$(basename $0)
 
 if [ "$script" == "4k.sh" ]; then
-  xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale-from 1920x1200
+  # xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale-from 1920x1200
+  xrandr --output $main --auto --mode $main_res --dpi $big_dpi --transform none
   # 1440 / 1200 = 0.83333
   #xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale 1x0.833
 
@@ -51,10 +52,10 @@ if [ "$script" == "4k.sh" ]; then
   # resolution. Doing this will prevent the interface from being a nice size on
   # the 4k monitor and way too big on the third one.
   # hmm, maybe just mirror the laptop monitor onto third display and scale appropriately?
-  xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto
+  # xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto
+  xrandr --output $third --right-of $main --mode $th_res --auto --rotate left
   sleep 0.2
-  # we need to use --right-of $third here instead of $main or else the placement will be wrong.
-  xrandr --output $second --right-of $third --mode $sec_res --auto --dpi $big_dpi --primary
+  xrandr --output $second --same-as $main --dpi 96 --mode $sec_res --auto --dpi $big_dpi --primary
 
 elif [ "$script" == "4k-single.sh" ]; then
   xrandr \
