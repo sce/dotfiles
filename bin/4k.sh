@@ -14,8 +14,8 @@ main_res=1856x1392
 main_res=1792x1344
 
 main_res=1600x1200
-main_res=3840x2160
 main_res=1920x1440
+main_res=3840x2160
 
 # second monitor: physically bigger (27"), so we want this to be primary:
 sec_res=1920x1200
@@ -35,9 +35,13 @@ if [ "$script" == "4k.sh" ]; then
 
   sleep 1
 
+  # using auto here will "turn off" the display if the monitor is disconnected:
+  #xrandr --output $second --auto --primary
+  #xrandr --output $third --auto
+
   # the display driver can get confused when add/removing displays, so better turn off and on again:
-  xrandr --output $second --off
-  xrandr --output $third --off
+  xrandr --output $second --off --transform none
+  xrandr --output $third --off --transform none
 
   sleep 1
 
@@ -47,14 +51,16 @@ if [ "$script" == "4k.sh" ]; then
   # resolution. Doing this will prevent the interface from being a nice size on
   # the 4k monitor and way too big on the third one.
   # hmm, maybe just mirror the laptop monitor onto third display and scale appropriately?
-  xrandr --output $second --right-of $main --mode $sec_res --auto --dpi $big_dpi --primary &&
-    xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto
+  xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto
+  sleep 0.2
+  # we need to use --right-of $third here instead of $main or else the placement will be wrong.
+  xrandr --output $second --right-of $third --mode $sec_res --auto --dpi $big_dpi --primary
 
 elif [ "$script" == "4k-single.sh" ]; then
   xrandr \
     --output $second --off \
     --output $third --off \
-    --output $main --auto --transform none
+    --output $main --auto --mode $main_res --transform none
 
 else
   echo "Unknown script name: \"$script\""
