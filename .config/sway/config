@@ -1,431 +1,172 @@
-# sway config file
-
-set $mod Mod4
-#set $mod Mod1
-
-set $alt Mod1
-set $term ~/bin/terminal
-
-# output WLC-1 res 1920 1080 pos 0 0
-# output WLC-2 res 1920 1080 pos 1920 0
-#output WLC-1 res 959 1080 pos 0 0
-#output WLC-2 res 959 1080 pos 959 0
-
-mouse_warping output
-#mouse_warping none
-
-debuglog on
-gaps inner 4
-#gaps outer 10
-gaps edge_gaps off
-gaps edge_gaps on
-
-bindsym $mod+g gaps edge_gaps toggle
-
-#output DP-1 disable
-#output DP-1 res 1920 1080 pos 0 0
-#output DP-1 res 1280 960 pos 0 0
-#output DP-1 res 0 0 pos 0 0
-#output DP-1 res 4096 2048 pos 0 0
-
-# tiling_float all enable
-bindsym $alt+y tiling_float window toggle
-
-# displaylink device:
-output DVI-I-2 res 1920 1080 pos 0 2160
-
-#output DP-1 res 1920 1080 pos 0 0 bg ~/Bilder/wallpapers/Nichijou_3.png stretch
-output DP-1 res 1920 1080 pos 0 0
-output DP-2 res 1920 1080 pos 0 1080
-output DVI-D-1 res 1920 1080 pos 1920 0
-output DVI-I-1 res 1920 1080 pos 1920 1080
-
-output WLC-1 bg ~/Bilder/wallpapers/Nichijou_3.png stretch
-#output DP-1 bg ~/Bilder/wallpapers/Nichijou_3.png stretch
-#output WLC-1 bg ~/Bilder/wallpapers/1.png fit
-#output DP-1 bg ~/Bilder/wallpapers/1.png fit
-
-# output DP-1 bg ~/Bilder/wallpapers/3.png fill
-# output DP-2 bg ~/Bilder/wallpapers/2.png fill
-# output DVI-D-1 bg ~/Bilder/wallpapers/1.png fill
-# output DVI-I-1 bg ~/Bilder/wallpapers/4.png fill
-
-output DP-1 bg ~/Bilder/wallpapers/1 fill
-output DP-2 bg ~/Bilder/wallpapers/2 fill
-output DVI-D-1 bg ~/Bilder/wallpapers/3 fill
-output DVI-I-1 bg ~/Bilder/wallpapers/4 fill
-
-### multiple outputs per edge test 1: bottom monitors are right-shifted
-
-#output DP-1 res 1920 1080 pos 0 0
-#output DP-2 res 1920 1080 pos 960 1080
+# Default config for sway
 #
-#output DVI-D-1 res 1920 1080 pos 1920 0
-#output DVI-I-1 res 1920 1080 pos 2880 1080
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+#
+# Sway is a work in progress. Some of these defaults are currently unimplemented.
 
-### multiple outputs per edge test 2: right monitors are lowered
 
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Your preferred terminal emulator
+set $term ~/bin/terminal
+# Your preferred application launcher
+set $menu dmenu_run
+
+### Outputs
 # output DP-1 res 1920 1080 pos 0 0
 # output DP-2 res 1920 1080 pos 0 1080
-# output DVI-D-1 res 1920 1080 pos 1920 540
-# output DVI-I-1 res 1920 1080 pos 1920 1620
-
-### multiple outputs per edge test 3: right monitors are lowered + different resolutions
-
-#output DP-1 res 1920 1080 pos 0 0
-#output DP-2 res 1920 1080 pos 0 1080
-#output DVI-D-1 res 1280 720 pos 1920 0
-#output DVI-I-1 res 1280 720 pos 1920 720
-
-###
-
-#workspace 5 output DP-1
-#workspace 6 output DP-2
-#workspace 7 output DVI-D-1
-
-#workspace 8 output DVI-I-1
-#workspace 9 output DVI-I-1
-
-# test duplicates:
-#workspace a output DP-1
-#workspace a output DP-2
-
-#fenced floats inside desktop on
-#fenced floats inside desktop enable
-
-#bindsym $alt+s assign [title="Terminal"] 2
-#bindsym $mod+x fenced window inside output toggle
-bindsym $mod+x fenced window inside output toggle
-#bindsym $alt+shift+s floating disable
-
-# kill firefox about window, wherever it is:
-#bindsym $alt+x [class="difficult\"stuf f" window_role="About"] kill
-#bindsym $alt+x [title="Terminal"] kill
-#bindsym $alt+x fenced window output toggle
-bindsym $alt+shift+x fenced floats output toggle
-bindsym $alt+z fenced window output reset
-bindsym $alt+shift+z fenced floats output reset
-
-bindsym $alt+g sticky toggle
-bindsym $alt+a gaps edge_gaps toggle
-
-#fenced output window on
-#fenced desktop floats on
-
-#for_window [id="gnome-terminal-server"] floating enable
-
-#for_window [class="focused"] floating toggle
-#for_window [workspace="focused"] floating toggle
-
-for_window [class="gkrellm"] move window to workspace 3, sticky enable
-
-#bindsym $mod+Shift+a [ kill, floating enable; move container to hell
-
-#seamless_mouse on
-
-#output DP-1 res 1920 1080 pos 0 0
-#output DP-2 res 1920 1080 pos 0 540
-#output DVI-D-1 res 1920 1080 pos 960 0
-#output DVI-I-1 res 1920 1080 pos 960 540
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, if you need a lot of unicode glyphs or
-# right-to-left text rendering, you should instead use pango for rendering and
-# chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
-#font pango:DejaVu Sans Mono 10
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# Hiding the borders that are adjacent to the edge of the screen looks nice,
-# but removes the vertical/horizontal hint when placing new windows.
-#hide_edge_borders <none|vertical|horizontal|both>
-#hide_edge_borders vertical
-#hide_edge_borders both
-
-# Window header + 1px border:
-#new_window normal 1
-# No header, px border:
-new_window pixel 1
-
-# Layout for new containers: <default|stacking|tabbed>
-#workspace_layout tabbed
-
-# Focusing the current workspace will go back to previous workspace:
-workspace_auto_back_and_forth no
-
-# Instead of going to the next container, workspace or output simply wrap
-# inside the current container instead. (Use "focus parent" to escape current
-# container.)
-#force_focus_wrapping no
-#force_focus_wrapping yes
-
-# application shortcuts
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec ~/bin/terminal
-bindsym $alt+Return exec gnome-terminal
-#bindsym $alt+shift+Return exec gnome-terminal
-
-bindsym $mod+b exec ~/bin/browser
-bindsym $mod+Shift+b exec ~/bin/file-browser
-bindsym $mod+z debuglog toggle
-
-# too bad this stopped working on its own (gnome hotkeys not working in saucy
-# for some reason):
-#bindsym control+$alt+l exec ~/bin/screenlock
-#bindsym control+$alt+s exec ~/bin/suspend
-
-# ... and this too (pulseaudio/media hotkeys):
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volup
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/voldown
-bindsym XF86AudioMute exec --no-startup-id ~/bin/volmutetoggle
-
-bindsym XF86Calculator exec ~/bin/calculator
-bindsym XF86Favorites exec ~/bin/screenshot
-
-# application specifics
-for_window [class="Gkrellm"] floating enable
-for_window [class="gkre.*"] move window to workspace 4
-for_window [class="Volumeicon"] floating enable
-for_window [class="Gnome-calculator|Gcalctool|Polkit"] floating enable
-#for_window [class="Gcalctool"] floating enable
-#for_window [class="Polkit"] floating enable
-
-# lowercase "spotify" only applies to the login dialog, which is intended.
-for_window [title="spotify"] floating enable
-
-for_window [class="Nautilus" instance="file_progress"] floating enable
-for_window [class="Anki" title="Export"] floating enable
-for_window [class="Anki" title="Import"] floating enable
-
-# Due to focus follows mouse this popup works better if it's fullscreen:
-for_window [class="Soffice" title="Asiatisk lydskrift"] floating disable
-
-# print to pdf dialog:
-for_window [class="Firefox" instance="Toplevel"] floating enable
-#for_window [title="Terminal"] floating toggle; move window to workspace 3, exec /usr/bin/notify-send -t 500 "Terminal"
-#for_window [title="Terminal"] move window to workspace 3; floating toggle
-
-# browser pop ups:
-#for_window [window_role="pop-up"] floating enable
-#for_window [window_role="GtkFileChooserDialog"] floating disable
-
-assign [class="Thunderbird"] "9: mail"
-assign [class="Spotify"] "9: mail"
-assign [class="Pidgin" title="meh"] "9: mail"
-#assign [title="Terminal"] 2
-
-# kill focused window
-bindsym $mod+Shift+q kill
-bindsym $mod+c kill
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
-
-# vim keys changes focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# shift moves focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# cursor keys changes workspace (on same output, like in awesome):
-bindsym $mod+Left  workspace prev_on_output, exec ~/bin/i3-ws.rb
-bindsym $mod+Right workspace next_on_output, exec ~/bin/i3-ws.rb
-
-# control key is output modifier ($mod=Mod4)
-# mod1=alt
-set $output-mod Mod4+control
-#set $output-mod Mod1+control
-
-# vim keys changes output
-bindsym $output-mod+h focus output left, exec ~/bin/i3-ws.rb
-bindsym $output-mod+j focus output down, exec ~/bin/i3-ws.rb
-bindsym $output-mod+k focus output up, exec ~/bin/i3-ws.rb
-bindsym $output-mod+l focus output right, exec ~/bin/i3-ws.rb
-
-# $output-mod+shift moves focused window to other outputs
-bindsym $output-mod+Shift+h move container to output left
-bindsym $output-mod+Shift+j move container to output down
-bindsym $output-mod+Shift+k move container to output up
-bindsym $output-mod+Shift+l move container to output right
-
-# $output-mod+shift+cursor keys moves workspace to other outputs
-bindsym $output-mod+Shift+Left  move workspace to output left
-bindsym $output-mod+Shift+Down  move workspace to output down
-bindsym $output-mod+Shift+Up    move workspace to output up
-bindsym $output-mod+Shift+Right move workspace to output right
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# split in horizontal orientation
-bindsym $mod+Shift+v split h
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
-bindsym $mod+Shift+f fullscreen global
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-bindsym $alt+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus parent/child container (like in vim: a increments, x decrements)
-bindsym $mod+a focus parent
-#bindsym $mod+x focus child
-
-# switch to workspace
-bindsym $mod+1 workspace 1, exec ~/bin/i3-ws.rb
-bindsym $mod+2 workspace 2, exec ~/bin/i3-ws.rb
-bindsym $mod+3 workspace 3, exec ~/bin/i3-ws.rb
-bindsym $mod+4 workspace 4, exec ~/bin/i3-ws.rb
-bindsym $mod+5 workspace 5, exec ~/bin/i3-ws.rb
-bindsym $mod+6 workspace 6, exec ~/bin/i3-ws.rb
-bindsym $mod+7 workspace 7, exec ~/bin/i3-ws.rb
-bindsym $mod+8 workspace 8, exec ~/bin/i3-ws.rb
-bindsym $mod+9 workspace 9, exec ~/bin/i3-ws.rb
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-
-# add some errors:
-#exit
-#split
-#log_colors yellow
-#testing-invalid
-
-# create new numeric workspace
-bindsym $mod+0 exec --no-startup-id ~/bin/i3-new-ws.rb
-
-# move to new numeric workspace
-bindsym $mod+Shift+0 exec --no-startup-id ~/bin/i3-move-new-ws.rb
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exit
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show
-
-bindsym $mod+n exec /bin/false
-bindsym $mod+Shift+n exec /bin/nope
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width  25 px or 25 ppt
-        bindsym j resize grow   height 25 px or 25 ppt
-        bindsym k resize shrink height 25 px or 25 ppt
-        bindsym l resize grow   width  25 px or 25 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left  resize shrink width  5 px or 5 ppt
-        bindsym Down  resize grow   height 5 px or 5 ppt
-        bindsym Up    resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow   width  5 px or 5 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default", exec /usr/bin/notify-send -t 250 '[default]'
-        bindsym Escape mode "default", exec /usr/bin/notify-send -t 250 '[default]'
-}
-
-bindsym $mod+r mode "resize", exec /usr/bin/notify-send -t 250 '[resize]'
+# output DVI-D-1 res 1920 1080 pos 1920 0
+# output DVI-I-1 res 1920 1080 pos 1920 1080
+
+output DP-1 pos 0 0
+output DP-2 pos 0 1080
+output DVI-I-1 pos 2560 0
+output HDMI-A-1 pos 2560 1080
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
+
+    # kill focused window
+    bindsym $mod+Shift+q kill
+
+    # start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # restart sway inplace (preserves your layout/session, can be used to upgrade sway)
+    bindsym $mod+Shift+r restart
+
+    # exit sway (logs you out of your wayland session)
+    bindsym $mod+Shift+e exit
+#
+# Moving around:
+#
+    # Move your focus around with $mod+[h|j|k|l], like vim
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+    # or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+h move left
+    bindsym $mod+Shift+j move down
+    bindsym $mod+Shift+k move up
+    bindsym $mod+Shift+l move right
+    # ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+h or $mod+v, for horizontal and vertical splits
+    # respectively.
+    # bindsym $mod+h splith
+    bindsym $mod+v splitv
+    bindsym $mod+Shift+v splith
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-		swaybar_command ~/tmp/sway/bin/swaybar
+		swaybar_command /usr/bin/swaybar
         status_command i3status
 		position top
 		output DP-1
 }
 bar {
-		swaybar_command ~/tmp/sway/bin/swaybar
+		swaybar_command /usr/bin/swaybar
         status_command i3status
 		position bottom
 		output DP-2
 }
 bar {
-		swaybar_command ~/tmp/sway/bin/swaybar
+		swaybar_command /usr/bin/swaybar
         status_command i3status
 		position top
-		output DVI-D-1
-}
-bar {
-		swaybar_command ~/tmp/sway/bin/swaybar
-        status_command i3status
-		position bottom
 		output DVI-I-1
 		#font pango:DejaVu Sans Mono 10
 }
-
-# (use "exec" with "--no-startup-id" for commandline programs)
-
-# Startup misc session progs (.config/i3/startup/*):
-#exec --no-startup-id ~/.config/i3/startup.sh
-#exec_always --no-startup-id ~/.config/i3/startup.sh
-#exec_always ~/bin/volup
-#exec --no-startup-id ~/bin/voldown
-
-# Notifications must be handled by the desktop, so use a notification daemon:
-#exec --no-startup-id ~/bin/notification-daemon
-
-# PolicyKit handles privilege escalation, but the one gnome uses is not easily
-# available, so use a replacement (e.g. lxpolkit):
-#exec --no-startup-id ~/bin/polkit
-
-# Set wallpaper:
-#exec --no-startup-id ~/bin/wallpaper
-
-# Give us a desktop environment:
-# (by using a dummy session gnome-session will not try to start a wm)
-#exec --no-startup-id /bin/bash -c "sleep 3; gnome-session --session=gnome-dummy"
-#exec
-#exec --no-startup-id
-#exec /bin/false
-#exec_always /bin/falseses
+bar {
+		swaybar_command /usr/bin/swaybar
+        status_command i3status
+		position bottom
+		output HDMI-A-1
+}
