@@ -1,8 +1,8 @@
 #!/bin/bash
 
-main=eDP-1
-second=HDMI-1
-third=DP-2
+main=${MAIN:-eDP-1}
+second=${VERTICAL:-HDMI-1}
+third=${UWIDE:-DP-2}
 
 #big_dpi=220
 big_dpi=96
@@ -58,10 +58,16 @@ if [ "$script" == "4k.sh" ]; then
   xrandr --output $second --same-as $main --dpi 96 --mode $sec_res --auto --dpi $big_dpi --primary
 
 elif [ "$script" == "4k-single.sh" ]; then
+  if [ "$1" == "fullhd" ]; then
+    scale="--scale-from 1920x1080"
+  else
+    scale="--transform none"
+  fi
+
   xrandr \
     --output $second --off \
     --output $third --off \
-    --output $main --auto --mode $main_res --transform none
+    --output $main --auto --mode $main_res $scale
 
 else
   echo "Unknown script name: \"$script\""
