@@ -54,6 +54,7 @@ end
 
 #dep 'wallpaperd.managed'
 dep 'dunst.managed'
+dep 'rofi', template: 'managed'
 
 dep 'humanity-icon-theme.managed' do
   provides []

@@ -15,6 +15,7 @@ dep 'i3-full' do
     xfce4-terminal.managed
     nm-applet.managed
     dunst.managed
+    rofi
 
     i3-portable
   )
