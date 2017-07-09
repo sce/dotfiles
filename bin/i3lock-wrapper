@@ -14,14 +14,28 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-xscreensaver-command --activate || (
+xscreensaver-command --lock || (
   notify-send "Locking screen..."
 
   file1=$(mktemp --tmpdir i3lock-wrapper-XXXXXXXXXX.png)
   file2=$(mktemp --tmpdir i3lock-wrapper-XXXXXXXXXX.png)
 
+  height=$(xwininfo -root|grep Height|awk '{ print $2 }')
+
+  if [ $height -lt 2160 ]; then
+    scaledown=10%
+    scaleup=1000%
+  else
+    # if it's 4k resolution there's so many pixels that we need even more
+    # downscaling to properly remove details:
+    scaledown=5%
+    scaleup=2000%
+  fi
+
   scrot -d0 "$file1" &&
-    convert "$file1" -blur 0x3 "$file2" &&
+    # convert "$file1" -blur 0x3 "$file2" &&
+    # convert "$file1" -blur 0x5 "$file2" &&
+    convert -scale $scaledown -scale $scaleup "$file1" "$file2" &&
     i3lock -i "$file2"
 
   [ -f "$file1" ] && rm "$file1"
