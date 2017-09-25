@@ -28,6 +28,8 @@ th_res=1920x1200 # native
 
 script=$(basename $0)
 
+xrandr -q
+
 if [ "$script" == "4k.sh" ]; then
   if [ "$1" == "fullhd" ]; then
     scale="--scale-from 1920x1080"
@@ -35,7 +37,9 @@ if [ "$script" == "4k.sh" ]; then
     sec_res="1920x1080"
   else
     scale="--transform none"
+    scale="--scale-from 2560x1440"
     rightof="--right-of $main"
+    rightof="--pos 2560x0"
   fi
 
   # xrandr --output $main --auto --mode $main_res --dpi $big_dpi --scale-from 1920x1200
@@ -64,7 +68,8 @@ if [ "$script" == "4k.sh" ]; then
   # xrandr --output $third --same-as $main --dpi 96 --mode $th_res --auto
   xrandr --output $third $rightof --mode $th_res --auto --rotate left
   sleep 0.2
-  xrandr --output $second --same-as $main --dpi 96 --mode $sec_res --auto --dpi $big_dpi --primary
+  #xrandr --output $second --same-as $main --dpi 96 --mode $sec_res --auto --dpi $big_dpi --primary
+  xrandr --output $second --same-as $main --dpi 96 --mode $sec_res --auto --dpi $big_dpi --primary $scale
 
 elif [ "$script" == "4k-single.sh" ]; then
   if [ "$1" == "fullhd" ]; then
