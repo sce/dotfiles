@@ -34,13 +34,22 @@ floating_modifier $mod
 hide_edge_borders both
 #hide_edge_borders vertical
 
-# Window header + 1px border:
-#new_window normal 1
+# Window header + 2px border:
+#new_window normal 2
 # No header, px border: (header still shows when tabbed, stacked):
+#new_window pixel 2
 new_window pixel 1
 
+# when using https://www.github.com/Airblader/i3 :
+#gaps inner 10
+gaps inner 15
+gaps outer 0
+# no gaps when only single window:
+smart_gaps on
+
 # Layout for new containers: <default|stacking|tabbed>
-workspace_layout tabbed
+#workspace_layout tabbed
+workspace_layout default
 
 # Focusing the current workspace will go back to previous workspace:
 workspace_auto_back_and_forth no
@@ -48,15 +57,18 @@ workspace_auto_back_and_forth no
 # Instead of going to the next container, workspace or output simply wrap
 # inside the current container instead. (Use "focus parent" to escape current
 # container.)
-force_focus_wrapping yes
-#force_focus_wrapping no
+#force_focus_wrapping yes
+force_focus_wrapping no
 
 # application shortcuts
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec ~/bin/terminal
+bindsym $mod+shift+Return exec ~/bin/terminal.gnome
+
 bindsym $mod+b exec firefox
 bindsym $mod+Shift+b exec ~/bin/file-browser
-bindsym $alt+s exec ~/bin/screenshot
+bindsym $alt+s exec ~/bin/screenshot -e none
+bindsym $alt+shift+s exec ~/bin/screenshot -w -e none
 
 # too bad this stopped working on its own (gnome hotkeys not working in saucy
 # for some reason):
@@ -103,12 +115,14 @@ bindsym $mod+Shift+q kill
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec "rofi -combi-modi window,drun,run -show combi -modi combi"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+d exec "rofi -show run"
 
 # vim keys changes focus
 bindsym $mod+h focus left
@@ -203,6 +217,15 @@ bindsym $mod+Shift+0 exec --no-startup-id ~/bin/i3-move-new-ws.rb
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
+# monitors
+bindsym $mod+Shift+p exec --no-startup-id ~/bin/presenter-mode.sh
+
+bindsym $mod+Shift+w exec --no-startup-id ~/bin/4k.sh
+bindsym $mod+Shift+a exec --no-startup-id ~/bin/4k-single.sh
+
+bindsym $mod+ctrl+a exec --no-startup-id ~/bin/4k-single.sh fullhd
+bindsym $mod+ctrl+x exec --no-startup-id ~/bin/4k-single.sh 1440p
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
@@ -245,9 +268,12 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+        #status_command i3blocks
 }
 
 # (use "exec" with "--no-startup-id" for commandline programs)
 
 # Startup misc session progs (.config/i3/startup/*):
+exec --no-startup-id "xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto"
+
 exec --no-startup-id ~/.config/i3/startup.sh
