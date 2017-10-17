@@ -74,6 +74,8 @@ if [ "$script" == "4k.sh" ]; then
 elif [ "$script" == "4k-single.sh" ]; then
   if [ "$1" == "fullhd" ]; then
     scale="--scale-from 1920x1080"
+  elif [ "$1" == "1440p" ]; then
+    scale="--scale-from 2560x1440"
   else
     scale="--transform none"
   fi
