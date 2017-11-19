@@ -27,6 +27,14 @@ output DP-2 pos 0 1080
 output DVI-I-1 pos 2560 0
 output HDMI-A-1 pos 2560 1080
 
+output DP-1 bg ~/Bilder/wallpapers/1 fill
+output DP-2 bg ~/Bilder/wallpapers/2 fill
+output HDMI-A-1 bg ~/Bilder/wallpapers/3 fill
+output DVI-I-1 bg ~/Bilder/wallpapers/4 fill
+
+### Misc config
+gaps inner 5
+
 ### Key bindings
 #
 # Basics:
@@ -36,6 +44,7 @@ output HDMI-A-1 pos 2560 1080
 
     # kill focused window
     bindsym $mod+Shift+q kill
+    bindsym $mod+c kill
 
     # start your launcher
     bindsym $mod+d exec $menu
@@ -79,6 +88,31 @@ output HDMI-A-1 pos 2560 1080
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
+#
+# Moving between outputs:
+#
+    # control key is output modifier ($mod=Mod4)
+    set $output-mod Mod4+control
+
+    # vim keys changes output
+    bindsym $output-mod+h focus output left, exec ~/bin/i3-ws.rb
+    bindsym $output-mod+j focus output down, exec ~/bin/i3-ws.rb
+    bindsym $output-mod+k focus output up, exec ~/bin/i3-ws.rb
+    bindsym $output-mod+l focus output right, exec ~/bin/i3-ws.rb
+
+    # $output-mod+shift moves focused window to other outputs
+    bindsym $output-mod+Shift+h move container to output left
+    bindsym $output-mod+Shift+j move container to output down
+    bindsym $output-mod+Shift+k move container to output up
+    bindsym $output-mod+Shift+l move container to output right
+
+    # $output-mod+shift+cursor keys moves workspace to other outputs
+    bindsym $output-mod+Shift+Left  move workspace to output left
+    bindsym $output-mod+Shift+Down  move workspace to output down
+    bindsym $output-mod+Shift+Up    move workspace to output up
+    bindsym $output-mod+Shift+Right move workspace to output right
+
 #
 # Workspaces:
 #
