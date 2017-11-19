@@ -96,10 +96,10 @@ gaps inner 5
     set $output-mod Mod4+control
 
     # vim keys changes output
-    bindsym $output-mod+h focus output left, exec ~/bin/i3-ws.rb
-    bindsym $output-mod+j focus output down, exec ~/bin/i3-ws.rb
-    bindsym $output-mod+k focus output up, exec ~/bin/i3-ws.rb
-    bindsym $output-mod+l focus output right, exec ~/bin/i3-ws.rb
+    bindsym $output-mod+h focus output left, exec ~/bin/sway-ws.rb
+    bindsym $output-mod+j focus output down, exec ~/bin/sway-ws.rb
+    bindsym $output-mod+k focus output up, exec ~/bin/sway-ws.rb
+    bindsym $output-mod+l focus output right, exec ~/bin/sway-ws.rb
 
     # $output-mod+shift moves focused window to other outputs
     bindsym $output-mod+Shift+h move container to output left
@@ -116,6 +116,12 @@ gaps inner 5
 #
 # Workspaces:
 #
+    # create new numeric workspace
+    bindsym $mod+0 exec ~/bin/sway-new-ws.rb
+
+    # move to new numeric workspace
+    bindsym $mod+Shift+0 exec ~/bin/sway-move-new-ws.rb
+
     # switch to workspace
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2
@@ -126,7 +132,6 @@ gaps inner 5
     bindsym $mod+7 workspace 7
     bindsym $mod+8 workspace 8
     bindsym $mod+9 workspace 9
-    bindsym $mod+0 workspace 10
     # move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1
     bindsym $mod+Shift+2 move container to workspace 2
@@ -137,7 +142,6 @@ gaps inner 5
     bindsym $mod+Shift+7 move container to workspace 7
     bindsym $mod+Shift+8 move container to workspace 8
     bindsym $mod+Shift+9 move container to workspace 9
-    bindsym $mod+Shift+0 move container to workspace 10
 #
 # Layout stuff:
 #
