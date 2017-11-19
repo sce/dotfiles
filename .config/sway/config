@@ -39,6 +39,11 @@ output DVI-I-1 bg ~/Bilder/wallpapers/4 fill
 
 ### Misc config
 gaps inner 15
+#gaps outer 0
+smart_gaps on
+
+default_border pixel 1
+hide_edge_borders smart
 
 ### Key bindings
 #
