@@ -222,14 +222,23 @@ map <C-h> :tabprevious<CR>
 map <Leader>r :!time bundle exec ruby -Itest -Ilib %
 
 map <Leader>d :!git df %<CR>
+map <Leader>D :!git dc %<CR>
 map <Leader>w :!git df -w %<CR>
+map <Leader>W :!git dc -w %<CR>
+
+" can't use --patch for merge conflicts for some reason
 map <Leader>a :!git add -p %<CR>
+map <Leader>A :!git add %<CR>
 map <Leader>N :!git add -N %<CR>
+
+map <Leader>r :!git reset %<CR>
+map <Leader>R :!git reset<CR>
+
 map <Leader>c :!git ci
 map <Leader>C :!git dc
 
 " toggle nerdtree for all tabs
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " select current file in nerdtree
 map <Leader>f <plug>NERDTreeTabsFind<CR>
