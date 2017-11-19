@@ -42,7 +42,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 set confirm " ask what to do when quitting in a limbo state instead of just complaining
 
-set mouse=a " enable mouse
+" set mouse=a " enable mouse (gah, this prevents copy/paste with mouse)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indentation:
@@ -52,8 +52,8 @@ set shiftwidth=0 " numer of spaces per autoindent (zero: use ts value)
 
 " numer of spaces per tab in insert mode (zero: off, negative: use ts value)
 set softtabstop=-1
-set expandtab " tabs becomes spaces
 set autoindent " when formatting a paragraph of text, keep the indent of the first line
+set expandtab " tabs becomes spaces
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " searching:
@@ -149,6 +149,9 @@ let g:nerdtree_tabs_focus_on_files=1
 " automatically find and select currently opened file in nerdtree.
 let g:nerdtree_tabs_autofind=1
 
+" after you stop typing, trigger plugin after how many ms (default 4000):
+let g:gitgutter_realtime = 1000
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
 
@@ -167,10 +170,10 @@ nnoremap <cr> :noh <cr>
 
 " my terminal is giving me escape character instead of "alt", so these
 " keybindings are actually <A-l> etc:
-map <ESC>j <C-W>j
-map <ESC>k <C-W>k
-map <ESC>h <C-W>h
-map <ESC>l <C-W>l
+" map <ESC>j <C-W>j
+" map <ESC>k <C-W>k
+" map <ESC>h <C-W>h
+" map <ESC>l <C-W>l
 
 set wmh=0
 
