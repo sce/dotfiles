@@ -68,4 +68,8 @@ export QT_IM_MODULE=xim #Not sure if this works or not, but whatever
 export XMODIFIERS=@im=ibus
 ibus-daemon -drx
 
+# 2017-08-25 cel: this seems to be needed to prevent slow startup for
+# gnome-stuff (due to failing gnome services), see https://bbs.archlinux.org/viewtopic.php?id=224787
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 exec i3
