@@ -61,4 +61,11 @@
 
 # exec gnome-session
 #exec awesome --config ~/.config/awesome/rc.lua
+
+# 2017-11-07 lets try this:
+export GTK_IM_MODULE=xim #Fix for Chrome
+export QT_IM_MODULE=xim #Not sure if this works or not, but whatever
+export XMODIFIERS=@im=ibus
+ibus-daemon -drx
+
 exec i3
