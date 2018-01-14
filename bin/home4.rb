@@ -1,8 +1,24 @@
 #!/usr/bin/env ruby
 
 class Output
-  def self.parse_xrandr(xrandr_text)
-    output = self.new
+  attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected
+end
+
+class Xrandr
+  def raw_outputs
+    %x(xrandr -q).split("\n").grep(/connected/)
+  end
+
+  def outputs
+    raw_outputs.map do |output_line|
+      parse_xrandr(output_line)
+    end
+  end
+
+  private
+
+  def parse_xrandr(xrandr_text)
+    output = Output.new
 
     if xrandr_text =~ /\A(.+)\s((?:dis)?connected)\s(?:primary\s)?(\d+)x(\d+)\+(\d+)\+(\d+)\s/
       output.name, connected, output.width, output.height, output.offset_x, output.offset_y = $1, $2, $3, $4, $5, $6
@@ -15,14 +31,8 @@ class Output
     end
     output
   end
-
-  attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected
 end
 
-def outputs
-  %x(xrandr -q).split("\n").grep(/connected/)
-end
-
-outputs.each do |txt|
-  p Output.parse_xrandr(txt)
+Xrandr.new.outputs.each do |output|
+  p output
 end
