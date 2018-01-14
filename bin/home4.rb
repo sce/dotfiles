@@ -1,21 +1,22 @@
 #!/usr/bin/env ruby
 
 class Output
-  def initialize xrandr_text
-    #@xrandr_text = xrandr_text
+  def self.parse_xrandr(xrandr_text)
+    output = self.new
 
     if xrandr_text =~ /\A(.+)\s((?:dis)?connected)\s(?:primary\s)?(\d+)x(\d+)\+(\d+)\+(\d+)\s/
-      @name, connected, @width, @height, @offset_x, @offset_y = $1, $2, $3, $4, $5, $6
-      @connected = connected == 'connected'
+      output.name, connected, output.width, output.height, output.offset_x, output.offset_y = $1, $2, $3, $4, $5, $6
+      output.connected = connected == 'connected'
     elsif xrandr_text =~ /\A(.+)\s((?:dis)?connected)\s(?:primary\s)?/
-      @name, connected = $1, $2
-      @connected = connected == 'connected'
+      output.name, connected = $1, $2
+      output.connected = connected == 'connected'
     else
       raise %(Can't parse "%s") % xrandr_text
     end
+    output
   end
 
-  attr_reader :name, :width, :height, :offset_x, :offset_y
+  attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected
 end
 
 def outputs
@@ -23,5 +24,5 @@ def outputs
 end
 
 outputs.each do |txt|
-  p Output.new(txt)
+  p Output.parse_xrandr(txt)
 end
