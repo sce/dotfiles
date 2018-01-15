@@ -40,9 +40,11 @@ class Xrandr
         output.name, connected, output.width, output.height, output.offset_x, output.offset_y = match.captures
         output.connected = connected == 'connected'
         outputs.push output
-      elsif match = /(\d+x\d+)(i?)(?:\s+(\d+\.\d+)(\*?)(\+?))+/.match(line)
-        res, interlaced, hz, current, default = match.captures
-        output.resolutions.push Resolution.new(res, interlaced == 'i', hz.strip, current == '*', default == '+')
+      elsif match = /(\d+x\d+)(i?)\s+\d+\.\d+[ \*][ \+]/.match(line)
+        res, interlaced = match.captures
+        line.scan(/\s+?(\d+\.\d+)([ \*]?)([ \+]?)/).each do |(hz, current, default)|
+          output.resolutions.push Resolution.new(res, interlaced == 'i', hz.strip, current == '*', default == '+')
+        end
       else
         $stderr.puts %(Can't parse "%s") % line
       end
