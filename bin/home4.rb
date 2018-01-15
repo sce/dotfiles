@@ -4,9 +4,27 @@ class Output
   attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected
 end
 
+class Screen
+  attr_accessor :number, :width, :height, :min_width, :min_height, :max_width, :max_height
+end
+
 class Xrandr
   def raw_outputs
     %x(xrandr -q).split("\n").grep(/connected/)
+  end
+
+  def raw_outputs2
+    screen = Screen.new
+    %x(xrandr -q).split("\n").each do |line|
+      if match = /Screen (\d+): (?:minimum (\d+) x (\d+), )?(?:current (\d+) x (\d+), )?(?:maximum (\d+) x (\d+))/.match(line)
+        screen.number,
+        screen.min_width, screen.min_height,
+        screen.width, screen.height,
+        screen.max_width, screen.max_height =
+          match.captures
+      end
+    end
+    screen
   end
 
   def outputs
