@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'pp'
+require 'yaml'
+
+Resolution = Struct.new(:res, :interlaced, :hz, :current, :default)
 
 class Output
   def initialize
@@ -8,8 +11,6 @@ class Output
   end
   attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected, :resolutions
 end
-
-Resolution = Struct.new(:res, :interlaced, :hz, :current, :default)
 
 class Screen
   attr_accessor :number, :width, :height, :min_width, :min_height, :max_width, :max_height
@@ -56,4 +57,4 @@ class Xrandr
   end
 end
 
-pp Xrandr.new.server_layout
+puts Xrandr.new.server_layout.to_yaml
