@@ -11,6 +11,9 @@ function screen_reset {
   # different specs:
   xrandr -q
 
+  # okay, for some reason turning on the second extra screen with something else
+  # than pos 0x0 fails when eDP-1 is already on, but if eDP-1 is off and then
+  # turned on after or together with HDMI-1 then it works.
   xrandr \
     --output $UWIDE --off --transform none \
     --output $VERTICAL --off --transform none \
@@ -21,7 +24,15 @@ echo "1) starting inital setup ..."
 screen_reset
 sleep 2
 
-echo "2) setting up screens ..."
+echo "2) initial setup complete, setting up first extra screen ..."
+
+# xrandr \
+#   --output $UWIDE --auto --pos 0x0 \
+#   --output $MAIN --off
+#
+# sleep 2
+
+echo "3) setting up second extra screen ..."
 
 # using --left-of for hdmi-1 refuses to work ...
 # 2560x1440 will create a big space underneath the display that's empty/wallpaper,
@@ -32,4 +43,4 @@ xrandr \
   --output $VERTICAL --auto --pos 2560x0 --rotate left \
   --output $MAIN --auto
 
-echo "3) Done"
+echo "4) Done"
