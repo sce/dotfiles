@@ -16,8 +16,25 @@ class Screen
   attr_accessor :number, :width, :height, :min_width, :min_height, :max_width, :max_height
 end
 
+# Layout: Combination of outputs and monitors (which outputs exist that are connected to what monitors)
+# Profile: How to arrange the current layout (including resolution/scaling)
+
 class ServerLayout
   attr_accessor :screen, :outputs
+
+  def describe
+    outputs.select{|output| output.connected }.map do |output|
+      res = output.resolutions.find {|res| res.default }
+      {
+        output: output.name,
+        default_res: {
+          res: res.res,
+          interlaced: res.interlaced,
+          hz: res.hz,
+        },
+      }
+    end.to_yaml
+  end
 end
 
 class Xrandr
@@ -38,12 +55,15 @@ class Xrandr
           match.captures
       elsif match = /\A(.+)\s((?:dis)?connected)\s(?:primary\s)?(?:(\d+)x(\d+)\+(\d+)\+(\d+))?/.match(line)
         output = Output.new
+        # Note: Width and height include any scaling involved.
         output.name, connected, output.width, output.height, output.offset_x, output.offset_y = match.captures
         output.connected = connected == 'connected'
         outputs.push output
       elsif match = /(\d+x\d+)(i?)\s+\d+\.\d+[ \*][ \+]/.match(line)
         res, interlaced = match.captures
         line.scan(/\s+?(\d+\.\d+)([ \*]?)([ \+]?)/).each do |(hz, current, default)|
+          # Note: Resolution does not include e.g. scaling (because scaling is
+          # done in software)
           output.resolutions.push Resolution.new(res, interlaced == 'i', hz.strip, current == '*', default == '+')
         end
       else
@@ -57,4 +77,6 @@ class Xrandr
   end
 end
 
-puts Xrandr.new.server_layout.to_yaml
+layout = Xrandr.new.server_layout
+#puts layout.to_yaml
+puts layout.describe
