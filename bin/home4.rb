@@ -18,7 +18,20 @@ end
 
 # Layout: Combination of outputs and monitors (which outputs exist that are connected to what monitors)
 # Profile: How to arrange the current layout (including resolution/scaling)
-Layout = Struct.new(:name, :outputs)
+Layout = Struct.new(:name, :outputs) do
+  # For two layouts to be the same we care that all the outputs are the same.
+  # The order of the outputs is not important.
+  def == other
+    return false if outputs.count != other.outputs.count
+    return false if outputs.any? do |output|
+      other.outputs.none? do |other_output|
+        output['name'] == other_output['name'] and
+         output['res'] == other_output['res']
+      end
+    end
+    return true
+  end
+end
 
 # ServerLayout describes an X setup.
 class ServerLayout
@@ -92,11 +105,15 @@ class LayoutManager
 
   def parse_file filename
     #puts YAML.load_file(filename).to_yaml
-    @layouts = YAML.load_file(filename)
+    @layouts = YAML.load_file(filename).first["layouts"]
+      .map {|layout| Layout.new(layout["name"], layout["outputs"]) }
   end
 
   def current_layout
     @layout = @xrandr.server_layout.describe
+    @layouts.find do |layout|
+      layout == @layout
+    end
   end
 end
 
@@ -104,5 +121,6 @@ end
 #puts layout.describe
 
 mngr = LayoutManager.new
-#pp mngr.parse_file("display-layouts.yml")
+pp mngr.parse_file("display-layouts.yml")
+puts "current:"
 pp mngr.current_layout
