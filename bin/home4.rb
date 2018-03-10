@@ -137,14 +137,8 @@ class Xrandr
 
   def reset profile
     puts "DOING RESET"
-    # FIXME 0x0 is not necessarily the main output, so the main output should
-    # be tagged in the profile.
-    args = profile.output_profiles.map do |out_prof|
-      if out_prof.pos == "0x0"
-        %(--output #{out_prof.name} --transform none --auto --pos 0x0)
-      else
-        %(--output #{out_prof.name} --transform none --off)
-      end
+    args = server_layout.describe.outputs.map do |output|
+      %(--output #{output['name']} --transform none --off)
     end
     puts action = %(#@cmd \\\n  #{args.join " \\\n  "}\n#{pause})
     puts %x(#{action})
@@ -224,6 +218,6 @@ unless profile = current.profiles.find { |prof| prof['name'].to_s == wants_profi
   exit(1)
 end
 
-puts "CHOSEN PROFILE:"
+puts "\nCHOSEN PROFILE:"
 pp profile
 Xrandr.new.activate(profile)
