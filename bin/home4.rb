@@ -20,6 +20,7 @@ end
 # Profile: How to arrange the current layout (including resolution/scaling)
 Layout = Struct.new(:name, :outputs)
 
+# ServerLayout describes an X setup.
 class ServerLayout
   attr_accessor :screen, :outputs
 
@@ -82,8 +83,16 @@ class Xrandr
   end
 end
 
+class LayoutManager
+  def parse_file filename
+    puts YAML.load_file(filename).to_yaml
+  end
+
+  def current_layout
+  end
+end
+
 layout = Xrandr.new.server_layout
-#puts layout.to_yaml
 puts layout.describe
 
-puts YAML.load_file("display-layouts.yml").to_yaml
+LayoutManager.new.parse_file("display-layouts.yml")
