@@ -115,6 +115,25 @@ class Xrandr
     layout.outputs = outputs
     layout
   end
+
+  def reset profile
+    # FIXME 0x0 is not necessarily the main output, so the main output should
+    # be tagged in the profile.
+    args = profile.output_profiles.map do |out_prof|
+      if out_prof.pos == "0x0"
+        %(--output #{out_prof.name} --transform none --auto --pos 0x0)
+      else
+        %(--output #{out_prof.name} --transform none --off)
+      end
+    end
+    %(#@cmd \\\n  #{args.join " \\\n  "})
+  end
+
+  def activate profile
+    # - First to a reset: Turn off everything and shift main display (0x0) to native resolution
+    # - Then: Start activating displays left to right and then top to bottom
+    reset profile
+  end
 end
 
 class LayoutManager
@@ -172,3 +191,4 @@ end
 
 puts "CHOSEN PROFILE:"
 pp profile
+puts Xrandr.new.activate(profile)
