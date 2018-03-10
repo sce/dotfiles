@@ -1,0 +1,40 @@
+---
+- profiles:
+  - &kira_single
+    name: single
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+      pos: "0x0"
+
+- layouts:
+  - name: Kira Standalone
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+      main: true
+    profiles:
+    - *kira_single
+
+  - name: Kira Home
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+    - name: HDMI-1
+      res: 2560x1080
+    - name: DP-2
+      res: 2560x1080
+    profiles:
+    - *kira_single
+    - name: home
+      outputs:
+      - name: DP-2
+        res: 2560x1080
+        pos: "0x0"
+      - name: HDMI-1
+        res: 2560x1080
+        pos: "0x1080"
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        pos: "0x2160"
