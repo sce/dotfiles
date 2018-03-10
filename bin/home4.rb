@@ -50,6 +50,25 @@ class OutputProfile
     @rotate = rotate
   end
   attr_reader :name, :res, :pos, :scale, :rotate
+
+  def x
+    res.split('x').first
+  end
+
+  def y
+    res.split('x').last
+  end
+
+  def <=> other
+    # Sort by position:
+    # - First left to right
+    # - Then top to bottom
+    if x == other.x
+      y <=> other.y
+    else
+      x <=> other.x
+    end
+  end
 end
 
 Profile = Struct.new(:name, :output_profiles)
@@ -127,14 +146,28 @@ class Xrandr
         %(--output #{out_prof.name} --transform none --off)
       end
     end
-    puts action = %(#@cmd \\\n  #{args.join " \\\n  "})
-    %x(#{action})
+    puts action = %(#@cmd \\\n  #{args.join " \\\n  "}\n#{pause})
+    puts %x(#{action})
+  end
+
+  def pause
+    "sleep 5"
   end
 
   def activate profile
     # - First to a reset: Turn off everything and shift main display (0x0) to native resolution
     # - Then: Start activating displays left to right and then top to bottom
     reset profile
+    out_profiles = profile.output_profiles.sort.map do |out_prof|
+      on = %(--output #{out_prof.name} --auto)
+      pos = %(--pos #{out_prof.pos})
+      rotate = out_prof.rotate && %(--rotate #{out_prof.rotate})
+      scale = out_prof.scale && %(--scale-from #{out_prof.scale})
+      args = ([on, pos, rotate, scale].reject {|o| o.nil? }).join(" \\\n  ")
+      action = %(#@cmd \\\n  #{args})
+    end
+    puts action = out_profiles.join("\n#{pause}\n")
+    puts %x(#{action})
   end
 end
 
@@ -186,11 +219,11 @@ pp current = mngr.current_layout
 
 exit(0) unless current and wants_profile = ARGV.first
 
-unless profile = current.profiles.find { |prof| prof['name'] == wants_profile }
+unless profile = current.profiles.find { |prof| prof['name'].to_s == wants_profile.to_s }
   $stderr.puts %(Can't find profile "%s") % wants_profile
   exit(1)
 end
 
 puts "CHOSEN PROFILE:"
 pp profile
-puts Xrandr.new.activate(profile)
+Xrandr.new.activate(profile)
