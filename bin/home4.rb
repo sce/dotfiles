@@ -17,7 +17,14 @@ class Screen
 end
 
 # Layout: Combination of outputs and monitors (which outputs exist that are connected to what monitors)
-Layout = Struct.new(:name, :outputs, :profiles) do
+class Layout
+  def initialize name, outputs, profiles = []
+    @name = name
+    @outputs = outputs
+    @profiles = profiles
+  end
+  attr_reader :name, :outputs, :profiles
+
   # For two layouts to be the same we care that all the outputs are the same.
   # The order of the outputs is not important.
   def == other
@@ -114,7 +121,7 @@ class LayoutManager
   def initialize xrandr: Xrandr.new
     @xrandr = xrandr
     @layout = nil
-    @layouts = nil
+    @layouts = []
   end
 
   def parse_file filename
@@ -131,6 +138,7 @@ class LayoutManager
 
   def current_layout
     @layout = @xrandr.server_layout.describe
+    return @layout unless @layouts.any?
     @current_layout = @layouts.find do |layout|
       layout == @layout
     end
@@ -141,8 +149,9 @@ end
 #puts layout.describe
 
 mngr = LayoutManager.new
-pp mngr.parse_file("display-layouts.yml")
-puts "\n\nCURRENT:"
+mngr.parse_file("display-layouts.yml")
+
+puts "\n\nCURRENT LAYOUT:"
 pp current = mngr.current_layout
 
 exit(0) unless current and wants_profile = ARGV.first
@@ -151,3 +160,6 @@ unless profile = current.profiles.find { |prof| prof['name'] == wants_profile }
   $stderr.puts %(Can't find profile "%s") % wants_profile
   exit(1)
 end
+
+puts "CHOSEN PROFILE:"
+pp profile
