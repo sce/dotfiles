@@ -18,22 +18,23 @@ end
 
 # Layout: Combination of outputs and monitors (which outputs exist that are connected to what monitors)
 # Profile: How to arrange the current layout (including resolution/scaling)
+Layout = Struct.new(:name, :outputs)
 
 class ServerLayout
   attr_accessor :screen, :outputs
 
   def describe
-    outputs.select{|output| output.connected }.map do |output|
+    connections = outputs.select{|output| output.connected }.map do |output|
       res = output.resolutions.find {|res| res.default }
       {
-        output: output.name,
-        default_res: {
-          res: res.res,
-          interlaced: res.interlaced,
-          hz: res.hz,
-        },
+        'name' => output.name,
+        'res' => res.res,
+        # hz
+        # scale
+        # rotate
       }
-    end.to_yaml
+    end
+    Layout.new('Detected Layout', connections).to_yaml
   end
 end
 
@@ -80,3 +81,5 @@ end
 layout = Xrandr.new.server_layout
 #puts layout.to_yaml
 puts layout.describe
+
+puts YAML.load_file("display-layouts.yml").to_yaml
