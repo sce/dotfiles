@@ -123,4 +123,11 @@ end
 mngr = LayoutManager.new
 pp mngr.parse_file("display-layouts.yml")
 puts "\n\nCURRENT:"
-pp mngr.current_layout
+pp current = mngr.current_layout
+
+exit(0) unless current and wants_profile = ARGV.first
+
+unless profile = current.profiles.find { |prof| prof['name'] == wants_profile }
+  $stderr.puts %(Can't find profile "%s") % wants_profile
+  exit(1)
+end
