@@ -17,7 +17,6 @@ class Screen
 end
 
 # Layout: Combination of outputs and monitors (which outputs exist that are connected to what monitors)
-# Profile: How to arrange the current layout (including resolution/scaling)
 Layout = Struct.new(:name, :outputs, :profiles) do
   # For two layouts to be the same we care that all the outputs are the same.
   # The order of the outputs is not important.
@@ -32,6 +31,21 @@ Layout = Struct.new(:name, :outputs, :profiles) do
     return true
   end
 end
+
+# Profile: How to arrange the current layout (including resolution/scaling)
+# OutputProfile: A single output in a Profile.
+class OutputProfile
+  def initialize name:, res:, pos:, scale: nil, rotate: nil
+    @name = name
+    @res = res
+    @pos = pos
+    @scale = scale
+    @rotate = rotate
+  end
+  attr_reader :name, :res, :pos, :scale, :rotate
+end
+
+Profile = Struct.new(:name, :output_profiles)
 
 # ServerLayout describes an X setup.
 class ServerLayout
@@ -106,7 +120,13 @@ class LayoutManager
   def parse_file filename
     #puts YAML.load_file(filename).to_yaml
     @layouts = YAML.load_file(filename).first["layouts"]
-      .map {|layout| Layout.new(layout["name"], layout["outputs"], layout["profiles"]) }
+      .map do |layout|
+        profiles = layout["profiles"].map do |profile|
+           Profile.new(profile["name"], profile["outputs"])
+        end
+
+        Layout.new(layout["name"], layout["outputs"], profiles)
+      end
   end
 
   def current_layout
