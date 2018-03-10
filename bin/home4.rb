@@ -117,6 +117,7 @@ class Xrandr
   end
 
   def reset profile
+    puts "DOING RESET"
     # FIXME 0x0 is not necessarily the main output, so the main output should
     # be tagged in the profile.
     args = profile.output_profiles.map do |out_prof|
@@ -126,7 +127,8 @@ class Xrandr
         %(--output #{out_prof.name} --transform none --off)
       end
     end
-    %(#@cmd \\\n  #{args.join " \\\n  "})
+    puts action = %(#@cmd \\\n  #{args.join " \\\n  "})
+    %x(#{action})
   end
 
   def activate profile
