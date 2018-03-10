@@ -35,7 +35,7 @@ class ServerLayout
         # rotate
       }
     end
-    Layout.new('Detected Layout', connections).to_yaml
+    Layout.new('Detected Layout', connections)
   end
 end
 
@@ -84,15 +84,25 @@ class Xrandr
 end
 
 class LayoutManager
+  def initialize xrandr: Xrandr.new
+    @xrandr = xrandr
+    @layout = nil
+    @layouts = nil
+  end
+
   def parse_file filename
-    puts YAML.load_file(filename).to_yaml
+    #puts YAML.load_file(filename).to_yaml
+    @layouts = YAML.load_file(filename)
   end
 
   def current_layout
+    @layout = @xrandr.server_layout.describe
   end
 end
 
-layout = Xrandr.new.server_layout
-puts layout.describe
+#layout = Xrandr.new.server_layout
+#puts layout.describe
 
-LayoutManager.new.parse_file("display-layouts.yml")
+mngr = LayoutManager.new
+#pp mngr.parse_file("display-layouts.yml")
+pp mngr.current_layout
