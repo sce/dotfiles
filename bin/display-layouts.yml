@@ -76,7 +76,7 @@
     - name: DP-2
       res: 2560x1080
     profiles:
-    - name: home
+    - name: triple
       outputs:
       - name: DP-2
         res: 2560x1080
