@@ -129,7 +129,16 @@ class LayoutManager
     @layouts = YAML.load_file(filename).first["layouts"]
       .map do |layout|
         profiles = layout["profiles"].map do |profile|
-           Profile.new(profile["name"], profile["outputs"])
+           output_profiles = profile["outputs"].map do |out_prof|
+             OutputProfile.new(
+                name: out_prof['name'],
+                res: out_prof['res'],
+                scale: out_prof['scale'],
+                rotate: out_prof['rotate'],
+                pos: out_prof['pos']
+             )
+           end
+           Profile.new(profile["name"], output_profiles)
         end
 
         Layout.new(layout["name"], layout["outputs"], profiles)
