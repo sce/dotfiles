@@ -21,12 +21,54 @@
         res: 3840x2160
         scale: 1920x1080
         pos: "0x2160"
-    - &dellicious_single
-      name: single
+    - &dellicious_native
+      name: native
       outputs:
       - name: eDP-1
         res: 3840x2160
         pos: "0x0"
+    - &dellicious_1440
+      name: 1440
+      outputs:
+      - name: eDP-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+    - &dellicious_1080
+      name: 1080
+      outputs:
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        pos: "0x0"
+
+  - name: Dellicious Work
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+    - name: HDMI-1
+      res: 3840x2160
+    - name: DP-2
+      res: 1920x1200
+    profiles:
+    - name: work
+      outputs:
+      - name: HDMI-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+      - name: DP-2
+        res: 1920x1200
+        rotate: left
+        pos: 2560x0
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        #pos: 3640x0
+        pos: "0x1440"
+    - *dellicious_native
+    - *dellicious_1440
+    - *dellicious_1080
 
   - name: Dellicious Single
     outputs:
@@ -34,7 +76,9 @@
       res: 3840x2160
       main: true
     profiles:
-    - *dellicious_single
+    - *dellicious_native
+    - *dellicious_1440
+    - *dellicious_1080
 
   - name: Kira Quad
     outputs:
