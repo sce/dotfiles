@@ -1,5 +1,72 @@
 ---
 - layouts:
+  #
+  # Kira
+  #
+  - name: Kira Quad
+    outputs:
+    - name: HDMI-1
+      res: 1920x1080
+    - name: HDMI-2
+      res: 1920x1080
+    - name: DP-1
+      res: 2560x1080
+    - name: DP-2
+      res: 2560x1080
+    profiles:
+    - name: quad
+      outputs:
+      - name: DP-1
+        res: 2560x1080
+        pos: "0x0"
+      - name: DP-2
+        res: 2560x1080
+        pos: "0x1080"
+      - name: HDMI-1
+        res: 1920x1080
+        rotate: left
+        pos: 2560x0
+      - name: HDMI-2
+        res: 1920x1080
+        pos: 3640x0
+    - &kira_dual
+      name: dual
+      outputs:
+      - name: HDMI-1
+        res: 1920x1080
+        rotate: left
+        pos: "0x0"
+      - name: HDMI-2
+        res: 1920x1080
+        pos: 1080x0
+    - &kira_single
+      name: single
+      outputs:
+      - name: HDMI-2
+        res: 1920x1080
+        pos: "0x0"
+
+  - name: Kira Dual
+    outputs:
+    - name: HDMI-1
+      res: 1920x1080
+    - name: HDMI-2
+      res: 1920x1080
+    profiles:
+    - *kira_dual
+    - *kira_single
+
+  - name: Kira Single
+    # Not sure if this is needed but whatever:
+    outputs:
+    - name: HDMI-2
+      res: 1920x1080
+    profiles:
+    - *kira_single
+
+  #
+  # Dellicious
+  #
   - name: Dellicious Home
     outputs:
     - name: eDP-1
@@ -79,64 +146,3 @@
     - *dellicious_native
     - *dellicious_1440
     - *dellicious_1080
-
-  - name: Kira Quad
-    outputs:
-    - name: HDMI-1
-      res: 1920x1080
-    - name: HDMI-2
-      res: 1920x1080
-    - name: DP-1
-      res: 2560x1080
-    - name: DP-2
-      res: 2560x1080
-    profiles:
-    - name: quad
-      outputs:
-      - name: DP-1
-        res: 2560x1080
-        pos: "0x0"
-      - name: DP-2
-        res: 2560x1080
-        pos: "0x1080"
-      - name: HDMI-1
-        res: 1920x1080
-        rotate: left
-        pos: 2560x0
-      - name: HDMI-2
-        res: 1920x1080
-        pos: 3640x0
-    - &kira_dual
-      name: dual
-      outputs:
-      - name: HDMI-1
-        res: 1920x1080
-        rotate: left
-        pos: "0x0"
-      - name: HDMI-2
-        res: 1920x1080
-        pos: 1080x0
-    - &kira_single
-      name: single
-      outputs:
-      - name: HDMI-2
-        res: 1920x1080
-        pos: "0x0"
-
-  - name: Kira Dual
-    outputs:
-    - name: HDMI-1
-      res: 1920x1080
-    - name: HDMI-2
-      res: 1920x1080
-    profiles:
-    - *kira_dual
-    - *kira_single
-
-  - name: Kira Single
-    # Not sure if this is needed but whatever:
-    outputs:
-    - name: HDMI-2
-      res: 1920x1080
-    profiles:
-    - *kira_single
