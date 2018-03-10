@@ -39,6 +39,10 @@ class ServerLayout
 end
 
 class Xrandr
+  def initialize( cmd: "/usr/bin/env xrandr" )
+    @cmd = cmd
+  end
+
   def raw_outputs
     %x(xrandr -q).split("\n").grep(/connected/)
   end
@@ -47,7 +51,7 @@ class Xrandr
     screen = Screen.new
     outputs = []
     output = nil
-    %x(xrandr -q).split("\n").each do |line|
+    %x(#@cmd -q).split("\n").each do |line|
       if match = /Screen (\d+): (?:minimum (\d+) x (\d+), )?(?:current (\d+) x (\d+), )?(?:maximum (\d+) x (\d+))/.match(line)
         screen.number,
         screen.min_width, screen.min_height,
