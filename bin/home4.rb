@@ -44,20 +44,13 @@ end
 class OutputProfile
   def initialize name:, res:, pos:, scale: nil, rotate: nil
     @name = name
-    @res = res
     @pos = pos
     @scale = scale
     @rotate = rotate
+    @res = res
+    @x, @y = res.split('x')
   end
-  attr_reader :name, :res, :pos, :scale, :rotate
-
-  def x
-    res.split('x').first
-  end
-
-  def y
-    res.split('x').last
-  end
+  attr_reader :name, :res, :pos, :scale, :rotate, :x, :y
 
   def <=> other
     # Sort by position:
@@ -68,6 +61,12 @@ class OutputProfile
     else
       x <=> other.x
     end
+  end
+
+  def inspect
+    %(#<OutputProfile name=%s pos=%s res=%s rotate=%s scale=%s>) % [
+      @name, @pos, @res, @rotate, @scale
+    ].map(&:inspect)
   end
 end
 
