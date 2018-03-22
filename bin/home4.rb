@@ -44,11 +44,11 @@ end
 class OutputProfile
   def initialize name:, res:, pos:, scale: nil, rotate: nil
     @name = name
-    @pos = pos
     @scale = scale
     @rotate = rotate
     @res = res
-    @x, @y = res.split('x')
+    @pos = pos
+    @x, @y = pos.split('x').map(&:to_i)
   end
   attr_reader :name, :res, :pos, :scale, :rotate, :x, :y
 
