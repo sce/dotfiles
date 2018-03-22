@@ -92,8 +92,9 @@ class ServerLayout
 end
 
 class Xrandr
-  def initialize( cmd: "/usr/bin/env xrandr" )
+  def initialize( cmd: "/usr/bin/env xrandr", sleep_time: 5 )
     @cmd = cmd
+    @sleep_time = sleep_time
   end
 
   def raw_outputs
@@ -144,7 +145,7 @@ class Xrandr
   end
 
   def pause
-    "sleep 5"
+    "sleep #@sleep_time"
   end
 
   def activate profile
@@ -204,7 +205,8 @@ end
 #layout = Xrandr.new.server_layout
 #puts layout.describe
 
-mngr = LayoutManager.new
+xrandr = Xrandr.new(sleep_time: ENV['SLEEP'] || 4)
+mngr = LayoutManager.new xrandr: xrandr
 mngr.parse_file("display-layouts.yml")
 
 puts "\n\nCURRENT LAYOUT:"
@@ -219,4 +221,4 @@ end
 
 puts "\nCHOSEN PROFILE:"
 pp profile
-Xrandr.new.activate(profile)
+xrandr.activate(profile)
