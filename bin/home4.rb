@@ -9,7 +9,7 @@ class Output
   def initialize
     @resolutions = []
   end
-  attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected, :resolutions
+  attr_accessor :name, :width, :height, :offset_x, :offset_y, :connected, :resolutions, :rotation
 end
 
 class Screen
@@ -111,10 +111,10 @@ class Xrandr
         screen.width, screen.height,
         screen.max_width, screen.max_height =
           match.captures
-      elsif match = /\A(.+)\s((?:dis)?connected)\s(?:primary\s)?(?:(\d+)x(\d+)\+(\d+)\+(\d+))?/.match(line)
+      elsif match = /\A(.+)\s((?:dis)?connected)\s(?:primary\s)?(?:(\d+)x(\d+)\+(\d+)\+(\d+))?\s?(?:[^()]*)/.match(line)
         output = Output.new
         # Note: Width and height include any scaling involved.
-        output.name, connected, output.width, output.height, output.offset_x, output.offset_y = match.captures
+        output.name, connected, output.width, output.height, output.offset_x, output.offset_y, output.rotation = match.captures
         output.connected = connected == 'connected'
         outputs.push output
       elsif match = /(\d+x\d+)(i?)\s+\d+\.\d+[ \*][ \+]/.match(line)
