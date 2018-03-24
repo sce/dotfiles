@@ -2,6 +2,7 @@
 
 require 'pp'
 require 'yaml'
+require './dialog'
 
 Resolution = Struct.new(:res, :interlaced, :hz, :current, :default)
 
@@ -213,7 +214,14 @@ puts "\n\nCURRENT LAYOUT:"
 pp current = mngr.current_layout
 
 exit(1) unless current
-wants_profile = ARGV.first
+
+wants_profile = ARGV.first || begin
+  options = current.profiles.map do |profile|
+    [profile.name, "-", "off"]
+  end
+  dialog = Dialog.new title: "Choose setup", backtitle: "Current profile is #{current.name}", options: options
+  dialog.run
+end
 
 exit(0) unless wants_profile
 
