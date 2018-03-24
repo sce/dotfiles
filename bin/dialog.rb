@@ -17,21 +17,27 @@ class Dialog
   def run
     raise %(Can't continue without Xdialog) unless sane?
 
-    options = @options.map do |opt|
-      %(#{opt[0].inspect} #{opt[1].inspect} #{opt[2]})
-    end
-
     cmd = %W(
       Xdialog
         --stdout
-        --title "#@title"
-        --backtitle "#@backtitle"
-        --radiolist "#@text"
+        --left
+        --title #@title
+        --backtitle #@backtitle
+        --radiolist #@text
           0 0 0
-          #{options.join(" ")}
-    ).join(" ")
-    puts cmd
-    p %x(#{cmd}).strip
+    )
+    cmd.concat @options.flatten
+    exec cmd
+  end
+
+  private
+
+  def exec cmd
+    p cmd
+    pipe = IO.popen(cmd)
+    choice = pipe.read.strip
+    Process.wait pipe.pid
+    choice
   end
 end
 
