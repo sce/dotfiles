@@ -217,9 +217,13 @@ exit(1) unless current
 
 wants_profile = ARGV.first || begin
   options = current.profiles.map do |profile|
-    [profile.name, "-", "off"]
+    [profile.name, "", "off"]
   end
-  dialog = Dialog.new title: "Choose setup", backtitle: "Current profile is #{current.name}", options: options
+  dialog = Dialog.new \
+    title: "Choose profile",
+    backtitle: "Current layout is #{current.name}",
+    text: current.pretty_inspect,
+    options: options
   dialog.run
 end
 
