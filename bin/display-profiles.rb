@@ -51,11 +51,15 @@ class OutputProfile
     @name = name
     @scale = scale
     @rotate = rotate
+
     @res = res
+    @width, @height = res.split('x').map(&:to_i)
+
     @pos = pos
     @x, @y = pos.split('x').map(&:to_i)
   end
-  attr_reader :name, :res, :pos, :scale, :rotate, :x, :y
+
+  attr_reader :name, :res, :pos, :scale, :rotate, :x, :y, :width, :height
 
   def <=> other
     # Sort by position:
@@ -119,7 +123,22 @@ class ServerLayout
       Profile.new(output.name, [output_prof])
     end
 
-    Layout.new('Detected Layout', connections, single_profiles)
+    all_profile = begin
+      x = 0
+      out_profiles = connected.map do |output|
+        prof = OutputProfile.new(
+          name: output.name,
+          res: output.resolutions.find {|res| res.default }.res,
+          pos: "#{x}x0",
+        )
+        # just place them on a row:
+        x += prof.width
+        prof
+      end
+      Profile.new("all", out_profiles)
+    end
+
+    Layout.new('Detected Layout', connections, single_profiles.concat([all_profile]))
   end
 end
 
