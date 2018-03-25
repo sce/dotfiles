@@ -231,20 +231,8 @@ module DisplayProfiles
     pp current = mngr.current_layout
 
     exit(1) unless current
-
-    wants_profile = ARGV.first || begin
-      options = current.profiles.map do |profile|
-        [profile.name, profile.to_s, "off"]
-      end
-      dialog = Dialog.new \
-        title: "Choose profile",
-        backtitle: %(Detected layout is "#{current.name}"),
-        text: current,
-        options: options
-      dialog.run
-    end
-
-    exit(0) unless wants_profile
+    exit(0) unless wants_profile = ARGV.first || choose_profile(current)
+    exit(0) if wants_profile == ""
 
     unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
       $stderr.puts %(Can't find profile "%s") % wants_profile
@@ -254,6 +242,20 @@ module DisplayProfiles
     puts "\nCHOSEN PROFILE:"
     pp profile
     xrandr.activate(profile)
+  end
+
+  private
+
+  def self.choose_profile current
+    options = current.profiles.map do |profile|
+      [profile.name, profile.to_s, "off"]
+    end
+    dialog = Dialog.new \
+      title: "Choose profile",
+      backtitle: %(Detected layout is "#{current.name}"),
+      text: current,
+      options: options
+    dialog.run
   end
 end
 
