@@ -146,3 +146,63 @@
     - *dellicious_native
     - *dellicious_1440
     - *dellicious_1080
+
+  - name: Dellicious w/HDMI@1200p
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+      main: true
+    - name: HDMI-1
+      res: 1920x1200
+    profiles:
+    - *dellicious_native
+    - *dellicious_1440
+    - *dellicious_1080
+    - name: external
+      outputs:
+      - name: eDP-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+      - name: HDMI-1
+        res: 1920x1200
+        pos: 2560x0
+    - name: external-mirror
+      outputs:
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1200
+        pos: "0x0"
+      - name: HDMI-1
+        res: 1920x1200
+        pos: "0x0"
+
+  - name: Dellicious w/HDMI@1080p
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+      main: true
+    - name: HDMI-1
+      res: 1920x1080
+    profiles:
+    - *dellicious_native
+    - *dellicious_1440
+    - *dellicious_1080
+    - name: external
+      outputs:
+      - name: eDP-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+      - name: HDMI-1
+        res: 1920x1080
+        pos: 2560x0
+    - name: external-mirror
+      outputs:
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        pos: "0x0"
+      - name: HDMI-1
+        res: 1920x1080
+        pos: "0x0"

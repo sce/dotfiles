@@ -222,10 +222,10 @@ class LayoutManager
 end
 
 # TODO:
-# - Automatically create (or at least ask to create) display-layouts.yml with
+# - Automatically create (or at least ask to create) display-profiles.yml with
 #   the current layout and profile if it does not exist.
 # - Detect and ask to add the current profile to the current layout in
-#   display-layouts.yml if it does not exist.
+#   display-profiles.yml if it does not exist.
 #   ---
 #   - layouts:
 #     - name: Detected
@@ -270,7 +270,11 @@ module DisplayProfiles
   end
 
   def self.find_config
-    config_paths = %w(./display-profiles.yml ~/display-profiles.yml ~/.config/display-profiles/display-profiles.yml)
+    config_paths = %W(
+      ./display-profiles.yml
+      #{ENV['HOME']}/display-profiles.yml
+      #{ENV['HOME']}/.config/display-profiles/display-profiles.yml
+    )
     filenames = config_paths.concat ARGV.select { |s| s =~ /\.yml/i }
 
     config_file = filenames.find do |filename|
