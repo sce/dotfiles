@@ -2,7 +2,7 @@
 
 require 'pp'
 require 'yaml'
-require './dialog'
+require_relative './dialog'
 
 Resolution = Struct.new(:res, :interlaced, :hz, :current, :default)
 
