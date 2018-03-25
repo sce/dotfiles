@@ -89,6 +89,7 @@ for_window [class="Volumeicon"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gcalctool"] floating enable
 for_window [class="Polkit"] floating enable
+for_window [class="Xdialog"] floating enable
 
 # lowercase "spotify" only applies to the login dialog, which is intended.
 for_window [title="spotify"] floating enable
@@ -220,6 +221,7 @@ bindsym $mod+Shift+c reload
 # monitors
 bindsym $mod+Shift+p exec --no-startup-id ~/bin/presenter-mode.sh
 
+#bindsym $mod+Shift+w exec --no-startup-id ~/bin/xrandr-rad-quad-uw3.sh
 #bindsym $mod+Shift+w exec --no-startup-id ~/bin/4k.sh
 bindsym $mod+Shift+w exec --no-startup-id ~/bin/display-profiles.rb
 bindsym $mod+Shift+a exec --no-startup-id ~/bin/4k-single.sh
