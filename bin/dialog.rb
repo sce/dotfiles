@@ -3,11 +3,14 @@
 # This requires Xdialog utility to be installed (e.g. via "xdialog" package).
 
 class Dialog
-  def initialize title: nil, backtitle: nil, text: nil, options: []
+  def initialize title: nil, backtitle: nil, text: nil, options: [], width: 60, height: 40, listheight: 0
     @title = title
     @backtitle = backtitle
     @text = text
     @options = options
+    @width = width
+    @height = height
+    @listheight = listheight
   end
 
   def sane?
@@ -24,7 +27,7 @@ class Dialog
         --title #@title
         --backtitle #@backtitle
         --radiolist #@text
-          0 0 0
+          #@height #@width #@listheight
     )
     cmd.concat @options.flatten
     exec cmd
