@@ -96,7 +96,8 @@ class ServerLayout
   attr_accessor :screen, :outputs
 
   def describe
-    connections = outputs.select{|output| output.connected }.map do |output|
+    connected = outputs.select{|output| output.connected }
+    connections = connected.map do |output|
       res = output.resolutions.find {|res| res.default }
       {
         'name' => output.name,
@@ -106,7 +107,19 @@ class ServerLayout
         # rotate
       }
     end
-    Layout.new('Detected Layout', connections)
+    # inject auto-generated profiles:
+    # - one where all outputs are active
+    # - one for each output with only that output active
+    single_profiles = connected.map do |output|
+      output_prof = OutputProfile.new(
+        name: output.name,
+        res: output.resolutions.find {|res| res.default }.res,
+        pos: "0x0",
+      )
+      Profile.new(output.name, [output_prof])
+    end
+
+    Layout.new('Detected Layout', connections, single_profiles)
   end
 end
 
@@ -300,7 +313,7 @@ module DisplayProfiles
     end
     dialog = RadiolistDialog.new \
       title: "Choose profile",
-      backtitle: %(Detected layout is "#{current.name}"),
+      backtitle: %(Current layout is "#{current.name}"),
       text: current,
       options: options
     choice = dialog.run
