@@ -2,35 +2,13 @@
 
 # This requires Xdialog utility to be installed (e.g. via "xdialog" package).
 
-class Dialog
-  def initialize title: nil, backtitle: nil, text: nil, options: [], width: 60, height: 40, listheight: 0
-    @title = title
-    @backtitle = backtitle
-    @text = text
-    @options = options
-    @width = width
-    @height = height
-    @listheight = listheight
-  end
-
+module DialogBase
   def sane?
     system "which Xdialog"
   end
 
   def run
     raise %(Can't continue without Xdialog) unless sane?
-
-    cmd = %W(
-      Xdialog
-        --stdout
-        --left
-        --title #@title
-        --backtitle #@backtitle
-        --radiolist #@text
-          #@height #@width #@listheight
-    )
-    cmd.concat @options.flatten
-    exec cmd
   end
 
   private
@@ -43,6 +21,36 @@ class Dialog
     choice = pipe.read.strip
     Process.wait pipe.pid
     choice
+  end
+end
+
+class Dialog
+  include DialogBase
+
+  def initialize title: nil, backtitle: nil, text: nil, options: [], width: 60, height: 40, listheight: 0
+    @title = title
+    @backtitle = backtitle
+    @text = text
+    @options = options
+    @width = width
+    @height = height
+    @listheight = listheight
+  end
+
+  def run
+    super
+
+    cmd = %W(
+      Xdialog
+        --stdout
+        --left
+        --title #@title
+        --backtitle #@backtitle
+        --radiolist #@text
+          #@height #@width #@listheight
+    )
+    cmd.concat @options.flatten
+    exec cmd
   end
 end
 
