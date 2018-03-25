@@ -38,6 +38,10 @@ class Layout
     end
     return true
   end
+
+  def to_s
+    ([@name].concat @outputs.map {|op| op.values_at('name', 'res') * " " }) * "\n"
+  end
 end
 
 # Profile: How to arrange the current layout (including resolution/scaling)
@@ -222,7 +226,7 @@ wants_profile = ARGV.first || begin
   dialog = Dialog.new \
     title: "Choose profile",
     backtitle: "Current layout is #{current.name}",
-    text: current.pretty_inspect,
+    text: current,
     options: options
   dialog.run
 end
