@@ -253,7 +253,8 @@ module DisplayProfiles
     exit(0) unless wants_profile = find_profile || choose_profile(current)
 
     unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
-      $stderr.puts %(Can't find profile "%s") % wants_profile
+      $stderr.puts msg = %(Can't find profile "%s") % wants_profile
+      MessageDialog.new(title: "Error", text: msg).run
       exit(1)
     end
 
@@ -277,7 +278,8 @@ module DisplayProfiles
     end
 
     unless config_file
-      $stderr.puts %(Can't find config file in #{config_paths.join(", ")}.)
+      $stderr.puts msg = %(Can't find config file in #{config_paths.join(", ")}.)
+      MessageDialog.new(title: "Error", text: msg).run
       exit 1
     end
     config_file
@@ -287,7 +289,7 @@ module DisplayProfiles
     options = current.profiles.map do |profile|
       [profile.name, profile.to_s, "off"]
     end
-    dialog = Dialog.new \
+    dialog = RadiolistDialog.new \
       title: "Choose profile",
       backtitle: %(Detected layout is "#{current.name}"),
       text: current,

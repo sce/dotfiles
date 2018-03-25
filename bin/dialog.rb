@@ -24,7 +24,7 @@ module DialogBase
   end
 end
 
-class Dialog
+class RadiolistDialog
   include DialogBase
 
   def initialize title: nil, backtitle: nil, text: nil, options: [], width: 60, height: 40, listheight: 0
@@ -50,6 +50,30 @@ class Dialog
           #@height #@width #@listheight
     )
     cmd.concat @options.flatten
+    exec cmd
+  end
+end
+
+class MessageDialog
+  include DialogBase
+
+  def initialize title: nil, text: nil, width: 60, height: 40
+    @title = title
+    @text = text
+    @width = width
+    @height = height
+  end
+
+  def run
+    super
+
+    cmd = %W(
+      Xdialog
+        --stdout
+        --title #@title
+        --msgbox #@text
+          #@height #@width
+    )
     exec cmd
   end
 end
