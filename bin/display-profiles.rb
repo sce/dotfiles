@@ -217,7 +217,7 @@ class LayoutManager
     return @layout unless @layouts.any?
     @current_layout = @layouts.find do |layout|
       layout == @layout
-    end
+    end || @layout
   end
 end
 
@@ -249,7 +249,12 @@ module DisplayProfiles
     puts "CURRENT LAYOUT:"
     pp current = mngr.current_layout
 
-    exit(1) unless current
+    unless current.profiles.any?
+      $stderr.puts msg = %(Current layout is not in config!\n\n#{current}\n)
+      MessageDialog.new(title: "Error", text: msg).run
+      exit 1
+    end
+
     exit(0) unless wants_profile = find_profile || choose_profile(current)
 
     unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
