@@ -75,7 +75,21 @@ class OutputProfile
   end
 end
 
-Profile = Struct.new(:name, :output_profiles)
+class Profile
+  def initialize name, output_profiles
+    @name = name
+    @output_profiles = output_profiles
+  end
+
+  attr_reader :name, :output_profiles
+
+  def to_s
+    ops = @output_profiles.map do |op|
+      [op.name, "#{op.res}@#{op.x}x#{op.y}"] * " "
+    end
+    [@name, ops] * "\n"
+  end
+end
 
 # ServerLayout describes an X setup.
 class ServerLayout
@@ -221,11 +235,11 @@ exit(1) unless current
 
 wants_profile = ARGV.first || begin
   options = current.profiles.map do |profile|
-    [profile.name, "", "off"]
+    [profile.name, profile.to_s, "off"]
   end
   dialog = Dialog.new \
     title: "Choose profile",
-    backtitle: "Current layout is #{current.name}",
+    backtitle: %(Detected layout is "#{current.name}"),
     text: current,
     options: options
   dialog.run
