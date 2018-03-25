@@ -57,7 +57,7 @@ end
 class MessageDialog
   include DialogBase
 
-  def initialize title: nil, text: nil, width: 60, height: 40
+  def initialize title: nil, text: nil, width: 0, height: 0
     @title = title
     @text = text
     @width = width
