@@ -242,13 +242,15 @@ module DisplayProfiles
   def self.run
     xrandr = Xrandr.new(sleep_time: ENV['SLEEP'] || 0)
     mngr = LayoutManager.new xrandr: xrandr
-    mngr.parse_file("display-layouts.yml")
 
-    puts "\n\nCURRENT LAYOUT:"
+    config_file = find_config
+    mngr.parse_file config_file
+
+    puts "CURRENT LAYOUT:"
     pp current = mngr.current_layout
 
     exit(1) unless current
-    exit(0) unless wants_profile = ARGV.first || choose_profile(current)
+    exit(0) unless wants_profile = find_profile || choose_profile(current)
     exit(0) if wants_profile == ""
 
     unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
@@ -262,6 +264,25 @@ module DisplayProfiles
   end
 
   private
+
+  def self.find_profile
+    ARGV.select {|s| s !~ /\.yml/i }.first
+  end
+
+  def self.find_config
+    config_paths = %w(./display-profiles.yml ~/display-profiles.yml ~/.config/display-profiles/display-profiles.yml)
+    filenames = config_paths.concat ARGV.select { |s| s =~ /\.yml/i }
+
+    config_file = filenames.find do |filename|
+      File.exists? filename
+    end
+
+    unless config_file
+      $stderr.puts %(Can't find config file in #{config_paths.join(", ")}.)
+      exit 1
+    end
+    config_file
+  end
 
   def self.choose_profile current
     options = current.profiles.map do |profile|
