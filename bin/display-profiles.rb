@@ -251,7 +251,6 @@ module DisplayProfiles
 
     exit(1) unless current
     exit(0) unless wants_profile = find_profile || choose_profile(current)
-    exit(0) if wants_profile == ""
 
     unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
       $stderr.puts %(Can't find profile "%s") % wants_profile
@@ -293,7 +292,8 @@ module DisplayProfiles
       backtitle: %(Detected layout is "#{current.name}"),
       text: current,
       options: options
-    dialog.run
+    choice = dialog.run
+    choice == "" ? nil : choice
   end
 end
 
