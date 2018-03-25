@@ -221,37 +221,40 @@ class LayoutManager
   end
 end
 
-#layout = Xrandr.new.server_layout
-#puts layout.describe
+module DisplayProfiles
+  def self.run
+    xrandr = Xrandr.new(sleep_time: ENV['SLEEP'] || 0)
+    mngr = LayoutManager.new xrandr: xrandr
+    mngr.parse_file("display-layouts.yml")
 
-xrandr = Xrandr.new(sleep_time: ENV['SLEEP'] || 0)
-mngr = LayoutManager.new xrandr: xrandr
-mngr.parse_file("display-layouts.yml")
+    puts "\n\nCURRENT LAYOUT:"
+    pp current = mngr.current_layout
 
-puts "\n\nCURRENT LAYOUT:"
-pp current = mngr.current_layout
+    exit(1) unless current
 
-exit(1) unless current
+    wants_profile = ARGV.first || begin
+      options = current.profiles.map do |profile|
+        [profile.name, profile.to_s, "off"]
+      end
+      dialog = Dialog.new \
+        title: "Choose profile",
+        backtitle: %(Detected layout is "#{current.name}"),
+        text: current,
+        options: options
+      dialog.run
+    end
 
-wants_profile = ARGV.first || begin
-  options = current.profiles.map do |profile|
-    [profile.name, profile.to_s, "off"]
+    exit(0) unless wants_profile
+
+    unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
+      $stderr.puts %(Can't find profile "%s") % wants_profile
+      exit(1)
+    end
+
+    puts "\nCHOSEN PROFILE:"
+    pp profile
+    xrandr.activate(profile)
   end
-  dialog = Dialog.new \
-    title: "Choose profile",
-    backtitle: %(Detected layout is "#{current.name}"),
-    text: current,
-    options: options
-  dialog.run
 end
 
-exit(0) unless wants_profile
-
-unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
-  $stderr.puts %(Can't find profile "%s") % wants_profile
-  exit(1)
-end
-
-puts "\nCHOSEN PROFILE:"
-pp profile
-xrandr.activate(profile)
+DisplayProfiles.run
