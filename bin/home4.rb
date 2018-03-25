@@ -247,7 +247,7 @@ end
 
 exit(0) unless wants_profile
 
-unless profile = current.profiles.find { |prof| prof['name'].to_s == wants_profile.to_s }
+unless profile = current.profiles.find { |prof| prof.name.to_s == wants_profile.to_s }
   $stderr.puts %(Can't find profile "%s") % wants_profile
   exit(1)
 end
