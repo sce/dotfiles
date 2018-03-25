@@ -36,8 +36,10 @@ class Dialog
   private
 
   def exec cmd
-    p cmd
-    pipe = IO.popen(cmd)
+    # prevent "no implicit conversion from (e.g.) Integer into String":
+    args = cmd.map {|s| s.to_s }
+    p args
+    pipe = IO.popen(args)
     choice = pipe.read.strip
     Process.wait pipe.pid
     choice
