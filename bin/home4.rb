@@ -221,6 +221,23 @@ class LayoutManager
   end
 end
 
+# TODO:
+# - Automatically create (or at least ask to create) display-layouts.yml with
+#   the current layout and profile if it does not exist.
+# - Detect and ask to add the current profile to the current layout in
+#   display-layouts.yml if it does not exist.
+#   ---
+#   - layouts:
+#     - name: Detected
+#       outputs:
+#       - name: HDMI-1
+#         res: 1920x1080
+#       profiles:
+#       - name: detected
+#         outputs:
+#         - name: HDMI-1
+#           res: 1920x1080
+#           pos: "0x0"
 module DisplayProfiles
   def self.run
     xrandr = Xrandr.new(sleep_time: ENV['SLEEP'] || 0)
