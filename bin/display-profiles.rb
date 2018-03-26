@@ -89,7 +89,7 @@ class Profile
 
   def to_s
     ops = @output_profiles.map do |op|
-      [op.name, "#{op.res}@#{op.x}x#{op.y}"] * " "
+      [op.name, "#{op.scale || op.res}+#{op.x}+#{op.y}"] * " "
     end
     [@name, ops] * "\n"
   end
