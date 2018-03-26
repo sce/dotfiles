@@ -210,11 +210,27 @@ class Xrandr
       pos = %(--pos #{out_prof.pos})
       rotate = out_prof.rotate && %(--rotate #{out_prof.rotate})
       scale = out_prof.scale && %(--scale-from #{out_prof.scale})
-      args = ([on, pos, rotate, scale].reject {|o| o.nil? }).join(" \\\n  ")
-      action = %(#@cmd \\\n  #{args})
+
+      args = ([on, pos, rotate].reject {|o| o.nil? }).join(" \\\n  ")
+      actions = [%(#@cmd \\\n  #{args})]
+      if scale
+        # For some reason activating scaling when activating the display often
+        # causes problems (on my setup), e.g. blank displays. This is mitigated
+        # by first activating the display, and then turning on scaling.
+        args = ([on, scale].reject {|o| o.nil? }).join(" \\\n  ")
+        actions.push %(#@cmd \\\n  #{args})
+      end
+      actions
     end
     action = out_profiles.join("\n#{pause}\n")
     system action
+  end
+
+  private
+
+  def system cmd
+    #puts cmd
+    Kernel.system cmd
   end
 end
 
