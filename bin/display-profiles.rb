@@ -149,13 +149,14 @@ class Xrandr
   end
 
   def raw_outputs
-    %x(xrandr -q).split("\n").grep(/connected/)
+    %x(#@cmd -q).split("\n").grep(/connected/)
   end
 
   def server_layout
     screen = Screen.new
     outputs = []
     output = nil
+    # run xrandr query and parse the output:
     %x(#@cmd -q).split("\n").each do |line|
       if match = /Screen (\d+): (?:minimum (\d+) x (\d+), )?(?:current (\d+) x (\d+), )?(?:maximum (\d+) x (\d+))/.match(line)
         screen.number,
@@ -191,18 +192,19 @@ class Xrandr
     args = server_layout.describe.outputs.map do |output|
       %(--output #{output['name']} --transform none --off)
     end
-    puts action = %(#@cmd \\\n  #{args.join " \\\n  "}\n#{pause})
-    puts %x(#{action})
+    action = %(#@cmd \\\n  #{args.join " \\\n  "}\n#{pause})
+    system action
   end
 
   def pause
-    "sleep #@sleep_time"
+    %(sleep #@sleep_time)
   end
 
   def activate profile
     # - First to a reset: Turn off everything and shift main display (0x0) to native resolution
-    # - Then: Start activating displays left to right and then top to bottom
     reset profile
+
+    # - Then: Start activating displays left to right and then top to bottom
     out_profiles = profile.output_profiles.sort.map do |out_prof|
       on = %(--output #{out_prof.name} --auto)
       pos = %(--pos #{out_prof.pos})
@@ -211,8 +213,8 @@ class Xrandr
       args = ([on, pos, rotate, scale].reject {|o| o.nil? }).join(" \\\n  ")
       action = %(#@cmd \\\n  #{args})
     end
-    puts action = out_profiles.join("\n#{pause}\n")
-    puts %x(#{action})
+    action = out_profiles.join("\n#{pause}\n")
+    system action
   end
 end
 
