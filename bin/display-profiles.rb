@@ -108,7 +108,7 @@ class ServerLayout
   attr_accessor :screen, :outputs
 
   def describe
-    connected, orphan = outputs.partition {|output| output.connected }
+    connected, disconnected = outputs.partition {|output| output.connected }
     connections = connected.map do |output|
       res = output.resolutions.find {|res| res.default }
       {
@@ -146,6 +146,7 @@ class ServerLayout
       Profile.new("all", out_profiles)
     end
 
+    orphan = disconnected.map do |output| { 'name' => output.name } end
     Layout.new(
       name: 'Detected Layout',
       outputs: connections,
@@ -242,7 +243,7 @@ class Xrandr
   private
 
   def system cmd
-    #puts cmd
+    puts cmd
     Kernel.system cmd
   end
 end
