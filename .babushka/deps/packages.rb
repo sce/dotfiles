@@ -99,6 +99,8 @@ dep 'sensors.managed' do
   }
 end
 
+dep 'hddfancontrol.managed'
+
 dep 'codecs' do
   requires %w(
     rpmfusion
@@ -263,7 +265,11 @@ dep 'firefox', template: 'managed'
 
 dep 'pavucontrol', template: 'managed'
 dep 'powertop.managed'
-dep 'xbacklight', template: 'managed'
+
+# brightnessctl goes more directly against hardware instead of through window
+# system. in other words, it also works under e.g. wayland:
+dep 'brightnessctl', template: 'managed'
+#dep 'xbacklight', template: 'managed'
 
 dep 'skype' do
   # only 32bit, so requires these libs:

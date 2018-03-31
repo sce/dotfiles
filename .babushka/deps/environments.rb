@@ -1,3 +1,5 @@
+# 2017-05-24: remember to add package fuse-exfat somewhere (memory cards, cameras etc)
+
 dep "environments-console" do
   requires %w(
     vim.managed
@@ -23,7 +25,7 @@ end
 
 dep 'i3-portable' do
   requires %w(
-    xbacklight
+    brightnessctl
   )
 end
 
@@ -40,6 +42,9 @@ dep 'multimedia' do
 
     spotify
   )
+  # peek via flatpak
+  # vscode via flatpak
+  # mypaint
 end
 
 dep 'environments-desktop' do
@@ -71,6 +76,7 @@ dep "environments-dev" do
     mariadb-server.managed
     rvm
     gftp
+    yarn
   )
 end
 
@@ -78,6 +84,7 @@ dep "environments-monitoring" do
   requires %w(
     iotop.managed
     sensors.managed
+    hddfancontrol.managed
     atop.managed
     smartmontools
     iftop.managed
