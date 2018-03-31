@@ -1,5 +1,3 @@
-# 2017-05-24: remember to add package fuse-exfat somewhere (memory cards, cameras etc)
-
 dep "environments-console" do
   requires %w(
     vim.managed
@@ -67,6 +65,8 @@ dep 'environments-desktop' do
     gnome-tweak-tool
     redshift-gtk.managed
     pavucontrol
+
+    exfat-fuse
   )
 end
 

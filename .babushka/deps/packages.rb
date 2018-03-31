@@ -291,3 +291,6 @@ end
 dep 'spotify-client', template: 'managed' do
   provides 'spotify'
 end
+
+# memory cards, cameras etc
+dep 'exfat-fuse', template: 'managed'
