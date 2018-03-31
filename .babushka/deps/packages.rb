@@ -253,6 +253,8 @@ end
 dep 'chromium-widevinecdm-plugin', template: 'lib'
 
 dep 'chromium', template: 'managed' do
+  provides %w(chromium-browser)
+
   #requires %w(spot-chromium.copr)
   requires %w(russianfedora)
   installs %w(chromium)
