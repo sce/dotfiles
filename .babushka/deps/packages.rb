@@ -26,7 +26,8 @@ dep 'smplayer.managed'
 dep 'thunderbird.managed'
 dep 'mpv', template: 'bin'
 
-dep 'i3.managed' do
+# 2018-03: using a patched version of i3 at the moment:
+dep 'i3', template: 'bin' do
   requires %w(i3status.managed i3lock.managed)
 end
 

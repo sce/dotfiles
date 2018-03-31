@@ -10,7 +10,7 @@ end
 
 dep 'i3-full' do
   requires %w(
-    i3.managed
+    i3
     lxpolkit.managed
     xfce4-terminal.managed
     nm-applet.managed
