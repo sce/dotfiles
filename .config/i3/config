@@ -83,6 +83,9 @@ bindsym XF86AudioMute exec --no-startup-id ~/bin/volmutetoggle
 bindsym XF86Calculator exec ~/bin/calculator
 bindsym XF86Favorites exec ~/bin/screenshot
 
+bindsym XF86MonBrightnessUp exec brightnessctl s +15%
+bindsym XF86MonBrightnessDown exec brightnessctl s 15%-
+
 # application specifics
 for_window [class="Gkrellm"] floating enable
 for_window [class="Volumeicon"] floating enable
@@ -97,6 +100,7 @@ for_window [title="spotify"] floating enable
 for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Anki" title="Export"] floating enable
 for_window [class="Anki" title="Import"] floating enable
+for_window [class="Emoji Picker"] floating enable
 
 # Due to focus follows mouse this popup works better if it's fullscreen:
 for_window [class="Soffice" title="Asiatisk lydskrift"] floating disable
