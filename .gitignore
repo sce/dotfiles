@@ -6,6 +6,7 @@
 .bash_history
 .lesshst
 .viminf*
+.serverauth*
 
 .forward
 
@@ -21,3 +22,5 @@
 
 !.vim/bundle
 !.vim/bundle/**
+
+#!.local/**
