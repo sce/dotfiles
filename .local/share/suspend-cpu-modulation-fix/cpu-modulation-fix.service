@@ -1,0 +1,17 @@
+# from https://bbs.archlinux.org/viewtopic.php?pid=1558948#p1558948
+# - place in /etc/systemd/system
+# - enable with:  systemctl enable cpu-modulation-fix.service
+
+[Unit]
+Description=Flushes the cpu clock modulation MSR to relase cpu lock caused by BIOS bug
+After=suspend.target
+
+[Service]
+User=root
+Type=oneshot
+ExecStart=/home/cel/.local/share/suspend-cpu-modulation-fix/cpu-modulation-fix.sh
+TimeoutSec=0
+StandardOutput=syslog
+
+[Install]
+WantedBy=suspend.target
