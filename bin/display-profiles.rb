@@ -111,6 +111,8 @@ class ServerLayout
     connected, disconnected = outputs.partition {|output| output.connected }
     connections = connected.map do |output|
       res = output.resolutions.find {|res| res.default }
+      res ||= output.resolutions.find {|res| res.current }
+      res ||= output.resolutions.first
       {
         'name' => output.name,
         'res' => res.res,
@@ -123,9 +125,12 @@ class ServerLayout
     # - one where all outputs are active
     # - one for each output with only that output active
     single_profiles = connected.map do |output|
+      res = output.resolutions.find {|res| res.default }
+      res ||= output.resolutions.find {|res| res.current }
+      res ||= output.resolutions.first
       output_prof = OutputProfile.new(
         name: output.name,
-        res: output.resolutions.find {|res| res.default }.res,
+        res: res.res,
         pos: "0x0",
       )
       Profile.new(output.name, [output_prof])
@@ -134,9 +139,12 @@ class ServerLayout
     all_profile = begin
       x = 0
       out_profiles = connected.map do |output|
+        res = output.resolutions.find {|res| res.default }
+        res ||= output.resolutions.find {|res| res.current }
+        res ||= output.resolutions.first
         prof = OutputProfile.new(
           name: output.name,
-          res: output.resolutions.find {|res| res.default }.res,
+          res: res.res,
           pos: "#{x}x0",
         )
         # just place them on a row:
