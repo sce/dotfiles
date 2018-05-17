@@ -241,25 +241,41 @@ class LayoutManager
     @layouts = []
   end
 
+  SUPPORTED_CONFIG = 0
+
   def parse_file filename
     #puts YAML.load_file(filename).to_yaml
-    @layouts = YAML.load_file(filename).first["layouts"]
-      .map do |layout|
-        profiles = layout["profiles"].map do |profile|
-           output_profiles = profile["outputs"].map do |out_prof|
-             OutputProfile.new(
-                name: out_prof['name'],
-                res: out_prof['res'],
-                scale: out_prof['scale'],
-                rotate: out_prof['rotate'],
-                pos: out_prof['pos']
-             )
-           end
-           Profile.new(profile["name"], output_profiles)
-        end
+    config = YAML.load_file(filename).first
 
-        Layout.new(layout["name"], layout["outputs"], profiles)
-      end
+    if (config_version = config["config_version"].to_i) > SUPPORTED_CONFIG
+      $stderr.puts msg = %(%s: Software supports config versions up to "%i" but this file was "%i", quitting.) %
+        [filename, SUPPORTED_CONFIG, config_version]
+
+      MessageDialog.new(title: "Error", text: msg).run
+      exit 1
+    end
+
+    puts %(Config is version "%i") % config_version
+
+    if config_version == 0
+      @layouts = config["layouts"]
+        .map do |layout|
+          profiles = layout["profiles"].map do |profile|
+             output_profiles = profile["outputs"].map do |out_prof|
+               OutputProfile.new(
+                  name: out_prof['name'],
+                  res: out_prof['res'],
+                  scale: out_prof['scale'],
+                  rotate: out_prof['rotate'],
+                  pos: out_prof['pos']
+               )
+             end
+             Profile.new(profile["name"], output_profiles)
+          end
+
+          Layout.new(layout["name"], layout["outputs"], profiles)
+        end
+    end
   end
 
   def current_layout
@@ -341,6 +357,7 @@ module DisplayProfiles
       MessageDialog.new(title: "Error", text: msg).run
       exit 1
     end
+    puts %(Using config file "%s") % config_file
     config_file
   end
 
