@@ -19,12 +19,15 @@ end
 
 # Layout: Combination of outputs and monitors (which outputs exist that are connected to what monitors)
 class Layout
-  def initialize name, outputs, profiles = []
+  def initialize name:, outputs:, orphan_outputs: [], profiles: []
     @name = name
     @outputs = outputs
+    # orphan outputs == disconnected outputs. we need to know which these are
+    # so that we can properly configure them during reset.
+    @orphan_outputs = orphan_outputs
     @profiles = profiles
   end
-  attr_reader :name, :outputs, :profiles
+  attr_reader :name, :outputs, :orphan_outputs, :profiles
 
   # For two layouts to be the same we care that all the outputs are the same.
   # The order of the outputs is not important.
@@ -37,6 +40,10 @@ class Layout
       end
     end
     return true
+  end
+
+  def all_outputs
+    outputs + orphan_outputs
   end
 
   def to_s
@@ -79,6 +86,7 @@ class OutputProfile
   end
 end
 
+# Profile: How to arrange the current layout (including resolution/scaling)
 class Profile
   def initialize name, output_profiles
     @name = name
@@ -89,7 +97,7 @@ class Profile
 
   def to_s
     ops = @output_profiles.map do |op|
-      [op.name, "#{op.res}@#{op.x}x#{op.y}"] * " "
+      [op.name, "#{op.scale || op.res}+#{op.x}+#{op.y}"] * " "
     end
     [@name, ops] * "\n"
   end
@@ -100,9 +108,11 @@ class ServerLayout
   attr_accessor :screen, :outputs
 
   def describe
-    connected = outputs.select{|output| output.connected }
+    connected, disconnected = outputs.partition {|output| output.connected }
     connections = connected.map do |output|
       res = output.resolutions.find {|res| res.default }
+      res ||= output.resolutions.find {|res| res.current }
+      res ||= output.resolutions.first
       {
         'name' => output.name,
         'res' => res.res,
@@ -115,9 +125,12 @@ class ServerLayout
     # - one where all outputs are active
     # - one for each output with only that output active
     single_profiles = connected.map do |output|
+      res = output.resolutions.find {|res| res.default }
+      res ||= output.resolutions.find {|res| res.current }
+      res ||= output.resolutions.first
       output_prof = OutputProfile.new(
         name: output.name,
-        res: output.resolutions.find {|res| res.default }.res,
+        res: res.res,
         pos: "0x0",
       )
       Profile.new(output.name, [output_prof])
@@ -126,9 +139,12 @@ class ServerLayout
     all_profile = begin
       x = 0
       out_profiles = connected.map do |output|
+        res = output.resolutions.find {|res| res.default }
+        res ||= output.resolutions.find {|res| res.current }
+        res ||= output.resolutions.first
         prof = OutputProfile.new(
           name: output.name,
-          res: output.resolutions.find {|res| res.default }.res,
+          res: res.res,
           pos: "#{x}x0",
         )
         # just place them on a row:
@@ -138,7 +154,13 @@ class ServerLayout
       Profile.new("all", out_profiles)
     end
 
-    Layout.new('Detected Layout', connections, single_profiles.concat([all_profile]))
+    orphan = disconnected.map do |output| { 'name' => output.name } end
+    Layout.new(
+      name: 'Detected Layout',
+      outputs: connections,
+      orphan_outputs: orphan,
+      profiles: single_profiles.concat([all_profile]),
+    )
   end
 end
 
@@ -189,7 +211,7 @@ class Xrandr
 
   def reset profile
     puts "DOING RESET"
-    args = server_layout.describe.outputs.map do |output|
+    args = server_layout.describe.all_outputs.map do |output|
       %(--output #{output['name']} --transform none --off)
     end
     action = %(#@cmd \\\n  #{args.join " \\\n  "}\n#{pause})
@@ -229,7 +251,7 @@ class Xrandr
   private
 
   def system cmd
-    #puts cmd
+    puts cmd
     Kernel.system cmd
   end
 end
@@ -258,23 +280,30 @@ class LayoutManager
     puts %(Config is version "%i") % config_version
 
     if config_version == 0
-      @layouts = config["layouts"]
-        .map do |layout|
-          profiles = layout["profiles"].map do |profile|
-             output_profiles = profile["outputs"].map do |out_prof|
-               OutputProfile.new(
-                  name: out_prof['name'],
-                  res: out_prof['res'],
-                  scale: out_prof['scale'],
-                  rotate: out_prof['rotate'],
-                  pos: out_prof['pos']
-               )
-             end
-             Profile.new(profile["name"], output_profiles)
-          end
-
-          Layout.new(layout["name"], layout["outputs"], profiles)
+      orphans = @xrandr.server_layout.describe.orphan_outputs
+      @layouts = config["layouts"].map do |layout|
+        profiles = layout["profiles"].map do |profile|
+           output_profiles = profile["outputs"].map do |out_prof|
+             OutputProfile.new(
+                name: out_prof['name'],
+                res: out_prof['res'],
+                scale: out_prof['scale'],
+                rotate: out_prof['rotate'],
+                pos: out_prof['pos']
+             )
+           end
+           Profile.new(profile["name"], output_profiles)
         end
+
+        Layout.new(
+          name: layout["name"],
+          outputs: layout["outputs"],
+          # TODO Merging in orphan outputs here is not that elegant; they should
+          # be queried on demand or something. They are needed during reset.
+          orphan_outputs: orphans,
+          profiles: profiles
+        )
+      end
     end
   end
 

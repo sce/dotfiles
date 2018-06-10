@@ -10,7 +10,7 @@ end
 
 dep 'i3-full' do
   requires %w(
-    i3.managed
+    i3
     lxpolkit.managed
     xfce4-terminal.managed
     nm-applet.managed
@@ -23,7 +23,7 @@ end
 
 dep 'i3-portable' do
   requires %w(
-    xbacklight
+    brightnessctl
   )
 end
 
@@ -40,6 +40,9 @@ dep 'multimedia' do
 
     spotify
   )
+  # peek via flatpak
+  # vscode via flatpak
+  # mypaint
 end
 
 dep 'environments-desktop' do
@@ -62,6 +65,8 @@ dep 'environments-desktop' do
     gnome-tweak-tool
     redshift-gtk.managed
     pavucontrol
+
+    exfat-fuse
   )
 end
 
@@ -71,6 +76,7 @@ dep "environments-dev" do
     mariadb-server.managed
     rvm
     gftp
+    yarn
   )
 end
 
@@ -78,6 +84,7 @@ dep "environments-monitoring" do
   requires %w(
     iotop.managed
     sensors.managed
+    hddfancontrol.managed
     atop.managed
     smartmontools
     iftop.managed

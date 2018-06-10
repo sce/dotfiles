@@ -26,7 +26,8 @@ dep 'smplayer.managed'
 dep 'thunderbird.managed'
 dep 'mpv', template: 'bin'
 
-dep 'i3.managed' do
+# 2018-03: using a patched version of i3 at the moment:
+dep 'i3', template: 'bin' do
   requires %w(i3status.managed i3lock.managed)
 end
 
@@ -98,6 +99,8 @@ dep 'sensors.managed' do
     via :yum, %w(lm_sensors)
   }
 end
+
+dep 'hddfancontrol.managed'
 
 dep 'codecs' do
   requires %w(
@@ -250,6 +253,8 @@ end
 dep 'chromium-widevinecdm-plugin', template: 'lib'
 
 dep 'chromium', template: 'managed' do
+  provides %w(chromium-browser)
+
   #requires %w(spot-chromium.copr)
   requires %w(russianfedora)
   installs %w(chromium)
@@ -263,7 +268,11 @@ dep 'firefox', template: 'managed'
 
 dep 'pavucontrol', template: 'managed'
 dep 'powertop.managed'
-dep 'xbacklight', template: 'managed'
+
+# brightnessctl goes more directly against hardware instead of through window
+# system. in other words, it also works under e.g. wayland:
+dep 'brightnessctl', template: 'managed'
+#dep 'xbacklight', template: 'managed'
 
 dep 'skype' do
   # only 32bit, so requires these libs:
@@ -285,3 +294,6 @@ end
 dep 'spotify-client', template: 'managed' do
   provides 'spotify'
 end
+
+# memory cards, cameras etc
+dep 'exfat-fuse', template: 'managed'
