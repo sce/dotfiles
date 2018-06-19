@@ -22,15 +22,22 @@ xscreensaver-command --lock || (
 
   height=$(xwininfo -root|grep Height|awk '{ print $2 }')
 
-  if [ $height -lt 2160 ]; then
-    scaledown=10%
-    scaleup=1000%
-  else
-    # if it's 4k resolution there's so many pixels that we need even more
-    # downscaling to properly remove details:
-    scaledown=5%
-    scaleup=2000%
-  fi
+  echo Height is: $height
+
+  scaledown=2.5%
+  scaleup=4000%
+
+  #if [ $height -lt 2161 ]; then
+  #  scaledown=10%
+  #  scaleup=1000%
+  #  scaledown=5%
+  #  scaleup=2000%
+  #else
+  #  # if it's 4k resolution there's so many pixels that we need even more
+  #  # downscaling to properly remove details:
+  #  scaledown=5%
+  #  scaleup=2000%
+  #fi
 
   scrot -d0 "$file1" &&
     # convert "$file1" -blur 0x3 "$file2" &&
