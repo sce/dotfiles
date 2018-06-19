@@ -37,6 +37,9 @@ set wildmenu
 " Remove trailing whitespaces automaticaly on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" wrap at different width for javascript:
+autocmd BufRead,BufNewFile *.js,*.jsx setlocal textwidth=100
+
 " use folding by default
 " set foldmethod=indent
 
