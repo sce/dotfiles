@@ -227,7 +227,7 @@ bindsym $mod+Shift+p exec --no-startup-id ~/bin/presenter-mode.sh
 
 #bindsym $mod+Shift+w exec --no-startup-id ~/bin/xrandr-rad-quad-uw3.sh
 #bindsym $mod+Shift+w exec --no-startup-id ~/bin/4k.sh
-bindsym $mod+Shift+w exec --no-startup-id ~/bin/display-profiles.rb
+bindsym $mod+Shift+w exec --no-startup-id "~/bin/display-profiles.rb && sleep 1 && ~/bin/wallpaper"
 bindsym $mod+Shift+a exec --no-startup-id ~/bin/4k-single.sh
 
 bindsym $mod+ctrl+a exec --no-startup-id ~/bin/4k-single.sh fullhd
