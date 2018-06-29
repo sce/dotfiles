@@ -109,6 +109,28 @@
         scale: 1920x1080
         pos: "0x0"
 
+  - name: Dellicious Work Dual
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+    - name: HDMI-1
+      res: 3840x2160
+    profiles:
+    - name: work
+      outputs:
+      - name: HDMI-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        #pos: 3640x0
+        pos: "0x1440"
+    - *dellicious_native
+    - *dellicious_1440
+    - *dellicious_1080
+
   - name: Dellicious Work
     outputs:
     - name: eDP-1
@@ -118,7 +140,7 @@
     - name: DP-2
       res: 1920x1200
     profiles:
-    - name: work
+    - name: triple
       outputs:
       - name: HDMI-1
         res: 3840x2160
@@ -131,7 +153,65 @@
       - name: eDP-1
         res: 3840x2160
         scale: 1920x1080
-        #pos: 3640x0
+        pos: "0x1440"
+    - name: triple - high res
+      outputs:
+      - name: HDMI-1
+        res: 3840x2160
+        scale: 3008x1692
+        pos: "0x0"
+      - name: DP-2
+        res: 1920x1200
+        rotate: left
+        pos: 3008x0
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        pos: "0x1692"
+
+    - *dellicious_native
+    - *dellicious_1440
+    - *dellicious_1080
+
+  - name: Dellicious Work 4k
+    outputs:
+    - name: eDP-1
+      res: 3840x2160
+    - name: HDMI-1
+      res: 3840x2160
+    - name: DP-2
+      res: 3840x2160
+    profiles:
+    - name: triple
+      # screen fb 4720 x 3840
+      outputs:
+      - name: HDMI-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+      - name: DP-2
+        res: 3840x2160
+        rotate: left
+        pos: 2560x0
+      - name: eDP-1
+        res: 3840x2160
+        scale: 1920x1080
+        pos: "0x1440"
+
+    - name: triple min 1440p
+      # screen fb 4720 x 3840
+      outputs:
+      - name: HDMI-1
+        res: 3840x2160
+        scale: 2560x1440
+        pos: "0x0"
+      - name: DP-2
+        res: 3840x2160
+        rotate: left
+        pos: 2560x0
+      - name: eDP-1
+        res: 3840x2160
+        scale: 2560x1440
         pos: "0x1440"
     - *dellicious_native
     - *dellicious_1440
