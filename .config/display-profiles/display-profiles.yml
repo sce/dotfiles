@@ -187,21 +187,24 @@
     - name: triple
       # screen fb 4720 x 3840
       outputs:
-      - name: HDMI-1
-        res: 3840x2160
-        scale: 2560x1440
-        pos: "0x0"
       - name: DP-2
         res: 3840x2160
         rotate: left
         pos: 2560x0
+      - name: HDMI-1
+        res: 3840x2160
+        scale: 2560x1440
+        # vert: 3840 - 1440 - 1080 = 1320
+        pos: "0x1320"
       - name: eDP-1
         #res: 3840x2160
         #scale: 1920x1080
         res: 1920x1080
-        # 2560 - 1920 = 640
+        # horiz: 2560 - 1920 = 640
+        # vert: 3840 - 1080 = 2760
         # pos: "0x1440"
-        pos: "640x1440"
+        # pos: "640x1440"
+        pos: "640x2760"
 
     - name: triple min 1440p
       # screen fb 4720 x 3840
