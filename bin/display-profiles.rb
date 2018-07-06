@@ -232,8 +232,9 @@ class Xrandr
       pos = %(--pos #{out_prof.pos})
       rotate = out_prof.rotate && %(--rotate #{out_prof.rotate})
       scale = out_prof.scale && %(--scale-from #{out_prof.scale})
+      mode = out_prof.res && %(--mode #{out_prof.res})
 
-      args = ([on, pos, rotate].reject {|o| o.nil? }).join(" \\\n  ")
+      args = ([on, mode, pos, rotate].reject {|o| o.nil? }).join(" \\\n  ")
       actions = [%(#@cmd \\\n  #{args})]
       if scale
         # For some reason activating scaling when activating the display often
