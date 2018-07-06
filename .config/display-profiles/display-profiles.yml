@@ -98,15 +98,17 @@
       name: 1440
       outputs:
       - name: eDP-1
-        res: 3840x2160
-        scale: 2560x1440
+        #res: 3840x2160
+        #scale: 2560x1440
+        res: 2560x1440
         pos: "0x0"
     - &dellicious_1080
       name: 1080
       outputs:
       - name: eDP-1
-        res: 3840x2160
-        scale: 1920x1080
+        #res: 3840x2160
+        #scale: 1920x1080
+        res: 1920x1080
         pos: "0x0"
 
   - name: Dellicious Work Dual
@@ -154,20 +156,20 @@
         res: 3840x2160
         scale: 1920x1080
         pos: "0x1440"
-    - name: triple - high res
-      outputs:
-      - name: HDMI-1
-        res: 3840x2160
-        scale: 3008x1692
-        pos: "0x0"
-      - name: DP-2
-        res: 1920x1200
-        rotate: left
-        pos: 3008x0
-      - name: eDP-1
-        res: 3840x2160
-        scale: 1920x1080
-        pos: "0x1692"
+        # - name: triple - high res
+        #   outputs:
+        #   - name: HDMI-1
+        #     res: 3840x2160
+        #     scale: 3008x1692
+        #     pos: "0x0"
+        #   - name: DP-2
+        #     res: 1920x1200
+        #     rotate: left
+        #     pos: 3008x0
+        #   - name: eDP-1
+        #     res: 3840x2160
+        #     scale: 1920x1080
+        #     pos: "0x1692"
 
     - *dellicious_native
     - *dellicious_1440
@@ -194,9 +196,12 @@
         rotate: left
         pos: 2560x0
       - name: eDP-1
-        res: 3840x2160
-        scale: 1920x1080
-        pos: "0x1440"
+        #res: 3840x2160
+        #scale: 1920x1080
+        res: 1920x1080
+        # 2560 - 1920 = 640
+        # pos: "0x1440"
+        pos: "640x1440"
 
     - name: triple min 1440p
       # screen fb 4720 x 3840
