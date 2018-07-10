@@ -86,7 +86,7 @@ bindsym XF86Favorites exec ~/bin/screenshot
 bindsym XF86MonBrightnessUp exec brightnessctl s +15%
 bindsym XF86MonBrightnessDown exec brightnessctl s 15%-
 
-# application specifics
+# application specifics (use xprop to find properties)
 for_window [class="Gkrellm"] floating enable
 for_window [class="Volumeicon"] floating enable
 for_window [class="Gnome-calculator"] floating enable
@@ -101,6 +101,9 @@ for_window [class="Nautilus" instance="file_progress"] floating enable
 for_window [class="Anki" title="Export"] floating enable
 for_window [class="Anki" title="Import"] floating enable
 for_window [class="Emoji Picker"] floating enable
+
+# this is the emoji picker from ibus. defaults to ctrl+shift+e to activate.
+for_window [class="Ibus-ui-gtk3"] floating enable
 
 # Due to focus follows mouse this popup works better if it's fullscreen:
 for_window [class="Soffice" title="Asiatisk lydskrift"] floating disable
