@@ -85,9 +85,11 @@
         res: 2560x1080
         pos: "0x1080"
       - name: eDP-1
-        res: 3840x2160
-        scale: 1920x1080
-        pos: "0x2160"
+        #res: 3840x2160
+        #scale: 1920x1080
+        res: 1920x1080
+        # pos: "0x2160"
+        pos: "2560x1080"
     - &dellicious_native
       name: native
       outputs:
@@ -183,7 +185,27 @@
     - name: DP-2
       res: 3840x2160
     profiles:
-    - name: triple
+    - name: triple min 1440p - new
+      # screen fb 4720 x 3840
+      outputs:
+      - name: eDP-1
+        res: 2560x1440
+        # having a non-0x0 position for the left-most display doesn't work with
+        # this script atm ...
+        pos: "0x720"
+      - name: DP-2
+        res: 3840x2160
+        pos: 2560x0
+      - name: HDMI-1
+        # xrandr: screen cannot be larger than 8192x8192 (desired size 8560x3840)
+        #res: 3840x2160
+        #scale: 2560x1440
+        #res: 3840x2160
+        res: 1920x1080
+        rotate: left
+        pos: "6400x0"
+
+    - name: triple - old
       # screen fb 4720 x 3840
       outputs:
       - name: DP-2
@@ -206,7 +228,7 @@
         # pos: "640x1440"
         pos: "640x2760"
 
-    - name: triple min 1440p
+    - name: triple min 1440p - old
       # screen fb 4720 x 3840
       outputs:
       - name: HDMI-1
