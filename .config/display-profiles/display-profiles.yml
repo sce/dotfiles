@@ -153,8 +153,7 @@
         rotate: left
         pos: 2560x0
       - name: eDP-1
-        res: 3840x2160
-        scale: 1920x1080
+        res: 1920x1080
         pos: "0x1440"
         # - name: triple - high res
         #   outputs:
@@ -195,10 +194,11 @@
         res: 3840x2160
         scale: 2560x1440
         # vert: 3840 - 1440 - 1080 = 1320
+        # FIXME: xrandr wants something to be at position 0x0 (at least the way
+        # the display-profiles algorithm works)..
         pos: "0x1320"
       - name: eDP-1
         #res: 3840x2160
-        #scale: 1920x1080
         res: 1920x1080
         # horiz: 2560 - 1920 = 640
         # vert: 3840 - 1080 = 2760
@@ -218,8 +218,9 @@
         rotate: left
         pos: 2560x0
       - name: eDP-1
-        res: 3840x2160
-        scale: 2560x1440
+        #res: 3840x2160
+        #scale: 2560x1440
+        res: 2560x1440
         pos: "0x1440"
     - *dellicious_native
     - *dellicious_1440
