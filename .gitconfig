@@ -21,14 +21,18 @@
   # Add common ancestor data in merge conflict diffs:
   conflictstyle = diff3
 
+[push]
+  default = simple
+
 [alias]
   # list aliases:
   la = "!git config -l | grep alias | cut -c 7-"
 
   sh = show --submodule
   st = status -sb
-  stu = status -sb --untracked=no
+  stu = status -s --untracked=no
   ci = commit
+  cia = commit --amend
   br = branch
   co = checkout
   df = diff --submodule
