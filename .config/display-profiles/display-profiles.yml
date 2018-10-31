@@ -185,7 +185,26 @@
     - name: DP-2
       res: 3840x2160
     profiles:
-    - name: triple min 1440p - new
+    - name: triple all 1440p - new
+      # two 4ks @ 1440p and upright 4k @ 1080p due to too small framebuffer
+      # apparently?
+      outputs:
+      - name: eDP-1
+        res: 2560x1440
+
+      - name: DP-2
+        res: 2560x1440
+        pos: 2560x0
+
+      - name: HDMI-1
+        # xrandr: screen cannot be larger than 8192x8192 (desired size 8560x3840)
+        res: 1920x1080
+        #res: 3840x2160
+        #scale: 2560x1440
+        rotate: left
+        pos: "5120x0"
+
+    - name: triple 1440p+
       # screen fb 4720 x 3840
       outputs:
       - name: eDP-1
@@ -198,52 +217,12 @@
         pos: 2560x0
       - name: HDMI-1
         # xrandr: screen cannot be larger than 8192x8192 (desired size 8560x3840)
-        #res: 3840x2160
-        #scale: 2560x1440
-        #res: 3840x2160
-        res: 1920x1080
+        #res: 1920x1080
+        res: 3840x2160
+        scale: 2560x1440
         rotate: left
         pos: "6400x0"
 
-    - name: triple - old
-      # screen fb 4720 x 3840
-      outputs:
-      - name: DP-2
-        res: 3840x2160
-        rotate: left
-        pos: 2560x0
-      - name: HDMI-1
-        res: 3840x2160
-        scale: 2560x1440
-        # vert: 3840 - 1440 - 1080 = 1320
-        # FIXME: xrandr wants something to be at position 0x0 (at least the way
-        # the display-profiles algorithm works)..
-        pos: "0x1320"
-      - name: eDP-1
-        #res: 3840x2160
-        res: 1920x1080
-        # horiz: 2560 - 1920 = 640
-        # vert: 3840 - 1080 = 2760
-        # pos: "0x1440"
-        # pos: "640x1440"
-        pos: "640x2760"
-
-    - name: triple min 1440p - old
-      # screen fb 4720 x 3840
-      outputs:
-      - name: HDMI-1
-        res: 3840x2160
-        scale: 2560x1440
-        pos: "0x0"
-      - name: DP-2
-        res: 3840x2160
-        rotate: left
-        pos: 2560x0
-      - name: eDP-1
-        #res: 3840x2160
-        #scale: 2560x1440
-        res: 2560x1440
-        pos: "0x1440"
     - *dellicious_native
     - *dellicious_1440
     - *dellicious_1080
