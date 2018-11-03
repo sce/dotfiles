@@ -62,8 +62,8 @@ class OutputProfile
     @res = res
     @width, @height = res.split('x').map(&:to_i)
 
-    @pos = pos
-    @x, @y = pos.split('x').map(&:to_i)
+    @pos = pos || "0x0"
+    @x, @y = @pos.split('x').map(&:to_i)
   end
 
   attr_reader :name, :res, :pos, :scale, :rotate, :x, :y, :width, :height
