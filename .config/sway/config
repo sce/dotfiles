@@ -22,10 +22,16 @@ set $menu_alt "rofi -show run"
 ### Outputs
 
 # kira config:
-output DP-5 pos 0 0 bg ~/Bilder/wallpapers/1 fill
-output DP-3 pos 0 1080 bg ~/Bilder/wallpapers/2 fill
-output HDMI-A-1 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 90 anticlockwise
-output HDMI-A-2 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
+
+set $kira_out1 'Dell Inc. DELL U2913WM 9DD4K62O422L'
+set $kira_out2 'Dell Inc. DELL U2913WM 9DD4K62O241L'
+set $kira_out3 'Unknown BenQ G2450H 32C02755019'
+set $kira_out4 'Unknown BenQ G2450H 32C03067019'
+
+output $kira_out1 pos 0 0 bg ~/Bilder/wallpapers/1 fill
+output $kira_out2 pos 0 1080 bg ~/Bilder/wallpapers/2 fill
+output $kira_out3 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 270
+output $kira_out4 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
 
 # laptop config #1:
 # output DP-2 res 2560 1080 pos 0 0
@@ -239,7 +245,7 @@ hide_edge_borders smart
       position bottom
       output eDP-1
       output DP-2
-      output DP-3
+      output $kira_out2
   }
   bar {
       swaybar_command /usr/bin/swaybar
@@ -247,7 +253,7 @@ hide_edge_borders smart
 
       position top
       output DP-1
-      output DP-5
-      output HDMI-A-1
-      output HDMI-A-2
+      output $kira_out1
+      output $kira_out3
+      output $kira_out4
   }
