@@ -20,15 +20,12 @@ set $menu "rofi -combi-modi window,drun,run -show combi -modi combi"
 set $menu_alt "rofi -show run"
 
 ### Outputs
-# output DP-1 res 1920 1080 pos 0 0
-# output DP-2 res 1920 1080 pos 0 1080
-# output DVI-D-1 res 1920 1080 pos 1920 0
-# output DVI-I-1 res 1920 1080 pos 1920 1080
 
-output DP-1 pos 0 0
-output DP-2 pos 0 1080
-output DVI-I-1 pos 2560 0
-output HDMI-A-1 pos 2560 1080
+# kira config:
+output DP-5 pos 0 0 bg ~/Bilder/wallpapers/1 fill
+output DP-3 pos 0 1080 bg ~/Bilder/wallpapers/2 fill
+output HDMI-A-1 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 90 anticlockwise
+output HDMI-A-2 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
 
 # laptop config #1:
 # output DP-2 res 2560 1080 pos 0 0
