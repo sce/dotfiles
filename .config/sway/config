@@ -21,35 +21,44 @@ set $menu_alt "rofi -show run"
 
 ### Outputs
 
+# default to some background that will probably exist:
+output * bg ~/Bilder/wallpapers/1 fill
+
 # kira config:
 
-set $kira_out1 'Dell Inc. DELL U2913WM 9DD4K62O422L'
-set $kira_out2 'Dell Inc. DELL U2913WM 9DD4K62O241L'
-set $kira_out3 'Unknown BenQ G2450H 32C02755019'
-set $kira_out4 'Unknown BenQ G2450H 32C03067019'
+# DP-5
+set $out_home_dell1 'Dell Inc. DELL U2913WM 9DD4K62O422L'
+# DP-3
+set $out_home_dell2 'Dell Inc. DELL U2913WM 9DD4K62O241L'
 
-output $kira_out1 pos 0 0 bg ~/Bilder/wallpapers/1 fill
-output $kira_out2 pos 0 1080 bg ~/Bilder/wallpapers/2 fill
-output $kira_out3 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 270
-output $kira_out4 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
+set $out_home_benq1 'Unknown BenQ G2450H 32C02755019'
+set $out_home_benq2 'Unknown BenQ G2450H 32C03067019'
+
+output $out_home_dell1 pos 0 0 bg ~/Bilder/wallpapers/1 fill
+output $out_home_dell2 pos 0 1080 bg ~/Bilder/wallpapers/2 fill
+output $out_home_benq1 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 270
+output $out_home_benq2 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
 
 # laptop config #1:
-# output DP-2 res 2560 1080 pos 0 0
-# output eDP-1 disable
-# #output eDP-1 res 1920 1080 pos 2560 0
-# output HDMI-A-1 pos 0 1080
+
+set $dellicious_out1 'Sharp Corporation 0x143E 0x00000000'
+# $out_home_dell1 should be DP-2
+# $out_home_dell2 should be HDMI-A-1
+
+output $out_home_dell1 pos 0 0 bg ~/Bilder/wallpapers/2 fill
+output $out_home_dell2 pos 0 1080 bg ~/Bilder/wallpapers/3 fill
+
+output $dellicious_out1 pos 2560 0 scale 1.5 bg ~/Bilder/wallpapers/1 fill
 
 # laptop config #2:
-output DP-2 res 2560 1080 pos 0 0
-output eDP-1 scale 2
-output HDMI-A-1 pos 0 1080
+#output DP-2 res 2560 1080 pos 0 0
+##output eDP-1 scale 2
+#output HDMI-A-1 pos 0 1080
 
-output eDP-1 bg ~/Bilder/wallpapers/1 fill
+# laptop config at work:
+# output DP-2 res 2560 1440 pos 0 0
+# output HDMI-A-1 res 1920 1080 transform 270 pos 0 1440
 
-output DP-1 bg ~/Bilder/wallpapers/1 fill
-output DP-2 bg ~/Bilder/wallpapers/2 fill
-output HDMI-A-1 bg ~/Bilder/wallpapers/3 fill
-output DVI-I-1 bg ~/Bilder/wallpapers/4 fill
 
 ### Misc config
 gaps inner 15
@@ -243,17 +252,15 @@ hide_edge_borders smart
       status_command /usr/bin/i3status
 
       position bottom
-      output eDP-1
-      output DP-2
-      output $kira_out2
+      output $dellicious_out1
+      output $out_home_dell2
   }
   bar {
       swaybar_command /usr/bin/swaybar
       status_command /usr/bin/i3status
 
       position top
-      output DP-1
-      output $kira_out1
-      output $kira_out3
-      output $kira_out4
+      output $out_home_dell1
+      output $out_home_benq1
+      output $out_home_benq2
   }
