@@ -6,9 +6,9 @@ set -euo pipefail
 dir=~/Bilder
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
-file="$dir/${date} screenshot.png"
+file=${1:-"$dir/${date} screenshot-partial.png"}
 
 echo Taking screenshot...
-grim -g "$(slurp)" "$file"
+grim -g "$(slurp)" - | tee "$file" | wl-copy
 
 echo Wrote $file

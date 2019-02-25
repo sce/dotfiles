@@ -6,11 +6,11 @@ set -euo pipefail
 dir=~/Bilder
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
-file="$dir/${date} screenshot.png"
+file=${1:-"$dir/${date} screenshot.png"}
 
 current_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 
 echo Taking screenshot...
-grim -o $current_output "$file"
+grim -o $current_output - | tee "$file" | wl-copy
 
 echo Wrote $file
