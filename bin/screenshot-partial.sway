@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
+set -euo pipefail
+
+dir=~/Bilder
+
+date=$(date +"%Y-%m-%d %H-%M-%S")
+file="$dir/${date} screenshot.png"
+
+echo Taking screenshot...
+grim -g "$(slurp)" "$file"
+
+echo Wrote $file
