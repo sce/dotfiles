@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -euo pipefail
+
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send "$msg"
+}
+
+function pixelated_pic {
+  file1=$(mktemp --tmpdir screenlock-XXXXXXXXXX.png)
+  file2=$(mktemp --tmpdir screenlock-XXXXXXXXXX.png)
+
+  scaledown=2.5%
+  scaleup=4000%
+
+  ~/bin/screenshot.sway "$file1" &&
+    # convert "$file1" -blur 0x3 "$file2" &&
+    # convert "$file1" -blur 0x5 "$file2" &&
+    convert -scale $scaledown -scale $scaleup "$file1" "$file2" &&
+    swaylock -i "$file2"
+
+  [ -f "$file1" ] && rm "$file1"
+  [ -f "$file2" ] && rm "$file2"
+}
+
+function static_pic {
+  swaylock -i ~/Bilder/wallpapers/screenlock
+}
+
+notify "Locking screen..."
+
+#pixelated_pic
+static_pic
