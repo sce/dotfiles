@@ -3,6 +3,13 @@
 # (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
 set -euo pipefail
 
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send "$msg"
+}
+
 dir=~/Bilder
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
@@ -10,7 +17,7 @@ file=${1:-"$dir/${date} screenshot.png"}
 
 current_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 
-echo Taking screenshot...
-grim -o $current_output - | tee "$file" | wl-copy
+notify "Taking screenshot of current output..."
+grim -o "$current_output" - | tee "$file" | wl-copy
 
-echo Wrote $file
+notify "Wrote $file"

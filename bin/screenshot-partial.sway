@@ -3,12 +3,19 @@
 # (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
 set -euo pipefail
 
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send "$msg"
+}
+
 dir=~/Bilder
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
 file=${1:-"$dir/${date} screenshot-partial.png"}
 
-echo Taking screenshot...
+notify "Taking screenshot..."
 grim -g "$(slurp)" - | tee "$file" | wl-copy
 
-echo Wrote $file
+notify "Wrote $file"
