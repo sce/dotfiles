@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+lock_pic=~/Bilder/wallpapers/screenlock
+
 function notify {
   msg=$1
 
@@ -27,7 +29,7 @@ function pixelated_pic {
 }
 
 function static_pic {
-  swaylock -i ~/Bilder/wallpapers/screenlock
+  swaylock -i "$lock_pic"
 }
 
 notify "Locking screen..."
