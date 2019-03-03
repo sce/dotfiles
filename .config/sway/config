@@ -19,6 +19,11 @@ set $term ~/bin/terminal
 set $menu "rofi -combi-modi window,drun,run -show combi -modi combi"
 set $menu_alt "rofi -show run"
 
+# Inputs:
+input * {
+  xkb_layout no
+}
+
 ### Outputs
 
 # default to some background that will probably exist:
