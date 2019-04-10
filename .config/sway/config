@@ -46,6 +46,7 @@ output $out_home_benq1 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 270
 output $out_home_benq2 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
 output $out_home_switch pos 3640 0 bg ~/Bilder/wallpapers/4 fill
 
+# the hdmi switch defaults to 1280x720 for some reason
 output $out_home_switch res 1920x1080
 
 # laptop config #1:
