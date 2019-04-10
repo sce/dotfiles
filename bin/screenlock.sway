@@ -29,7 +29,7 @@ function pixelated_pic {
 }
 
 function static_pic {
-  swaylock -i "$lock_pic"
+  swaylock -i "$lock_pic" -s fill
 }
 
 notify "Locking screen..."
