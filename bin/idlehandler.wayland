@@ -1,1 +1,7 @@
-swayidle -w timeout 300 '~/bin/screenlock.sway' before-sleep '~/bin/screenlock.sway' after-resume 'swaymsg "output * dpms on"'
+#!/bin/bash
+
+swayidle -w \
+  timeout  300 '~/bin/screenlock.sway' \
+  timeout  600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          lock '~/bin/screenlock.sway' \
+  before-sleep '~/bin/screenlock.sway'
