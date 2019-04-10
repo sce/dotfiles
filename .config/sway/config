@@ -293,3 +293,9 @@ hide_edge_borders smart
       output $work_dell2
       output $dellicious_out1
   }
+
+#
+# Startup
+#
+
+  exec ~/bin/idlehandler.wayland
