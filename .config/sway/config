@@ -76,6 +76,24 @@ smart_gaps on
 default_border pixel 1
 hide_edge_borders smart
 
+#
+# Inputs
+#
+
+  input * {
+    xkb_layout no
+  }
+
+  input "1267:8661:ELAN_Touchscreen" {
+    # By default the input from the touchscreen on the laptop will map to a
+    # position on the "global output layout", meaning that if e.g. an external
+    # output is connected and positioned to the right of the laptop then touch
+    # events on the right side of the laptop screen will go to the external
+    # output... We prevent this by forcing all events from the laptop screen to
+    # go to the laptop output:
+    map_to_output eDP-1
+  }
+
 ### Key bindings
 #
 # Basics:
