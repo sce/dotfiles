@@ -38,11 +38,15 @@ set $out_home_dell2 'Dell Inc. DELL U2913WM 9DD4K62O241L'
 
 set $out_home_benq1 'Unknown BenQ G2450H 32C02755019'
 set $out_home_benq2 'Unknown BenQ G2450H 32C03067019'
+set $out_home_switch 'Unknown EP-HDMI-RX 0x00005445'
 
 output $out_home_dell1 pos 0 0 bg ~/Bilder/wallpapers/1 fill
 output $out_home_dell2 pos 0 1080 bg ~/Bilder/wallpapers/2 fill
 output $out_home_benq1 pos 2560 0 bg ~/Bilder/wallpapers/3 fill transform 270
 output $out_home_benq2 pos 3640 0 bg ~/Bilder/wallpapers/4 fill
+output $out_home_switch pos 3640 0 bg ~/Bilder/wallpapers/4 fill
+
+output $out_home_switch res 1920x1080
 
 # laptop config #1:
 
@@ -297,8 +301,11 @@ hide_edge_borders smart
       output $out_home_dell1
       output $out_home_benq1
       output $out_home_benq2
+      output $out_home_switch
+
       output $work_dell1
       output $work_dell2
+
       output $dellicious_out1
   }
 
