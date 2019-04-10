@@ -257,6 +257,9 @@ hide_edge_borders smart
   bindsym control+$alt+l exec ~/bin/screenlock.sway
   bindsym control+$alt+s exec ~/bin/suspend.sway
 
+  bindsym $alt+s exec ~/bin/screenshot-partial.sway
+  bindsym $alt+Shift+s exec ~/bin/screenshot.sway
+
   # Use xev to find keys:
   bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volup
   bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/voldown
