@@ -155,6 +155,9 @@ let g:nerdtree_tabs_autofind=1
 " after you stop typing, trigger plugin after how many ms (default 4000):
 let g:gitgutter_realtime = 1000
 
+" The bright red background that ale defaults to is too strong:
+highlight ALEError ctermbg=DarkMagenta
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
 
