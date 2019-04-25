@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'pp'
+require 'json'
+
+def notify msg
+	%x(notify-send -t 1000 "#{msg}")
+end
+
+FILE_REVERSE='sway-scale-current-reverse'
+
+ALL_SCALES=[0.5, 1, 1.5, 2, 3, 4]
+
+SCALES=ALL_SCALES
+
+if $0.end_with?(FILE_REVERSE)
+  SCALES.reverse!
+end
+
+outputs = JSON.parse(%x(swaymsg -t get_outputs))
+
+pp output = outputs.find { |out| out['focused'] }
+output_name = output['name']
+
+scale = output['scale']
+scale_index = SCALES.find_index(scale)
+
+if next_scale = SCALES[scale_index+1]
+
+  pp output, scale, next_scale
+
+  p cmd = %(swaymsg output #{output_name} scale #{next_scale})
+  puts %x(#{cmd})
+
+  notify "Scaled #{output_name} to #{next_scale}"
+end
+
