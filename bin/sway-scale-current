@@ -9,7 +9,7 @@ end
 
 FILE_REVERSE='sway-scale-current-reverse'
 
-ALL_SCALES=[0.5, 1, 1.5, 2, 3, 4]
+ALL_SCALES=[0.5, 1, 1.5, 2, 2.5, 3, 4]
 
 SCALES=ALL_SCALES
 
@@ -25,13 +25,13 @@ output_name = output['name']
 scale = output['scale']
 scale_index = SCALES.find_index(scale)
 
-if next_scale = SCALES[scale_index+1]
-
+if scale_index and next_scale = SCALES[scale_index+1]
   pp output, scale, next_scale
 
   p cmd = %(swaymsg output #{output_name} scale #{next_scale})
   puts %x(#{cmd})
 
   notify "Scaled #{output_name} to #{next_scale}"
+else
+  notify "Current scale on #{output_name} is #{scale}"
 end
-
