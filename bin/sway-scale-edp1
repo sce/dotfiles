@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+require 'pp'
+require 'json'
+
+def notify msg
+	%x(notify-send -t 500 "#{msg}")
+end
+
+FILE_REVERSE='sway-scale-edp1-reverse'
+
+OUTPUT_NAME='eDP-1'
+
+ALL_SCALES=[1, 1.5, 2, 3, 4]
+
+# make it possible to wrap around to ease the logic later:
+#SCALES=ALL_SCALES.push(ALL_SCALES.first)
+SCALES=ALL_SCALES
+
+if $0.end_with?(FILE_REVERSE)
+  SCALES.reverse!
+end
+
+outputs = JSON.parse(%x(swaymsg -t get_outputs))
+output = outputs.find { |output| output['name'] == OUTPUT_NAME }
+
+scale = output['scale']
+scale_index = SCALES.find_index(scale)
+
+if next_scale = SCALES[scale_index+1]
+
+  #pp output, scale, next_scale
+
+  p cmd = %(swaymsg output #{OUTPUT_NAME} scale #{next_scale})
+  puts %x(#{cmd})
+end
