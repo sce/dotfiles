@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'pp'
+require 'json'
+
+def notify msg
+  # on some monitors it might take about 3 seconds to actually change resolution:
+  %x(notify-send -t 6000 "#{msg}")
+end
+
+FILE_REVERSE='sway-res-current-reverse'
+
+outputs = JSON.parse(%x(swaymsg -t get_outputs))
+
+output = outputs.find { |out| out['focused'] }
+
+output_name = output['name']
+
+# we don't care about refresh rates:
+pp modes = output['modes'].map { |mode| mode.delete 'refresh'; mode }.uniq
+
+if $0.end_with?(FILE_REVERSE)
+  modes.reverse!
+end
+
+current_mode = output['current_mode']
+current_mode.delete 'refresh'
+
+pp mode_index = modes.find_index { |mode| mode == current_mode }
+
+if mode_index and next_mode = modes[mode_index+1]
+
+  res = next_mode.values_at('width', 'height') * " "
+  p cmd = %(swaymsg output #{output_name} res #{res})
+  puts %x(#{cmd})
+
+  notify "Set resolution on #{output_name} to #{next_mode}"
+else
+  notify "Current resolution on #{output_name} is #{current_mode}"
+end
