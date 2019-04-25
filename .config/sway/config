@@ -41,7 +41,8 @@ input * {
 
 ### Colors:
 
-  include ./theme.config
+  # Remember to symlink this one to whichever theme you want:
+  include ./theme-local.config
 
 #
 # Startup
