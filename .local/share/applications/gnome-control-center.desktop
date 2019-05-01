@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=env XDG_CURRENT_DESKTOP=GNOME /usr/bin/gnome-control-center
+Name=GNOME Control Center (for e.g. sway)
+Comment=Configure GNOME settings outside GNOME (e.g. in sway)
+Type=Application
+Terminal=false
