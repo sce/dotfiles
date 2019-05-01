@@ -24,3 +24,9 @@
 !.vim/bundle/**
 
 #!.local/**
+
+# strange that we need to unignore every single sub directory, but okay...
+!.local
+!.local/share
+!.local/share/applications
+!.local/share/applications/**
