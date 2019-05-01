@@ -30,3 +30,6 @@
 !.local/share
 !.local/share/applications
 !.local/share/applications/**
+
+!.config/autostart
+!.config/autostart/**

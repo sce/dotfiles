@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/libexec/tracker-miner-apps
+Name=tracker-miner-apps
+Type=Application
+Hidden=true

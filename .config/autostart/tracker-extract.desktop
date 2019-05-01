@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/libexec/tracker-extract
+Name=tracker-extract
+Type=Application
+Hidden=true
