@@ -17,7 +17,9 @@ file=${1:-"$dir/${date} screenshot.png"}
 
 current_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 
-notify "Taking screenshot of current output..."
+# Maybe not splash up a notification dialog right before the screenshot is
+# taken :-p
+#notify "Taking screenshot of current output..."
 grim -o "$current_output" - | tee "$file" | wl-copy
 
-notify "Wrote $file"
+notify "Took screenshot of current output: Wrote $file"
