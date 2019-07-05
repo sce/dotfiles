@@ -1,7 +1,15 @@
 #!/bin/bash
 
+lock_cmd=~/bin/screenlock.sway
+screens_off='swaymsg "output * dpms off"'
+screens_on='swaymsg "output * dpms on"'
+
+# timeouts are in seconds
+lock_timeout=300
+blank_timeout=600
+
 swayidle -w \
-  timeout  300 '~/bin/screenlock.sway' \
-  timeout  600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-          lock '~/bin/screenlock.sway' \
-  before-sleep '~/bin/screenlock.sway'
+  timeout $lock_timeout $lock_cmd \
+  timeout $blank_timeout "$screens_off" resume "$screens_on" \
+  lock $lock_cmd \
+  before-sleep $lock_cmd
