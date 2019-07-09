@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/usr/bin/sudo ~/.local/share/suspend-cpu-modulation-fix/cpu-modulation-fix.sh
+Name=Suspend CPU modulation fix (as sudo)
+Comment=Fix CPU modulation for Intel processors after suspend (as sudo)
+Type=Application
+Terminal=true
