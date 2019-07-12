@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/usr/bin/nmtui
+Name=nmtui
+Comment=Text User Interface for controlling NetworkManager
+Terminal=true
+Type=Application
