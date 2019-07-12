@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Assuming that swayidle is running, we don't need to lock before sleeping:
+#~/bin/screenlock.sway &
+#sleep 3
+systemctl suspend
