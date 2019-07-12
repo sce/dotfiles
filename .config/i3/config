@@ -13,6 +13,7 @@
 
 set $mod Mod4
 set $alt Mod1
+# set $capslock Mod3
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -76,8 +77,14 @@ bindsym control+$alt+l exec ~/bin/screenlock
 bindsym control+$alt+s exec ~/bin/suspend
 
 # ... and this too (pulseaudio/media hotkeys):
+# Use xev to find keys:
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/volup
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/voldown
+
+# previous/next become volume keys:
+bindsym XF86AudioPrev exec --no-startup-id ~/bin/voldown
+bindsym XF86AudioNext exec --no-startup-id ~/bin/volup
+
 bindsym XF86AudioMute exec --no-startup-id ~/bin/volmutetoggle
 
 bindsym XF86Calculator exec ~/bin/calculator
@@ -230,7 +237,7 @@ bindsym $mod+Shift+p exec --no-startup-id ~/bin/presenter-mode.sh
 
 #bindsym $mod+Shift+w exec --no-startup-id ~/bin/xrandr-rad-quad-uw3.sh
 #bindsym $mod+Shift+w exec --no-startup-id ~/bin/4k.sh
-bindsym $mod+Shift+w exec --no-startup-id "~/bin/display-profiles.rb && sleep 1 && ~/bin/wallpaper"
+bindsym $mod+Shift+w exec --no-startup-id "~/bin/display-profiles.rb && sleep 3 && ~/bin/wallpaper"
 bindsym $mod+Shift+a exec --no-startup-id ~/bin/4k-single.sh
 
 bindsym $mod+ctrl+a exec --no-startup-id ~/bin/4k-single.sh fullhd
