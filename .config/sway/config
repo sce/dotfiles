@@ -44,7 +44,8 @@
 #
 
 exec {
-  # dex-autostart -e sway -a
-
-  ~/bin/idlehandler.wayland
+  # All the stuff we need to start should be in ~/.config/autostart as
+  # .desktop-files. To see what is being done you can add -d for dry-run:
+  # $ dex-autostart -e sway -ad
+  dex-autostart -e sway -a
 }
