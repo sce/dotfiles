@@ -83,6 +83,16 @@
   pdiff = !TAG=$(git describe --no-abbrev --tags --match production-*) && git df $TAG
   sdiff = !TAG=$(git describe --no-abbrev --tags --match staging-*) && git df $TAG
 
+  # from geir @ work
+  zco = !B=`git branch | cut -b3- | fzf` && git checkout ${B}
+  zadd = !FILES=`git status -s | awk '{ print $2 }' | fzf -x -m` && git add --all ${FILES}
+  zreb = !HASH=`git log --pretty=oneline --abbrev-commit | head -n 100 | fzf` && git rebase -i `echo ${HASH} | awk '{ print $1 }'`^
+  zres = !HASH=`git log --pretty=oneline --abbrev-commit | head -n 50 | fzf` && git reset --soft `echo ${HASH} | awk '{ print $1 }'`^
+  # zld = !B=`git branch | cut -b3- | fzf` && echo master..${B} && git log --pretty=oneline --abbrev-commit master..${B}
+  zld = !B=`git branch | cut -b3- | fzf` && echo HEAD..${B} && git log --pretty=oneline --abbrev-commit HEAD..${B}
+
+  delete-merged-remote = !git log --oneline --decorate|grep \\(origin|awk '{ print $2 }'|sed 's/(origin\\//:/'|sed 's/)//'|fzf|xargs echo git push origin
+
 [color]
   branch = auto
   diff = auto
