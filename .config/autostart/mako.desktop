@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/usr/bin/mako
+Name=mako
+Comment=notification daemon for Wayland
+Type=Application
+OnlyShowIn=sway;
