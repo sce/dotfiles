@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
+set -euo pipefail
+
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send "$msg"
+}
+
+dir=~/Bilder
+
+date=$(date +"%Y-%m-%d %H-%M-%S")
+file=${1:-"$dir/${date} screenshot.png"}
+
+notify "Taking screenshot..."
+grim - | tee "$file" | wl-copy
+
+notify "Wrote $file"
