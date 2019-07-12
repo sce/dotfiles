@@ -43,4 +43,8 @@
 # Startup
 #
 
-  exec ~/bin/idlehandler.wayland
+exec {
+  # dex-autostart -e sway -a
+
+  ~/bin/idlehandler.wayland
+}
