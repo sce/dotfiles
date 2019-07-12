@@ -8,7 +8,10 @@ function notify {
   msg=$1
 
   echo "$msg"
-  notify-send -t 3000 "$msg"
+
+  # if the notifier daemon is drunk (or missing) then this will hang for what
+  # seems like an eternity unless we background it:
+  notify-send -t 3000 "$msg" &
 }
 
 function pixelated_pic {
