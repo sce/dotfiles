@@ -38,7 +38,7 @@ set wildmenu
 autocmd BufWritePre * :%s/\s\+$//e
 
 " wrap at different width for javascript:
-autocmd BufRead,BufNewFile *.js,*.jsx setlocal textwidth=100
+autocmd BufRead,BufNewFile *.js,*.jsx,*.txt,*.md setlocal textwidth=100
 
 " use folding by default
 " set foldmethod=indent
@@ -51,10 +51,10 @@ set confirm " ask what to do when quitting in a limbo state instead of just comp
 " indentation:
 
 set tabstop=2 " how many spaces a tab character counts as
-set shiftwidth=0 " numer of spaces per autoindent (zero: use ts value)
+set shiftwidth=2 " numer of spaces per autoindent (zero: use ts value)
 
 " numer of spaces per tab in insert mode (zero: off, negative: use ts value)
-set softtabstop=-1
+set softtabstop=2
 set autoindent " when formatting a paragraph of text, keep the indent of the first line
 set expandtab " tabs becomes spaces
 
@@ -107,6 +107,13 @@ hi Underlined gui=NONE
 " change syntax/indent depending on file extension:
 filetype plugin indent on
 
+" custom words:
+set spellfile=~/.vim/spell/en.utf-8.add
+
+" https://www.linux.com/learn/using-spell-checking-vim
+" turn off with :set nospell
+" okay this is too annoying to have on by default...
+" set spell spelllang=en_gb
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " filetype specifics:
