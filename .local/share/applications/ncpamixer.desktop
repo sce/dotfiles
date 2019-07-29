@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=/usr/local/bin/ncpamixer
+Name=ncpamixer
+Type=Application
+Terminal=true
