@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/usr/bin/kanshi
+Name=kanshi
+Comment=Dynamic output configuration
+Type=Application
+OnlyShowIn=sway;

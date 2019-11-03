@@ -1,0 +1,30 @@
+dellicious-plain {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 1.5
+}
+
+dellicious-home-top {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 2
+  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 1920,0
+  output "Unknown BenQ G2450H 32C03067019" position 4480,0 transform 90
+}
+
+dellicious-home-top-only {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 2
+  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 1920,0
+}
+
+dellicious-home-bottom {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 2
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,0
+  output "Unknown BenQ G2450H 32C03067019" position 4480,0 transform 90
+}
+
+dellicious-home-bottom-only {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 2
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,0
+}
+
+dellicious-home-right-only {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 2
+  output "Unknown BenQ G2450H 32C03067019" position 1920,0 transform 90
+}
