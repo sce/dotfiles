@@ -14,8 +14,8 @@ dellicious-home-top-only {
 }
 
 dellicious-home-bottom {
-  output "Sharp Corporation 0x143E 0x00000000" position 0,0 scale 2
-  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,0
+  output "Sharp Corporation 0x143E 0x00000000" position 0,840 scale 2
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,840
   output "Unknown BenQ G2450H 32C03067019" position 4480,0 transform 90
 }
 
