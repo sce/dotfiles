@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=~/bin/idlehandler.wayland
+Exec=idlehandler.wayland
 Name=swayidle
 Type=Application
 OnlyShowIn=sway;
