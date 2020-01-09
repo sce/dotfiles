@@ -8,7 +8,7 @@ screens_on='swaymsg "output * dpms on"'
 lock_timeout=300
 blank_timeout=600
 
-swayidle -w \
+exec swayidle -w \
   timeout $lock_timeout $lock_cmd \
   timeout $blank_timeout "$screens_off" resume "$screens_on" \
   lock $lock_cmd \
