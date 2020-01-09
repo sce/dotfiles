@@ -22,6 +22,9 @@ endif
 " yes our tty is fast.
 set ttyfast
 
+" hot reloading with parceljs inside a docker container needs this to work:
+set backupcopy=yes
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " behaviour:
 
