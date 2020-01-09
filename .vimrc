@@ -167,6 +167,10 @@ let g:gitgutter_realtime = 1000
 
 " The bright red background that ale defaults to is too strong:
 highlight ALEError ctermbg=DarkMagenta
+highlight ALEError ctermbg=Black
+
+highlight ALEWarning ctermbg=DarkGray
+highlight ALEWarning ctermbg=None
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
