@@ -1,35 +1,24 @@
+# Ignore everything by default:
 *
-!.*
 
+# And then start whitelisting:
+!.*
 !*.sh
 
+# ... but now there's too much again, so start blacklisting specifics:
 .bash_history
 .lesshst
 .viminf*
 .serverauth*
-
 .forward
 
 !bin
 !bin/**
 
-!.config/awesome
-!.config/i3
-!.config/i3/**
+!.config/**/**
+!.local/**/**
 
 !.babushka/**
 .babushka/logs
 
-!.vim/bundle
-!.vim/bundle/**
-
-#!.local/**
-
-# strange that we need to unignore every single sub directory, but okay...
-!.local
-!.local/share
-!.local/share/applications
-!.local/share/applications/**
-
-!.config/autostart
-!.config/autostart/**
+!.vim/bundle/**/**
