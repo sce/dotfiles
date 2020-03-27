@@ -4,6 +4,8 @@
 # And then start whitelisting:
 !.*
 !*.sh
+!/meta
+!/meta/**/**
 
 # ... but now there's too much again, so start blacklisting specifics:
 .bash_history
