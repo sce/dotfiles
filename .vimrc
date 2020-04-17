@@ -198,6 +198,24 @@ map <ESC>l <C-W>l
 
 set wmh=0
 
+" nnoremap <C-N> :next<Enter>
+" nnoremap <C-P> :prev<Enter>
+
+" tabs:
+" map ,e :tabedit <C-R>=expand("%:h")<CR>
+" map <C-n> :tabnext<CR>
+" map <C-e> :tabedit <C-R>=expand("%:h")<CR>
+
+" max number of initial tabs when using -p
+set tabpagemax=20
+
+" CTRL+e to tab edit a file
+map <C-e> :tabedit
+" CTRL+l for next tab
+map <C-l> :tabnext<CR>
+" CTRL+h for previous tab
+map <C-h> :tabprevious<CR>
+
 " (mostly ruby specific):
 " \%V means restrict to visual selection (if any)
 
@@ -220,24 +238,6 @@ map <Leader>, :s/\s*;\s*/\r/g<CR>
 
 " map \- to split words into separate lines
 map <Leader>- :s/\s\+/\r/g<CR>
-
-" nnoremap <C-N> :next<Enter>
-" nnoremap <C-P> :prev<Enter>
-
-" tabs:
-" map ,e :tabedit <C-R>=expand("%:h")<CR>
-" map <C-n> :tabnext<CR>
-" map <C-e> :tabedit <C-R>=expand("%:h")<CR>
-
-" max number of initial tabs when using -p
-set tabpagemax=20
-
-" CTRL+e to tab edit a file
-map <C-e> :tabedit
-" CTRL+l for next tab
-map <C-l> :tabnext<CR>
-" CTRL+h for previous tab
-map <C-h> :tabprevious<CR>
 
 " run current ruby test file
 map <Leader>r :!time bundle exec ruby -Itest -Ilib %
