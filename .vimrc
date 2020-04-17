@@ -188,12 +188,13 @@ nnoremap <cr> :noh <cr>
 "map <C-J> <C-W>j<C-W>_
 "map <C-K> <C-W>k<C-W>_
 
+" ALT+jkhl changes window up/down/left/right
 " my terminal is giving me escape character instead of "alt", so these
 " keybindings are actually <A-l> etc:
-" map <ESC>j <C-W>j
-" map <ESC>k <C-W>k
-" map <ESC>h <C-W>h
-" map <ESC>l <C-W>l
+map <ESC>j <C-W>j
+map <ESC>k <C-W>k
+map <ESC>h <C-W>h
+map <ESC>l <C-W>l
 
 set wmh=0
 
