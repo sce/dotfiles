@@ -369,9 +369,11 @@ let g:gruvbox_contrast_dark = "hard"
 
 " activate gruvbox after all plugins are loaded, to make sure it works:
 autocmd vimenter * colorscheme gruvbox
+colorscheme gruvbox
 
 " in order to let the terminal handle the background:
 autocmd vimenter * highlight Normal ctermbg=none
+highlight Normal ctermbg=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
