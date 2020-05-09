@@ -37,11 +37,14 @@ set noesckeys
 " completion from list on command line.
 set wildmenu
 
+" recursive search when using :find
+set path+=**
+
 " Remove trailing whitespaces automaticaly on save
 autocmd BufWritePre * :%s/\s\+$//e
 
 " wrap at different width for javascript:
-autocmd BufRead,BufNewFile *.js,*.jsx,*.txt,*.md setlocal textwidth=100
+autocmd BufRead,BufNewFile *.js,*.jsx,*.ts,*.tsx,*.txt,*.md setlocal textwidth=100
 
 " use folding by default
 " set foldmethod=indent
@@ -172,6 +175,8 @@ highlight ALEError ctermbg=Black
 highlight ALEWarning ctermbg=DarkGray
 highlight ALEWarning ctermbg=None
 
+let g:ale_enabled = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " keybindings:
 
@@ -180,8 +185,10 @@ highlight ALEWarning ctermbg=None
 nnoremap <cr> :noh <cr>
 
 " CTRL+N twice to toggle line numbers
-":nmap <C-N><C-N> :set invnumber <CR>
-:nmap <C-M><C-M> :set invnumber <CR>
+" (CTRL+M actually looks like "enter" to vim...)
+" https://vi.stackexchange.com/questions/8856/mapping-ctrl-with-equal-sign
+:nmap <C-N><C-N> :set invnumber <CR>
+":nmap <C-M><C-M> :set invnumber <CR>
 
 " CTRL+J changes to upper window, CTRL+K changes to lower.
 " change window + minimise/maximise::
@@ -191,10 +198,21 @@ nnoremap <cr> :noh <cr>
 " ALT+jkhl changes window up/down/left/right
 " my terminal is giving me escape character instead of "alt", so these
 " keybindings are actually <A-l> etc:
-map <ESC>j <C-W>j
-map <ESC>k <C-W>k
-map <ESC>h <C-W>h
-map <ESC>l <C-W>l
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" CTRL+e to edit buffer file in new window
+" map <C-e> :vsp
+map <C-e> :vertical sbuf
+
+" CTRL+p (almost "=" I guess :-p) to resize windows evenly
+" https://vi.stackexchange.com/questions/8856/mapping-ctrl-with-equal-sign
+map <C-p> <C-W>=
+
+" Swap current window with the one to the right:
+map <C-x> <C-W>x
 
 set wmh=0
 
@@ -209,17 +227,24 @@ set wmh=0
 " max number of initial tabs when using -p
 set tabpagemax=20
 
-" CTRL+e to tab edit a file
-map <C-e> :tabedit
-" CTRL+l for next tab
-map <C-l> :tabnext<CR>
-" CTRL+h for previous tab
-map <C-h> :tabprevious<CR>
+" ALT+e to tab edit a file
+map <esc>e :tabedit
+" ALT+l for next tab
+map <esc>l :tabnext<CR>
+" ALT+h for previous tab
+map <esc>h :tabprevious<CR>
 
 " (mostly ruby specific):
 " \%V means restrict to visual selection (if any)
 
 let mapleader = ","
+
+
+" map leader instead of [ for convenience
+"map <Leader>8' ['<CR>
+"map <Leader>9' ]'<CR>
+map <Leader>8 ['<CR>
+map <Leader>9 ]'<CR>
 
 " map \= to fix space around equal signs
 map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
