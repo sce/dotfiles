@@ -90,7 +90,7 @@ syntax on
 " set synmaxcol=90
 
 set background=dark
-colorscheme torte
+" colorscheme torte
 
 highlight StatusLine ctermfg=233 ctermbg=white
 
@@ -287,12 +287,21 @@ map <Leader>C :!git dc
 " map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
 " select current file in nerdtree
-map <Leader>f <plug>NERDTreeTabsFind<CR>
+" map <Leader>f <plug>NERDTreeTabsFind<CR>
 
 " Map tab to autocomplete current word from words in current file:
 " imap <tab> <C-X><C-N>
 " (hmm, just use <C-N> directly in insert mode instead.
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jumps
+
+map <Leader>j :jumps<CR>
+
+" jump back with g,
+nnoremap g, <C-o>
+" jump forwards with g.
+nnoremap g. <C-i>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " From http://amix.dk/vim/vimrc.html:
