@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" setup:
+" Setup:
 
 " behave like vim, not like vi
 " (has side effect for other options, so must be first)
@@ -26,7 +26,7 @@ set ttyfast
 set backupcopy=yes
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" behaviour:
+" Behaviour:
 
 " only a single space after ./?/! etc after using 'j' or 'gq'
 set nojoinspaces
@@ -54,7 +54,7 @@ set confirm " ask what to do when quitting in a limbo state instead of just comp
 " set mouse=a " enable mouse (gah, this prevents copy/paste with mouse)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" indentation:
+" Indentation:
 
 set tabstop=2 " how many spaces a tab character counts as
 set shiftwidth=2 " numer of spaces per autoindent (zero: use ts value)
@@ -65,7 +65,7 @@ set autoindent " when formatting a paragraph of text, keep the indent of the fir
 set expandtab " tabs becomes spaces
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" searching:
+" Searching:
 
 set incsearch  " search while you're typing the search string
 set hlsearch   " highlight search results
@@ -73,7 +73,7 @@ set ignorecase " ignore case when searching
 set smartcase  " but if we search for big letters, make search case sensitive again
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" appearance:
+" Appearance:
 
 set scrolloff=3 " keep some lines of text at the bottom/top when scrolling.
 set ruler " always show cursor position
@@ -122,7 +122,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 " set spell spelllang=en_gb
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" filetype specifics:
+" Filetype Specifics:
 
 " .md == markdown
 au BufNewFile,BufRead *.md set filetype=markdown
@@ -149,7 +149,7 @@ let ruby_operators=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins:
+" Pathogen Plugins:
 
 " activate pathogen to enable ~/.vim/bundle plugins:
 " https://github.com/tpope/vim-pathogen
@@ -178,7 +178,7 @@ highlight ALEWarning ctermbg=None
 let g:ale_enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" keybindings:
+" Keybindings:
 
 " turn off highlighted results (set nohlsearch) when pressing enter.
 " just pressing n or N will turn the highlight back again
@@ -239,7 +239,6 @@ map <esc>h :tabprevious<CR>
 
 let mapleader = ","
 
-
 " map leader instead of [ for convenience
 "map <Leader>8' ['<CR>
 "map <Leader>9' ]'<CR>
@@ -294,7 +293,7 @@ map <Leader>C :!git dc
 " (hmm, just use <C-N> directly in insert mode instead.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" jumps
+" Jumps:
 
 map <Leader>j :jumps<CR>
 
@@ -376,7 +375,7 @@ autocmd vimenter * highlight Normal ctermbg=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-"   COC plugin configuration
+"   COC Plugin Configuration:
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -534,7 +533,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-" statusline
+" Statusline:
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
