@@ -141,7 +141,7 @@ let ruby_operators=1
 " turns out ruby syntax triggers a performance regression in the regular
 " expression engine, force old version (from
 " http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)
-set re=1
+" set re=1
 
 " enable foldmethod=syntax for ruby files
 " let ruby_fold=1
