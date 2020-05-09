@@ -371,6 +371,8 @@ let g:gruvbox_contrast_dark = "hard"
 " activate gruvbox after all plugins are loaded, to make sure it works:
 autocmd vimenter * colorscheme gruvbox
 
+" in order to let the terminal handle the background:
+autocmd vimenter * highlight Normal ctermbg=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -455,6 +457,9 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+xmap <leader>fa :CocCommand prettier.formatFile<cr>
+nmap <leader>fa :CocCommand prettier.formatFile<cr>
 
 augroup mygroup
   autocmd!
