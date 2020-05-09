@@ -1,0 +1,91 @@
+# https://raw.githubusercontent.com/greshake/i3status-rust/master/example_config.toml
+
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "focused_window"
+max_width = 120
+
+# [[block]]
+# block = "nvidia_gpu"
+# label = "GT 1030"
+# show_memory = false
+# show_clocks = true
+# interval = 1
+
+#[[block]]
+#block = "networkmanager"
+## on_click = "alacritty -e nmtui"
+
+[[block]]
+block = "bluetooth"
+mac = "4C:87:5D:52:CB:5F"
+label = " Stens QC 35 II"
+
+[[block]]
+block = "sound"
+
+# [[block]]
+# block = "disk_space"
+# path = "/"
+# alias = "/"
+# info_type = "available"
+# unit = "GB"
+# interval = 20
+# warning = 20.0
+# alert = 10.0
+
+[[block]]
+block = "net"
+device = "wlp2s0"
+ssid = true
+signal_strength = true
+#ip = true
+#ipv6 = true
+speed_up = false
+#graph_up = true
+graph_up = false
+#graph_down = true
+speed_down = false
+interval = 1
+use_bits = false
+hide_missing = true
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+# [[block]]
+# block = "load"
+# interval = 1
+# format = "{1m}"
+
+[[block]]
+block = "battery"
+#driver = "upower"
+interval = 1
+format = "{percentage}% {time}"
+
+[[block]]
+block = "temperature"
+collapsed = true
+interval = 10
+format = "{min}° min, {max}° max, {average}° avg"
+chip = "*-isa-*"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "time"
+#interval = 60
+interval = 1
+#format = "%a %d/%m %R"
+format = "%a %d/%m %H:%M:%S"
