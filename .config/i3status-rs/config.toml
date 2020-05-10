@@ -4,8 +4,12 @@ theme = "solarized-dark"
 icons = "awesome"
 
 [[block]]
-block = "focused_window"
-max_width = 120
+block = "docker"
+format = "{running}/{total}"
+
+# [[block]]
+# block = "focused_window"
+# max_width = 120
 
 # [[block]]
 # block = "nvidia_gpu"
@@ -35,6 +39,20 @@ block = "sound"
 # interval = 20
 # warning = 20.0
 # alert = 10.0
+
+[[block]]
+block = "net"
+device = "tun0"
+#ip = true
+#ipv6 = true
+speed_up = false
+#graph_up = true
+graph_up = false
+#graph_down = true
+speed_down = false
+interval = 1
+use_bits = false
+hide_missing = true
 
 [[block]]
 block = "net"
