@@ -3,9 +3,10 @@
 theme = "solarized-dark"
 icons = "awesome"
 
-[[block]]
-block = "docker"
-format = "{running}/{total}"
+# 2020-05-11: docker block seems stuck / not working...?
+# [[block]]
+# block = "docker"
+# format = "{running}/{total}"
 
 # [[block]]
 # block = "focused_window"
@@ -26,9 +27,6 @@ format = "{running}/{total}"
 block = "bluetooth"
 mac = "4C:87:5D:52:CB:5F"
 label = " Stens QC 35 II"
-
-[[block]]
-block = "sound"
 
 # [[block]]
 # block = "disk_space"
@@ -86,12 +84,6 @@ interval = 1
 # format = "{1m}"
 
 [[block]]
-block = "battery"
-#driver = "upower"
-interval = 1
-format = "{percentage}% {time}"
-
-[[block]]
 block = "temperature"
 collapsed = true
 interval = 10
@@ -99,7 +91,16 @@ format = "{min}° min, {max}° max, {average}° avg"
 chip = "*-isa-*"
 
 [[block]]
+block = "sound"
+
+[[block]]
 block = "backlight"
+
+[[block]]
+block = "battery"
+#driver = "upower"
+interval = 1
+format = "{percentage}% {time}"
 
 [[block]]
 block = "time"
