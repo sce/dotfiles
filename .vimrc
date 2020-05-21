@@ -264,7 +264,7 @@ map <Leader>, :s/\s*;\s*/\r/g<CR>
 map <Leader>- :s/\s\+/\r/g<CR>
 
 " run current ruby test file
-map <Leader>r :!time bundle exec ruby -Itest -Ilib %
+" map <Leader>r :!time bundle exec ruby -Itest -Ilib %
 
 map <Leader>d :!git df %<CR>
 map <Leader>D :!git dc %<CR>
@@ -279,8 +279,14 @@ map <Leader>N :!git add -N %<CR>
 map <Leader>r :!git reset %<CR>
 map <Leader>R :!git reset<CR>
 
-map <Leader>c :!git ci
-map <Leader>C :!git dc
+" fzf on open buffers
+map <Leader>b :Buffers<CR>
+
+" fzf on all git files
+map <Leader>g :GFiles<CR>
+
+" map <Leader>c :!git ci
+" map <Leader>C :!git dc
 
 " toggle nerdtree for all tabs
 " map <Leader>n <plug>NERDTreeTabsToggle<CR>
@@ -344,6 +350,7 @@ endfunction
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
 packloadall
+
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
@@ -359,7 +366,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'
 
   " Multi-entry selection UI.
-  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
