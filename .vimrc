@@ -165,9 +165,6 @@ let g:nerdtree_tabs_focus_on_files=1
 " automatically find and select currently opened file in nerdtree.
 let g:nerdtree_tabs_autofind=1
 
-" after you stop typing, trigger plugin after how many ms (default 4000):
-let g:gitgutter_realtime = 1000
-
 " The bright red background that ale defaults to is too strong:
 highlight ALEError ctermbg=DarkMagenta
 highlight ALEError ctermbg=Black
@@ -265,19 +262,6 @@ map <Leader>- :s/\s\+/\r/g<CR>
 
 " run current ruby test file
 " map <Leader>r :!time bundle exec ruby -Itest -Ilib %
-
-map <Leader>d :!git df %<CR>
-map <Leader>D :!git dc %<CR>
-map <Leader>w :!git df -w %<CR>
-map <Leader>W :!git dc -w %<CR>
-
-" can't use --patch for merge conflicts for some reason
-map <Leader>a :!git add -p %<CR>
-map <Leader>A :!git add %<CR>
-map <Leader>N :!git add -N %<CR>
-
-map <Leader>r :!git reset %<CR>
-map <Leader>R :!git reset<CR>
 
 " fzf on open buffers
 map <Leader>b :Buffers<CR>
@@ -387,4 +371,5 @@ highlight Normal ctermbg=none
 " let runtimepath = '~/.vim'
 
 runtime config/coc.vim
+runtime config/gitgutter.vim
 runtime config/statusline.vim
