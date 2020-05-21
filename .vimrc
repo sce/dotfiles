@@ -541,33 +541,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-" Statusline:
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
+" let runtimepath = '~/.vim'
 
-"set statusline+=%t       "tail of the filename
-"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-"set statusline+=%{&ff}] "file format
-"set statusline+=%h      "help file flag
-"set statusline+=%m      "modified flag
-"set statusline+=%r      "read only flag
-"set statusline+=%y      "filetype
-"set statusline+=%=      "left/right separator
-"set statusline+=%c,     "cursor column
-"set statusline+=%l/%L   "cursor line/total lines
-"set statusline+=\ %P    "percent through file
-
-set statusline^=%t\     "tail of the filename
-set statusline+=%=      "left/right separator
-set statusline+=%c      "cursor column
-set statusline+=\ %l/%L "cursor line/total lines
-set statusline+=\ %P    "percent through file
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
+runtime config/statusline.vim
