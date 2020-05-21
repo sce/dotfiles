@@ -165,15 +165,6 @@ let g:nerdtree_tabs_focus_on_files=1
 " automatically find and select currently opened file in nerdtree.
 let g:nerdtree_tabs_autofind=1
 
-" The bright red background that ale defaults to is too strong:
-highlight ALEError ctermbg=DarkMagenta
-highlight ALEError ctermbg=Black
-
-highlight ALEWarning ctermbg=DarkGray
-highlight ALEWarning ctermbg=None
-
-let g:ale_enabled = 1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings:
 
@@ -329,15 +320,7 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
-" from https://github.com/w0rp/ale/blob/726a768464d3e42869088599cf1bd049f7a751df/README.md
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
-packloadall
-
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
-silent! helptags ALL
 
 " vim-plug plugins https://github.com/junegunn/vim-plug
 " call :PlugInstall after adding something here:
@@ -370,6 +353,7 @@ highlight Normal ctermbg=none
 
 " let runtimepath = '~/.vim'
 
+runtime config/ale.vim
 runtime config/coc.vim
 runtime config/gitgutter.vim
 runtime config/statusline.vim
