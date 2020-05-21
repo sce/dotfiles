@@ -155,16 +155,6 @@ let ruby_operators=1
 " https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
 
-" Toggle with "I" when focused:
-let NERDTreeShowHidden=1
-" let NERDTreeStatusline=1
-
-" changing tabs: never focus nerdtree:
-let g:nerdtree_tabs_focus_on_files=1
-
-" automatically find and select currently opened file in nerdtree.
-let g:nerdtree_tabs_autofind=1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings:
 
@@ -263,12 +253,6 @@ map <Leader>g :GFiles<CR>
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
 
-" toggle nerdtree for all tabs
-" map <Leader>n <plug>NERDTreeTabsToggle<CR>
-
-" select current file in nerdtree
-" map <Leader>f <plug>NERDTreeTabsFind<CR>
-
 " Map tab to autocomplete current word from words in current file:
 " imap <tab> <C-X><C-N>
 " (hmm, just use <C-N> directly in insert mode instead.
@@ -356,4 +340,5 @@ highlight Normal ctermbg=none
 runtime config/ale.vim
 runtime config/coc.vim
 runtime config/gitgutter.vim
+" runtime config/nerdtree.vim
 runtime config/statusline.vim
