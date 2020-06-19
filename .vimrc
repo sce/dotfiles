@@ -182,8 +182,9 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " CTRL+e to edit buffer file in new window
-" map <C-e> :vsp
-map <C-e> :vertical sbuf
+"map <C-e> :vertical sbuf
+" just do the split
+map <C-e> :vsp
 
 " CTRL+p (almost "=" I guess :-p) to resize windows evenly
 " https://vi.stackexchange.com/questions/8856/mapping-ctrl-with-equal-sign
@@ -206,7 +207,7 @@ set wmh=0
 set tabpagemax=20
 
 " ALT+e to tab edit a file
-map <esc>e :tabedit
+map <esc>e :tabedit<CR>
 " ALT+l for next tab
 map <esc>l :tabnext<CR>
 " ALT+h for previous tab
@@ -249,6 +250,9 @@ map <Leader>b :Buffers<CR>
 
 " fzf on all git files
 map <Leader>g :GFiles<CR>
+
+" fzf on all files
+map <leader>f :FZF<cr>
 
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
@@ -311,6 +315,7 @@ endfunction
 call plug#begin('~/.vim/plugged')
 
   " https://github.com/neoclide/coc.nvim
+  " config goes in .config/coc/config
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " vim color scheme gruvbox:
@@ -323,7 +328,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gruvbox options must come setting the colorscheme
+" gruvbox options must come after setting the colorscheme
 let g:gruvbox_contrast_dark = "hard"
 
 " activate gruvbox after all plugins are loaded, to make sure it works:
