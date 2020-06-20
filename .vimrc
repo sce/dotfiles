@@ -184,7 +184,7 @@ map <C-l> <C-W>l
 " CTRL+e to edit buffer file in new window
 "map <C-e> :vertical sbuf
 " just do the split
-map <C-e> :vsp
+map <C-e> :vsp<cr>
 
 " CTRL+p (almost "=" I guess :-p) to resize windows evenly
 " https://vi.stackexchange.com/questions/8856/mapping-ctrl-with-equal-sign
