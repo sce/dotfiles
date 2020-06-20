@@ -325,6 +325,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
+  Plug 'mhinz/vim-startify'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -346,4 +348,5 @@ runtime config/ale.vim
 runtime config/coc.vim
 runtime config/gitgutter.vim
 " runtime config/nerdtree.vim
+runtime config/startify.vim
 runtime config/statusline.vim
