@@ -34,4 +34,4 @@ map <Leader>A :!git add %<CR>
 map <Leader>N :!git add -N %<CR>
 
 map <Leader>r :!git reset %<CR>
-map <Leader>R :!git reset<CR>
+" map <Leader>R :!git reset<CR>
