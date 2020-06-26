@@ -16,7 +16,9 @@
 ### Inputs
 
   input * {
-    xkb_layout no
+    xkb_layout "no,us"
+    # xkb_options "grp:win_space_toggle"
+    xkb_options "grp:shift_caps_toggle"
   }
 
   input "1267:8661:ELAN_Touchscreen" {
