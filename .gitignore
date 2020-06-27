@@ -7,8 +7,6 @@
 !/meta
 !/meta/**/**
 
-!.vim/coc-settings.json
-
 # ... but now there's too much again, so start blacklisting specifics:
 .bash_history
 .lesshst
@@ -26,3 +24,9 @@
 .babushka/logs
 
 !.vim/bundle/**/**
+!.vim/config
+!.vim/config/**/**
+!.vim/UltiSnips
+!.vim/UltiSnips/**/**
+
+!.vim/coc-settings.json

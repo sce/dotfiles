@@ -350,3 +350,4 @@ runtime config/gitgutter.vim
 " runtime config/nerdtree.vim
 runtime config/startify.vim
 runtime config/statusline.vim
+runtime config/ultisnips.vim

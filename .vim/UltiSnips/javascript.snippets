@@ -1,0 +1,11 @@
+snippet des "describe-block for mocha/jest"
+describe('${1}', () => {
+	${VISUAL}
+});
+endsnippet
+
+snippet it "it-block for mocha/jest"
+it('${1:should exist}', () => {
+	${2:assert.strictEqual(typeof ${3}, "${4:function}");}
+});
+endsnippet
