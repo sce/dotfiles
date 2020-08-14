@@ -33,7 +33,7 @@
 
 ### Key bindings
 
-  include ./essential-hotkeys.config
+  include ./hotkeys-essential.config
   include ./hotkeys.config
 
 ### Colors:
