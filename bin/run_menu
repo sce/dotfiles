@@ -1,0 +1,26 @@
+#!/bin/bash
+
+wofi=$(which wofi)
+rofi=$(which rofi)
+
+set -euo pipefail
+
+if [[ "$wofi" != "" ]]; then
+  set -x
+
+  $wofi \
+    --show drun,run \
+    --allow-images \
+    --insensitive
+
+elif [[ "$rofi" != "" ]]; then
+  set -x
+
+  $rofi \
+    -combi-modi window,drun,run \
+    -show combi \
+    -modi combi
+
+else
+  echo "Can't find suitable program to run!"
+fi
