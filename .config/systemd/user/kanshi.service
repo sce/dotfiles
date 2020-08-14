@@ -1,0 +1,12 @@
+[Unit]
+AssertPathExists=/usr/bin/kanshi
+
+[Service]
+WorkingDirectory=/home/cel
+ExecStart=/usr/bin/kanshi
+Restart=always
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

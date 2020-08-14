@@ -1,0 +1,12 @@
+[Unit]
+AssertPathExists=/usr/bin/mako
+
+[Service]
+WorkingDirectory=/home/cel
+ExecStart=/usr/bin/mako
+Restart=always
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
