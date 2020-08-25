@@ -13,10 +13,32 @@ profile dellicious-home-top-only {
   output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 1920,0 transform normal mode 2560x1080
 }
 
-profile dellicious-home-bottom {
-  output "Sharp Corporation 0x143E 0x00000000" position 0,840 scale 2
-  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,840 transform normal mode 2560x1080
-  output "BenQ G2450H 32C03067019" position 4480,0 transform 90 mode 1920x1080
+# profile dellicious-home-bottom {
+#   output "Sharp Corporation 0x143E 0x00000000" position 0,840 scale 2
+#   output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,840 transform normal mode 2560x1080
+#   output "BenQ G2450H 32C03067019" position 4480,0 transform 90 mode 1920x1080
+# }
+
+# profile dellicious-home-bottom-tweaked {
+#   output "Sharp Corporation 0x143E 0x00000000" position 0,840 scale 2
+#   output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,840 transform normal
+#
+#   # place vertical monitor above the dell for now
+#   output "BenQ G2450H 32C03067019" position 1920,-1080 transform 90 mode 1920x1080
+# }
+
+profile dellicious-home-bottom-tweaked {
+  output "Sharp Corporation 0x143E 0x00000000" position 0,1920 scale 2
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,1920 transform normal
+
+  # place vertical monitor above the dell for now
+  output "BenQ G2450H 32C03067019" position 1920,0 transform 90 mode 1920x1080
+}
+
+profile dellicious-home-left {
+  output "BenQ G2450H 32C02755019" position 0,0
+
+  output "Sharp Corporation 0x143E 0x00000000" position 1920,0 scale 2
 }
 
 profile dellicious-home-bottom-only {
