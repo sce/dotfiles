@@ -95,7 +95,8 @@ ExecStart=/usr/bin/rclone mount \
             --drive-use-trash \
             --stats=0 \
             --checkers=16 \
-            --bwlimit=40M \
+#           --bwlimit=40M \
+            --bwlimit=0 \
             --dir-cache-time=60m \
             --cache-info-age=60m \
             --attr-timeout="${RCLONE_MOUNT_ATTR_TIMEOUT}" \

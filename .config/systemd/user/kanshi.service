@@ -3,6 +3,7 @@ AssertPathExists=/usr/bin/kanshi
 
 [Service]
 WorkingDirectory=/home/cel
+#Environment=GHOST_NODE_VERSION_CHECK=false
 ExecStart=/usr/bin/kanshi
 Restart=always
 PrivateTmp=true
