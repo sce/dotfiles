@@ -67,8 +67,19 @@ profile dellicious-external1 {
   output "Goldstar Company Ltd LG TV 0x00000101" position 1920,0 mode 1920x1080@60Hz
 }
 
+#
+# kira
+#
+
 profile kira-home {
   output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 1920,0 transform normal mode 2560x1080
-  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,840 transform normal mode 2560x1080
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,1080 transform normal mode 2560x1080
   output "BenQ G2450H 32C03067019" position 4480,0 transform 90 mode 1920x1080
+}
+
+profile kira-home2 {
+  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 1920,0 transform normal mode 2560x1080
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 1920,1080 transform normal mode 2560x1080
+  output "BenQ G2450H 32C03067019" position 4480,0 transform 270 mode 1920x1080
+  output "BenQ G2450H 32C02755019" position 0,0 mode 1920x1080
 }
