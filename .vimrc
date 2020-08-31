@@ -54,17 +54,6 @@ set confirm " ask what to do when quitting in a limbo state instead of just comp
 " set mouse=a " enable mouse (gah, this prevents copy/paste with mouse)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indentation:
-
-set tabstop=2 " how many spaces a tab character counts as
-set shiftwidth=2 " numer of spaces per autoindent (zero: use ts value)
-
-" numer of spaces per tab in insert mode (zero: off, negative: use ts value)
-set softtabstop=2
-set autoindent " when formatting a paragraph of text, keep the indent of the first line
-set expandtab " tabs becomes spaces
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching:
 
 set incsearch  " search while you're typing the search string
@@ -325,6 +314,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
+  " Plug 'airblade/vim-rooter'
+
   Plug 'mhinz/vim-startify'
 
 call plug#end()
@@ -341,6 +332,8 @@ colorscheme gruvbox
 autocmd vimenter * highlight Normal ctermbg=none
 highlight Normal ctermbg=none
 
+autocmd vimenter * highlight signcolumn ctermbg=none
+highlight signcolumn ctermbg=none
 
 " let runtimepath = '~/.vim'
 
@@ -348,6 +341,18 @@ runtime config/ale.vim
 runtime config/coc.vim
 runtime config/gitgutter.vim
 " runtime config/nerdtree.vim
+runtime config/rooter.vim
 runtime config/startify.vim
 runtime config/statusline.vim
 runtime config/ultisnips.vim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indentation:
+
+set tabstop=2 " how many spaces a tab character counts as
+set shiftwidth=2 " numer of spaces per autoindent (zero: use ts value)
+
+" numer of spaces per tab in insert mode (zero: off, negative: use ts value)
+set softtabstop=2
+set autoindent " when formatting a paragraph of text, keep the indent of the first line
+set expandtab " tabs becomes spaces
