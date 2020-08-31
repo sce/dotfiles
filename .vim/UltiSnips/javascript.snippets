@@ -1,6 +1,6 @@
 snippet des "describe-block for mocha/jest"
 describe('${1}', () => {
-	${VISUAL}
+	${0:${VISUAL}}
 });
 endsnippet
 
@@ -8,4 +8,14 @@ snippet it "it-block for mocha/jest"
 it('${1:should exist}', () => {
 	${2:assert.strictEqual(typeof ${3}, "${4:function}");}
 });
+endsnippet
+
+snippet tag "HTML/React tag"
+<${1:div}>${0:${VISUAL}}</${2:div}>
+endsnippet
+
+snippet rf "React functional component"
+const ${1:MyComponent} = () => {
+	${0:${VISUAL:return <div><\/div>;}}
+}
 endsnippet

@@ -21,17 +21,17 @@ highlight GitGutterChangeDelete ctermbg=None
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " And might as well add git keybindings here too:
 
-map <Leader>d :!git df %<CR>
-map <Leader>D :!git dc %<CR>
+map <Leader>d :!git df "%"<CR>
+map <Leader>D :!git dc "%"<CR>
 
-map <Leader>w :!git df -w %<CR>
-map <Leader>W :!git dc -w %<CR>
+map <Leader>w :!git df -w "%"<CR>
+map <Leader>W :!git dc -w "%"<CR>
 
 " can't use --patch for merge conflicts for some reason
-map <Leader>a :!git add -p %<CR>
-map <Leader>A :!git add %<CR>
+map <Leader>a :!git add -p "%"<CR>
+map <Leader>A :!git add "%"<CR>
 
-map <Leader>N :!git add -N %<CR>
+map <Leader>N :!git add -N "%"<CR>
 
-map <Leader>r :!git reset %<CR>
+map <Leader>r :!git reset "%"<CR>
 " map <Leader>R :!git reset<CR>

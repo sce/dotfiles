@@ -16,7 +16,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-s>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-d>"
 
 " escape + c becomes alt+c
-let g:UltiSnipsListSnippets="<esc>c"
+"let g:UltiSnipsListSnippets="<esc>c"
+let g:UltiSnipsListSnippets="<esc>s"
 "let g:UltiSnipsListSnippets="<c-s>"
 
 " If you want :UltiSnipsEdit to split your window.
