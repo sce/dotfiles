@@ -1,0 +1,3 @@
+# A symlink should be made to point to the correct config, depending on the
+# machine we are on. So we ignore the symlink:
+config
