@@ -30,6 +30,7 @@
 
   sh = show --submodule
   st = status -sb
+  sta = status --untracked-files=all
   stu = status -s --untracked=no
   ci = commit
   cia = commit --amend
