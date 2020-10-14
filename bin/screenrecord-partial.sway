@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
+set -euo pipefail
+
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send "$msg" &
+}
+
+dir=~/Videos
+
+date=$(date +"%Y-%m-%d %H-%M-%S")
+file=${1:-"$dir/${date} recording-partial.mp4"}
+
+geometry=$(slurp)
+notify "Recording rectangle to $file..."
+wf-recorder --audio --geometry "$geometry" -f "$file"
+
+notify "Recording finished"
+
+# convert to gif also, for convenience:
+gif_name=$(dirname "$file")/$(basename "$file" .mp4).gif
+ffmpeg -i "$file" "$gif_name"
+cat "$gif_name" | wl-copy
+
+notify "Also wrote $gif_name"
