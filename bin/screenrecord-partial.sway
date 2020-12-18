@@ -22,8 +22,10 @@ wf-recorder --audio --geometry "$geometry" -f "$file"
 notify "Recording finished"
 
 # convert to gif also, for convenience:
+# if we don't force 30fps in the output we might get a really slow gif
 gif_name=$(dirname "$file")/$(basename "$file" .mp4).gif
-ffmpeg -i "$file" "$gif_name"
+ffmpeg -i "$file" -filter:v fps=fps=30 "$gif_name"
+
 cat "$gif_name" | wl-copy
 
 notify "Also wrote $gif_name"
