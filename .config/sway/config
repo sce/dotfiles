@@ -16,7 +16,8 @@
 ### Inputs
 
   input * {
-    xkb_layout "no,us"
+    #xkb_layout "no,us"
+    xkb_layout "us,no"
     # xkb_options "grp:win_space_toggle"
     xkb_options "grp:shift_caps_toggle"
   }
