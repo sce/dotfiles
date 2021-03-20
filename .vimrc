@@ -254,12 +254,22 @@ map <Leader>g :GFiles<CR>
 " fzf on all files
 map <leader>f :FZF<cr>
 
+" fzf ripgrep on all files
+map <leader>r :Rg<cr>
+
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
 
 " Map tab to autocomplete current word from words in current file:
 " imap <tab> <C-X><C-N>
 " (hmm, just use <C-N> directly in insert mode instead.
+
+" https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+" change global directory to that of current file:
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" ... alternative command instead of leader:
+command CDC cd %:p:h
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jumps:
