@@ -13,6 +13,9 @@
   #TERM: xterm-256color
 
 window:
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -64,18 +67,8 @@ scrolling:
   #multiplier: 3
   multiplier: 6
 
-  # Faux Scrolling
-  #
-  # The `faux_multiplier` setting controls the number of lines the terminal
-  # should scroll when the alternate screen buffer is active. This is used
-  # to allow mouse scrolling for applications like `man`.
-  #
-  # Specifying `0` will disable faux scrolling.
-  #faux_multiplier: 3
-  faux_multiplier: 6
-
   # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
+  #auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
@@ -84,7 +77,7 @@ scrolling:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 8
+#tabspaces: 8
 #tabspaces: 2
 
 # Font configuration (changes require restart)
@@ -126,8 +119,8 @@ font:
 
   # Point size
   #size: 11.0
-  #size: 10.0
-  size: 9.0
+  size: 10.0
+  #size: 9.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -245,38 +238,13 @@ colors:
   #
   indexed_colors: []
 
-# Visual Bell
-#
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
-# Values for `animation`:
-#   - Ease
-#   - EaseOut
-#   - EaseOutSine
-#   - EaseOutQuad
-#   - EaseOutCubic
-#   - EaseOutQuart
-#   - EaseOutQuint
-#   - EaseOutExpo
-#   - EaseOutCirc
-#   - Linear
-#
-# Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
-  animation: EaseOutExpo
-  duration: 0
-  color: '0xffffff'
-
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 #background_opacity: 1.0
-background_opacity: 0.8
+#background_opacity: 0.8
+background_opacity: 0.85
 
 # Mouse bindings
 #
@@ -336,9 +304,6 @@ selection:
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
   save_to_clipboard: true
-
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
 
 cursor:
   # Cursor style
