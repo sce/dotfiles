@@ -1,27 +1,21 @@
 #!/bin/bash
 
-ACTIVE_SINK=`pacmd list-sinks|awk '/* index: /{print $3}'`
+set -euo pipefail
+
+#ACTIVE_SINK="@DEFAULT_SINK@"
+ACTIVE_SINK=`pactl info| awk '/Default Sink:/{ print $3 }'`
 
 if [ "$ACTIVE_SINK" == "" ]; then
-  notify-send -u critical "Volume: Failed to fetch active sink" "`pacmd list-sinks|head`"
+  notify-send -u critical "Volume: Failed to fetch active sink"
   exit 1
 fi
 
-function curlevel {
-  pacmd list-sinks|grep -A 15 '* index'|awk '/volume:/{ print $5 }'|head -1
-}
-
-function muted {
-  local MUTED=$(pacmd list-sinks|grep -A 15 '* index'|awk '/muted: /{ print $2 }')
-  [ "$MUTED" == "yes" ] && echo "(MUTED)" || echo ""
-}
-
 function volume_text {
-  echo "Volume $(curlevel) $(muted)"
+  echo $(pactl list sinks|awk '/\tVolume/{ print $5 } /Mute/{ print "mute:" $2 } /Description/{ print $2 } /Formats/{ print "\r" }')
 }
 
 function notify_volume {
-  notify-send -u low -t 100 "$(volume_text)"
+  notify-send -u low -t 1000 "$(volume_text)"
 }
 
 INC="3%"
