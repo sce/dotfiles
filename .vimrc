@@ -245,18 +245,6 @@ map <Leader>- :s/\s\+/\r/g<CR>
 " run current ruby test file
 " map <Leader>r :!time bundle exec ruby -Itest -Ilib %
 
-" fzf on open buffers
-map <Leader>b :Buffers<CR>
-
-" fzf on all git files
-map <Leader>g :GFiles<CR>
-
-" fzf on all files
-map <leader>f :FZF<cr>
-
-" fzf ripgrep on all files
-map <leader>r :Rg<cr>
-
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
 
@@ -351,11 +339,11 @@ colorscheme gruvbox
 autocmd vimenter * highlight Normal ctermbg=none
 highlight Normal ctermbg=none
 
-
 " let runtimepath = '~/.vim'
 
 runtime config/ale.vim
 runtime config/coc.vim
+runtime config/fzf.vim
 runtime config/gitgutter.vim
 " runtime config/nerdtree.vim
 runtime config/startify.vim
