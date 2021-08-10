@@ -32,7 +32,8 @@ set backupcopy=yes
 set nojoinspaces
 
 " no delay when hitting escape
-set noesckeys
+" relevant from vim, not neovim: https://github.com/neovim/neovim/issues/7661
+" set noesckeys
 
 " completion from list on command line.
 set wildmenu
@@ -174,8 +175,6 @@ nnoremap <cr> :noh <cr>
 "map <C-K> <C-W>k<C-W>_
 
 " ALT+jkhl changes window up/down/left/right
-" my terminal is giving me escape character instead of "alt", so these
-" keybindings are actually <A-l> etc:
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -206,6 +205,8 @@ set wmh=0
 " max number of initial tabs when using -p
 set tabpagemax=20
 
+" my terminal is giving me escape character instead of "alt", so these
+" keybindings are actually <A-l> etc:
 " ALT+e to tab edit a file
 map <esc>e :tabedit<CR>
 " ALT+l for next tab
