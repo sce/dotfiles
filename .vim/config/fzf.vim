@@ -2,14 +2,23 @@
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 
+" https://github.com/junegunn/fzf.vim#preview-window
+" preview window hidden by default, ctrl-/ to toggle
+let g:fzf_preview_window = ['right:40%:hidden', 'ctrl-/']
+
 " fzf on open buffers
-map <Leader>b :Buffers<CR>
+nmap <Leader>b :Buffers<CR>
 
 " fzf on all git files
-map <Leader>g :GFiles<CR>
+nmap <Leader>g :GFiles<CR>
+
+" fzf on git files starting from directory of current file
+command! -bang GFilesHere call fzf#vim#gitfiles(expand("%:h"), <bang>0)
+
+nmap <leader>G :GFilesHere<cr>
 
 " fzf on all files
-map <leader>f :FZF<cr>
+nmap <leader>f :FZF<cr>
 
 " fzf ripgrep on all files
-map <leader>r :Rg<cr>
+nmap <leader>r :Rg<cr>
