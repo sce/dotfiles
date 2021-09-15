@@ -13,6 +13,7 @@
 .viminf*
 .serverauth*
 .forward
+.gitconfig-private
 
 !bin
 !bin/**
