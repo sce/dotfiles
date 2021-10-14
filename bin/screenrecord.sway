@@ -13,13 +13,14 @@ function notify {
 dir=~/Videos
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
-file=${1:-"$dir/${date} recording.mp4"}
+file=${2:-"$dir/${date} recording.mp4"}
 
 current_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+output=${1:-$current_output}
 
-notify "Recording output $current_output..."
+notify "Recording output $output..."
 echo "Writing to \"$file\"..."
-wf-recorder --audio --output "$current_output" -f "$file"
+wf-recorder --audio --output "$output" -f "$file"
 
 notify "Wrote $file"
 

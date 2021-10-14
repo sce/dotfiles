@@ -13,7 +13,9 @@ function notify {
 dir=~/Videos
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
-file=${1:-"$dir/${date} recording-partial.mp4"}
+file=${1:-"$dir/${date} recording-partial.mkv"}
+mp4_name=$(dirname "$file")/$(basename "$file" .mkv).mp4
+gif_name=$(dirname "$file")/$(basename "$file" .mkv).gif
 
 geometry=$(slurp)
 notify "Recording rectangle to $file..."
@@ -21,9 +23,10 @@ wf-recorder --audio --geometry "$geometry" -f "$file"
 
 notify "Recording finished"
 
+ffmpeg -i "$file" -c copy "$mp4_name"
+
 # convert to gif also, for convenience:
 # if we don't force 30fps in the output we might get a really slow gif
-gif_name=$(dirname "$file")/$(basename "$file" .mp4).gif
 ffmpeg -i "$file" -filter:v fps=fps=30 "$gif_name"
 
 cat "$gif_name" | wl-copy
