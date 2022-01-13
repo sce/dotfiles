@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#
+# Print the current git branch name of all directories starting with "zoo".
+#
+# Other directories can be given as arguments, example:
+#
+#     ./bin/repos *something* ./dir/to/repo ./other/repos*
+#
+
+set -euo pipefail
+
+dirs=${@:-zoo*}
+
+# echo -e "Will check: $dirs\n "
+
+for dir in $dirs; do
+    (echo -n "$dir: "; cd $dir; git br --show-current)
+done
