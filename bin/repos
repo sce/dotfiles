@@ -15,5 +15,6 @@ dirs=${@:-zoo*}
 # echo -e "Will check: $dirs\n "
 
 for dir in $dirs; do
-    (echo -n "$dir: "; cd $dir; git br --show-current)
+    echo -n "$dir: "
+    git -C "$dir" branch --show-current
 done
