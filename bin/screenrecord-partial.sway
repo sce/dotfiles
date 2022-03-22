@@ -13,13 +13,14 @@ function notify {
 dir=~/Videos
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
-file=${1:-"$dir/${date} recording-partial.mkv"}
+file="$dir/${date} recording-partial.mkv"
 mp4_name=$(dirname "$file")/$(basename "$file" .mkv).mp4
 gif_name=$(dirname "$file")/$(basename "$file" .mkv).gif
 
 geometry=$(slurp)
 notify "Recording rectangle to $file..."
-wf-recorder --audio --geometry "$geometry" -f "$file"
+
+wf-recorder --no-audio --geometry "$geometry" -f "$file" $@
 
 notify "Recording finished"
 
