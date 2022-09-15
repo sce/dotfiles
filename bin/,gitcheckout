@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#
+# This script will show a list of modified files in git and do
+# "git checkout" on files selected by user.
+#
+set -euo pipefail
+
+# for "exit on error" to work we need to split the command on two different
+# lines:
+files=$(,gitchanged --prompt="git checkout --patch > ")
+git checkout --patch "$files"
