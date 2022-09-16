@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#
+# This script will show a list of staged files in git and do "git reset"
+# on files selected by user.
+#
+set -euo pipefail
+
+# for "exit on error" to work we need to split the command on two different
+# lines:
+files=$(,gitcached --prompt="git reset --patch > ")
+git reset --patch $files
