@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
+base=${1:-origin/main}
+
+git diff "$base".. --name-only --relative . | xargs prettier --write --
