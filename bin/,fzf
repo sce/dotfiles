@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+
+file=$(fzf)
+if [[ "$@" = "" ]]; then
+    cmd=""
+else
+    cmd="$@ $file"
+fi
+
+$cmd
+echo "$cmd"
+echo "$file"
