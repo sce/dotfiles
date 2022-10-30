@@ -4,6 +4,8 @@ set -euo pipefail
 
 lock_pic=~/Bilder/wallpapers/screenlock
 
+choice=${1:-static}
+
 function notify {
   msg=$1
 
@@ -42,4 +44,14 @@ function static_pic {
 
 notify "Locking screen..."
 
-pixelated_pic || static_pic
+case "$choice" in
+    "pixelated")
+        pixelated_pic || static_pic
+        ;;
+    "static")
+        static_pic
+        ;;
+    *)
+        static_pic
+        ;;
+esac
