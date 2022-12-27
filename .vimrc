@@ -32,7 +32,8 @@ set backupcopy=yes
 set nojoinspaces
 
 " no delay when hitting escape
-set noesckeys
+" relevant from vim, not neovim: https://github.com/neovim/neovim/issues/7661
+" set noesckeys
 
 " completion from list on command line.
 set wildmenu
@@ -174,8 +175,6 @@ nnoremap <cr> :noh <cr>
 "map <C-K> <C-W>k<C-W>_
 
 " ALT+jkhl changes window up/down/left/right
-" my terminal is giving me escape character instead of "alt", so these
-" keybindings are actually <A-l> etc:
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -206,6 +205,8 @@ set wmh=0
 " max number of initial tabs when using -p
 set tabpagemax=20
 
+" my terminal is giving me escape character instead of "alt", so these
+" keybindings are actually <A-l> etc:
 " ALT+e to tab edit a file
 map <esc>e :tabedit<CR>
 " ALT+l for next tab
@@ -245,21 +246,19 @@ map <Leader>- :s/\s\+/\r/g<CR>
 " run current ruby test file
 " map <Leader>r :!time bundle exec ruby -Itest -Ilib %
 
-" fzf on open buffers
-map <Leader>b :Buffers<CR>
-
-" fzf on all git files
-map <Leader>g :GFiles<CR>
-
-" fzf on all files
-map <leader>f :FZF<cr>
-
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
 
 " Map tab to autocomplete current word from words in current file:
 " imap <tab> <C-X><C-N>
 " (hmm, just use <C-N> directly in insert mode instead.
+
+" https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+" change global directory to that of current file:
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" ... alternative command instead of leader:
+command CDC cd %:p:h
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jumps:
@@ -341,11 +340,11 @@ colorscheme gruvbox
 autocmd vimenter * highlight Normal ctermbg=none
 highlight Normal ctermbg=none
 
-
 " let runtimepath = '~/.vim'
 
 runtime config/ale.vim
 runtime config/coc.vim
+runtime config/fzf.vim
 runtime config/gitgutter.vim
 " runtime config/nerdtree.vim
 runtime config/startify.vim

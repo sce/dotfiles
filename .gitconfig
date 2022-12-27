@@ -1,10 +1,5 @@
-[user]
-	email = christoffer@eliesen.no
-	name = S. Christoffer Eliesen
-
-# DON'T GIVE AWAY YOUR GITHUB TOKEN TO OTHERS
-[github]
-	user = sce
+[include]
+    path = .gitconfig-private
 
 [status]
   # Show detailed submodule info when doing git status:
@@ -36,7 +31,8 @@
   cia = commit --amend
   br = branch
   co = checkout
-  df = diff --submodule
+  #df = diff --submodule
+  df = diff
   dc = !git df --cached
   dfw = !git df --word-diff
   dcw = !git dc --word-diff
@@ -116,3 +112,11 @@
   added = yellow
   changed = green
   untracked = cyan
+[init]
+	defaultBranch = main
+
+[core]
+   # rebases can often fail due to modified files that are not modified, and
+   # this seems to fix it:
+   # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
+   trustctime = false

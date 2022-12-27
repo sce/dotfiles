@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# This script will show a list of modified files in git and return files
+# selected by user to stdout.
+#
+set -euo pipefail
+
+git ls-files --modified --deduplicate | \
+    fzf --multi --cycle --keep-right \
+    --preview="git diff --color {}" --prompt="git modified > " "$@"

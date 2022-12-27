@@ -27,9 +27,26 @@
     # position on the "global output layout", meaning that if e.g. an external
     # output is connected and positioned to the right of the laptop then touch
     # events on the right side of the laptop screen will go to the external
-    # output... We prevent this by forcing all events from the laptop screen to
+    # output...
+    # We prevent this by forcing all events from the laptop screen to
     # go to the laptop output:
     map_to_output eDP-1
+  }
+
+  input "10900:20557:G2Touch_Multi-Touch" {
+    # By default the input from the touchscreen on the laptop will map to a
+    # position on the "global output layout", meaning that if e.g. an external
+    # output is connected and positioned to the right of the laptop then touch
+    # events on the right side of the laptop screen will go to the external
+    # output...
+    # We prevent this by forcing all events from the external screen to
+    # go to the external output:
+    #map_to_output DP-1
+    map_to_output DP-2
+  }
+
+  input "2:7:SynPS/2_Synaptics_TouchPad" {
+    pointer_accel 0.7
   }
 
 ### Key bindings
@@ -47,6 +64,12 @@
 #
 
 exec {
+  # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/systemd-user-services,-pam,-and-environment-variables
+  #exec systemctl --user import-environment XDG_CURRENT_DESKTOP
+
+  # https://github.com/emersion/xdg-desktop-portal-wlr/tree/28a82d05685dfe23be2adc798537a2db6bb98a7f#running
+  exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
   # All the stuff we need to start should be in ~/.config/autostart as
   # .desktop-files. To see what is being done you can add -d for dry-run:
   # $ dex-autostart -e sway -ad

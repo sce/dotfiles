@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#
+# This script will show a list of untracked files in git and do
+# "git add" on files selected by user.
+#
+set -euo pipefail
+
+# for "exit on error" to work we need to split the command on two different
+# lines:
+files=$(,gituntracked --prompt="git add new > ")
+git add --intent-to-add $files
+git add --patch $files

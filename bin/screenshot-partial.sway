@@ -7,7 +7,7 @@ function notify {
   msg=$1
 
   echo "$msg"
-  notify-send "$msg"
+  notify-send "$msg" &
 }
 
 dir=~/Bilder

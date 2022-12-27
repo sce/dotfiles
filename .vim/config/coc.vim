@@ -78,11 +78,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code. (prefer fuzzyfind)
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+" Formatting selected text (leader-f used for fuzzyfind)
+xmap <leader>p <Plug>(coc-format-selected)gv
 
-xmap <leader>p :CocCommand prettier.formatFile<cr>
+" Format entire file
 nmap <leader>p :CocCommand prettier.formatFile<cr>
 
 augroup mygroup
@@ -104,7 +103,8 @@ nmap <leader>ca  <Plug>(coc-codeaction-selected)
 nmap <leader>cl  <Plug>(coc-codeaction)
 
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>q  <Plug>(coc-fix-current)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.

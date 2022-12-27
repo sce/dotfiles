@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# This script will show a list of ignored files in git and return files
+# selected by user to stdout.
+#
+set -euo pipefail
+
+git ls-files --others --ignored --exclude-standard | \
+    fzf --multi --cycle --keep-right \
+    --preview="head -500 {}" --prompt="git ignored > " "$@"

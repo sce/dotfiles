@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# This script will show a list of untracked files in git and return files
+# selected by user to stdout.
+#
+set -euo pipefail
+
+git ls-files --others --exclude-standard | \
+    fzf --multi --cycle --keep-right \
+    --preview="head -1000 {}" --prompt="git untracked > " "$@"

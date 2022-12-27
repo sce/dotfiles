@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# This script will show a list of files staged in git (cached) and return files
+# selected by user to stdout.
+#
+set -euo pipefail
+
+git diff --cached --name-only --relative | \
+    fzf --multi --cycle --keep-right \
+    --preview="git diff --cached --color {}" --prompt="git cached > " "$@"
