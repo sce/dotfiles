@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+set -x
+
+# need ruby in the base system so that ruby scripts have easy access to swaymsg
+# and the sway socket
+rpm-ostree install --idempotent -y \
+  sway swaybg swayidle swaylock waybar sway-wallpapers \
+  grim grimshot slurp i3status i3status-rs \
+  wofi rofi dex-autostart \
+  ruby
+
+sudo rpm-ostree apply-live --allow-replacement
