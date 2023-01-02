@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# text user interface
+cname=cli
+run="toolbox run --container $cname"
+
+set -x
+
+toolbox create $cname || true
+
+$run sudo dnf install -y \
+  neovim vim fzf \
+  NetworkManager-tui \
+  nodejs yarnpkg
