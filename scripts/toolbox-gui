@@ -5,21 +5,10 @@ set -euo pipefail
 cname=gui
 run="toolbox run --container $cname"
 
-# TODO: have a separate build container?
-dnf_alacritty="cargo cmake gcc-c++ fontconfig-devel libxcb-devel"
 dnf_gkrellm=gkrellm
 dnf_sway="wdisplays"
 
-cargo_alacritty=alacritty
-
-function init {
-  toolbox create $cname || true
-}
-
 set -x
 
-init
-$run sudo dnf install -y $dnf_alacritty $dnf_gkrellm $dnf_sway
-
-# after building, it can be run from ~/.cargo/bin/alacritty from the host system
-$run cargo install $cargo_alacritty
+toolbox create $cname || true
+$run sudo dnf install -y $dnf_gkrellm $dnf_sway

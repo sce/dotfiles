@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+
+build_cname=build
+build="toolbox run --container $build_cname"
+
+dnf_alacritty="cargo cmake gcc-c++ fontconfig-devel libxcb-devel"
+cargo_alacritty=alacritty
+
+set -x
+
+toolbox create $build_cname || true
+$build sudo dnf install -y $dnf_alacritty
+
+# after building, it can be run from ~/.cargo/bin/alacritty from the host system
+$build cargo install $cargo_alacritty
