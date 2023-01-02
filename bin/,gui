@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+this=",gui"
+scriptname=$(basename "$0")
+
+# symlink to the name of a program to run that program
+if [[ "$scriptname" != "$this" ]]; then
+    exec toolbox run --container gui $scriptname
+
+# use trailing arguments to run that command
+elif [[ "$@" != "" ]]; then
+    exec toolbox run --container gui $@
+
+# or do nothing and get a shell
+else
+    exec toolbox enter gui
+fi
