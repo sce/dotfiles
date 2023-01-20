@@ -13,4 +13,5 @@ toolbox create $cname || true
 $run sudo dnf install -y \
   neovim vim fzf \
   NetworkManager-tui \
-  nodejs yarnpkg
+  nodejs yarnpkg \
+  keychain rclone
