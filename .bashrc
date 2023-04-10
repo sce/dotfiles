@@ -28,3 +28,7 @@ case ${TERM} in
     PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
           ;;
 esac
+
+# default to nvim, but try vi if it's not found:
+VISUAL=nvim
+EDITOR=vi
