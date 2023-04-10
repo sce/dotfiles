@@ -9,6 +9,6 @@ rpm-ostree install --idempotent -y \
   sway swaybg swayidle swaylock waybar sway-wallpapers \
   grim grimshot slurp i3status i3status-rs \
   wofi rofi dex-autostart \
-  ruby
+  ruby brightnessctl lxpolkit
 
 sudo rpm-ostree apply-live --allow-replacement
