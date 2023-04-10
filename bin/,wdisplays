@@ -1,1 +1,1 @@
-toolbox run --container gui wdisplays
+./,gui

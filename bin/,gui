@@ -2,8 +2,19 @@
 
 set -euo pipefail
 
-this=",gui"
-scriptname=$(basename "$0")
+# Call this script directly to enter the "gui" toolbox container. That
+# container should be created from the ./scripts/toolbox-gui script.
+#
+# Or symlink to this script to run the name of the link as a command inside the
+# cli container. Any prefixed comma will be removed from the command name.
+#
+# E.g.:
+#
+#     $ ln -s ,gui ,gkrellm
+#     $ ./,gkrellm # will run "gkrellm" inside gui container
+#
+this="gui"
+scriptname=$(basename "$0" | sed 's/^,//')
 
 # symlink to the name of a program to run that program
 if [[ "$scriptname" != "$this" ]]; then

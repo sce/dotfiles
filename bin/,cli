@@ -1,3 +1,24 @@
 #!/bin/bash
 
-exec toolbox enter cli
+set -euo pipefail
+
+# Call this script directly to enter the "cli" (command line interface) toolbox
+# container. That container should be created from the ./scripts/toolbox-cli
+# script.
+#
+# Or symlink to this script to run the name of the link as a command inside the
+# cli container. Any prefixed comma will be removed from the command name.
+#
+# E.g.:
+#
+#     $ ln -s ,cli ,node
+#     $ ./,node # will run "node" inside cli container
+#
+default_name="cli"
+script_name=$(basename $0 | sed 's/^,//')
+
+if [[ "$script_name" = "$default_name" ]]; then
+  exec toolbox enter cli "$@"
+else
+  exec toolbox run --container cli "$script_name" "$@"
+fi
