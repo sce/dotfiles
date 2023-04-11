@@ -1,11 +1,13 @@
 profile thinkzen-plain {
-  #Output eDP-1
-  output "Unknown 0x0608 0x00000000" position 1920,0
+  output eDP-1 position 1920,0
+
+  #output "Unknown 0x0608 0x00000000" position 1920,0
 }
 
 profile thinkzen-plus-right {
   output eDP-1 position 1920,0
-  output "BenQ G2450H 32C03067019" position 3640,0 transform 90 mode 1920x1080
+
+  output "BenQ G2450H 32C03067019" position 3840,0 transform 90 mode 1920x1080
 }
 
 profile thinkzen-plus-left {
