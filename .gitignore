@@ -18,6 +18,9 @@
 !bin
 !bin/**
 
+!scripts
+!scripts/**/**
+
 !.config/**/**
 !.local/**/**
 
@@ -31,3 +34,17 @@
 !.vim/UltiSnips/**/**
 
 !.vim/coc-settings.json
+
+# blacklist specifics:
+.config/chromium/Default
+.config/google-chrome/Default
+
+.config/chromium
+.config/google-chrome
+.config/Slack
+
+node_modules/
+
+# all directories that look like they might be cache:
+*cache*/
+*Cache*/
