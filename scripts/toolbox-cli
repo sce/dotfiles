@@ -14,4 +14,6 @@ $run sudo dnf install -y \
   neovim vim fzf \
   NetworkManager-tui \
   nodejs yarnpkg \
-  keychain rclone
+  keychain rclone \
+  jq entr \
+  graphviz colorized-logs # gives us ansi2txt for stripping color codes
