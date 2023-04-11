@@ -1,15 +1,16 @@
 #!/bin/bash
 
+set -euo pipefail
+
 lock_cmd=~/bin/screenlock.sway
 screens_off='swaymsg "output * dpms off"'
 screens_on='swaymsg "output * dpms on"'
 
-# timeouts are in seconds
-lock_timeout=300
-blank_timeout=600
+lock_timeout_secs=180
+blank_timeout_secs=600
 
 exec swayidle -w \
-  timeout $lock_timeout $lock_cmd \
-  timeout $blank_timeout "$screens_off" resume "$screens_on" \
+  timeout $lock_timeout_secs $lock_cmd \
+  timeout $blank_timeout_secs "$screens_off" resume "$screens_on" \
   lock $lock_cmd \
   before-sleep $lock_cmd
