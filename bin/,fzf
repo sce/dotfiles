@@ -2,13 +2,15 @@
 
 set -euo pipefail
 
-file=$(fzf)
+file=$(fzf --multi --cycle --keep-right)
 if [[ "$@" = "" ]]; then
     cmd=""
 else
     cmd="$@ $file"
 fi
 
+echo "$cmd"
 $cmd
+
 echo "$cmd"
 echo "$file"
