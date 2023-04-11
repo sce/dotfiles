@@ -37,3 +37,12 @@ esac
 # default to nvim, but try vi if it's not found:
 VISUAL=nvim
 EDITOR=vi
+
+# Remember history across multiple terminals:
+# https://askubuntu.com/a/673283
+# -a for append right now; -n for read new entries right now
+PROMPT_COMMAND='history -a; history -n;'$PROMPT_COMMAND
+
+# enable fzf shell keybindings (when fzf package is installed)
+script=/usr/share/fzf/shell/key-bindings.bash
+if [ -f "$script" ]; then . "$script"; fi
