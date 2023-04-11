@@ -116,7 +116,7 @@
 	defaultBranch = main
 
 [core]
-   # rebases can often fail due to modified files that are not modified, and
-   # this seems to fix it:
-   # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
-   trustctime = false
+  # rebases can often fail due to modified files that are not modified, and
+  # this seems to fix it:
+  # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
+  trustctime = false
