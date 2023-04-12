@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# Looks like we have to force lock before suspending now:
-pgrep swayidle && (
+# If swayidle is not running we have to make sure to manually lock the screen
+# before suspending:
+pgrep swayidle || (
   ~/bin/screenlock.sway &
   sleep 1
 )
