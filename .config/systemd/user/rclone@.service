@@ -29,7 +29,7 @@
 #     systemctl --user enable rclone@dropbox-personal
 #
 [Unit]
-Description=RClone mount of users remote %i using filesystem permissions
+Description=RClone mount of users remote named "%i" using filesystem permissions
 Documentation=http://rclone.org/docs/
 After=network-online.target
 
