@@ -36,8 +36,8 @@ pp wss = JSON.parse(%x(swaymsg -t get_workspaces))
 
 # Workspaces that are not "numeric" (ie. whos name doesn't start with a number)
 # are given the number -1 in i3.
-# pp ws_nums = wss.map { |ws| ws["num"] }.reject {|num| num < 0 }.sort
-pp ws_names = wss.map { |ws| from_hex(ws["name"]) }.sort
+#pp ws_nums = wss.map { |ws| ws["num"] }.reject {|num| num < 0 }.sort
+pp ws_names = wss.map { |ws| from_hex(ws["name"]) }.filter { |num| num != 0 }.sort
 
 if $0 =~ WS
 	# Create notification with the name of the current workspace.
