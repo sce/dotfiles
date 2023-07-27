@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+confirm_cmd=~/bin/confirm-cmd.sh
+
 function help {
     cat <<EOS
 This script will use rsync to copy given directories to a destination.
@@ -17,22 +19,6 @@ To use from a script skip the confirmation with e.g.:
 EOS
 }
 
-function ask_confirm {
-    local cmd="$1"
-
-cat <<EOS
-Will run command:
-
-    $cmd
-
-You can CANCEL with ^C (CONTROL+C) now.
-Press ENTER to run the command
-EOS
-
-    # because of "set -e" cancelling this read will quit the script:
-    read -s
-}
-
 ###############################################################################
 
 number_of_args=$#
@@ -44,12 +30,13 @@ fi
 # -i --itemize-changes show how files are changed
 # -H --hard-links preserve hard links
 #opts="--archive --one-file-system --hard-links --human-readable --verbose --itemize-changes --progress"
-opts="--archive --one-file-system --hard-links --human-readable --verbose --progress"
+#opts="--archive --one-file-system --hard-links --human-readable --verbose --progress"
+opts=(--archive --one-file-system --hard-links --human-readable --progress)
 
 # last argument should be destination dir:
 dest_dir=$BASH_ARGV
 
-cmd="mkdir -vp $dest_dir; rsync $opts $@"
+input=("$@")
+cmd="mkdir -vp $dest_dir; rsync ${opts[@]} ${input[@]}"
 
-ask_confirm "$cmd"
-bash -c "$cmd"
+$confirm_cmd "$cmd"
