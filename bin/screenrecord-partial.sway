@@ -28,8 +28,8 @@ ffmpeg -i "$file" -c copy "$mp4_name"
 
 # convert to gif also, for convenience:
 # if we don't force 30fps in the output we might get a really slow gif
-ffmpeg -i "$file" -filter:v fps=fps=30 "$gif_name"
-
-cat "$gif_name" | wl-copy
-
-notify "Also wrote $gif_name"
+# ffmpeg -i "$file" -filter:v fps=fps=30 "$gif_name"
+#
+# cat "$gif_name" | wl-copy
+#
+# notify "Also wrote $gif_name"
