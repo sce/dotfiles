@@ -15,3 +15,5 @@ $build sudo dnf install -y $dnf_alacritty
 
 # after building, it can be run from ~/.cargo/bin/alacritty from the host system
 $build cargo install $cargo_alacritty
+
+$build ~/scripts/build-showmethekey
