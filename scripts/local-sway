@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -euo pipefail
-set -x
 
 packages=(
   sway swaybg swayidle swaylock waybar sway-wallpapers
@@ -15,6 +14,8 @@ packages=(
   fzf perl
   tmux
 )
+
+set -x
 
 rpm-ostree install --idempotent -y "${packages[@]}"
 
