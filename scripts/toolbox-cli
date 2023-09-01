@@ -6,14 +6,18 @@ set -euo pipefail
 cname=cli
 run="toolbox run --container $cname"
 
+packages=(
+  neovim vim fzf
+  NetworkManager-tui
+  nodejs yarnpkg
+  keychain rclone
+  jq entr
+  # these give us ansi2txt for stripping color codes
+  graphviz colorized-logs
+)
+
 set -x
 
 toolbox create $cname || true
 
-$run sudo dnf install -y \
-  neovim vim fzf \
-  NetworkManager-tui \
-  nodejs yarnpkg \
-  keychain rclone \
-  jq entr \
-  graphviz colorized-logs # gives us ansi2txt for stripping color codes
+$run sudo dnf install -y "${packages[@]}"
