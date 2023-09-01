@@ -3,12 +3,19 @@
 set -euo pipefail
 set -x
 
-# need ruby in the base system so that ruby scripts have easy access to swaymsg
-# and the sway socket
-rpm-ostree install --idempotent -y \
-  sway swaybg swayidle swaylock waybar sway-wallpapers \
-  grim grimshot slurp i3status i3status-rs \
-  wofi rofi dex-autostart \
-  ruby brightnessctl lxpolkit
+packages=(
+  sway swaybg swayidle swaylock waybar sway-wallpapers
+  grim grimshot slurp i3status i3status-rs
+  wofi rofi dex-autostart
+  # need ruby in the base system so that ruby scripts have easy access to
+  # swaymsg and the sway socket
+  ruby
+  brightnessctl lxpolkit
+  # fzf history search needs perl
+  fzf perl
+  tmux
+)
+
+rpm-ostree install --idempotent -y "${packages[@]}"
 
 sudo rpm-ostree apply-live --allow-replacement
