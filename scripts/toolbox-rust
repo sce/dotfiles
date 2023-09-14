@@ -2,22 +2,21 @@
 
 set -euo pipefail
 
-# text user interface
-cname=cli
+cname=rust
 run="toolbox run --container $cname"
 
 packages=(
   neovim vim fzf
-  NetworkManager-tui
-  nodejs yarnpkg
-  keychain rclone
+  keychain
   jq entr
-  # these give us ansi2txt for stripping color codes
+  # these give us ansi2txt for stripping color codes:
   graphviz colorized-logs
+
+  rust
 )
 
 set -x
 
-toolbox create $cname || true
+toolbox create $cname 2>/dev/null || true
 
 $run sudo dnf install -y "${packages[@]}"

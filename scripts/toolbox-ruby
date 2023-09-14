@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -euo pipefail
+
+cname=ruby
+run="toolbox run --container $cname"
+
+packages=(
+  neovim vim fzf
+  keychain
+  jq entr
+  # these give us ansi2txt for stripping color codes:
+  graphviz colorized-logs
+
+  ruby
+  # to build native packages:
+  ruby-devel glibc-devel kernel-devel gmp-devel
+  tmux
+)
+
+set -x
+
+toolbox create $cname 2>/dev/null || true
+
+$run sudo dnf install -y "${packages[@]}"
