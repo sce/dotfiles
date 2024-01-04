@@ -20,15 +20,15 @@ gif_name=$(dirname "$file")/$(basename "$file" .mkv).gif
 geometry=$(slurp)
 notify "Recording rectangle to $file..."
 
-#wf-recorder --no-audio --geometry "$geometry" -f "$file" $@
-
-# 20240104: mp4 h264 isn't supported by slack, but h264 is
-# https://github.com/AvdLee/RocketSimApp/issues/31
-wf-recorder --no-audio --geometry "$geometry" -f "$file" --codec libx264 $@
+wf-recorder --no-audio --geometry "$geometry" -f "$file" $@
 
 notify "Recording finished"
 
-ffmpeg -i "$file" -c copy "$mp4_name"
+# 20240104: mp4 h264 isn't supported by slack, but h264 is
+# https://github.com/AvdLee/RocketSimApp/issues/31
+ffmpeg -i "$file" -c:a copy -c:v libx264 "$mp4_name"
+
+notify "Created \"$mp4_name\""
 
 # convert to gif also, for convenience:
 # if we don't force 30fps in the output we might get a really slow gif

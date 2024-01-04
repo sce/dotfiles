@@ -13,7 +13,8 @@ function notify {
 dir=~/Videos
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
-file=$"$dir/${date} recording.mp4"
+file=$"$dir/${date} recording.mkv"
+mp4_name=$(dirname "$file")/$(basename "$file" .mkv).mp4
 
 current_output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
 output=${1:-$current_output}
@@ -22,13 +23,15 @@ notify "Recording output $output..."
 echo "Writing to \"$file\"..."
 
 shift || true
-#wf-recorder --no-audio --output "$output" -f "$file" $@
+wf-recorder --no-audio --output "$output" -f "$file" $@
+
+notify "Recording finished"
 
 # 20240104: mp4 h264 isn't supported by slack, but h264 is
 # https://github.com/AvdLee/RocketSimApp/issues/31
-wf-recorder --no-audio --output "$output" -f "$file" --codec libx264 $@
+ffmpeg -i "$file" -c:a copy -c:v libx264 "$mp4_name"
 
-notify "Wrote $file"
+notify "Created \"$mp4_name\""
 
 # # convert to gif also, for convenience:
 # gif_name=$(dirname "$file")/$(basename "$file" .mp4).gif
