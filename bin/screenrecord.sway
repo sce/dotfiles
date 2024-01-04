@@ -23,13 +23,13 @@ notify "Recording output $output..."
 echo "Writing to \"$file\"..."
 
 shift || true
-wf-recorder --no-audio --output "$output" -f "$file" $@
+wf-recorder --no-audio --output "$output" -f "$file" --codec libx264 $@
 
 notify "Recording finished"
 
 # 20240104: mp4 h264 isn't supported by slack, but h264 is
 # https://github.com/AvdLee/RocketSimApp/issues/31
-ffmpeg -i "$file" -c:a copy -c:v libx264 "$mp4_name"
+ffmpeg -i "$file" -c:a copy -c:v libx264 -filter:v fps=30 "$mp4_name"
 
 notify "Created \"$mp4_name\""
 
