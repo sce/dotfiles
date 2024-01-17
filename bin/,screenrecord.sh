@@ -12,7 +12,7 @@ set -euo pipefail
 trap 'trap " " SIGINT SIGTERM; kill -SIGINT 0; wait' SIGINT SIGTERM
 
 function wait_for_user_ok {
-    name=$(zenity --info --title="Stop recording" --text="Hit OK to stop the recording")
+    name=$(zenity --info --title="Recording current output" --text="Recording continues until it is stopped." --ok-label="Stop recording")
 }
 
 ~/bin/screenrecord.sway &
