@@ -1,10 +1,16 @@
 [Desktop Entry]
 # .config/systemd/user/kanshi.service will deal with this now:
-# update: turns out with systemd if we log into console first then kanshi will be started and it will be sad because sway isn't there. So we don't enable the service by default and ask sway to start the service via this desktop file instead.
 #Hidden=true
 
-#Exec=/usr/bin/kanshi
-Exec=/usr/bin/systemctl --user start kanshi
+# update: turns out with systemd if we log into console first then kanshi will
+# be started and it will be sad because sway isn't there. So we don't enable
+# the service by default and ask sway to start the service via this desktop
+# file instead.
+#Exec=/usr/bin/systemctl --user start kanshi
+
+# update2: starting mako and kanshi via systemd causes them to fail for some
+# reason, so back to square one:
+Exec=/usr/bin/kanshi
 Name=kanshi
 Comment=Dynamic output configuration
 Type=Application

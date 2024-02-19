@@ -1,10 +1,16 @@
 [Desktop Entry]
 # .config/systemd/user/mako.service will deal with this now:
-# update: turns out with systemd if we log into console first then mako will be started and it will be sad because sway isn't there. So we don't enable the service by default and ask sway to start the service via this desktop file instead.
 #Hidden=true
 
-#Exec=/usr/bin/mako
-Exec=/usr/bin/systemctl --user start mako
+# update: turns out with systemd if we log into console first then mako will be
+# started and it will be sad because sway isn't there. So we don't enable the
+# service by default and ask sway to start the service via this desktop file
+# instead.
+#Exec=/usr/bin/systemctl --user start mako
+
+# update2: starting mako and kanshi via systemd causes them to fail for some
+# reason, so back to square one:
+Exec=/usr/bin/mako
 Name=mako
 Comment=notification daemon for Wayland
 Type=Application

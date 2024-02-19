@@ -1,5 +1,6 @@
 [Desktop Entry]
 Exec=idlehandler.wayland
+#Exec=systemctl --user start idlehandler
 Name=swayidle
 Type=Application
 OnlyShowIn=sway;
