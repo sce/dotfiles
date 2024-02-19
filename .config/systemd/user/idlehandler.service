@@ -1,0 +1,13 @@
+[Unit]
+AssertPathExists=/home/cel/bin/idlehandler.wayland
+
+[Service]
+ExecStart=/home/cel/bin/idlehandler.wayland
+NoNewPrivileges=true
+PrivateTmp=true
+Restart=always
+RestartSec=1s
+WorkingDirectory=/home/cel
+
+[Install]
+WantedBy=default.target
