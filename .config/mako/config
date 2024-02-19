@@ -1,0 +1,2 @@
+# mako - notification daemon for Wayland
+default-timeout=2500
