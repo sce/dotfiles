@@ -6,6 +6,11 @@
   set $mod Mod4
   set $alt Mod1
 
+### Behaviour
+
+  # default container layout in empty workspaces
+  #workspace_layout stacking
+
 ### Outputs
 
   include ./output.config
@@ -41,12 +46,32 @@
     # output...
     # We prevent this by forcing all events from the external screen to
     # go to the external output:
-    #map_to_output DP-1
-    map_to_output DP-2
+    map_to_output DP-1
+    #map_to_output DP-2
+    events enabled
+    #tap enabled
+    #scroll_method two_finger
   }
 
   input "2:7:SynPS/2_Synaptics_TouchPad" {
-    pointer_accel 0.7
+    pointer_accel 0.6
+    events enabled
+  }
+
+  input "2:10:TPPS/2_Elan_TrackPoint" {
+    pointer_accel 0.4
+  }
+
+  #input "76:617:Magic_Mouse_2_Mouse" {
+  input "76:617:ufund___s_Magic_Mouse" {
+    pointer_accel -0.5
+
+    # https://askubuntu.com/questions/1303351/magic-mouse-1-scroll-not-working-when-hid-in-user-space
+    # hold down right mouse button to scroll:
+    scroll_method on_button_down
+    scroll_button button3
+
+    #scroll_method two_finger
   }
 
 ### Key bindings
