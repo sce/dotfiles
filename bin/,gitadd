@@ -15,5 +15,6 @@ echo_run() {
 
 # for "exit on error" to work we need to split the command on two different
 # lines:
-files=$(,gitmodified --prompt="git add --patch > ")
+#files=$(,gitmodified --prompt="git add --patch > ")
+files=$(,gitmodified "$@")
 echo_run git add --patch $files

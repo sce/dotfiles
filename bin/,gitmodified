@@ -6,6 +6,6 @@
 #
 set -euo pipefail
 
-git ls-files --modified --deduplicate | \
+git ls-files --modified --deduplicate "$@" | \
     fzf --multi --cycle --keep-right \
-    --preview="git diff --color {}" --prompt="git modified > " "$@"
+    --preview="git diff --color {}" --prompt="git modified > "

@@ -15,5 +15,6 @@ echo_run() {
 
 # for "exit on error" to work we need to split the command on two different
 # lines:
-files=$(,gitcached --prompt="git reset --patch > ")
+#files=$(,gitcached --prompt="git reset --patch > ")
+files=$(,gitcached "$@")
 echo_run git reset --patch $files

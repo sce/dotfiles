@@ -6,6 +6,6 @@
 #
 set -euo pipefail
 
-git diff --cached --name-only --relative | \
+git diff --cached --name-only --relative "$@" | \
     fzf --multi --cycle --keep-right \
-    --preview="git diff --cached --color {}" --prompt="git cached > " "$@"
+    --preview="git diff --cached --color {}" --prompt="git cached > "
