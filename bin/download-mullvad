@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -exuo pipefail
+
+wget --content-disposition https://mullvad.net/download/app/rpm/latest

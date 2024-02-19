@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# This script will show a list of files in git and return files
+# selected by user to stdout.
+#
+set -euo pipefail
+
+git ls-files "$@"| \
+    fzf --multi --cycle --keep-right \
+    --preview="head -500 {}" --prompt="git ls-files > "

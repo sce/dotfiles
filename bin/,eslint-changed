@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
+base=${1:-origin/main}
+
+cmd="yarn run -T eslint --fix"
+git diff "$base".. --name-only --relative . | xargs yarn run -T eslint --fix --debug

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+url="https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=rpm"
+
+#output=bitwarden-latest.rpm
+#wget --output-document "$output" "$url" 
+
+# content-disposition will use the header info to set the filename:
+wget --content-disposition "$url" 

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#
+# This script will show a list of files in git and do "git remove"
+# on files selected by user.
+#
+set -euo pipefail
+
+echo_run() {
+    cmd=$@
+
+    $cmd
+    echo $cmd
+}
+
+# for "exit on error" to work we need to split the command on two different
+# lines:
+files=$(,gitfiles "$@")
+echo_run git rm --cached $files
