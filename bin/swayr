@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euox pipefail
+
+env RUST_BACKTRACE=1 ~/.cargo/bin/swayr "$@" >> /tmp/swayr.log 2>&1

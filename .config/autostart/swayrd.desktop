@@ -1,0 +1,7 @@
+[Desktop Entry]
+#Hidden=true
+Exec=/home/cel/bin/swayrd
+Name=swayrd
+Comment=swayrd deamon for sway
+Type=Application
+OnlyShowIn=sway;

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+export XDG_CURRENT_DESKTOP=sway
+
+# -r - replace
+# -l - log to console
+/usr/libexec/xdg-desktop-portal -r &
+
+XDG_CURRENT_DESKTOP=sway /usr/libexec/xdg-desktop-portal-wlr -r -l DEBUG

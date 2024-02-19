@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+exec env RUST_BACKTRACE=1 ~/.cargo/bin/swayrd > /tmp/swayrd.log 2>&1
