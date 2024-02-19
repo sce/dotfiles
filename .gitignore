@@ -38,6 +38,8 @@
 # blacklist specifics:
 .config/chromium/Default
 .config/google-chrome/Default
+.config/google-chrome-*/**/**
+.config/Cypress
 
 .config/chromium
 .config/google-chrome

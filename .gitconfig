@@ -120,3 +120,11 @@
   # this seems to fix it:
   # https://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
   trustctime = false
+
+[rerere]
+	enabled = 1
+
+[gc]
+	reflogExpire = never
+	worktreePruneExpire = 12.months.ago
+	reflogExpireUnreachable = 12.months.ago
