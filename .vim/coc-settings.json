@@ -4,5 +4,18 @@
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete"
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+
+  "typescript.suggest.autoImports": true,
+
+  "tsserver.tsdk": "${workspaceFolder}/.yarn/sdks/typescript/lib",
+  "tsserver.useLocalTsdk": true
+
+  // coc-prettier (doesn't support yarn pnp yet, so we need to specify an
+  // out-of-project binary it can use):
+  "prettier.resolveGlobalModules": true,
+  "prettier.prettierPath": "~/.nvm/versions/node/v16.14.2/bin/prettier",
+
+  // coc-explorer
+  "explorer.width": 60
 }

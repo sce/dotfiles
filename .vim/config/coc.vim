@@ -96,6 +96,9 @@ xmap <leader>p <Plug>(coc-format-selected)gv
 
 " Format entire file
 nmap <leader>p :CocCommand prettier.formatFile<cr>
+" 20220603 prettier.formatFile doesn't work anymore?? use workaround:
+" nmap <leader>p :%!prettier --stdin-filepath % 2>/dev/null<cr>
+" nmap <leader>p :%!yarn run -T prettier --stdin-filepath % 2>/dev/null<cr>
 
 augroup mygroup
   autocmd!

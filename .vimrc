@@ -9,10 +9,14 @@ set fileencoding=utf-8
 set encoding=utf-8
 
 " where to create backups, if turned on:
-set backupdir=~/.cache/vim/backup
+" 2023-04-11: Let's just create backups in the same directory for now.
+" set backupdir=~/.cache/vim/backup
+set backupdir=./
 
 " where to store swap files:
-set directory=~/.cache/vim/
+" 2023-04-11: Let's just store swap files in the same directory for now.
+" set directory=~/.cache/vim/
+set directory=./
 
 " gnome-terminal doesn't advertise its support for 256 colors, fix:
 if $COLORTERM == 'gnome-terminal'
@@ -42,26 +46,34 @@ set wildmenu
 set path+=**
 
 " Remove trailing whitespaces automaticaly on save
-autocmd BufWritePre * :%s/\s\+$//e
+" 2022-08-09: this messes up editing git patches...
+" autocmd BufWritePre * :%s/\s\+$//e
+
+set textwidth=80
 
 " wrap at different width for javascript:
-autocmd BufRead,BufNewFile *.js,*.jsx,*.ts,*.tsx,*.txt,*.md setlocal textwidth=100
+" autocmd BufRead,BufNewFile *.js,*.jsx,*.ts,*.tsx,*.txt,*.md setlocal textwidth=100
 
 " use folding by default
 " set foldmethod=indent
+set foldmethod=syntax
 
 set confirm " ask what to do when quitting in a limbo state instead of just complaining
 
 " set mouse=a " enable mouse (gah, this prevents copy/paste with mouse)
 
+" check for changes when changing a buffer
+" https://vi.stackexchange.com/questions/444/how-do-i-reload-the-current-file
+au FocusGained,BufEnter * :checktime
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation:
 
-set tabstop=2 " how many spaces a tab character counts as
-set shiftwidth=2 " numer of spaces per autoindent (zero: use ts value)
+set tabstop=4 " how many spaces a tab character counts as
+set shiftwidth=4 " numer of spaces per autoindent (zero: use ts value)
 
 " numer of spaces per tab in insert mode (zero: off, negative: use ts value)
-set softtabstop=2
+set softtabstop=4
 set autoindent " when formatting a paragraph of text, keep the indent of the first line
 set expandtab " tabs becomes spaces
 
@@ -260,6 +272,8 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " ... alternative command instead of leader:
 command CDC cd %:p:h
 
+command CDRoot cd %:h | cd `git rev-parse --show-toplevel`
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jumps:
 
@@ -326,6 +340,22 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'mhinz/vim-startify'
 
+  Plug 'dylanaraps/root.vim'
+
+  Plug 'SirVer/ultisnips'
+  " Plug 'honza/vim-snippets'
+
+  Plug 'michaeljsmith/vim-indent-object'
+
+  " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Plug 'fatih/vim-go'
+
+  " Plug 'preservim/nerdcommenter'
+
+  " Plug 'dhruvasagar/vim-table-mode'
+
+  Plug 'liuchengxu/vista.vim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -342,11 +372,14 @@ highlight Normal ctermbg=none
 
 " let runtimepath = '~/.vim'
 
+" runtime config/nerdtree.vim
 runtime config/ale.vim
+runtime config/coc-explorer.vim
 runtime config/coc.vim
 runtime config/fzf.vim
 runtime config/gitgutter.vim
-" runtime config/nerdtree.vim
+runtime config/nerdcommenter.vim
 runtime config/startify.vim
 runtime config/statusline.vim
 runtime config/ultisnips.vim
+" runtime config/vim-go.vim
