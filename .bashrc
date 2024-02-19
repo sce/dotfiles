@@ -46,3 +46,24 @@ PROMPT_COMMAND='history -a; history -n;'$PROMPT_COMMAND
 # enable fzf shell keybindings (when fzf package is installed)
 script=/usr/share/fzf/shell/key-bindings.bash
 if [ -f "$script" ]; then . "$script"; fi
+
+alias ls="ls --color"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+#export PATH="$PATH:$HOME/.rvm/bin"
+
+# go:
+export PATH=$PATH:$HOME/go/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/cel/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/cel/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/cel/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/cel/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# disable storybook telemetry by default:
+# https://storybook.js.org/docs/react/configure/telemetry#how-to-opt-out
+export STORYBOOK_DISABLE_TELEMETRY=1
+
+# for ssh-agent:
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

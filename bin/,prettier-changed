@@ -4,4 +4,7 @@ set -xeuo pipefail
 
 base=${1:-origin/main}
 
-git diff "$base".. --name-only --relative . | xargs prettier --write --
+# yarn version will not take arguments it seems
+#git diff "$base".. --name-only --relative . | xargs prettier --write --
+
+git diff "$base" --name-only --relative . | xargs yarn run -T prettier --ignore-path=../../.prettierignore --write --

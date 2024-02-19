@@ -54,10 +54,27 @@ hide_missing = true
 
 [[block]]
 block = "net"
-device = "wlp2s0"
+device = "wlp3s0"
 ssid = true
 signal_strength = true
 #ip = true
+#ipv6 = true
+speed_up = false
+#graph_up = true
+graph_up = false
+#graph_down = true
+speed_down = false
+interval = 1
+use_bits = false
+hide_missing = true
+
+
+[[block]]
+block = "net"
+device = "enp7s0f3u1u3c2"
+#ssid = true
+#signal_strength = true
+ip = true
 #ipv6 = true
 speed_up = false
 #graph_up = true

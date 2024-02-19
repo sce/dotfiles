@@ -37,6 +37,6 @@ opts=(--archive --one-file-system --hard-links --human-readable --progress)
 dest_dir=$BASH_ARGV
 
 input=("$@")
-cmd="mkdir -vp $dest_dir; rsync ${opts[@]} ${input[@]}"
+cmd="mkdir -vp $dest_dir && rsync ${opts[@]} ${input[@]}"
 
 $confirm_cmd "$cmd"

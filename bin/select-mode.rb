@@ -34,4 +34,5 @@ if res == "" or res.include?("*")
 else
   p cmd = %(swaymsg output #{output_name} mode #{res})
   puts %x(#{cmd})
+  notify "Set resolution on #{output_name} to #{res}"
 end
