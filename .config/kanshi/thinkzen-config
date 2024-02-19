@@ -13,14 +13,45 @@ profile thinkzen-plus-right {
 profile thinkzen-plus-left {
   output eDP-1 position 1920,0
 
-  #output "Unknown HP 24y 1CR8450HXF"
-  output HDMI-A-1 position 0,0
+  #output HDMI-A-1 position 0,0
+  output "Unknown HP 24y 1CR8450HXF" position 0,0
+}
+
+profile thinkzen-plus-two {
+  output eDP-1 position 1920,0
+
+  output "Unknown HP 24y 1CR8450HXF" position 0,0
+  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 3840,0
+}
+
+profile thinkzen-plus-two-two {
+  output eDP-1 position 1920,0
+
+  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 3840,0
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 3840,1080
 }
 
 profile thinkzen-plus-three {
   output eDP-1 position 1920,0
-  output HDMI-A-1 position 0,0
 
-  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 3640,0
-  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 3640,1080
+  #output HDMI-A-1 position 0,0
+  output "Unknown HP 24y 1CR8450HXF" position 0,0
+
+  output "Dell Inc. DELL U2913WM 9DD4K62O241L" position 3840,0
+  output "Dell Inc. DELL U2913WM 9DD4K62O422L" position 3840,1080
+}
+
+profile thinkzen-dell-left {
+  output "Dell Inc. DELL P2720DC 81WTK01K31CS" position 0,0
+  output eDP-1 position 2560,360
+}
+
+# profile thinkzen-viewsonic-right {
+#   output eDP-1 position 0,0
+#   output "ViewSonic Corporation TD1655 W3U204600192" position 1920,0
+# }
+
+profile thinkzen-viewsonic-left {
+  output "ViewSonic Corporation TD1655 W3U204600192" position 0,0
+  output eDP-1 position 1920,0
 }
