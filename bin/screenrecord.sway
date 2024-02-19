@@ -30,6 +30,9 @@ notify "Recording finished"
 # 20240104: mp4 h264 isn't supported by slack, but h264 is
 # https://github.com/AvdLee/RocketSimApp/issues/31
 ffmpeg -i "$file" -c:a copy -c:v libx264 -filter:v fps=30 "$mp4_name"
+# This suggests baseline profile is needed too:
+# https://stackoverflow.com/a/13208001
+#ffmpeg -i "$file" -c:a copy -c:v libx264 -profile:v baseline -filter:v fps=30 "$mp4_name"
 
 notify "Created \"$mp4_name\""
 

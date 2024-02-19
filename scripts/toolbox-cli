@@ -14,6 +14,8 @@ packages=(
   jq entr
   # these give us ansi2txt for stripping color codes
   graphviz colorized-logs
+  # convenience, wl-copy etc:
+  wl-clipboard
 )
 
 set -x

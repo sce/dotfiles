@@ -32,11 +32,12 @@ WS=%r(sway-ws\.rb\z)
 NEW_WS=%r(sway-new-ws\.rb\z)
 MOVE_TO_NEW_WS=%r(sway-move-new-ws\.rb\z)
 
-pp wss = JSON.parse(%x(swaymsg -t get_workspaces))
+wss = JSON.parse(%x(swaymsg -t get_workspaces))
 
 # Workspaces that are not "numeric" (ie. whos name doesn't start with a number)
 # are given the number -1 in i3.
 #pp ws_nums = wss.map { |ws| ws["num"] }.reject {|num| num < 0 }.sort
+print "ws_names:"
 pp ws_names = wss.map { |ws| from_hex(ws["name"]) }.filter { |num| num != 0 }.sort
 
 if $0 =~ WS

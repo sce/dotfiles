@@ -14,7 +14,7 @@ packages=(
 
   ruby
   # to build native packages:
-  ruby-devel glibc-devel kernel-devel gmp-devel
+  ruby-devel glibc-devel kernel-devel gmp-devel libyaml-devel
   tmux
 )
 
