@@ -1,5 +1,0 @@
-[Desktop Entry]
-Exec=env QT_QPA_PLATFORM=xcb obs
-Name=Local OBS Studio (force x11, for sway)
-Comment=Non-flatpak version of obs-studio with forced X11 (xcb) protocol so that it works properly in Sway.
-Type=Application
