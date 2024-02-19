@@ -22,7 +22,14 @@
 !scripts/**/**
 
 !.config/**/**
+.config/coc/**/**
+.config/libreoffice/**/**
+
 !.local/**/**
+.local/include/**/**
+.local/lib/**/**
+.local/share/**/**
+.local/state/**/**
 
 !.babushka/**
 .babushka/logs
