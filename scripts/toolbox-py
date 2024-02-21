@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# python environment
+cname=py
+run="toolbox run --container $cname"
+
+packages=(
+  neovim vim fzf
+  nodejs yarnpkg
+  keychain
+  jq entr
+  # these give us ansi2txt for stripping color codes
+  graphviz colorized-logs
+  # convenience, wl-copy etc:
+  wl-clipboard
+
+  docker-compose
+
+  # To build Python we need some additional packages:
+  bzip2
+  bzip2-devel
+  findutils
+  libffi-devel
+  openssl-devel
+  readline-devel
+  sqlite
+  sqlite-devel
+  xz
+  xz-devel
+  zlib-devel
+)
+
+set -x
+
+toolbox create $cname || true
+
+# First we install some common development tools like gcc and make, Fedora
+# provides a group of packages for that call Development Tools
+$run sudo dnf groupinstall "Development Tools" -y
+$run sudo dnf install -y "${packages[@]}"
