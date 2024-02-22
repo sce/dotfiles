@@ -5,10 +5,18 @@ set -euo pipefail
 cname=gui
 run="toolbox run --container $cname"
 
+copr_i3status_rs="atim/i3status-rust"
+
 dnf_gkrellm=gkrellm
-dnf_sway="wdisplays"
+# wdisplays needs libGLESv2 which in fedora is found in libglvnd-gles:
+dnf_sway="wdisplays libglvnd-gles"
+dnf_i3status_rs="i3status-rust"
+dnf_misc="zenity"
 
 set -x
 
 toolbox create $cname || true
-$run sudo dnf install -y $dnf_gkrellm $dnf_sway
+
+$run sudo dnf copr enable -y $copr_i3status_rs
+
+$run sudo dnf install -y $dnf_gkrellm $dnf_sway $dnf_i3status_rs $dnf_misc
