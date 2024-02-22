@@ -1,7 +1,4 @@
-enable_experimental_conpty_backend = false
 live_config_reload = true
-persistent_logging = false
-render_timer = false
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -568,12 +565,6 @@ hide_when_typing = false
 action = "PasteSelection"
 mouse = "Middle"
 
-[mouse.double_click]
-threshold = 300
-
-[mouse.triple_click]
-threshold = 300
-
 [scrolling]
 history = 10000
 multiplier = 6
@@ -587,7 +578,6 @@ decorations = "full"
 dynamic_padding = false
 dynamic_title = true
 opacity = 0.8
-start_maximized = false
 
 [window.dimensions]
 columns = 0
