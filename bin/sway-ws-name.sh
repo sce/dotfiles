@@ -7,20 +7,23 @@
 
 set -euo pipefail
 
+set -x
+
+ask=,zenity
 
 function get_name {
-    name=$(zenity --entry --title="Rename current workspace" --text="Enter new name of current workspace:" --ok-label="Rename")
+    name=$($ask --entry --title="Rename current workspace" --text="Enter new name of current workspace:" --ok-label="Rename")
 }
 
 function get_name_error {
     local msg=$1
-    name=$(zenity --entry --title="Rename current workspace" --text="$msg\n\nEnter new name of current workspace:" --ok-label="Rename")
+    name=$($ask --entry --title="Rename current workspace" --text="$msg\n\nEnter new name of current workspace:" --ok-label="Rename")
 }
 
 
 function show_error {
     echo "$1"
-    zenity --error --title="Failed" --text="$1"
+    $ask --error --title="Failed" --text="$1"
 }
 
 function run {

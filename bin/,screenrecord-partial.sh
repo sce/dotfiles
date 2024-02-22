@@ -11,8 +11,10 @@ set -euo pipefail
 # redefine the trap handler to nothing before executing it.
 trap 'trap " " SIGINT SIGTERM; kill -SIGINT 0; wait' SIGINT SIGTERM
 
+ask=,zenity
+
 function wait_for_user_ok {
-    name=$(zenity --info --title="Recording partial area" --text="Recording continues until it is stopped." --ok-label="Stop recording")
+    name=$($ask --info --title="Recording partial area" --text="Recording continues until it is stopped." --ok-label="Stop recording")
 }
 
 ~/bin/screenrecord-partial.sway &
