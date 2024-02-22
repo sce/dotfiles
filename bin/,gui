@@ -18,7 +18,7 @@ scriptname=$(basename "$0" | sed 's/^,//')
 
 # symlink to the name of a program to run that program
 if [[ "$scriptname" != "$this" ]]; then
-    exec toolbox run --container gui $scriptname
+    exec toolbox run --container gui $scriptname "$@"
 
 # use trailing arguments to run that command
 elif [[ "$@" != "" ]]; then
