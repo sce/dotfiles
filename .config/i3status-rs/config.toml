@@ -7,7 +7,7 @@ idle_bg = "#123456"
 idle_fg = "#abcdef"
 
 [icons]
-icons = "awesome6"
+icons = "awesome4"
 #[icons.overrides]
 #bat = ["|E|", "|_|", "|=|", "|F|"]
 #bat_charging = "|^| "
@@ -55,7 +55,7 @@ missing_format = ""
 block = "net"
 device = "wlp3s0"
 format = " $icon {$ssid $signal_strength|Wired connection}"
-format_alt = " $icon {$device $frequency $ssid $signal_strength|Wired connection}"
+format_alt = " $icon { $device$frequency $ssid $signal_strength|Wired connection}"
 
 [[block]]
 block = "memory"
@@ -95,7 +95,7 @@ missing_format = ""
 block = "battery"
 #driver = "upower"
 interval = 1
-format = "{ $icon| }$percentage{$time | }"
+format = " {$icon  |}{$time |}$percentage "
 missing_format = ""
 
 [[block]]
