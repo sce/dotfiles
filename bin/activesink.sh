@@ -3,31 +3,51 @@
 set -euo pipefail
 
 function volume_text {
-  echo $(pamixer --get-volume-human)
+  sink_name=$(pamixer --get-default-sink|tail -1|cut -d'"' -f4)
+  echo -e "$sink_name\n\nVolume:  $(pamixer --get-volume-human)"
 }
 
-function notify_volume {
-  notify-send -u low -t 1000 "$(volume_text)"
+function mic_text {
+  echo "Microphone:  $(pamixer --default-source --get-volume-human)"
+}
+
+function notify {
+  notify-send --app-name "activesink.sh" \
+      --transient --urgency low --expire-time 1000 "$1"
 }
 
 INC="3"
 
 case "$0" in
+  *mic-up)
+    pamixer --default-source --increase $INC
+    notify "$(mic_text)"
+    ;;
+  *mic-down)
+    pamixer --default-source --decrease $INC
+    notify "$(mic_text)"
+    ;;
+  *mic-mutetoggle)
+    pamixer --default-source --toggle-mute
+    notify "$(mic_text)"
+    ;;
   *up)
     pamixer --increase $INC
-    notify_volume
+    notify "$(volume_text)"
     ;;
 
   *down)
     pamixer --decrease $INC
-    notify_volume
+    notify "$(volume_text)"
     ;;
 
   *mutetoggle)
     pamixer --toggle-mute
-    notify_volume
+    notify "$(volume_text)"
     ;;
   *)
-    exec pamixer --get-default-sink
+    pamixer --list-sources; echo
+    pamixer --list-sinks; echo
+    pamixer --get-default-sink
     ;;
 esac
