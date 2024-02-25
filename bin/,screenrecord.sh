@@ -11,7 +11,7 @@ set -euo pipefail
 # redefine the trap handler to nothing before executing it.
 trap 'trap " " SIGINT SIGTERM; kill -SIGINT 0; wait' SIGINT SIGTERM
 
-ask=,zenity
+ask=~/bin/,zenity
 
 function wait_for_user_ok {
     name=$($ask --info --title="Recording current output" --text="Recording continues until it is stopped." --ok-label="Stop recording")

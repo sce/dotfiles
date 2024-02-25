@@ -9,7 +9,7 @@ set -euo pipefail
 
 set -x
 
-ask=,zenity
+ask=~/bin/,zenity
 
 function get_name {
     name=$($ask --entry --title="Rename current workspace" --text="Enter new name of current workspace:" --ok-label="Rename")
