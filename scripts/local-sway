@@ -6,11 +6,13 @@ packages=(
   sway swaybg swayidle swaylock waybar sway-wallpapers
   #grim grimshot slurp i3status i3status-rs
   grim grimshot slurp i3status
-  wofi rofi dex-autostart
+  wofi rofi-wayland dex-autostart
   # need ruby in the base system so that ruby scripts have easy access to
   # swaymsg and the sway socket
   ruby
   brightnessctl lxpolkit
+  pamixer
+
   # fzf history search needs perl
   fzf perl
   tmux
