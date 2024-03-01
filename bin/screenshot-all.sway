@@ -10,7 +10,7 @@ function notify {
   notify-send "$msg" &
 }
 
-dir=~/Bilder
+dir=$(xdg-user-dir PICTURES)
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
 file=${1:-"$dir/${date} screenshot.png"}
