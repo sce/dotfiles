@@ -18,8 +18,14 @@ packages=(
   tmux
 )
 
+packages_remove=(
+  firefox
+  firefox-langpacks
+)
+
 set -x
 
+rpm-ostree override remove "${packages_remove[@]}" || true
 rpm-ostree install --idempotent -y "${packages[@]}"
 
 sudo rpm-ostree apply-live --allow-replacement
