@@ -10,7 +10,7 @@ function notify {
   notify-send "$msg" &
 }
 
-dir=~/Videos
+dir=$(xdg-user-dir VIDEOS)
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
 file="$dir/${date} recording-partial.mkv"
@@ -20,7 +20,7 @@ gif_name=$(dirname "$file")/$(basename "$file" .mkv).gif
 geometry=$(slurp)
 notify "Recording rectangle to $file..."
 
-wf-recorder --no-audio --geometry "$geometry" -f "$file" --codec libx264 $@
+,wf-recorder --no-audio --geometry "$geometry" -f "$file" --codec libx264 $@
 
 notify "Recording finished"
 
