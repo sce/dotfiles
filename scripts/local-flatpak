@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+fedora_packages=(
+    org.mozilla.Firefox
+    org.gnome.Shotwell
+    io.mpv.Mpv
+)
+
+flathub_packages=(
+    com.google.Chrome
+)
+
+set -x
+
+flatpak install -y fedora "${fedora_packages[@]}"
+
+flatpak install -y flathub "${flathub_packages[@]}"
