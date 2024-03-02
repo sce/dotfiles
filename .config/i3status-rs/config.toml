@@ -53,7 +53,8 @@ missing_format = ""
 
 [[block]]
 block = "net"
-device = "wlp3s0"
+#device = "wlp3s0"
+#device = "wlp1s0"
 format = " $icon {$ssid $signal_strength|Wired connection}"
 format_alt = " $icon { $device$frequency $ssid $signal_strength|Wired connection}"
 
