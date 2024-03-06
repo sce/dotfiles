@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+
+packages+=(
+  SwayNotificationCenter
+)
+
+# add sway notification center copr:
+sudo curl -sL \
+    -o "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:erikreider:SwayNotificationCenter.repo" \
+    "https://copr.fedorainfracloud.org/coprs/erikreider/SwayNotificationCenter/repo/fedora-${fedora_version}/erikreider-SwayNotificationCenter-fedora-${fedora_version}.repo"

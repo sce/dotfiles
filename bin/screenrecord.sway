@@ -11,6 +11,7 @@ function notify {
 }
 
 dir=$(xdg-user-dir VIDEOS)
+record_cmd=,wf-recorder
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
 file=$"$dir/${date} recording.mkv"
@@ -23,7 +24,7 @@ notify "Recording output $output..."
 echo "Writing to \"$file\"..."
 
 shift || true
-,wf-recorder --no-audio --output "$output" -f "$file" --codec libx264 $@
+$record_cmd --output "$output" -f "$file" --codec libx264 $@
 
 notify "Recording finished"
 

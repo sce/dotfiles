@@ -16,6 +16,7 @@ packages=(
   # fzf history search needs perl
   fzf perl
   tmux
+
   zenity
 )
 
@@ -23,6 +24,18 @@ packages_remove=(
   firefox
   firefox-langpacks
 )
+
+fedora_version=$(rpm -E %fedora)
+
+if [ -d ~/scripts/local-sway.d ]; then
+    for part in ~/scripts/local-sway.d/*.part; do
+        if [ -f "$part" ]; then
+            echo $part
+            . "$part"
+        fi
+    done
+fi
+unset part
 
 set -x
 
