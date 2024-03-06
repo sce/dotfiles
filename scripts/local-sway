@@ -15,10 +15,7 @@ packages=(
   zenity
 )
 
-packages_remove=(
-  firefox
-  firefox-langpacks
-)
+packages_remove=()
 
 fedora_version=$(rpm -E %fedora)
 
