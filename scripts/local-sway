@@ -27,9 +27,15 @@ if [ -d ~/scripts/local-sway.d ]; then
 fi
 unset part
 
+for package in ${packages_remove[@]}; do
+    (
+        set -x
+        rpm-ostree override remove "${package}"
+    ) || true
+done
+
 set -x
 
-rpm-ostree override remove "${packages_remove[@]}" || true
 rpm-ostree install --idempotent -y "${packages[@]}"
 
 sudo rpm-ostree apply-live --allow-replacement
