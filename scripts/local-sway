@@ -16,6 +16,8 @@ packages=(
   # fzf history search needs perl
   fzf perl
   tmux
+
+  zenity
 )
 
 packages_remove=(
