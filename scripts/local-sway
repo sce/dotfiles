@@ -3,14 +3,9 @@
 set -euo pipefail
 
 packages=(
-  sway swaybg swayidle swaylock waybar sway-wallpapers
-  #grim grimshot slurp i3status i3status-rs
-  grim grimshot slurp i3status
-  wofi rofi-wayland dex-autostart
-  # need ruby in the base system so that ruby scripts have easy access to
-  # swaymsg and the sway socket
-  ruby
-  brightnessctl lxpolkit
+  brightnessctl
+  dex-autostart
+  lxpolkit
   pamixer
 
   # fzf history search needs perl
@@ -30,7 +25,7 @@ fedora_version=$(rpm -E %fedora)
 if [ -d ~/scripts/local-sway.d ]; then
     for part in ~/scripts/local-sway.d/*.part; do
         if [ -f "$part" ]; then
-            echo $part
+            echo "Adding $part ..."
             . "$part"
         fi
     done
