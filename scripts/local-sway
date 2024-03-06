@@ -4,15 +4,13 @@ set -euo pipefail
 
 packages=(
   brightnessctl
-  dex-autostart
-  lxpolkit
   pamixer
 
-  # fzf history search needs perl
-  fzf perl
-  tmux
-
+  dex-autostart
+  lxpolkit
   zenity
+
+  tmux
 )
 
 packages_remove=()
