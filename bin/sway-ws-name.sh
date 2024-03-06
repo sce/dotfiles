@@ -7,8 +7,6 @@
 
 set -euo pipefail
 
-set -x
-
 ask=~/bin/,zenity
 
 function get_name {
