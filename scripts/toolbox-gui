@@ -9,7 +9,7 @@ copr_i3status_rs="atim/i3status-rust"
 
 # wdisplays needs libGLESv2 which in fedora is found in libglvnd-gles:
 dnf_sway="wdisplays libglvnd-gles wf-recorder"
-dnf_misc="i3status-rust gkrellm zenity"
+dnf_misc="i3status-rust pavucontrol gkrellm zenity"
 
 set -x
 

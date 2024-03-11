@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+
+packages+=(
+  # fzf history search needs perl
+  fzf perl
+)

@@ -57,3 +57,6 @@ node_modules/
 # all directories that look like they might be cache:
 *cache*/
 *Cache*/
+
+# ignore vim swap files:
+*.swp
