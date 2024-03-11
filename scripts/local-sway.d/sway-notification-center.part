@@ -9,6 +9,4 @@ packages+=(
 repo_filename="_copr:copr.fedorainfracloud.org:erikreider:SwayNotificationCenter.repo"
 repo_url="https://copr.fedorainfracloud.org/coprs/erikreider/SwayNotificationCenter/repo/fedora-${fedora_version}/erikreider-SwayNotificationCenter-fedora-${fedora_version}.repo"
 
-# add sway notification center copr:
-set -x
-sudo curl -sL -o "/etc/yum.repos.d/$repo_filename" "$repo_url"
+repos[$repo_filename]="$repo_url"

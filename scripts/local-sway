@@ -25,17 +25,29 @@ packages_remove=(
   firefox-langpacks
 )
 
+# associative map (dictionary):
+declare -A repos
+
 fedora_version=$(rpm -E %fedora)
 
 if [ -d ~/scripts/local-sway.d ]; then
     for part in ~/scripts/local-sway.d/*.part; do
         if [ -f "$part" ]; then
-            echo $part
+            echo "Running $part ..."
             . "$part"
         fi
     done
 fi
 unset part
+
+echo Installing repositories:
+for repo_filename in ${!repos[@]}; do
+    repo_url=${repos[$repo_filename]}
+    output="/etc/yum.repos.d/$repo_filename"
+    echo "$output from $repo_url"
+    sudo curl --progress-bar --location --output "$output" "$repo_url"
+done
+unset repo_filename repo_url output
 
 set -x
 

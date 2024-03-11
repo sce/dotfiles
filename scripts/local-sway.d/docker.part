@@ -13,4 +13,4 @@ packages+=(
 repo_filename="docker-ce.repo"
 repo_url="https://download.docker.com/linux/fedora/docker-ce.repo"
 
-sudo curl -sL -o "/etc/yum.repos.d/$repo_filename" "$repo_url"
+repos[$repo_filename]="$repo_url"
