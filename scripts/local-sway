@@ -15,17 +15,29 @@ packages=(
 
 packages_remove=()
 
+# associative map (dictionary):
+declare -A repos
+
 fedora_version=$(rpm -E %fedora)
 
 if [ -d ~/scripts/local-sway.d ]; then
     for part in ~/scripts/local-sway.d/*.part; do
         if [ -f "$part" ]; then
-            echo "Adding $part ..."
+            echo "Running $part ..."
             . "$part"
         fi
     done
 fi
 unset part
+
+echo Installing repositories:
+for repo_filename in ${!repos[@]}; do
+    repo_url=${repos[$repo_filename]}
+    output="/etc/yum.repos.d/$repo_filename"
+    echo "$output from $repo_url"
+    sudo curl --progress-bar --location --output "$output" "$repo_url"
+done
+unset repo_filename repo_url output
 
 for package in ${packages_remove[@]}; do
     (
@@ -34,8 +46,21 @@ for package in ${packages_remove[@]}; do
     ) || true
 done
 
+(
+    set -x
+    rpm-ostree install --idempotent -y "${packages[@]}"
+)
+
+echo Running post install scripts...
+if [ -d ~/scripts/local-sway.d ]; then
+    for post in ~/scripts/local-sway.d/*.post; do
+        if [ -f "$post" ]; then
+            echo "Running $post ..."
+            . "$post"
+        fi
+    done
+fi
+unset post
+
 set -x
-
-rpm-ostree install --idempotent -y "${packages[@]}"
-
 sudo rpm-ostree apply-live --allow-replacement
