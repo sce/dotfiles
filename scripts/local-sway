@@ -46,8 +46,21 @@ for package in ${packages_remove[@]}; do
     ) || true
 done
 
+(
+    set -x
+    rpm-ostree install --idempotent -y "${packages[@]}"
+)
+
+echo Running post install scripts...
+if [ -d ~/scripts/local-sway.d ]; then
+    for post in ~/scripts/local-sway.d/*.post; do
+        if [ -f "$post" ]; then
+            echo "Running $post ..."
+            . "$post"
+        fi
+    done
+fi
+unset post
+
 set -x
-
-rpm-ostree install --idempotent -y "${packages[@]}"
-
 sudo rpm-ostree apply-live --allow-replacement

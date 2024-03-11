@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -euo pipefail
+
+user=$(whoami)
+grep -E '^docker:' /etc/group || (
+    echo "Adding group \"docker\" to enable \"${user}\" to use docker..."
+    #sudo groupadd docker
+    echo "grep -E '^docker:' /usr/lib/group >> /etc/group" | sudo bash
+    sudo usermod -aG docker $user
+)
+
+echo To enable docker daemon on startup:
+echo "# sudo systemctl enable docker"
