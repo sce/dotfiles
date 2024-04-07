@@ -2,17 +2,9 @@
 
 set -euo pipefail
 
-packages=(
-  brightnessctl
-  pamixer
+rpm_config_dir=~/scripts/rpm.d
 
-  dex-autostart
-  lxpolkit
-  zenity
-
-  tmux
-)
-
+packages=()
 packages_remove=()
 
 # associative map (dictionary):
@@ -21,8 +13,6 @@ declare -A packages_override
 declare -A packages_replace
 
 fedora_version=$(rpm -E %fedora)
-
-rpm_config_dir=~/scripts/rpm.d
 
 if [ -d "$rpm_config_dir" ]; then
     for part in "$rpm_config_dir"/*.conf; do
