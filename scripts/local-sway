@@ -22,8 +22,10 @@ declare -A packages_replace
 
 fedora_version=$(rpm -E %fedora)
 
-if [ -d ~/scripts/local-sway.d ]; then
-    for part in ~/scripts/local-sway.d/*.part; do
+rpm_config_dir=~/scripts/rpm.d
+
+if [ -d "$rpm_config_dir" ]; then
+    for part in "$rpm_config_dir"/*.conf; do
         if [ -f "$part" ]; then
             echo "Running $part ..."
             . "$part"
@@ -31,6 +33,8 @@ if [ -d ~/scripts/local-sway.d ]; then
     done
 fi
 unset part
+
+###############################################################################
 
 echo -e "\nInstalling repositories..."
 for repo_filename in ${!repos[@]}; do
@@ -77,8 +81,8 @@ done
 unset remove_package add_package
 
 echo -e "\nRunning post install scripts..."
-if [ -d ~/scripts/local-sway.d ]; then
-    for post in ~/scripts/local-sway.d/*.post; do
+if [ -d "$rpm_config_dir" ]; then
+    for post in "$rpm_config_dir"/*.post; do
         if [ -f "$post" ]; then
             echo "Running $post ..."
             . "$post"
