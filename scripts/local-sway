@@ -17,6 +17,8 @@ packages_remove=()
 
 # associative map (dictionary):
 declare -A repos
+declare -A packages_override
+declare -A packages_replace
 
 fedora_version=$(rpm -E %fedora)
 
@@ -30,7 +32,7 @@ if [ -d ~/scripts/local-sway.d ]; then
 fi
 unset part
 
-echo Installing repositories:
+echo -e "\nInstalling repositories..."
 for repo_filename in ${!repos[@]}; do
     repo_url=${repos[$repo_filename]}
     output="/etc/yum.repos.d/$repo_filename"
@@ -39,19 +41,42 @@ for repo_filename in ${!repos[@]}; do
 done
 unset repo_filename repo_url output
 
+echo -e "\nRemoving packages..."
 for package in ${packages_remove[@]}; do
     (
         set -x
         rpm-ostree override remove "${package}"
     ) || true
 done
+unset package
 
+echo -e "\nAdding packages..."
 (
     set -x
     rpm-ostree install --idempotent -y "${packages[@]}"
 )
 
-echo Running post install scripts...
+echo -e "\nOverriding specific packages..."
+for remove_package in ${!packages_override[@]}; do
+    add_package=${packages_override[$remove_package]}
+    (
+        set -x
+        rpm-ostree override remove "$remove_package" --install "$add_package"
+    ) || true
+done
+unset remove_package add_package
+
+echo -e "\nReplacing specific packages..."
+for remove_package in ${!packages_replace[@]}; do
+    add_package=${packages_replace[$remove_package]}
+    (
+        set -x
+        rpm-ostree update --uninstall "$remove_package" --install "$add_package"
+    ) || true
+done
+unset remove_package add_package
+
+echo -e "\nRunning post install scripts..."
 if [ -d ~/scripts/local-sway.d ]; then
     for post in ~/scripts/local-sway.d/*.post; do
         if [ -f "$post" ]; then
