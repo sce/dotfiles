@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-rpm_config_dir=~/scripts/rpm.d
+rpm_config_dir=$(dirname $0)/rpm.d
 
 packages=()
 packages_remove=()
@@ -14,10 +14,19 @@ declare -A packages_replace
 
 fedora_version=$(rpm -E %fedora)
 
+function title {
+    echo -e "\n=== $1"
+}
+
+function subtitle {
+    echo "--- $1"
+}
+
+title "Parsing configs..."
 if [ -d "$rpm_config_dir" ]; then
     for part in "$rpm_config_dir"/*.conf; do
         if [ -f "$part" ]; then
-            echo "Running $part ..."
+            subtitle "Running $part ..."
             . "$part"
         fi
     done
@@ -26,16 +35,16 @@ unset part
 
 ###############################################################################
 
-echo -e "\nInstalling repositories..."
+title "Installing repositories..."
 for repo_filename in ${!repos[@]}; do
     repo_url=${repos[$repo_filename]}
     output="/etc/yum.repos.d/$repo_filename"
-    echo "$output from $repo_url"
+    subtitle "$output from $repo_url"
     sudo curl --progress-bar --location --output "$output" "$repo_url"
 done
 unset repo_filename repo_url output
 
-echo -e "\nRemoving packages..."
+title "Removing packages..."
 for package in ${packages_remove[@]}; do
     (
         set -x
@@ -44,13 +53,13 @@ for package in ${packages_remove[@]}; do
 done
 unset package
 
-echo -e "\nAdding packages..."
+title "Adding packages..."
 (
     set -x
     rpm-ostree install --idempotent -y "${packages[@]}"
 )
 
-echo -e "\nOverriding specific packages..."
+title "Overriding specific packages..."
 for remove_package in ${!packages_override[@]}; do
     add_package=${packages_override[$remove_package]}
     (
@@ -60,7 +69,7 @@ for remove_package in ${!packages_override[@]}; do
 done
 unset remove_package add_package
 
-echo -e "\nReplacing specific packages..."
+title "Replacing specific packages..."
 for remove_package in ${!packages_replace[@]}; do
     add_package=${packages_replace[$remove_package]}
     (
@@ -70,11 +79,11 @@ for remove_package in ${!packages_replace[@]}; do
 done
 unset remove_package add_package
 
-echo -e "\nRunning post install scripts..."
+title "Running post install scripts..."
 if [ -d "$rpm_config_dir" ]; then
     for post in "$rpm_config_dir"/*.post; do
         if [ -f "$post" ]; then
-            echo "Running $post ..."
+            subtitle "Running $post ..."
             . "$post"
         fi
     done
