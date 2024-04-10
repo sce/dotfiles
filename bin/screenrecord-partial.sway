@@ -7,27 +7,35 @@ function notify {
   msg=$1
 
   echo "$msg"
-  notify-send "$msg" &
+  notify-send --transient "$msg" &
 }
 
+# fail early:
 dir=$(xdg-user-dir VIDEOS)
-record_cmd=,wf-recorder
+record_cmd=$(which wf-recorder)
+slurp=$(which slurp)
 
 date=$(date +"%Y-%m-%d %H-%M-%S")
 file="$dir/${date} recording-partial.mkv"
 mp4_name=$(dirname "$file")/$(basename "$file" .mkv).mp4
 gif_name=$(dirname "$file")/$(basename "$file" .mkv).gif
 
-geometry=$(slurp)
+geometry=$($slurp)
 notify "Recording rectangle to $file..."
 
 $record_cmd --geometry "$geometry" -f "$file" --codec libx264 $@
 
-notify "Recording finished"
+notify "Recording finished: $(basename "$file")"
+
+ffmpeg=$(which ~/bin/,ffmpeg)
 
 # 20240104: mp4 h264 isn't supported by slack, but h264 is
 # https://github.com/AvdLee/RocketSimApp/issues/31
-ffmpeg -i "$file" -c:a copy -c:v libx264 -filter:v fps=30 "$mp4_name"
+(
+    set -x
+    $ffmpeg -i "$file" -c:a copy -c:v libx264 -filter:v fps=30 "$mp4_name" ||
+        $ffmpeg -i "$file" -c:a copy -filter:v fps=30 "$mp4_name"
+)
 
 notify "Created \"$mp4_name\""
 
