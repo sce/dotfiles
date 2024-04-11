@@ -96,7 +96,7 @@ missing_format = ""
 block = "battery"
 #driver = "upower"
 interval = 1
-format = " {$icon  |}{$time |}$percentage "
+format = "{ $icon |}{ $time |}$percentage "
 missing_format = ""
 
 [[block]]
