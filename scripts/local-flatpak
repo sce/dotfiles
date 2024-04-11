@@ -5,13 +5,15 @@ set -euo pipefail
 fedora_packages=(
     com.github.tchx84.Flatseal
     org.gnome.Shotwell
-    org.mozilla.Firefox
 )
 
 flathub_packages=(
     com.google.Chrome
     com.obsproject.Studio
+    com.vscodium.codium
     io.mpv.Mpv
+    org.gnome.Snapshot
+    org.mozilla.firefox
 )
 
 set -x
