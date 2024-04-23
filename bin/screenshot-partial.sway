@@ -15,7 +15,7 @@ dir=$(xdg-user-dir PICTURES)
 date=$(date +"%Y-%m-%d %H-%M-%S")
 file=${1:-"$dir/${date} screenshot-partial.png"}
 
-notify "Taking screenshot..."
+echo "Taking screenshot..."
 grim -g "$(slurp)" - | tee "$file" | wl-copy
 
 notify "Wrote $file"
