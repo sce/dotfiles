@@ -68,20 +68,14 @@ au FocusGained,BufEnter * :checktime
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+runtime vim.d/cursor.vim
 runtime vim.d/indent-4.vim
 runtime vim.d/search.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance:
 
-set scrolloff=3 " keep some lines of text at the bottom/top when scrolling.
-set ruler " always show cursor position
-set laststatus=2 " always show status line
-set number " add line numbers
 set showcmd " show (long) commands being typed
-
-" make line numbers relative to current line
-" set relativenumber
 
 syntax on
 
