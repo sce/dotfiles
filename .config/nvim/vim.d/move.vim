@@ -56,9 +56,6 @@ map <esc>l :tabnext<CR>
 " ALT+h for previous tab
 map <esc>h :tabprevious<CR>
 
-" (mostly ruby specific):
-" \%V means restrict to visual selection (if any)
-
 let mapleader = ","
 
 " map leader instead of [ for convenience
@@ -66,6 +63,8 @@ let mapleader = ","
 "map <Leader>9' ]'<CR>
 map <Leader>8 ['<CR>
 map <Leader>9 ]'<CR>
+
+" \%V means restrict to visual selection (if any)
 
 " map \= to fix space around equal signs
 map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
@@ -84,9 +83,6 @@ map <Leader>, :s/\s*;\s*/\r/g<CR>
 
 " map \- to split words into separate lines
 map <Leader>- :s/\s\+/\r/g<CR>
-
-" run current ruby test file
-" map <Leader>r :!time bundle exec ruby -Itest -Ilib %
 
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
