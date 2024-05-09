@@ -324,6 +324,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-plug plugins https://github.com/junegunn/vim-plug
+runtime vim.d/plug.vim
+
 " call :PlugInstall after adding something here:
 call plug#begin('~/.vim/plugged')
 
