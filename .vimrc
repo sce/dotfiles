@@ -85,15 +85,6 @@ syntax on
 set background=dark
 " colorscheme torte
 
-highlight StatusLine ctermfg=233 ctermbg=white
-
-set cursorline
-highlight CursorLine cterm=none ctermbg=233
-"highlight CursorLineNr cterm=bold ctermbg=233
-highlight CursorLineNr cterm=NONE ctermbg=233 ctermfg=blue
-highlight LineNr ctermbg=232
-highlight Visual ctermbg=235 cterm=bold
-
 " in order to let the terminal handle the background:
 highlight Normal ctermbg=none
 
