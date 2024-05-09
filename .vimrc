@@ -66,16 +66,7 @@ set confirm " ask what to do when quitting in a limbo state instead of just comp
 " https://vi.stackexchange.com/questions/444/how-do-i-reload-the-current-file
 au FocusGained,BufEnter * :checktime
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indentation:
-
-set tabstop=4 " how many spaces a tab character counts as
-set shiftwidth=4 " numer of spaces per autoindent (zero: use ts value)
-
-" numer of spaces per tab in insert mode (zero: off, negative: use ts value)
-set softtabstop=4
-set autoindent " when formatting a paragraph of text, keep the indent of the first line
-set expandtab " tabs becomes spaces
+runtime vim.d/indent-4.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching:
