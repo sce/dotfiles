@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+#config=$(xdg-user-dir)/.config/nvim/init-go.vim
+config=~/.config/nvim/init-go.vim
+
+set -x
+,nvim -u "${config}"
