@@ -66,15 +66,10 @@ set confirm " ask what to do when quitting in a limbo state instead of just comp
 " https://vi.stackexchange.com/questions/444/how-do-i-reload-the-current-file
 au FocusGained,BufEnter * :checktime
 
-runtime vim.d/indent-4.vim
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Searching:
 
-set incsearch  " search while you're typing the search string
-set hlsearch   " highlight search results
-set ignorecase " ignore case when searching
-set smartcase  " but if we search for big letters, make search case sensitive again
+runtime vim.d/indent-4.vim
+runtime vim.d/search.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance:
