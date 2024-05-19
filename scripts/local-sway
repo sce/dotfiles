@@ -70,14 +70,17 @@ done
 unset remove_package add_package
 
 title "Replacing specific packages..."
+# Build a single command to save time:
+add_remove="rpm-ostree update"
 for remove_package in ${!packages_replace[@]}; do
     add_package=${packages_replace[$remove_package]}
-    (
-        set -x
-        rpm-ostree update --uninstall "$remove_package" --install "$add_package"
-    ) || true
+    add_remove+=" --uninstall $remove_package --install $add_package"
 done
-unset remove_package add_package
+(
+  set -x
+  $add_remove
+)
+unset remove_package add_package add_remove
 
 title "Running post install scripts..."
 if [ -d "$rpm_config_dir" ]; then
