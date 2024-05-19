@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+
+#
+# Go (golang) environment
+#
+cname=go
+run="toolbox run --container $cname"
+
+dnf_misc="golang"
+
+set -x
+
+toolbox create $cname || true
+
+$run sudo dnf install -y $dnf_misc

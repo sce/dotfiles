@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Call this script directly to enter the "go" (golang) toolbox container. That
+# container should be created from the ./scripts/toolbox-go script.
+#
+# Or symlink to this script to run the name of the link as a command inside the
+# cli container. Any prefixed comma will be removed from the command name.
+#
+# E.g.:
+#
+#     $ ln -s ,go ,node
+#     $ ./,node # will run "node" inside go container
+#
+default_name="go"
+script_name=$(basename $0 | sed 's/^,//')
+
+if [[ "$script_name" = "$default_name" ]]; then
+  exec toolbox enter "$default_name" "$@"
+else
+  exec toolbox run --container "$default_name" "$script_name" "$@"
+fi
