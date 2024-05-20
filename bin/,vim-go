@@ -6,4 +6,4 @@ set -euo pipefail
 config=~/.config/nvim/init-go.vim
 
 set -x
-,nvim -u "${config}"
+nvim -u "${config}" "$@"
