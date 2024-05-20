@@ -39,6 +39,9 @@ call plug#begin('~/.config/nvim/go/plugged')
   " lsp/vscode snippets needed by nvim-cmp:
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
+
+  " File explorer:
+  Plug 'nvim-tree/nvim-tree.lua'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,6 +60,8 @@ runtime config/gruvbox.vim
 
 runtime vim.d/nvim-cmp.vim
 runtime vim.d/nvim-cmp-go.vim
+
+runtime vim.d/nvim-tree.vim
 
 " No need for require('lspconfig'), navigator will configure it for you.
 " Actually looks like nvim-cmp is automatically picked up too.
