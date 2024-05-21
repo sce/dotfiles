@@ -26,7 +26,7 @@ call plug#begin('~/.config/nvim/go/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  Plug 'morhetz/gruvbox' " vim color scheme gruvbox
+  Plug 'marko-cerovac/material.nvim'
 
   " Neovim LSP autocomplete:
   Plug 'neovim/nvim-lspconfig'
@@ -56,12 +56,12 @@ runtime vim.d/search.vim
 set runtimepath+=,~/.vim
 
 runtime config/fzf.vim
-runtime config/gruvbox.vim
 
 runtime vim.d/nvim-cmp.vim
 runtime vim.d/nvim-cmp-go.vim
 
 runtime vim.d/nvim-tree.vim
+runtime vim.d/material.vim
 
 " No need for require('lspconfig'), navigator will configure it for you.
 " Actually looks like nvim-cmp is automatically picked up too.
