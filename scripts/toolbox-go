@@ -8,10 +8,16 @@ set -euo pipefail
 cname=go
 run="toolbox run --container $cname"
 
-dnf_misc="golang"
+dnf_misc=(
+    golang
+    golang-x-tools-gopls
+
+    neovim
+    fzf
+)
 
 set -x
 
 toolbox create $cname || true
 
-$run sudo dnf install -y $dnf_misc
+$run sudo dnf install -y ${dnf_misc[@]}
