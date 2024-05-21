@@ -8,6 +8,15 @@
 runtime vim.d/plug.vim
 
 call plug#begin('~/.config/nvim/go/plugged')
+  " Startup screen:
+  Plug 'mhinz/vim-startify'
+
+  " treesitter enabled color scheme:
+  Plug 'marko-cerovac/material.nvim'
+
+  " Other setup
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
   " Go setup from https://github.com/ray-x/go.nvim :
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -21,12 +30,6 @@ call plug#begin('~/.config/nvim/go/plugged')
   Plug 'ray-x/navigator.lua'
 
   Plug 'ray-x/go.nvim'
-
-  " Other setup
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-
-  Plug 'marko-cerovac/material.nvim'
 
   " Neovim LSP autocomplete:
   Plug 'neovim/nvim-lspconfig'
@@ -55,6 +58,7 @@ runtime vim.d/search.vim
 
 set runtimepath+=,~/.vim
 
+runtime config/startify.vim
 runtime config/fzf.vim
 
 runtime vim.d/nvim-cmp.vim
