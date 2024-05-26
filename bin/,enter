@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+#
+# Interactive script for selecting toolbox container to enter.
+#
+
+prompt="Toolbox container: "
+
+# select container:
+containers=$(toolbox list --containers | tail -n +2 | awk '{ print $2 }')
+container=$(echo "$containers" | fzf --height=~20 --no-info --reverse --prompt="$prompt")
+
+echo $prompt$container
+
+set -x
+
+exec toolbox enter --container "$container" "$@"
