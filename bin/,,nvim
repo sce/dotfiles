@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+#
+# Interactive script for selecting nvim init file to use and which toolbox
+# container to execute in.
+#
+
+init_dir=~/.config/nvim
+configs=$(ls -1 $init_dir/init*.vim)
+
+# select config:
+config=$(echo "$configs" | fzf --tac --height=~20)
+echo $config
+
+# select container:
+containers=$(toolbox list --containers | tail -n +2 | awk '{ print $2 }')
+container=$(echo "$containers" | fzf --tac --height=~20)
+echo $container
+
+set -x
+
+toolbox run --container "$container" nvim -u "$config" "$@"
