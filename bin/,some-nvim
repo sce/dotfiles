@@ -7,10 +7,16 @@ set -euo pipefail
 # command.
 #
 
+prompt="Neovim config file: "
+
 init_dir=~/.config/nvim
 configs=$(ls -1 $init_dir/init*.vim)
 
 # select config:
-config=$(echo "$configs" | fzf --tac --height=~20 --prompt="Neovim config file: ")
+config=$(echo "$configs" | fzf --height=~20 --no-info --reverse --prompt="$prompt")
 
-echo nvim -u "$config"
+echo $prompt$config
+
+set -x
+
+exec nvim -u "$config" "$@"

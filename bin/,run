@@ -6,11 +6,14 @@ set -euo pipefail
 # Interactive script for selecting toolbox container to run given command in.
 #
 
+prompt="Toolbox container: "
+
 # select container:
 containers=$(toolbox list --containers | tail -n +2 | awk '{ print $2 }')
-container=$(echo "$containers" | fzf --tac --height=~20 --prompt="Toolbox container: ")
-echo $container
+container=$(echo "$containers" | fzf --height=~20 --no-info --reverse --prompt="$prompt")
+
+echo $prompt$container
 
 set -x
 
-toolbox run --container "$container" "$@"
+exec toolbox run --container "$container" "$@"

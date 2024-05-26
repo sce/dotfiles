@@ -7,6 +7,4 @@ set -euo pipefail
 # container to execute in.
 #
 
-cmd=$(,some-nvim)
-
-exec ,run $cmd
+exec ,run ,some-nvim "$@"
