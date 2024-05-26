@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euo pipefail
+
+#
+# Interactive script for selecting nvim init file to use. Prints resulting nvim
+# command.
+#
+
+init_dir=~/.config/nvim
+configs=$(ls -1 $init_dir/init*.vim)
+
+# select config:
+config=$(echo "$configs" | fzf --tac --height=~20 --prompt="Neovim config file: ")
+
+echo nvim -u "$config"
