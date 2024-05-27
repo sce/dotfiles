@@ -14,6 +14,7 @@ dnf_misc=(
 
     neovim
     fzf
+    cmake # for telescope-fzf-native
 )
 
 set -x
