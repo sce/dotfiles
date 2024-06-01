@@ -67,22 +67,22 @@ map <Leader>9 ]'<CR>
 " \%V means restrict to visual selection (if any)
 
 " map \= to fix space around equal signs
-map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
-
-" map \s to squeeze whitespace (while preserving indentation)
-map <Leader>s :s/\%V\(\S\)\s\+/\1 /g<CR>
-
-" map \n to squeeze newlines
-map <Leader>n :s/\n\n\+/\r\r/g<CR>
-
-" map \h to split hash arguments into separate lines
-map <Leader>h :s/\s*,\s\+/,\r/g<CR>
-
-" map \, to split statements into separate lines
-map <Leader>, :s/\s*;\s*/\r/g<CR>
-
-" map \- to split words into separate lines
-map <Leader>- :s/\s\+/\r/g<CR>
+""" map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
+""" 
+""" " map \s to squeeze whitespace (while preserving indentation)
+""" map <Leader>s :s/\%V\(\S\)\s\+/\1 /g<CR>
+""" 
+""" " map \n to squeeze newlines
+""" map <Leader>n :s/\n\n\+/\r\r/g<CR>
+""" 
+""" " map \h to split hash arguments into separate lines
+""" map <Leader>h :s/\s*,\s\+/,\r/g<CR>
+""" 
+""" " map \, to split statements into separate lines
+""" map <Leader>, :s/\s*;\s*/\r/g<CR>
+""" 
+""" " map \- to split words into separate lines
+""" map <Leader>- :s/\s\+/\r/g<CR>
 
 " map <Leader>c :!git ci
 " map <Leader>C :!git dc
@@ -109,40 +109,3 @@ map <Leader>j :jumps<CR>
 nnoremap g, <C-o>
 " jump forwards with g.
 nnoremap g. <C-i>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" From http://amix.dk/vim/vimrc.html:
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Really useful!
-" In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-" From an idea by Michael Naumann
-function! VisualSearch(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
