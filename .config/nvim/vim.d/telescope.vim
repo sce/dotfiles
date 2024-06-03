@@ -8,16 +8,25 @@
 
 " nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>c <cmd>Telescope commands<cr>
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope git_files<cr>
 nnoremap <leader>j <cmd>Telescope jumplist<cr>
-nnoremap <leader>r <cmd>Telescope live_grep<cr>
 nnoremap <leader>s <cmd>Telescope spell_suggest<cr>
+nnoremap <leader>t <cmd>Telescope builtin<cr>
+nnoremap <leader>z <cmd>Telescope current_buffer_fuzzy_find<cr>
 
+nnoremap <leader>d <cmd>Telescope diagnostics<cr>
+nnoremap <leader>q <cmd>Telescope quickfix<cr>
+
+" only cached pickers:
+" nnoremap <leader>p <cmd>Telescope pickers<cr>
+
+" requires ripgrep
+nnoremap <leader>r <cmd>Telescope live_grep<cr>
 nnoremap gr <cmd>Telescope grep_string<cr>
-nnoremap gR <cmd>Telescope lsp_references<cr>
 
-nnoremap <leader>h <cmd>Telescope highlights<cr>
+nnoremap gR <cmd>Telescope lsp_references<cr>
 
 lua <<EOF
   require('telescope').setup{
