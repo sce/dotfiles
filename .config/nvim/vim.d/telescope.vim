@@ -31,7 +31,7 @@ EOF
 "
 " nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
-nnoremap <leader>c <cmd>Telescope commands<cr>
+nnoremap <leader>C <cmd>Telescope commands<cr>
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope git_files<cr>
 nnoremap <leader>j <cmd>Telescope jumplist<cr>
