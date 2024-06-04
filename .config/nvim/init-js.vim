@@ -56,6 +56,7 @@ runtime config/startify.vim
 
 runtime vim.d/nvim-cmp.vim
 runtime vim.d/nvim-cmp-js.vim
+runtime vim.d/nvim-cmp-html.vim
 
 " runtime vim.d/nvim-tree.vim
 runtime vim.d/material.vim
