@@ -40,6 +40,8 @@
   " Plug 'nvim-telescope/telescope-ui-select.nvim'
   Plug 'LukasPietzschmann/telescope-tabs'
 
+  Plug 'debugloop/telescope-undo.nvim'
+
 " File explorer:
   " runtime vim.d/neo-tree.vim
   Plug 'nvim-lua/plenary.nvim'

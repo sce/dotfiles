@@ -35,6 +35,9 @@ lua<<EOF
   -- for searching tabs in telescope:
   require('telescope').load_extension('telescope-tabs')
   require('telescope-tabs').setup {}
+
+  -- for getting undo diffs:
+  require("telescope").load_extension("undo")
 EOF
 
 "
@@ -51,6 +54,9 @@ nnoremap <leader>z <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 nnoremap <leader>d <cmd>Telescope diagnostics<cr>
 nnoremap <leader>q <cmd>Telescope quickfix<cr>
+
+" nnoremap <leader>u <cmd>lua require('telescope').extensions.undo.undo()<cr>
+nnoremap <leader>u <cmd>Telescope undo<cr>
 
 " only cached pickers:
 " nnoremap <leader>p <cmd>Telescope pickers<cr>
