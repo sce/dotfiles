@@ -38,6 +38,9 @@ lua<<EOF
 
   -- for getting undo diffs:
   require("telescope").load_extension("undo")
+
+  -- for browsing git file history:
+  require("telescope").load_extension("git_file_history")
 EOF
 
 "
@@ -46,6 +49,7 @@ nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>C <cmd>Telescope commands<cr>
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope git_files<cr>
+nnoremap <leader>h <cmd>Telescope git_file_history<cr>
 nnoremap <leader>j <cmd>Telescope jumplist<cr>
 nnoremap <leader>s <cmd>Telescope spell_suggest<cr>
 nnoremap <leader>t <cmd>Telescope builtin<cr>
