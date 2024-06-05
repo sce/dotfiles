@@ -16,6 +16,15 @@ packages=(
   graphviz colorized-logs
   # convenience, wl-copy etc:
   wl-clipboard
+
+  ripgrep
+
+  # bashls:
+  shellcheck
+)
+
+yarns=(
+  bash-language-server
 )
 
 set -x
@@ -23,3 +32,4 @@ set -x
 toolbox create $cname || true
 
 $run sudo dnf install -y "${packages[@]}"
+$run yarn global add "${yarns[@]}"

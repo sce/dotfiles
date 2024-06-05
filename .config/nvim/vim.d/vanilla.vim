@@ -16,7 +16,10 @@ runtime vim.d/treesitter.vim
 runtime vim.d/material.vim
 
 runtime vim.d/nvim-lsp.vim
+runtime vim.d/bashls.vim
+
 runtime vim.d/nvim-cmp.vim
-runtime vim.d/neo-tree.vim
 
 runtime vim.d/telescope.vim
+
+runtime vim.d/neo-tree.vim
