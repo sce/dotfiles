@@ -18,12 +18,21 @@ lua<<EOF
         },
       }
     }
+
+    -- extensions = {
+    --   ["ui-select"] = {
+    --     require("telescope.themes").get_dropdown {}
+    --   }
+    -- }
   }
 
   -- for telescope-fzf-native:
   require('telescope').load_extension('fzf')
 
-  -- for tabs in telescope:
+  -- for using telescope instead of ui.select:
+  -- require('telescope').load_extension('ui-select')
+
+  -- for searching tabs in telescope:
   require('telescope').load_extension('telescope-tabs')
   require('telescope-tabs').setup {}
 EOF
