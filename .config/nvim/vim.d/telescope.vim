@@ -14,6 +14,7 @@ lua<<EOF
         --   ["<esc>"] = require('telescope.actions').close,
         -- },
         i = {
+          -- hit escape to exit insert mode:
           ["<esc>"] = require('telescope.actions').close,
         },
       }
