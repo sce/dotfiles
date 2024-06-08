@@ -12,6 +12,8 @@ set runtimepath+=,~/.vim
 "runtime ~/.vim/config/startify.vim
 runtime config/startify.vim
 
+runtime vim.d/gitsigns.vim
+
 runtime vim.d/treesitter.vim
 runtime vim.d/material.vim
 

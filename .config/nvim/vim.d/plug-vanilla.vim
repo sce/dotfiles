@@ -54,3 +54,6 @@
   " telescope-git-file-history requires vim-fugitive:
   Plug 'tpope/vim-fugitive'
   Plug 'isak102/telescope-git-file-history.nvim'
+
+  " Config: runtime vim.d/gitsigns.vim
+  Plug 'lewis6991/gitsigns.nvim'
