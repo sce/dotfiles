@@ -109,3 +109,7 @@ map <Leader>j :jumps<CR>
 nnoremap g, <C-o>
 " jump forwards with g.
 nnoremap g. <C-i>
+
+" open file/path even if it doesn't exist:
+command OpenPath e <cfile>
+nnoremap gf <cmd>OpenPath<cr>

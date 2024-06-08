@@ -27,6 +27,8 @@ runtime vim.d/vanilla.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Javascript Specific:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme material-palenight
+
 runtime vim.d/nvim-cmp-html.vim
 runtime vim.d/nvim-cmp-js.vim
 
