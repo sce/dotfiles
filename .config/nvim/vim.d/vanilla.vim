@@ -23,3 +23,7 @@ runtime vim.d/nvim-cmp.vim
 runtime vim.d/telescope.vim
 
 runtime vim.d/neo-tree.vim
+
+" open file/path even if it doesn't exist:
+command OpenPath e <cfile>
+nnoremap gf <cmd>OpenPath<cr>
