@@ -1,12 +1,37 @@
 "
 " native lsp setup
 "
-
-nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
-
-" 'l' prefix for lsp
-nnoremap <leader>lf <cmd>lua vim.lsp.buf.format()<cr>
-nnoremap K <cmd>lua vim.lsp.buf.hover()<cr>
+command LspDoCodeAction      lua vim.lsp.buf.code_action()
+command LspDoDeclaration     lua vim.lsp.buf.declaration()
+command LspDoDefinition      lua vim.lsp.buf.definition()
+command LspDoDiagnostic      lua vim.lsp.buf.diagnostic()
+command LspDoDocumentSymbol  lua vim.lsp.buf.document_symbol()
+command LspDoFormat          lua vim.lsp.buf.format()
+command LspDoHover           lua vim.lsp.buf.hover()
+command LspDoImplementation  lua vim.lsp.buf.implementation()
+" command LspDoIncomingCalls   lua vim.lsp.buf.incoming_calls()
+" command LspDoOutgoingCalls   lua vim.lsp.buf.outgoing_calls()
+command LspDoReferences      lua vim.lsp.buf.references()
+command LspDoRename          lua vim.lsp.buf.rename()
+command LspDoSignatureHelp   lua vim.lsp.buf.signature_help()
+command LspDoTypeDefinition  lua vim.lsp.buf.type_definition()
+command LspDoWorkspaceSymbol lua vim.lsp.buf.workspace_symbol()
 
 " language server capabilities:
-nnoremap <leader>lc <cmd>lua =vim.lsp.get_active_clients()[1].server_capabilities<cr>
+command LspCapabilities1 lua =vim.lsp.get_active_clients()[1].server_capabilities
+command LspCapabilities2 lua =vim.lsp.get_active_clients()[2].server_capabilities
+command LspCapabilities3 lua =vim.lsp.get_active_clients()[3].server_capabilities
+
+nnoremap K <cmd>LspDoHover<cr>
+
+nnoremap <leader>ca <cmd>LspDoCodeAction<cr>
+nnoremap <leader>gd <cmd>LspDoDefinition<cr>
+nnoremap <leader>gD <cmd>LspDoDiagnostic<cr>
+nnoremap <leader>gi <cmd>LspDoImplementation<cr>
+nnoremap <leader>gr <cmd>LspDoReferences<cr>
+nnoremap <leader>gy <cmd>LspDoTypeDefinition<cr>
+nnoremap <leader>rn <cmd>LspDoRename<cr>
+
+" p for 'prettier'
+nnoremap <leader>p <cmd>LspDoFormat<cr>
+xnoremap <leader>p <cmd>LspDoFormat<cr>
