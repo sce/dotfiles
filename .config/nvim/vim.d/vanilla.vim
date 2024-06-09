@@ -26,5 +26,7 @@ runtime vim.d/telescope.vim
 
 runtime vim.d/neo-tree.vim
 
+runtime vim.d/trouble.vim
+
 command EOLWhitespace %s/\s\+$//g
 nnoremap <leader>w <cmd>EOLWhitespace<cr>

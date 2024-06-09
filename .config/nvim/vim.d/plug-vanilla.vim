@@ -57,3 +57,7 @@
 
   " Config: runtime vim.d/gitsigns.vim
   Plug 'lewis6991/gitsigns.nvim'
+
+" IDE:
+  " Config: runtime vim.d/trouble.vim
+  Plug 'folke/trouble.nvim'

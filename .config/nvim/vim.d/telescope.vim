@@ -57,7 +57,7 @@ nnoremap <leader>t <cmd>Telescope builtin<cr>
 nnoremap <leader>T <cmd>Telescope telescope-tabs list_tabs<cr>
 nnoremap <leader>z <cmd>Telescope current_buffer_fuzzy_find<cr>
 
-nnoremap <leader>d <cmd>Telescope diagnostics<cr>
+nnoremap <leader>D <cmd>Telescope diagnostics<cr>
 nnoremap <leader>q <cmd>Telescope quickfix<cr>
 
 " nnoremap <leader>u <cmd>lua require('telescope').extensions.undo.undo()<cr>
