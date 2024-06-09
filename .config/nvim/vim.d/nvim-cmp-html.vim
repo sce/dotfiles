@@ -16,4 +16,3 @@ lua <<EOF
   require('lspconfig')['html'].setup { capabilities = capabilities }
   require('lspconfig')['jsonls'].setup { capabilities = capabilities }
 EOF
-
