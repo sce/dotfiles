@@ -24,12 +24,13 @@ command LspCapabilities3 lua =vim.lsp.get_active_clients()[3].server_capabilitie
 
 nnoremap K <cmd>LspDoHover<cr>
 
+nnoremap gd <cmd>LspDoDefinition<cr>
+nnoremap gD <cmd>LspDoDiagnostic<cr>
+nnoremap gi <cmd>LspDoImplementation<cr>
+nnoremap gr <cmd>LspDoReferences<cr>
+nnoremap gy <cmd>LspDoTypeDefinition<cr>
+
 nnoremap <leader>ca <cmd>LspDoCodeAction<cr>
-nnoremap <leader>gd <cmd>LspDoDefinition<cr>
-nnoremap <leader>gD <cmd>LspDoDiagnostic<cr>
-nnoremap <leader>gi <cmd>LspDoImplementation<cr>
-nnoremap <leader>gr <cmd>LspDoReferences<cr>
-nnoremap <leader>gy <cmd>LspDoTypeDefinition<cr>
 nnoremap <leader>rn <cmd>LspDoRename<cr>
 
 " p for 'prettier'
