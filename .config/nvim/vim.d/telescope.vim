@@ -9,6 +9,12 @@
 lua<<EOF
   require('telescope').setup{
     defaults = {
+      layout_config = {
+        horizontal = {
+          height = 0.95,
+          width = 0.95,
+        },
+      },
       mappings = {
         -- n = {
         --   ["<esc>"] = require('telescope.actions').close,
@@ -18,7 +24,16 @@ lua<<EOF
           ["<esc>"] = require('telescope.actions').close,
         },
       }
-    }
+    },
+    pickers = {
+      find_files = {
+        -- turn off .gitignore:
+        no_ignore = true,
+        no_ignore_parent = true,
+        -- show hidden files:
+        hidden = true,
+      },
+    },
 
     -- extensions = {
     --   ["ui-select"] = {
@@ -42,14 +57,23 @@ lua<<EOF
 
   -- for browsing git file history:
   require("telescope").load_extension("git_file_history")
+
+  -- keymaps:
+  local builtin = require("telescope.builtin")
+  local utils = require("telescope.utils")
+
+  -- lowercase letter is relative to current buffer or cwd, uppercase letter
+  -- is relative to root:
+  vim.keymap.set('n', '<leader>f', function() builtin.find_files({ cwd = utils.buffer_dir() }) end, {})
+  vim.keymap.set('n', '<leader>g', function() builtin.git_files({ use_git_root = false }) end, {})
 EOF
 
 "
 " nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>C <cmd>Telescope commands<cr>
-nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>g <cmd>Telescope git_files<cr>
+nnoremap <leader>F <cmd>Telescope find_files<cr>
+nnoremap <leader>G <cmd>Telescope git_files<cr>
 nnoremap <leader>h <cmd>Telescope git_file_history<cr>
 nnoremap <leader>j <cmd>Telescope jumplist<cr>
 nnoremap <leader>s <cmd>Telescope spell_suggest<cr>
