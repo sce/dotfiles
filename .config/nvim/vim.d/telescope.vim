@@ -21,7 +21,7 @@ lua<<EOF
         -- },
         i = {
           -- hit escape to exit insert mode:
-          ["<esc>"] = require('telescope.actions').close,
+          -- ["<esc>"] = require('telescope.actions').close,
         },
       }
     },
@@ -32,6 +32,9 @@ lua<<EOF
         no_ignore_parent = true,
         -- show hidden files:
         hidden = true,
+      },
+      git_files = {
+        -- show_untracked = true,
       },
     },
 
@@ -68,8 +71,7 @@ lua<<EOF
   vim.keymap.set('n', '<leader>g', function() builtin.git_files({ use_git_root = false }) end, {})
 EOF
 
-"
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>C <cmd>Telescope commands<cr>
 nnoremap <leader>F <cmd>Telescope find_files<cr>
@@ -80,6 +82,8 @@ nnoremap <leader>s <cmd>Telescope git_status<cr>
 nnoremap <leader>S <cmd>Telescope spell_suggest<cr>
 nnoremap <leader>t <cmd>Telescope builtin<cr>
 nnoremap <leader>T <cmd>Telescope telescope-tabs list_tabs<cr>
+nnoremap <leader>y <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>Y <cmd>Telescope lsp_workspace_symbols<cr>
 nnoremap <leader>z <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 nnoremap <leader>D <cmd>Telescope diagnostics<cr>
