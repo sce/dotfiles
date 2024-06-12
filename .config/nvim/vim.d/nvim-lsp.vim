@@ -24,6 +24,9 @@ command LspCapabilities3 lua =vim.lsp.get_active_clients()[3].server_capabilitie
 
 nnoremap K <cmd>LspDoHover<cr>
 
+nnoremap <silent> ]g <cmd>lua vim.diagnostic.goto_next()<cr>
+nnoremap <silent> [g <cmd>lua vim.diagnostic.goto_prev()<cr>
+
 nnoremap gd <cmd>LspDoDefinition<cr>
 nnoremap gD <cmd>LspDoDiagnostic<cr>
 nnoremap gi <cmd>LspDoImplementation<cr>
