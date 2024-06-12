@@ -49,14 +49,11 @@ set tabpagemax=20
 
 " my terminal is giving me escape character instead of "alt", so these
 " keybindings are actually <A-l> etc:
-" ALT+e to tab edit a file
 " map <esc>e :tabedit<CR>
-map <A-e> :tabedit<CR>
-" ALT+l for next tab
 " map <esc>l :tabnext<CR>
-map <A-l> :tabnext<CR>
-" ALT+h for previous tab
 " map <esc>h :tabprevious<CR>
+map <A-e> :tabedit<CR>
+map <A-l> :tabnext<CR>
 map <A-h> :tabprevious<CR>
 
 let mapleader = ","
