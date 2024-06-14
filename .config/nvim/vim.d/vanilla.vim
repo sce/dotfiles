@@ -8,6 +8,9 @@ runtime vim.d/indent-2.vim
 runtime vim.d/move.vim
 runtime vim.d/search.vim
 
+runtime vim.d/vanilla-commands.vim
+runtime vim.d/vanilla-behaviour.vim
+
 set runtimepath+=,~/.vim
 "runtime ~/.vim/config/startify.vim
 runtime config/startify.vim
@@ -27,14 +30,3 @@ runtime vim.d/telescope.vim
 runtime vim.d/neo-tree.vim
 
 runtime vim.d/trouble.vim
-
-command -range=% Whitespace <line1>,<line2>s/\s\s\+/ /g
-command -range=% EOLWhitespace <line1>,<line2>s/\s\+$//g
-
-nnoremap <leader>w <cmd>Whitespace<cr>
-xnoremap <leader>w <cmd>'<,'>Whitespace<cr>
-
-nnoremap <leader>W <cmd>EOLWhitespace<cr>
-xnoremap <leader>W <cmd>'<,'>EOLWhitespace<cr>
-
-command! -range Table <line1>,<line2>!tr -s ' '|column -t -s '|' -o '|'
