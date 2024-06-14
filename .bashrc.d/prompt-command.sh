@@ -1,0 +1,1 @@
+../.bashrc.all.d/prompt-command.sh
