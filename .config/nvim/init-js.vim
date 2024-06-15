@@ -27,7 +27,10 @@ runtime vim.d/vanilla.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Javascript Specific:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme material-palenight
+" Add global yarn binaries:
+let $PATH=$PATH . ":~/.yarn/bin"
+
+colorscheme material-darker
 
 runtime vim.d/nvim-cmp-html.vim
 runtime vim.d/nvim-cmp-js.vim
