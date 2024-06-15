@@ -6,6 +6,8 @@
 " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+command GitRoot :lua =string.match(vim.api.nvim_exec2( '!git rev-parse --show-toplevel', {output=true}).output, '\n(%S+)')
+
 lua<<EOF
   require('telescope').setup{
     defaults = {
@@ -69,6 +71,7 @@ lua<<EOF
   -- is relative to root:
   vim.keymap.set('n', '<leader>f', function() builtin.find_files({ cwd = utils.buffer_dir() }) end, {})
   vim.keymap.set('n', '<leader>g', function() builtin.git_files({ use_git_root = false }) end, {})
+  vim.keymap.set('n', '<leader>R', function() builtin.live_grep({ cwd = vim.api.nvim_exec2(':GitRoot', {output=true}).output }) end, {})
 EOF
 
 "" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
