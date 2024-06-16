@@ -31,4 +31,4 @@ function change_dir {
 
 make_opts
 change_dir
-unset dir
+unset dir fzf_opts

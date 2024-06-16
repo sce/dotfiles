@@ -25,6 +25,7 @@ make_opts
 
 # select config:
 config=$(echo "$configs" | fzf $fzf_opts --prompt="$prompt")
+unset fzf_opts
 
 echo $prompt$config
 
