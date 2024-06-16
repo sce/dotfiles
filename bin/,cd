@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# For this script to be able to change the current directory of the calling
+# shell it needs to be sourced. This can be simplified by adding it as a
+# function in `.bashrc`, e.g.:
+#
+#     function ,cd {
+#       source ~/bin/,cd
+#     }
+#
+# If this script is sourced then failing means quitting the shell.
+# set -euo pipefail
+
+function change_dir {
+  dir=$(ls -lart --color=never|grep '^d'|fzf --scheme=path --reverse --no-sort --tac --height=~20 --prompt "$(pwd)/" --nth 9| awk '{print $9}')
+
+  if [[ "$dir" != "" ]]; then
+    # echo "$dir"
+    cd "$dir" && change_dir
+  fi
+}
+
+change_dir
+unset dir
