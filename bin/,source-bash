@@ -29,7 +29,7 @@ else
   preview=$(which cat)
 fi
 
-file=$(echo "$unique_files"| fzf --height=~20 --preview "$preview $files_dir/{}")
+file=$(echo "$unique_files"| fzf --reverse --height=~20 --preview "$preview $files_dir/{}")
 unset preview
 
 full_path="$files_dir/$file"

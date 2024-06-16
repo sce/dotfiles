@@ -14,7 +14,7 @@
 function change_dir {
   dir=$(ls -lart --color=never|grep '^d'|fzf --scheme=path --reverse --no-sort --tac --height=~20 --prompt "$(pwd)/" --nth 9| awk '{print $9}')
 
-  if [[ "$dir" != "" ]]; then
+  if [[ "$dir" != "" && "$dir" != "." ]]; then
     # echo "$dir"
     cd "$dir" && change_dir
   fi
