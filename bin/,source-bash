@@ -12,23 +12,6 @@
 # If this script is sourced then failing means quitting the shell.
 # set -euo pipefail
 
-files_dir="$HOME/.bashrc.all.d"
-files_dir2="$HOME/.bashrc.d"
-
-files=$(cd "$files_dir" && ls -1 --color=never)
-files2=$(cd "$files_dir2" && ls -1 --color=never)
-unset files_dir2
-
-unique_files=$(echo -e "$files\n$files2" |sort | uniq -u)
-unset files files2
-
-preview=$(which bat 2>/dev/null||true)
-if [[ "$preview" != "" ]]; then
-  preview="$preview --color=always"
-else
-  preview=$(which cat)
-fi
-
 function make_opts {
   version=$(fzf --version|awk '{ print $1 * 100 }')
   if [[ $version -ge 34 ]]; then
@@ -38,13 +21,34 @@ function make_opts {
   fi
 }
 
+function get_full_path {
+  files_dir="$HOME/.bashrc.all.d"
+  files_dir2="$HOME/.bashrc.d"
+
+  files=$(cd "$files_dir" && ls -1 --color=never)
+  files2=$(cd "$files_dir2" && ls -1 --color=never)
+  unset files_dir2
+
+  unique_files=$(echo -e "$files\n$files2" |sort | uniq -u)
+  unset files files2
+
+  preview=$(which bat 2>/dev/null||true)
+  if [[ "$preview" != "" ]]; then
+    preview="$preview --color=always"
+  else
+    preview=$(which cat)
+  fi
+
+  file=$(echo "$unique_files"| fzf $fzf_opts --preview "$preview $files_dir/{}")
+  unset preview
+
+  full_path="$files_dir/$file"
+  unset files_dir file
+}
+
 make_opts
-
-file=$(echo "$unique_files"| fzf $fzf_opts --preview "$preview $files_dir/{}")
-unset preview
-
-full_path="$files_dir/$file"
-unset files_dir file
+get_full_path
+unset fzf_opts
 
 if [[ -f "$full_path" ]]; then
   echo "source $full_path"
