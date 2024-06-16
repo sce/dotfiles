@@ -11,8 +11,17 @@
 # If this script is sourced then failing means quitting the shell.
 # set -euo pipefail
 
+function make_opts {
+  version=$(fzf --version|awk '{ print $1 * 100 }')
+  if [[ $version -ge 34 ]]; then
+    fzf_opts="--reverse --no-sort --tac --height=~20"
+  else
+    fzf_opts="--reverse --no-sort --tac --height=20"
+  fi
+}
+
 function change_dir {
-  dir=$(ls -lart --color=never|grep '^d'|fzf --scheme=path --reverse --no-sort --tac --height=~20 --prompt "$(pwd)/" --nth 9| awk '{print $9}')
+  dir=$(ls -lart --color=never|grep '^d'|fzf $fzf_opts --prompt "$(pwd)/" --nth 9| awk '{print $9}')
 
   if [[ "$dir" != "" && "$dir" != "." ]]; then
     # echo "$dir"
@@ -20,5 +29,6 @@ function change_dir {
   fi
 }
 
+make_opts
 change_dir
 unset dir

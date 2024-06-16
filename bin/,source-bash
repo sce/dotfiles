@@ -29,12 +29,25 @@ else
   preview=$(which cat)
 fi
 
-file=$(echo "$unique_files"| fzf --reverse --height=~20 --preview "$preview $files_dir/{}")
+function make_opts {
+  version=$(fzf --version|awk '{ print $1 * 100 }')
+  if [[ $version -ge 34 ]]; then
+    fzf_opts="--reverse --height=~20"
+  else
+    fzf_opts="--reverse --height=20"
+  fi
+}
+
+make_opts
+
+file=$(echo "$unique_files"| fzf $fzf_opts --preview "$preview $files_dir/{}")
 unset preview
 
 full_path="$files_dir/$file"
 unset files_dir file
 
-echo "source $full_path"
-source "$full_path"
+if [[ -f "$full_path" ]]; then
+  echo "source $full_path"
+  source "$full_path"
+fi
 unset full_path

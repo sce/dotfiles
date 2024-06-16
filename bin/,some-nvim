@@ -12,8 +12,19 @@ prompt="Neovim config file: "
 init_dir=~/.config/nvim
 configs=$(ls -1 $init_dir/init*.vim)
 
+function make_opts {
+  version=$(fzf --version|awk '{ print $1 * 100 }')
+  if [[ $version -ge 34 ]]; then
+    fzf_opts="--reverse --height=~20 --no-info"
+  else
+    fzf_opts="--reverse --height=20 --no-info"
+  fi
+}
+
+make_opts
+
 # select config:
-config=$(echo "$configs" | fzf --height=~20 --no-info --reverse --prompt="$prompt")
+config=$(echo "$configs" | fzf $fzf_opts --prompt="$prompt")
 
 echo $prompt$config
 
