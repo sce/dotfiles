@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# This file will list all files in .bashrc.all.d that is not in .bashrc.d and source whichever file the user picks.
+#
+# For this to work this file needs to be sourced too. This can be simplified by
+# adding it as a function in `.bashrc`, e.g.:
+#
+#     function ,source-bash {
+#       source ~/bin/,source-bash
+#     }
+#
+# If this script is sourced then failing means quitting the shell.
+# set -euo pipefail
+
+files_dir="$HOME/.bashrc.all.d"
+files_dir2="$HOME/.bashrc.d"
+
+files=$(cd "$files_dir" && ls -1 --color=never)
+files2=$(cd "$files_dir2" && ls -1 --color=never)
+unset files_dir2
+
+unique_files=$(echo -e "$files\n$files2" |sort | uniq -u)
+unset files files2
+
+preview=$(which bat 2>/dev/null||true)
+if [[ "$preview" != "" ]]; then
+  preview="$preview --color=always"
+else
+  preview=$(which cat)
+fi
+
+file=$(echo "$unique_files"| fzf --height=~20 --preview "$preview $files_dir/{}")
+unset preview
+
+full_path="$files_dir/$file"
+unset files_dir file
+
+echo "source $full_path"
+source "$full_path"
+unset full_path
