@@ -1,0 +1,5 @@
+# https://github.com/koalaman/shellcheck/wiki/Directive#shellcheck-directives
+
+# Don't complain about unknown source files:
+# https://github.com/koalaman/shellcheck/wiki/SC1090
+disable=SC1090
