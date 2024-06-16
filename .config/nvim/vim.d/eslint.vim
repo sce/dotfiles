@@ -39,4 +39,4 @@ lua<<EOF
   }
 EOF
 
-au BufWritePost * lua require('lint').try_lint()
+au BufWritePost javascript,typescript lua require('lint').try_lint()

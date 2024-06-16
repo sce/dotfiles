@@ -11,10 +11,20 @@ command GitRoot :lua =string.match(vim.api.nvim_exec2( '!git rev-parse --show-to
 lua<<EOF
   require('telescope').setup{
     defaults = {
+      path_display = {
+        -- hidden,
+        -- tail,
+        -- absolute,
+        -- smart,
+        -- filename_first,
+        shorten = 10,
+        truncate = 1,
+      },
       layout_config = {
         horizontal = {
           height = 0.95,
           width = 0.95,
+          preview_width = 60,
         },
       },
       mappings = {
@@ -22,7 +32,7 @@ lua<<EOF
         --   ["<esc>"] = require('telescope.actions').close,
         -- },
         i = {
-          -- hit escape to exit insert mode:
+          -- hit escape to exit telescope:
           -- ["<esc>"] = require('telescope.actions').close,
         },
       }
@@ -37,6 +47,9 @@ lua<<EOF
       },
       git_files = {
         -- show_untracked = true,
+      },
+      lsp_references = {
+        show_line = false,
       },
     },
 

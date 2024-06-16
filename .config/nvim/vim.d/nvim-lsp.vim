@@ -34,7 +34,7 @@ nnoremap gr <cmd>LspDoReferences<cr>
 nnoremap gy <cmd>LspDoTypeDefinition<cr>
 
 nnoremap <leader>ca <cmd>LspDoCodeAction<cr>
-nnoremap <leader>cr <cmd>LspDoRename<cr>
+nnoremap <leader>cn <cmd>LspDoRename<cr>
 
 " p for 'prettier'
 nnoremap <leader>p <cmd>LspDoFormat<cr>
