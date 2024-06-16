@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Container possible of running Playwright
+cname=playwright
+
+# See https://playwright.dev/docs/intro#system-requirements
+# As of writing the latest ubuntu distro that is supported is 22.04:
+create_opts="-y --distro ubuntu --release 22.04"
+
+run="toolbox run --container $cname"
+
+packages=(
+   neovim
+   vim
+   fzf
+   # nodejs yarnpkg
+   keychain
+   jq entr
+   # convenience, wl-copy etc:
+   wl-clipboard
+
+   ripgrep
+
+   # to compile things:
+   cmake make gcc
+)
+
+yarns=(
+)
+
+set -x
+
+toolbox create $create_opts $cname || true
+
+$run sudo apt-get update
+$run sudo apt-get install -y "${packages[@]}"
+#$run yarn global add "${yarns[@]}"
