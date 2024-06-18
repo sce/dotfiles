@@ -13,6 +13,8 @@ flathub_packages=(
     com.vscodium.codium
     io.mpv.Mpv
     org.gnome.Snapshot
+    org.inkscape.Inkscape
+    org.libvips.vipsdisp
     org.mozilla.firefox
 )
 
