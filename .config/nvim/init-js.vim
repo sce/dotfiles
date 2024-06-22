@@ -18,9 +18,9 @@ call plug#begin('~/.config/nvim/js/plugged')
 
     " Eslint:
     Plug 'neovim/nvim-lspconfig'
-    Plug 'jose-elias-alvarez/null-ls.nvim'
+    " Plug 'jose-elias-alvarez/null-ls.nvim'
     Plug 'MunifTanjim/eslint.nvim'
-    Plug 'mfussenegger/nvim-lint'
+    " Plug 'mfussenegger/nvim-lint'
 call plug#end()
 
 runtime vim.d/vanilla.vim
@@ -36,4 +36,4 @@ runtime vim.d/nvim-cmp-js.vim
 
 runtime vim.d/null-ls.vim
 runtime vim.d/prettier.vim
-runtime vim.d/eslint.vim
+" runtime vim.d/eslint.vim
