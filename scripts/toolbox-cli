@@ -21,6 +21,9 @@ packages=(
 
   # bashls:
   shellcheck
+
+  # to compile things:
+  cmake make gcc
 )
 
 yarns=(
