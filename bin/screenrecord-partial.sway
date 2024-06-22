@@ -7,7 +7,7 @@ function notify {
   msg=$1
 
   echo "$msg"
-  notify-send --transient "$msg" &
+  notify-send --transient --expire-time=1000 "$msg" &
 }
 
 # fail early:
