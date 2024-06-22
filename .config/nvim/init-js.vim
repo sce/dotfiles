@@ -28,8 +28,6 @@ runtime vim.d/vanilla.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Javascript Specific:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Add global yarn binaries:
-let $PATH=$PATH . ":~/.yarn/bin"
 
 colorscheme material-darker
 

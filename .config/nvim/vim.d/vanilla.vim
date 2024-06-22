@@ -2,6 +2,8 @@
 " Vanilla/base/default configuration.
 " Some of this matches plugins from vanilla-plug.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Because of bashls we need to add global yarn binaries:
+let $PATH=$PATH . ":" . $HOME . "/.yarn/bin"
 
 runtime vim.d/cursor.vim
 runtime vim.d/indent-2.vim
