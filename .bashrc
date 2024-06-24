@@ -24,8 +24,7 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-# default to nvim, but try vi if it's not found:
-VISUAL=nvim
-EDITOR=vi
+VISUAL=,,vanilla-nvim
+EDITOR=$VISUAL
 
 alias ls="ls --color"

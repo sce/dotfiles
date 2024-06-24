@@ -49,6 +49,8 @@ lua<<EOF
         -- show_untracked = true,
       },
       lsp_references = {
+        include_declaration = false,
+        include_current_line = false,
         show_line = false,
       },
     },

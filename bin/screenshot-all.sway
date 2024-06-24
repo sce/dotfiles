@@ -7,7 +7,7 @@ function notify {
   msg=$1
 
   echo "$msg"
-  notify-send "$msg" &
+  notify-send --transient --expire-time=1000 "$msg" &
 }
 
 dir=$(xdg-user-dir PICTURES)

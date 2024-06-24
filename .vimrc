@@ -58,19 +58,16 @@ set textwidth=80
 " set foldmethod=indent
 set foldmethod=syntax
 
-set confirm " ask what to do when quitting in a limbo state instead of just complaining
-
 " set mouse=a " enable mouse (gah, this prevents copy/paste with mouse)
-
-" check for changes when changing a buffer
-" https://vi.stackexchange.com/questions/444/how-do-i-reload-the-current-file
-au FocusGained,BufEnter * :checktime
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 runtime vim.d/cursor.vim
 runtime vim.d/indent-4.vim
 runtime vim.d/search.vim
+
+runtime vim.d/vanilla-behaviour.vim
+runtime vim.d/vanilla-commands.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance:

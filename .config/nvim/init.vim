@@ -9,9 +9,9 @@ nmap <A-l> :tabnext<CR>
 nmap <A-h> :tabprevious<CR>
 
 " Remove vim bindings that use escape instead of alt:
-unmap <esc>e
-unmap <esc>l
-unmap <esc>h
+" unmap <esc>e
+" unmap <esc>l
+" unmap <esc>h
 
 " Quit terminal:
 " (ah, this messes up quitting/closing fzf-terminals for some reason)

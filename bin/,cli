@@ -14,11 +14,14 @@ set -euo pipefail
 #     $ ln -s ,cli ,node
 #     $ ./,node # will run "node" inside cli container
 #
-default_name="cli"
-script_name=$(basename $0 | sed 's/^,//')
+container_name="cli"
+script_name=$(basename "$0" | sed 's/^,//')
 
-if [[ "$script_name" = "$default_name" ]]; then
-  exec toolbox enter cli "$@"
+if [[ "$script_name" = "$container_name" && "$*" = "" ]]; then
+  exec toolbox enter "$container_name"
+elif [[ "$script_name" = "$container_name" ]]; then
+  exec toolbox run --container "$container_name" "$@"
 else
-  exec toolbox run --container cli "$script_name" "$@"
+  cmd=$script_name
+  exec toolbox run --container "$container_name" "$cmd" "$@"
 fi

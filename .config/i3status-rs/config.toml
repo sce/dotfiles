@@ -12,26 +12,6 @@ icons = "awesome4"
 #bat = ["|E|", "|_|", "|=|", "|F|"]
 #bat_charging = "|^| "
 
-# 2020-05-11: docker block seems stuck / not working...?
-# [[block]]
-# block = "docker"
-# format = "{running}/{total}"
-
-# [[block]]
-# block = "focused_window"
-# max_width = 120
-
-# [[block]]
-# block = "nvidia_gpu"
-# label = "GT 1030"
-# show_memory = false
-# show_clocks = true
-# interval = 1
-
-#[[block]]
-#block = "networkmanager"
-## on_click = "alacritty -e nmtui"
-
 [[block]]
 block = "bluetooth"
 mac = "4C:87:5D:52:CB:5F"
