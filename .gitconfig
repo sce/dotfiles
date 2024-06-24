@@ -1,5 +1,5 @@
 [include]
-    path = .gitconfig-private
+  path = ~/.gitconfig.d/user.config
 
 [status]
   # Show detailed submodule info when doing git status:
