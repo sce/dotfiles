@@ -4,21 +4,25 @@ set -euo pipefail
 
 conf_dir=$(dirname "$0")/local-config.d
 
-function run_logind_conf {
-  destination=/etc/systemd/logind.conf.d
-
-  for path in "$conf_dir"/systemd-logind-*; do
-    [[ -d "$destination" ]] || mkdir -vp "$destination"
-
-    name=$(basename "$path")
-    cp -iv "$path" "$destination"/"$name"
-  done
+function run_systemd_conf {
+  systemd_root=/etc/systemd
 
   (
+    cd "$conf_dir"/systemd
+
+    for config_file in **/*; do
+      destination=$(readlink --canonicalize-missing "$systemd_root/$config_file")
+      subdir=$(dirname "$destination")
+      [[ -d "$subdir" ]] || mkdir -vp "$subdir"
+
+      cp -iv "$config_file" "$destination"
+    done
+
     set -x
     systemctl reload systemd-logind
     systemctl daemon-reload
   )
+  unset systemd_root destination subdir
 }
 
-run_logind_conf
+run_systemd_conf
