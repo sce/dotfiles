@@ -12,6 +12,7 @@ flathub_packages=(
     com.obsproject.Studio
     com.vscodium.codium
     io.mpv.Mpv
+    org.gnome.Calculator
     org.gnome.Snapshot
     org.inkscape.Inkscape
     org.libvips.vipsdisp
