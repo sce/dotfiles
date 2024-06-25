@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+conf_dir=$(dirname "$0")/local-config.d
+
+function run_logind_conf {
+  destination=/etc/systemd/logind.conf.d
+
+  for path in "$conf_dir"/systemd-logind-*; do
+    [[ -d "$destination" ]] || mkdir -vp "$destination"
+
+    name=$(basename "$path")
+    cp -iv "$path" "$destination"/"$name"
+  done
+
+  (
+    set -x
+    systemctl reload systemd-logind
+    systemctl daemon-reload
+  )
+}
+
+run_logind_conf
