@@ -15,10 +15,12 @@ dnf_misc=(
     neovim
     fzf
     cmake # for telescope-fzf-native
+
+    graphviz # "dot" etc.
 )
 
 set -x
 
 toolbox create $cname || true
 
-$run sudo dnf install -y ${dnf_misc[@]}
+$run sudo dnf install -y "${dnf_misc[@]}"
