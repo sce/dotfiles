@@ -32,7 +32,9 @@ function build_showmethekey {
         mkdir -p $tmp_dir
         pushd $tmp_dir
 
-        rm -rvI showmethekey || true
+        #rm --recursive --verbose --force "$(readlink -f showmethekey)"
+        rm --recursive --verbose --interactive=once "$(readlink -f showmethekey)" || true
+
         git clone --branch "$version" https://github.com/AlynxZhou/showmethekey.git
         cd showmethekey
         mkdir -p build
