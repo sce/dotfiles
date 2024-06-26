@@ -47,6 +47,5 @@ function build_showmethekey {
 
 set -x
 
-
 sudo dnf install -y "${dnf_showmethekey[@]}"
 build_showmethekey

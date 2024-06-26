@@ -5,15 +5,38 @@ set -euo pipefail
 build_cname=build
 build="toolbox run --container $build_cname"
 
-dnf_alacritty_deps=(cargo cmake gcc-c++ fontconfig-devel libxcb-devel)
-cargo_alacritty_name=alacritty
+scripts_dir=toolbox-build.d
+fzf=$(which fzf)
 
-set -x
+function select_scripts {
+  all_scripts=$(ls -1 "$scripts_dir"/*.sh)
 
-toolbox create $build_cname || true
-$build sudo dnf install -y "${dnf_alacritty_deps[@]}"
+  selected_scripts=$(echo "${all_scripts}" |
+    $fzf --multi --reverse \
+      --height=10 --prompt='Which scripts to run: ' \
+      --preview='cat {}'
+  )
 
-# after building, it can be run from ~/.cargo/bin/alacritty from the host system
-$build cargo install $cargo_alacritty_name
+  echo "$selected_scripts"
+}
 
-$build ~/scripts/build-showmethekey
+function run_scripts {
+  for file in ${selected_scripts}; do
+      echo "== Running $file..."
+      if [ -x "$file" ]; then
+        (
+          set -x
+          $build "$file"
+        )
+      fi
+  done
+  unset file
+}
+
+(
+  set -x
+  toolbox create $build_cname
+) || true
+
+select_scripts
+run_scripts
