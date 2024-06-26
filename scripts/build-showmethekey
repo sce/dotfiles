@@ -6,7 +6,7 @@ version="v1.10.0"
 version="v1.9.0"
 tmp_dir=~/tmp
 
-dnf_showmethekey=$(cat<<EOS
+dnf_showmethekey=(
     cairo-devel
     glib2-devel
     gtk4-devel
@@ -22,7 +22,6 @@ dnf_showmethekey=$(cat<<EOS
     gcc
     meson
     ninja-build
-EOS
 )
 
 function build_showmethekey {
@@ -48,5 +47,6 @@ function build_showmethekey {
 
 set -x
 
-sudo dnf install -y $dnf_showmethekey
+
+sudo dnf install -y "${dnf_showmethekey[@]}"
 build_showmethekey
