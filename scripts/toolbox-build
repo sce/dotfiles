@@ -8,6 +8,13 @@ build="toolbox run --container $build_cname"
 scripts_dir=toolbox-build.d
 fzf=$(which fzf)
 
+function create_toolbox {
+  (
+    set -x
+    toolbox create $build_cname 2>/dev/null
+  ) || true
+}
+
 function select_scripts {
   all_scripts=$(ls -1 "$scripts_dir"/*.sh)
 
@@ -26,17 +33,13 @@ function run_scripts {
       if [ -x "$file" ]; then
         (
           set -x
-          $build "$file"
+          $build "$file" "$@"
         )
       fi
   done
   unset file
 }
 
-(
-  set -x
-  toolbox create $build_cname
-) || true
-
+create_toolbox
 select_scripts
-run_scripts
+run_scripts "$@"
