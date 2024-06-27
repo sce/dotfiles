@@ -2,9 +2,12 @@
 
 set -euo pipefail
 
+tmp_dir=${1:-$(mktemp -d)}
+destination_dir=$HOME/.local
+
+repo_url="https://github.com/AlynxZhou/showmethekey.git"
 version="v1.10.0"
 version="v1.9.0"
-tmp_dir=~/tmp
 
 dnf_showmethekey=(
     cairo-devel
@@ -24,30 +27,27 @@ dnf_showmethekey=(
     ninja-build
 )
 
+function install_deps {
+  (
+    set -x
+    sudo dnf install -y "${dnf_showmethekey[@]}"
+  )
+}
+
 function build_showmethekey {
-    #local prefix=/usr
-    local prefix=~/.local
-
     (
-        mkdir -p $tmp_dir
-        pushd $tmp_dir
+        cd "$tmp_dir"
+        git clone --branch "$version" "$repo_url"
 
-        #rm --recursive --verbose --force "$(readlink -f showmethekey)"
-        rm --recursive --verbose --interactive=once "$(readlink -f showmethekey)" || true
-
-        git clone --branch "$version" https://github.com/AlynxZhou/showmethekey.git
         cd showmethekey
         mkdir -p build
         cd build
 
-        meson setup --prefix="$prefix" . ..
+        meson setup --prefix="$destination_dir" . ..
         meson compile
         meson install
-        popd
     )
 }
 
-set -x
-
-sudo dnf install -y "${dnf_showmethekey[@]}"
+install_deps
 build_showmethekey
