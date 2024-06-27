@@ -14,6 +14,13 @@ dnf_deps=(
   libstdc++-static
 )
 
+function install_deps {
+  (
+    set -x
+    sudo dnf install -y "${dnf_deps[@]}"
+  )
+}
+
 function build_luals {
   (
     set -x
@@ -28,9 +35,5 @@ function build_luals {
   )
 }
 
-(
-  set -x
-  sudo dnf install -y "${dnf_deps[@]}"
-)
-
+install_deps
 build_luals
