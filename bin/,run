@@ -12,8 +12,12 @@ prompt="Toolbox container: "
 containers=$(toolbox list --containers | tail -n +2 | awk '{ print $2 }')
 container=$(echo "$containers" | fzf --height=~20 --no-info --reverse --prompt="$prompt")
 
-echo $prompt$container
+echo "$prompt$container"
 
-set -x
-
-exec toolbox run --container "$container" "$@"
+if [[ -z "$*" ]]; then
+  set -x
+  exec toolbox enter --container "$container"
+else
+  set -x
+  exec toolbox run --container "$container" "$@"
+fi
