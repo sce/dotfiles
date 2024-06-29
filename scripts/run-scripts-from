@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [[ -z "${1:-""}" ]]; then
+  echo "Need directory to select scripts from as argument."
+  exit 1
+fi
+
+scripts_dir=$(readlink -e "$1")
+shift
+
+fzf=$(which fzf)
+
+function select_scripts {
+  all_scripts=$(ls -1 "$scripts_dir"/*.sh)
+
+  selected_scripts=$(echo "${all_scripts}" |
+    $fzf --multi --reverse \
+      --height=10 --prompt='Which scripts to run: ' \
+      --preview='cat {}'
+  )
+
+  echo "$selected_scripts"
+}
+
+function run_scripts {
+  for file in ${selected_scripts}; do
+      echo "== Running $file..."
+      if [ -x "$file" ]; then
+        (
+          set -x
+          "$file" "$@"
+        )
+      fi
+  done
+  unset file
+}
+
+select_scripts
+run_scripts "$@"

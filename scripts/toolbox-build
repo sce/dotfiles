@@ -3,43 +3,22 @@
 set -euo pipefail
 
 build_cname=build
-build="toolbox run --container $build_cname"
+run="toolbox run --container $build_cname"
 
-scripts_dir=toolbox-build.d
-fzf=$(which fzf)
+scripts_dir=$(readlink -e toolbox-build.d)
+run_scripts_from=$(which ./run-scripts-from)
+
+dependencies=(
+  fzf
+)
 
 function create_toolbox {
   (
     set -x
     toolbox create $build_cname 2>/dev/null
+    $run sudo dnf install -y "${dependencies[@]}"
   ) || true
 }
 
-function select_scripts {
-  all_scripts=$(ls -1 "$scripts_dir"/*.sh)
-
-  selected_scripts=$(echo "${all_scripts}" |
-    $fzf --multi --reverse \
-      --height=10 --prompt='Which scripts to run: ' \
-      --preview='cat {}'
-  )
-
-  echo "$selected_scripts"
-}
-
-function run_scripts {
-  for file in ${selected_scripts}; do
-      echo "== Running $file..."
-      if [ -x "$file" ]; then
-        (
-          set -x
-          $build "$file" "$@"
-        )
-      fi
-  done
-  unset file
-}
-
 create_toolbox
-select_scripts
-run_scripts "$@"
+$run "$run_scripts_from" "$scripts_dir" "$@"
