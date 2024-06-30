@@ -5,15 +5,17 @@ set -euo pipefail
 cname=gui
 run="toolbox run --container $cname"
 
-copr_i3status_rs="atim/i3status-rust"
+scripts_dir=$(readlink -e toolbox-gui.d)
+run_scripts_from=$(which ./run-scripts-from)
 
 packages=(
+  fzf
   # sway things:
   # wdisplays needs libGLESv2 which in fedora is found in libglvnd-gles:
   wdisplays libglvnd-gles wf-recorder
 
   # misc things:
-  i3status-rust pavucontrol gkrellm zenity obs-studio
+  pavucontrol gkrellm zenity obs-studio
 )
 
 
@@ -29,6 +31,6 @@ create_toolbox
 
 set -x
 
-$run sudo dnf copr enable -y $copr_i3status_rs
-
 $run sudo dnf install -y "${packages[@]}"
+
+$run "$run_scripts_from" "$scripts_dir"
