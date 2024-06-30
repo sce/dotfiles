@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-dnf_alacritty_deps=(
+dnf_deps=(
   cargo
   cmake
   gcc-c++
@@ -11,7 +11,12 @@ dnf_alacritty_deps=(
   libxcb-devel
 )
 
-sudo dnf install -y "${dnf_alacritty_deps[@]}"
+(
+  set -x
+  sudo dnf install -y "${dnf_deps[@]}"
 
-# after building, it can be run from ~/.cargo/bin/alacritty from the host system
-cargo install alacritty
+  # after building, it can be found in ~/.cargo/bin/alacritty
+  cargo install alacritty
+
+  cp -v "$HOME/.cargo/bin/alacritty" "$HOME/.local/bin"
+)
