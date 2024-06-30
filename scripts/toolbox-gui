@@ -13,19 +13,11 @@ packages=(
   xdg-user-dirs
 )
 
+(
+  set -x
+  toolbox create $cname 2>/dev/null || true
 
-function create_toolbox {
-  (
-    set -x
-    toolbox create $cname 2>/dev/null
-    # $run sudo dnf install -y "${dependencies[@]}"
-  ) || true
-}
+  $run sudo dnf install -y "${packages[@]}"
 
-create_toolbox
-
-set -x
-
-$run sudo dnf install -y "${packages[@]}"
-
-$run "$run_scripts_from" "$scripts_dir"
+  $run "$run_scripts_from" "$scripts_dir"
+)
