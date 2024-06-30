@@ -10,6 +10,8 @@ run_scripts_from=$(which ./run-scripts-from)
 
 packages=(
   fzf
+  xdg-user-dirs
+
   # sway things:
   # wdisplays needs libGLESv2 which in fedora is found in libglvnd-gles:
   wdisplays libglvnd-gles wf-recorder
