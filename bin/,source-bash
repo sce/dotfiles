@@ -12,6 +12,8 @@
 # If this script is sourced then failing means quitting the shell.
 # set -euo pipefail
 
+full_path=${1:-""}
+
 function make_opts {
   version=$(fzf --version|awk '{ print $1 * 100 }')
   if [[ $version -ge 34 ]]; then
@@ -22,6 +24,10 @@ function make_opts {
 }
 
 function get_full_path {
+  if [[ -n "$full_path" ]]; then
+    return;
+  fi
+
   files_dir="$HOME/.bashrc.all.d"
   files_dir2="$HOME/.bashrc.d"
 
