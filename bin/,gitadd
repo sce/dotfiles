@@ -7,10 +7,10 @@
 set -euo pipefail
 
 echo_run() {
-    cmd=$@
+    cmd=("$@")
 
-    $cmd
-    echo $cmd
+    "${cmd[@]}"
+    echo "${cmd[@]}"
 }
 
 # for "exit on error" to work we need to split the command on two different
