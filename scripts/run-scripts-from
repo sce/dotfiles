@@ -1,5 +1,9 @@
 #!/bin/bash
-
+#
+# This script will present a menu containing all executable files in the
+# directory given as first argument, and then execute all the files selected by
+# the user.
+#
 set -euo pipefail
 
 if [[ -z "${1:-""}" ]]; then
@@ -10,10 +14,11 @@ fi
 scripts_dir=$(readlink -e "$1")
 shift
 
+find=$(which find)
 fzf=$(which fzf)
 
 function select_scripts {
-  all_scripts=$(ls -1 "$scripts_dir"/*.sh)
+  all_scripts=$($find "$scripts_dir" -type f -executable)
 
   selected_scripts=$(echo "${all_scripts}" |
     $fzf --multi --reverse \
