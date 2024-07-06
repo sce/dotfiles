@@ -17,6 +17,7 @@ flathub_packages=(
     org.inkscape.Inkscape
     org.libvips.vipsdisp
     org.mozilla.firefox
+    org.pencil2d.Pencil2D
 )
 
 set -x
