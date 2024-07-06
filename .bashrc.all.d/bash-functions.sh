@@ -15,3 +15,7 @@ function ,source-bash {
 function ,keychain {
   source ~/.bashrc.all.d/keychain.sh
 }
+
+function ,source-some-scripts {
+  source ~/bin/,source-some-scripts
+}

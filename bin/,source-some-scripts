@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# This script will present a menu containing all executable files in the
+# directory given as first argument, and then source all the files selected by
+# the user.
+#
+# If this script is sourced then failing means quitting the shell.
+#set -euo pipefail
+
+find=$(which find)
+fzf=$(which fzf)
+
+function select_scripts {
+  all_scripts=$($find "$@" -type f -executable)
+  if [[ -z "$all_scripts" ]]; then
+    echo "Can't find any executables"
+    return
+  fi
+
+  selected_scripts=$(echo "${all_scripts}" |
+    $fzf --multi --reverse \
+      --height=20 --prompt='Which scripts to source: ' \
+      --preview='cat {}'
+  ) || true
+
+  echo "$selected_scripts"
+}
+
+function run_scripts {
+  for file in ${selected_scripts}; do
+      echo -e "\n== Sourcing $file..."
+      if [ -x "$file" ]; then
+        source "$file"
+      fi
+  done
+  unset file
+}
+
+if [[ -z "${1:-""}" ]]; then
+  echo "Need directory or glob pattern to select scripts from as argument"
+else
+  select_scripts "$@"
+  run_scripts
+fi
