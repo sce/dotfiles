@@ -36,7 +36,7 @@ function run_scripts {
         (
           set -x
           "$file" "$@"
-        )
+        ) || true
       fi
   done
   unset file
