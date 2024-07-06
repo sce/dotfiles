@@ -6,6 +6,14 @@
 #
 set -euo pipefail
 
+bat=$(which bat || true)
+
+if [[ -n "$bat" ]]; then
+  preview="$bat --color=always --plain"
+else
+  preview="$(which head) -1000"
+fi
+
 git ls-files --others --exclude-standard "$@" | \
     fzf --multi --cycle --keep-right \
-    --preview="head -1000 {}" --prompt="git untracked > "
+    --preview="$preview {}" --prompt="git untracked > "
