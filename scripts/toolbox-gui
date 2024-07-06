@@ -6,7 +6,7 @@ cname=gui
 run="toolbox run --container $cname"
 
 scripts_dir=$(readlink -e toolbox-gui.d)
-run_scripts_from=$(which ./run-scripts-from)
+run_scripts_from=$(which ,run-scripts-from)
 
 packages=(
   fzf

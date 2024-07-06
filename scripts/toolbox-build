@@ -6,7 +6,7 @@ build_cname=build
 run="toolbox run --container $build_cname"
 
 scripts_dir=$(readlink -e toolbox-build.d)
-run_scripts_from=$(which ./run-scripts-from)
+run_scripts_from=$(which ,run-scripts-from)
 
 dependencies=(
   fzf
