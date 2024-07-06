@@ -19,10 +19,14 @@ fzf=$(which fzf)
 
 function select_scripts {
   all_scripts=$($find "$scripts_dir" -type f -executable)
+  if [[ -z "$all_scripts" ]]; then
+    echo "Can't find any executables in $scripts_dir"
+    exit 1
+  fi
 
   selected_scripts=$(echo "${all_scripts}" |
     $fzf --multi --reverse \
-      --height=10 --prompt='Which scripts to run: ' \
+      --height=20 --prompt='Which scripts to run: ' \
       --preview='cat {}'
   )
 
