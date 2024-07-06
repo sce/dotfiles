@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-rpm_config_dir=$(dirname $0)/rpm.d
+rpm_config_dir="$(dirname "$0")/rpm.d"
+source_run=$(which "$HOME"/bin/,source-some-scripts)
 
 packages=()
 packages_remove=()
@@ -23,20 +24,12 @@ function subtitle {
 }
 
 title "Parsing configs..."
-if [ -d "$rpm_config_dir" ]; then
-    for part in "$rpm_config_dir"/*.conf; do
-        if [ -f "$part" ]; then
-            subtitle "Running $part ..."
-            . "$part"
-        fi
-    done
-fi
-unset part
+source "$source_run" "$rpm_config_dir"/*.conf
 
 ###############################################################################
 
 title "Installing repositories..."
-for repo_filename in ${!repos[@]}; do
+for repo_filename in "${!repos[@]}"; do
     repo_url=${repos[$repo_filename]}
     output="/etc/yum.repos.d/$repo_filename"
     subtitle "$output from $repo_url"
@@ -45,7 +38,7 @@ done
 unset repo_filename repo_url output
 
 title "Removing packages..."
-for package in ${packages_remove[@]}; do
+for package in "${packages_remove[@]}"; do
     (
         set -x
         rpm-ostree override remove "${package}"
@@ -54,13 +47,15 @@ done
 unset package
 
 title "Adding packages..."
-(
-    set -x
-    rpm-ostree install --idempotent -y "${packages[@]}"
-)
+if [[ -n "${packages[*]}" ]]; then
+    (
+        set -x
+        rpm-ostree install --idempotent -y "${packages[@]}"
+    )
+fi
 
 title "Overriding specific packages..."
-for remove_package in ${!packages_override[@]}; do
+for remove_package in "${!packages_override[@]}"; do
     add_package=${packages_override[$remove_package]}
     (
         set -x
@@ -70,28 +65,23 @@ done
 unset remove_package add_package
 
 title "Replacing specific packages..."
-# Build a single command to save time:
-add_remove="rpm-ostree update"
-for remove_package in ${!packages_replace[@]}; do
-    add_package=${packages_replace[$remove_package]}
-    add_remove+=" --uninstall $remove_package --install $add_package"
-done
-(
-  set -x
-  $add_remove
-)
-unset remove_package add_package add_remove
+if [[ -n "${packages_replace[*]}" ]]; then
+    # Build a single command to save time:
+    add_remove="rpm-ostree update"
+    for remove_package in "${!packages_replace[@]}"; do
+        add_package=${packages_replace[$remove_package]}
+        add_remove+=" --uninstall $remove_package --install $add_package"
+    done
+    (
+        set -x
+        $add_remove
+    )
+    unset remove_package add_package add_remove
+fi
 
 title "Running post install scripts..."
-if [ -d "$rpm_config_dir" ]; then
-    for post in "$rpm_config_dir"/*.post; do
-        if [ -f "$post" ]; then
-            subtitle "Running $post ..."
-            . "$post"
-        fi
-    done
-fi
-unset post
+(
+  "$source_run" "$rpm_config_dir"/*.post
+) || true
 
-set -x
-sudo rpm-ostree apply-live --allow-replacement
+echo "Done."
