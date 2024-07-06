@@ -11,3 +11,7 @@ function ,cd {
 function ,source-bash {
   source ~/bin/,source-bash
 }
+
+function ,keychain {
+  source ~/.bashrc.all.d/keychain.sh
+}
