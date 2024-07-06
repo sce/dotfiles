@@ -14,7 +14,7 @@ run="toolbox run --container $cname"
 packages=(
    neovim
    vim
-   fzf
+   fzf bat
    # nodejs yarnpkg
    keychain
    jq entr

@@ -8,7 +8,7 @@ run="toolbox run --container $cname"
 packages=(
   neovim vim fzf
   keychain
-  jq entr
+  jq entr bat
   # these give us ansi2txt for stripping color codes:
   graphviz colorized-logs
 

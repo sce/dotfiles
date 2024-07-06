@@ -13,7 +13,7 @@ dnf_misc=(
     golang-x-tools-gopls
 
     neovim
-    fzf
+    fzf bat
     cmake # for telescope-fzf-native
 
     graphviz # "dot" etc.
