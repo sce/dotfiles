@@ -30,6 +30,10 @@ packages=(
   xz
   xz-devel
   zlib-devel
+  # In order to communicate with docker daemon runnin on host we can use
+  # `flatpak-spawn`, e.g.:
+  # $ flatpak-spawn --host docker run hello-world
+  flatpak
 )
 
 set -x
@@ -37,6 +41,6 @@ set -x
 toolbox create $cname || true
 
 # First we install some common development tools like gcc and make, Fedora
-# provides a group of packages for that call Development Tools
+# provides a group of packages for that called Development Tools
 $run sudo dnf groupinstall "Development Tools" -y
 $run sudo dnf install -y "${packages[@]}"
