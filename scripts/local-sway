@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-rpm_config_dir="$(dirname "$0")/rpm.d"
+rpm_config_dir="$(dirname "$0")/local-sway.d"
 source_run=$(which "$HOME"/bin/,source-some-scripts)
 
 packages=()
