@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# https://github.com/fedora-silverblue/issue-tracker/issues/543#issuecomment-2048350047
+#
+set -euo pipefail
+
+timestamp=$(date +%Y%m%d)
+bk_dir="EFI.$timestamp"
+
+boot_source=/usr/lib/ostree-boot/efi/EFI/BOOT
+boot_dest=/boot/efi/EFI/BOOT
+boot_files=(BOOTIA32.EFI BOOTX64.EFI fbia32.efi fbx64.efi)
+
+fedora_source=/usr/lib/ostree-boot/efi/EFI/fedora
+fedora_dest=/boot/efi/EFI/fedora
+fedora_files=(BOOTIA32.CSV BOOTX64.CSV grubia32.efi grubx64.efi mmia32.efi mmx64.efi shim.efi shimia32.efi shimx64.efi)
+
+# Only needed if destination already exists
+fedora_shimx_source="$fedora_source"/shimx64.efi
+fedora_shimx_dest="$fedora_dest"/shimx64-fedora.efi
+
+(
+  # set -x
+  # sudo -i
+  cp -a /boot/efi/EFI /boot/efi/"$bk_dir"
+
+  for file in "${boot_files[@]}"; do
+    cp -v "$boot_source"/"$file" "$boot_dest"/"$file"
+  done
+
+  for file in "${fedora_files[@]}"; do
+    cp -v "$fedora_source"/"$file" "$fedora_dest"/"$file"
+  done
+
+  if [[ -f "$fedora_shimx_dest" ]]; then
+    cp -v "$fedora_shimx_source" "$fedora_shimx_dest"
+  fi
+
+  sync
+)
