@@ -96,6 +96,7 @@ nnoremap <leader>F <cmd>Telescope find_files<cr>
 nnoremap <leader>G <cmd>Telescope git_files<cr>
 nnoremap <leader>h <cmd>Telescope git_file_history<cr>
 nnoremap <leader>j <cmd>Telescope jumplist<cr>
+nnoremap <leader>o <cmd>Telescope oldfiles<cr>
 nnoremap <leader>s <cmd>Telescope git_status<cr>
 nnoremap <leader>S <cmd>Telescope spell_suggest<cr>
 nnoremap <leader>t <cmd>Telescope builtin<cr>
