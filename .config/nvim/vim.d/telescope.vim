@@ -53,6 +53,11 @@ lua<<EOF
         include_current_line = false,
         show_line = false,
       },
+
+      diagnostics = {
+        show_line = false,
+        -- line_width = 50,
+      },
     },
 
     -- extensions = {
