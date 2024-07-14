@@ -23,4 +23,5 @@ elif [[ "$rofi" != "" ]]; then
 
 else
   echo "Can't find suitable program to run!"
+  exit 1
 fi
