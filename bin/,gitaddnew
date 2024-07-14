@@ -16,6 +16,9 @@ echo_run() {
 # for "exit on error" to work we need to split the command on two different
 # lines:
 #files=$(,gituntracked --prompt="git add new > ")
-files=$(,gituntracked "$@")
-echo_run git add --intent-to-add "$files"
-echo_run git add --patch "$files"
+(
+  set -x
+  files=($(,gituntracked "$@"))
+  echo_run git add --intent-to-add "${files[@]}"
+  echo_run git add --patch "${files[@]}"
+)
