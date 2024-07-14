@@ -2,6 +2,6 @@
 
 set -xeuo pipefail
 
-config=~/.config/nvim/init-js.vim
+config=$HOME/.config/nvim/init-js.vim
 
-exec nvim -u "$config"
+exec nvim -u "$config" "$@"
