@@ -8,18 +8,36 @@ run="toolbox run --container $cname"
 packages=(
   neovim vim fzf
   keychain
-  jq entr bat
+  jq entr bat ripgrep
   # these give us ansi2txt for stripping color codes:
   graphviz colorized-logs
 
-  ruby
+  # to compile things:
+  cmake make gcc
+
+  # bashls:
+  shellcheck
+
+  # bashls:
+  shellcheck
+
+  # for bash-language-server:
+  nodejs yarnpkg
+
+  ruby irb # rubygems-irb
+
   # to build native packages:
   ruby-devel glibc-devel kernel-devel gmp-devel libyaml-devel
-  tmux
 )
 
-set -x
+yarns=(
+  bash-language-server
+)
 
-toolbox create $cname 2>/dev/null || true
+(
+  set -x
 
-$run sudo dnf install -y "${packages[@]}"
+  toolbox create $cname 2>/dev/null || true
+  $run sudo dnf install -y "${packages[@]}"
+  $run yarn global add "${yarns[@]}"
+)
