@@ -1,19 +1,18 @@
 # Ignore everything by default:
 *
 
-# And then start whitelisting:
+# And then start approving:
 !.*
 !*.sh
 !/meta
 !/meta/**/**
 
-# ... but now there's too much again, so start blacklisting specifics:
+# ... but now there's too much again, so start ignoring specifics:
 .bash_history
 .lesshst
 .viminf*
 .serverauth*
 .forward
-.gitconfig-private
 
 !bin
 !bin/**

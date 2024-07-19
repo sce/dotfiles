@@ -1,4 +1,6 @@
 [include]
+  path = ~/.gitconfig.d/alias.config
+  path = ~/.gitconfig.d/colors.config
   path = ~/.gitconfig.d/user.config
 
 [status]
@@ -19,99 +21,6 @@
 [push]
   default = simple
 
-[alias]
-  # list aliases:
-  la = "!git config -l | grep alias | cut -c 7-"
-
-  sh = show --submodule
-  st = status -sb
-  sta = status --untracked-files=all
-  stu = status -s --untracked=no
-  ci = commit
-  cia = commit --amend
-  br = branch
-  co = checkout
-  #df = diff --submodule
-  df = diff
-  dc = !git df --cached
-  dfw = !git df --word-diff
-  dcw = !git dc --word-diff
-  cp = cherry-pick
-  lg = log -p
-  fvars = fetch -va --recurse-submodules
-
-  # search for commits that change trailing argument
-  ps = log -p -S
-
-  fe = submodule foreach
-
-  # find file:
-  ff = !git ls-files | grep -i --color
-
-  # -I = no binary
-  gr = grep -Ii
-
-  # Remove untracked files from working tree:
-  # (-n) dry run, (-d) remove dirs, (-X) only files ignored by git.
-  ign = clean -ndX
-
-  # Nice. Git is acting very strange: There doesn't seem to be a single command
-  # which will actually list all ignored files, heh.
-  ign2 = ls-files --others --ignored --exclude-standard
-
-  #lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  #lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-
-  lol = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso
-  loll = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset%n%w(0,4,4)%-b%n%n%-N' --abbrev-commit --decorate --date=iso
-
-  lola = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset' --abbrev-commit --decorate --date=iso --all
-  lolla = log --graph --pretty=format:'%C(red bold)%h%Creset -%C(yellow bold)%d%Creset %s %C(green bold)(%ad) %C(bold cyan)<%an>%Creset%n%w(0,4,4)%-b%n%n%-N' --abbrev-commit --decorate --date=iso --all
-
-  hist = log --pretty=format:\"%h %ad %s%d [%an]\" --graph --date=short
-  timeline = log --oneline --graph --decorate
-
-  # show reflog in full log format
-  gg = log -g
-
-  #lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit --date=relative
-
-  # from https://coderwall.com/p/lypuua
-  pdiff = !TAG=$(git describe --no-abbrev --tags --match production-*) && git df $TAG
-  sdiff = !TAG=$(git describe --no-abbrev --tags --match staging-*) && git df $TAG
-
-  # from geir @ work
-  zco = !B=`git branch | cut -b3- | fzf` && git checkout ${B}
-  zadd = !FILES=`git status -s | awk '{ print $2 }' | fzf -x -m` && git add --all ${FILES}
-  zreb = !HASH=`git log --pretty=oneline --abbrev-commit | head -n 100 | fzf` && git rebase -i `echo ${HASH} | awk '{ print $1 }'`^
-  zres = !HASH=`git log --pretty=oneline --abbrev-commit | head -n 50 | fzf` && git reset --soft `echo ${HASH} | awk '{ print $1 }'`^
-  # zld = !B=`git branch | cut -b3- | fzf` && echo master..${B} && git log --pretty=oneline --abbrev-commit master..${B}
-  zld = !B=`git branch | cut -b3- | fzf` && echo HEAD..${B} && git log --pretty=oneline --abbrev-commit HEAD..${B}
-
-  delete-merged-remote = !git log --oneline --decorate|grep \\(origin|awk '{ print $2 }'|sed 's/(origin\\//:/'|sed 's/)//'|fzf|xargs echo git push origin
-
-[color]
-  branch = auto
-  diff = auto
-  status = auto
-  interactive = auto
-  grep = auto
-
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
 [init]
 	defaultBranch = main
 
