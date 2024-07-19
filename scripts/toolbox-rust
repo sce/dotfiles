@@ -3,28 +3,22 @@
 set -euo pipefail
 
 cname=rust
-run="toolbox run --container $cname"
+in_container="toolbox run --container $cname"
 
 scripts_dir=$(readlink -e toolbox-rust.d)
 run_scripts_from=$(which ,run-scripts-from)
 
 packages=(
-  neovim vim fzf
-  keychain
-  jq entr bat
-  # these give us ansi2txt for stripping color codes:
-  graphviz colorized-logs
-
-  rust rustfmt cargo
+  fzf bat
 )
 
 function create_toolbox {
   (
     set -x
     toolbox create $cname 2>/dev/null
-    $run sudo dnf install -y "${packages[@]}"
+    $in_container sudo dnf install -y "${packages[@]}"
   ) || true
 }
 
 create_toolbox
-$run "$run_scripts_from" "$scripts_dir" "$@"
+$in_container "$run_scripts_from" "$scripts_dir" "$@"
