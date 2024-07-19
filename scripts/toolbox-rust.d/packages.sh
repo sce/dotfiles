@@ -4,7 +4,7 @@ set -euo pipefail
 
 packages=(
   neovim vim
-  keychain
+  keychain dnf5
   jq entr
   # these give us ansi2txt for stripping color codes:
   graphviz colorized-logs
