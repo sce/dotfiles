@@ -8,22 +8,25 @@ run="toolbox run --container $cname"
 
 packages=(
   neovim vim fzf
-  NetworkManager-tui
-  nodejs yarnpkg
-  keychain rclone
-  jq entr bat
+  keychain
+  jq entr bat ripgrep
   # these give us ansi2txt for stripping color codes
   graphviz colorized-logs
-  # convenience, wl-copy etc:
-  wl-clipboard
 
-  ripgrep
+  # to compile things:
+  cmake make gcc
 
   # bashls:
   shellcheck
 
-  # to compile things:
-  cmake make gcc
+  # for bash-language-server:
+  nodejs yarnpkg
+
+  # convenience, wl-copy etc:
+  wl-clipboard
+
+  rclone
+  NetworkManager-tui
 )
 
 yarns=(
