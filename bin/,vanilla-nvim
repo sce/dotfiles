@@ -4,4 +4,5 @@ set -euo pipefail
 
 config=$HOME/.config/nvim/init-vanilla.vim
 
+set -x
 exec nvim -u "$config" "$@"

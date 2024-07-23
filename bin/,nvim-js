@@ -1,7 +1,8 @@
 #!/bin/bash
 
-set -xeuo pipefail
+set -euo pipefail
 
 config=$HOME/.config/nvim/init-js.vim
 
+set -x
 exec nvim -u "$config" "$@"
