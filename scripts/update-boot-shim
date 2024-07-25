@@ -20,8 +20,6 @@ fedora_shimx_source="$fedora_source"/shimx64.efi
 fedora_shimx_dest="$fedora_dest"/shimx64-fedora.efi
 
 (
-  # set -x
-  # sudo -i
   cp -a /boot/efi/EFI /boot/efi/"$bk_dir"
 
   for file in "${boot_files[@]}"; do

@@ -44,7 +44,11 @@ wss = JSON.parse(%x(swaymsg -t get_workspaces))
 #pp ws_nums = wss.map { |ws| ws["num"] }.reject {|num| num < 0 }.sort
 print "ws_names:"
 #pp ws_names = wss.map { |ws| from_hex(ws["name"]) }.filter { |num| num != 0 }.sort
-pp ws_names = wss.map { |ws| parse_ws_name(ws["name"]) }.filter { |num| num != 0 }.sort
+pp ws_names = wss
+  .map { |ws| parse_ws_name(ws["name"]) }
+  .filter { |num| num != 0 }
+  .sort
+  .uniq
 
 if $0 =~ GOTO_WS
 	# Create notification with the name of the current workspace.
@@ -59,7 +63,9 @@ else
 	#gap_exists = ws_nums.find.each_with_index { |num, i| num != (gap_ws = i+1) }
 	#gap_exists = ws_names.find.each_with_index { |name, i| hex(name) != (gap_ws = hex(i+1)) }
 	#new_ws = gap_exists && gap_ws || hex((ws_names.last || 0) + 1)
-	gap_exists = ws_names.find.each_with_index { |name, i| ws_name(name) != (gap_ws = ws_name(i+1)) }
+	gap_exists = ws_names.find.each_with_index do |name, i|
+	  ws_name(name) != (gap_ws = ws_name(i+1))
+	end
 	new_ws = gap_exists && gap_ws || ws_name((ws_names.last || 0) + 1)
 
 	#new_ws = gap_exists && gap_ws || (ws_nums.last + 1)
