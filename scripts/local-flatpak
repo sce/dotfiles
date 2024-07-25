@@ -4,6 +4,7 @@ set -euo pipefail
 
 fedora_packages=(
     com.github.tchx84.Flatseal
+    org.gnome.Calculator
     org.gnome.Shotwell
 )
 
@@ -12,7 +13,6 @@ flathub_packages=(
     com.obsproject.Studio
     com.vscodium.codium
     io.mpv.Mpv
-    org.gnome.Calculator
     org.gnome.Snapshot
     org.inkscape.Inkscape
     org.libvips.vipsdisp
@@ -20,8 +20,10 @@ flathub_packages=(
     org.pencil2d.Pencil2D
 )
 
-set -x
+(
+  set -x
 
-flatpak install -y fedora "${fedora_packages[@]}"
+  flatpak install -y fedora "${fedora_packages[@]}"
 
-flatpak install -y flathub "${flathub_packages[@]}"
+  flatpak install -y flathub "${flathub_packages[@]}"
+)
