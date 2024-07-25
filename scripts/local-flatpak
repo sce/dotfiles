@@ -12,6 +12,7 @@ flathub_packages=(
     com.google.Chrome
     com.obsproject.Studio
     com.vscodium.codium
+    com.yubico.yubioath
     io.mpv.Mpv
     org.gnome.Snapshot
     org.inkscape.Inkscape
