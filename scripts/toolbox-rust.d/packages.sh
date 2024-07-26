@@ -9,7 +9,10 @@ packages=(
   # these give us ansi2txt for stripping color codes:
   graphviz colorized-logs
 
-  rust rustfmt cargo
+  cargo
+  rust
+  rust-analyzer
+  rustfmt
 )
 
 (
