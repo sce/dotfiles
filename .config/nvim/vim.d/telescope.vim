@@ -58,6 +58,9 @@ lua<<EOF
         show_line = false,
         -- line_width = 50,
       },
+      oldfiles = {
+        -- cwd_only = true,
+      },
     },
 
     -- extensions = {
@@ -92,6 +95,7 @@ lua<<EOF
   vim.keymap.set('n', '<leader>f', function() builtin.find_files({ cwd = utils.buffer_dir() }) end, {})
   vim.keymap.set('n', '<leader>g', function() builtin.git_files({ use_git_root = false }) end, {})
   vim.keymap.set('n', '<leader>R', function() builtin.live_grep({ cwd = vim.api.nvim_exec2(':GitRoot', {output=true}).output }) end, {})
+  vim.keymap.set('n', '<leader>o', function() builtin.oldfiles({ cwd_only = true }) end, {})
 EOF
 
 "" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -101,7 +105,7 @@ nnoremap <leader>F <cmd>Telescope find_files<cr>
 nnoremap <leader>G <cmd>Telescope git_files<cr>
 nnoremap <leader>h <cmd>Telescope git_file_history<cr>
 nnoremap <leader>j <cmd>Telescope jumplist<cr>
-nnoremap <leader>o <cmd>Telescope oldfiles<cr>
+nnoremap <leader>O <cmd>Telescope oldfiles<cr>
 nnoremap <leader>s <cmd>Telescope git_status<cr>
 nnoremap <leader>S <cmd>Telescope spell_suggest<cr>
 nnoremap <leader>t <cmd>Telescope builtin<cr>
