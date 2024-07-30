@@ -2,15 +2,13 @@
 " Misc universally useful behaviour
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" where to create backups, if turned on:
-" Let's just create backups in the same directory for now.
-" set backupdir=~/.cache/vim/backup
-set backupdir=./
+" Where to create backups, if turned on:
+" Try current directory first, or global cache dir as fallback:
+set backupdir=.,~/.cache/vim/backup
 
-" where to store swap files:
-" Let's just store swap files in the same directory for now.
-" set directory=~/.cache/vim/
-set directory=./
+" Where to store swap files:
+" Try current directory first, or global cache dir as fallback:
+set directory=.,~/.cache/vim
 
  " ask what to do when quitting in a limbo state instead of just complaining
 set confirm
