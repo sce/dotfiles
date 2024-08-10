@@ -17,7 +17,7 @@ lua<<EOF
         -- absolute,
         -- smart,
         -- filename_first,
-        shorten = 10,
+        -- shorten = 10,
         truncate = 1,
       },
       layout_config = {

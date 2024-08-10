@@ -60,4 +60,7 @@
 
 " IDE:
   " Config: runtime vim.d/trouble.vim
-  Plug 'folke/trouble.nvim'
+  " Plug 'folke/trouble.nvim'
+  "
+" Jumping around:
+  Plug 'ggandor/leap.nvim'

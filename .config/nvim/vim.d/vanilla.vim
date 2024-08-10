@@ -32,4 +32,14 @@ runtime vim.d/telescope.vim
 
 runtime vim.d/neo-tree.vim
 
-runtime vim.d/trouble.vim
+" runtime vim.d/trouble.vim
+
+lua<<EOS
+  require('leap').create_default_mappings()
+
+  vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' }) -- or some grey
+  vim.api.nvim_set_hl(0, 'LeapMatch', {
+    -- For light themes, set to 'black' or similar.
+    fg = 'white', bold = true, nocombine = true,
+  })
+EOS
