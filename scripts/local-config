@@ -25,4 +25,25 @@ function run_systemd_conf {
   unset systemd_root destination subdir
 }
 
+function run_sysctl_conf {
+  sysctl_root=/etc
+
+  (
+    cd "$conf_dir"/sysctl
+
+    for config_file in **/*; do
+      destination=$(readlink --canonicalize-missing "$sysctl_root/$config_file")
+      subdir=$(dirname "$destination")
+      [[ -d "$subdir" ]] || mkdir -vp "$subdir"
+
+      cp -iv "$config_file" "$destination"
+    done
+
+    set -x
+    sysctl -p
+  )
+  unset sysctl_root destination subdir
+}
+
 run_systemd_conf
+run_sysctl_conf
