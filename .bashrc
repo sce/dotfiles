@@ -6,10 +6,14 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+# .config/environment.d/300-path.conf and .profile should take care of this now.
+# # if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+# #     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+# # fi
+# # export PATH
+#
+# # VISUAL=,,vanilla-nvim
+# # EDITOR=$VISUAL
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
@@ -23,8 +27,5 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
-
-VISUAL=,,vanilla-nvim
-EDITOR=$VISUAL
 
 alias ls="ls --color"
