@@ -45,5 +45,5 @@ function run_sysctl_conf {
   unset sysctl_root destination subdir
 }
 
-run_systemd_conf
 run_sysctl_conf
+run_systemd_conf
