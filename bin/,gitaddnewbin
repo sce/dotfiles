@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#
+# This script will show a list of untracked files in git and do
+# a normal "git add" on files selected by user. This works better than patch
+# adding for binary files.
+#
+set -euo pipefail
+
+# We preserve the newlines in the output so that spaces are properly handled:
+files=$(,gituntracked "$@")
+(
+  set -x
+  echo "${files[@]}" | xargs -d '\n' git add --intent-to-add
+  echo "${files[@]}" | xargs -d '\n' git add
+)
