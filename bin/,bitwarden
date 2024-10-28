@@ -2,4 +2,8 @@
 
 set -euo pipefail
 
-exec flatpak run com.bitwarden.desktop
+bitwarden=$(which ~/.local/bin/Bitwarden-*|head -1)
+
+set -x
+
+exec $bitwarden

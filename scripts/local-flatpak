@@ -19,6 +19,7 @@ flathub_packages=(
     org.libvips.vipsdisp
     org.mozilla.firefox
     org.pencil2d.Pencil2D
+    org.signal.Signal
 )
 
 (
