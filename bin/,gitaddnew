@@ -9,9 +9,11 @@ set -euo pipefail
 # for "exit on error" to work we need to split the command on two different
 # lines:
 #files=$(,gituntracked --prompt="git add new > ")
-files=($(,gituntracked "$@"))
+
+# We preserve the newlines in the output so that spaces are properly handled:
+files=$(,gituntracked "$@")
 (
   set -x
-  git add --intent-to-add "${files[@]}"
-  git add --patch "${files[@]}"
+  echo "${files[@]}" | xargs --open-tty --delimiter '\n' git add --intent-to-add
+  echo "${files[@]}" | xargs --open-tty --delimiter '\n' git add --patch
 )
