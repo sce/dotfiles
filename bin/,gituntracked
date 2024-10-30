@@ -11,7 +11,7 @@ bat=$(which bat || true)
 if [[ -n "$bat" ]]; then
   preview="$bat --color=always --plain"
 else
-  preview="$(which head) -1000"
+  preview="$(which head) -200"
 fi
 
 git ls-files --others --exclude-standard "$@" | \
