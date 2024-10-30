@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+dest_dir="$HOME/.local/bin"
+
 dnf_deps=(
   cargo
   cmake
@@ -18,5 +20,6 @@ dnf_deps=(
   # after building, it can be found in ~/.cargo/bin/alacritty
   cargo install alacritty
 
-  cp -v "$HOME/.cargo/bin/alacritty" "$HOME/.local/bin"
+  mkdir -pv "$dest_dir"
+  cp -v "$HOME/.cargo/bin/alacritty" "$dest_dir"
 )
