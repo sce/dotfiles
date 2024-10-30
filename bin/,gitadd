@@ -17,4 +17,4 @@ echo_run() {
 # lines:
 #files=$(,gitmodified --prompt="git add --patch > ")
 files=$(,gitmodified "$@")
-echo_run git add --patch $files
+echo_run git add --patch "$files"
