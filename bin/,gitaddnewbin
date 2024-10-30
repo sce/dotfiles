@@ -11,6 +11,6 @@ set -euo pipefail
 files=$(,gituntracked "$@")
 (
   set -x
-  echo "${files[@]}" | xargs -d '\n' git add --intent-to-add
-  echo "${files[@]}" | xargs -d '\n' git add
+  echo "${files[@]}" | xargs --open-tty --delimiter '\n' git add --intent-to-add
+  echo "${files[@]}" | xargs --open-tty --delimiter '\n' git add
 )
