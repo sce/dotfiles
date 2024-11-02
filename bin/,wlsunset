@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# The `latlong-location` file should only have two lines: the first should have
+# the latitude coordinate and the second should have the longitude coordinate.
+#
+# E.g. for London:
+# 51.509865
+# -0.118092
+latlong_file="$HOME/.config/latlong-location"
+
+function latlongs {
+  read -r lat
+  read -r long
+}
+
+latlongs < "$latlong_file"
+
+#echo lat "$lat"
+#echo long "$long"
+
+(
+  set -x
+  wlsunset -l "$lat" -L "$long"
+)
