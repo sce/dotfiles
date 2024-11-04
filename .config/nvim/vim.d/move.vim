@@ -103,7 +103,7 @@ command CDRoot cd %:h | cd `git rev-parse --show-toplevel`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jumps:
 
-map <Leader>j :jumps<CR>
+" map <Leader>j :jumps<CR>
 
 " jump back with g,
 nnoremap g, <C-o>
@@ -111,5 +111,6 @@ nnoremap g, <C-o>
 nnoremap g. <C-i>
 
 " open file/path even if it doesn't exist:
-command OpenPath e <cfile>
-nnoremap gf <cmd>OpenPath<cr>
+command OpenPath edit %:.:h/<cfile>
+" nnoremap gf <cmd>OpenPath<cr>
+nnoremap <leader>n <cmd>OpenPath<cr>

@@ -1,5 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indentation:
+" Indentation: two spaces per tab
 
 set tabstop=2 " how many spaces a tab character counts as
 set shiftwidth=2 " number of spaces per autoindent (zero: use ts value)

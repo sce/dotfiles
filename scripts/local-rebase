@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+echo -e "Pick one of the base images to rebase to:\n"
+
+ostree remote refs fedora|grep "x86_64/silverblue"
+
+echo -e "\nAnd then run the rebase command:"
+echo -e "\n    $ rpm-ostree rebase fedora:fedora/??/x86_64/silverblue\n"
