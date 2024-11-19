@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=,wlsunset
+TryExec=,wlsunset
+Name=wlsunset
+Comment=day/night gamma adjustments for Wayland compositors supporting wlr-gamma-control-unstable-v1
+Type=Application
+OnlyShowIn=sway;
