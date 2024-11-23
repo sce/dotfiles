@@ -1,0 +1,34 @@
+#FROM quay.io/fedora/fedora-bootc:41
+FROM quay.io/fedora/fedora-silverblue:41
+
+RUN dnf install -y \
+  bootc \
+  brightnessctl \
+  dex-autostart \
+  distrobox \
+  fzf \
+  grim \
+  grimshot \
+  i3status \
+  lxpolkit \
+  pamixer \
+  perl \
+  rofi-wayland \
+  ruby \
+  slurp \
+  sway \
+  sway-wallpapers \
+  swaybg \
+  swayidle \
+  swaylock \
+  tmux \
+  waybar \
+  wlsunset \
+  wofi \
+  zenity \
+  && dnf clean all
+
+WORKDIR /
+
+COPY local-config.d/sysctl /etc/
+COPY local-config.d/systemd /etc/systemd/

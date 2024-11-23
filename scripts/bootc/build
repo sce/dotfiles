@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# `buildah` doesn't like adding files from a parent directory, so we'll make it
+# easy for ourselves by changing the workdir:
+workdir=..
+containerfile=$(readlink -f Containerfile)
+
+repo=${1:-localhost/$(hostname)}
+tag=latest
+base_image=quay.io/fedora/fedora-silverblue:41
+
+(
+  set -x
+  cd "$workdir"
+  pwd
+
+  # check if there is a new base image:
+  sudo podman image pull "$base_image"
+
+  # since `bootc switch` needs to run as root we also need to build as root to
+  # make sure the container ends up in the root users container storage:
+  sudo buildah build --layers --tag "$repo":"$tag" --file "$containerfile"
+)
