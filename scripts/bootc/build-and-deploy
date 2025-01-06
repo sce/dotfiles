@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+(
+  set -x
+
+  ./build
+  sudo rpm-ostree update
+)
