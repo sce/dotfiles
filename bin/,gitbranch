@@ -3,9 +3,7 @@
 set -euo pipefail
 
 # xargs is just to trim whitespace
-branch=$(git branch --verbose --sort=creatordate|fzf --no-sort --reverse --tac|cut -f2-3 -d" "|xargs)
-
-(
-  set -x
-  git checkout "$branch"
-)
+git branch --verbose --sort=creatordate \
+  | fzf --no-sort --reverse --tac \
+  | cut -f2-3 -d" " \
+  | xargs
