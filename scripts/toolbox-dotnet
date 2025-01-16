@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# text user interface
+cname=dotnet
+run="toolbox run --container $cname"
+
+packages=(
+  neovim vim fzf
+  keychain
+  jq entr bat ripgrep
+  # these give us ansi2txt for stripping color codes
+  graphviz colorized-logs
+
+  # the main packages:
+  dotnet-sdk-8.0
+  dotnet-sdk-9.0
+
+  # to compile things:
+  cmake make gcc
+
+  # bashls:
+  shellcheck
+
+  # for bash-language-server:
+  nodejs yarnpkg
+
+  # convenience, wl-copy etc:
+  wl-clipboard
+
+  NetworkManager-tui
+)
+
+yarns=(
+  bash-language-server
+)
+
+set -x
+
+toolbox create $cname || true
+
+$run sudo dnf install -y "${packages[@]}"
+$run yarn global add "${yarns[@]}"
