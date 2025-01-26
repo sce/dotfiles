@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+(
+  set -x
+
+  # we need to make sure that the intune-daemon is started every time the
+  # system is booted:
+  systemctl enable --global --system intune-daemon.service
+)
