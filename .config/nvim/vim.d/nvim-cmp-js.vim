@@ -80,7 +80,7 @@ lua <<EOF
   -- Set up lspconfig and autocomplete:
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-  require('lspconfig')['tsserver'].setup {
+  require('lspconfig')['ts_ls'].setup {
     capabilities = capabilities,
     root_dir = require('lspconfig.util').root_pattern('yarn.lock'),
 
