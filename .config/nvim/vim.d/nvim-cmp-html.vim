@@ -11,8 +11,10 @@ lua <<EOF
   -- local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+  require('lspconfig')['biome'].setup { capabilities = capabilities }
+
   require('lspconfig')['cssls'].setup { capabilities = capabilities }
-  require('lspconfig')['eslint'].setup {}
+  -- require('lspconfig')['eslint'].setup {}
   require('lspconfig')['html'].setup { capabilities = capabilities }
   require('lspconfig')['jsonls'].setup { capabilities = capabilities }
 EOF

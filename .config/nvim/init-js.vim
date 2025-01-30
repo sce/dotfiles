@@ -12,15 +12,17 @@ call plug#begin('~/.config/nvim/js/plugged')
   " Javascript Specific:
     " Prettier:
     " Config: runtime vim.d/null-ls.vim
-    Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'nvimtools/none-ls.nvim'
+    " Plug 'nvimtools/none-ls-extras.nvim'
+
     " Config: runtime vim.d/prettier.vim
     Plug 'MunifTanjim/prettier.nvim'
 
     " Eslint:
     Plug 'neovim/nvim-lspconfig'
-    " Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'MunifTanjim/eslint.nvim'
-    " Plug 'mfussenegger/nvim-lint'
+    " Plug 'MunifTanjim/eslint.nvim'
+    Plug 'mfussenegger/nvim-lint'
+
 call plug#end()
 
 runtime vim.d/vanilla.vim
