@@ -24,7 +24,7 @@ lua<<EOF
         horizontal = {
           height = 0.95,
           width = 0.95,
-          preview_width = 60,
+          preview_width = 80,
         },
       },
       mappings = {
