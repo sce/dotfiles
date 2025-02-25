@@ -14,6 +14,7 @@ flathub_packages=(
     com.vscodium.codium
     com.yubico.yubioath
     io.mpv.Mpv
+    org.gnome.Evince
     org.gnome.Snapshot
     org.inkscape.Inkscape
     org.libvips.vipsdisp
