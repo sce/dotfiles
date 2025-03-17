@@ -14,6 +14,7 @@ command LspDoImplementation  lua vim.lsp.buf.implementation()
 command LspDoReferences      lua vim.lsp.buf.references()
 command LspDoRename          lua vim.lsp.buf.rename()
 command LspDoSignatureHelp   lua vim.lsp.buf.signature_help()
+command LspDoSourceAction    lua vim.lsp.buf.code_action({ apply = true, context = { only = { "source" }, diagnostics = {}, }, })
 command LspDoTypeDefinition  lua vim.lsp.buf.type_definition()
 command LspDoWorkspaceSymbol lua vim.lsp.buf.workspace_symbol()
 
@@ -34,6 +35,7 @@ nnoremap gr <cmd>LspDoReferences<cr>
 nnoremap gy <cmd>LspDoTypeDefinition<cr>
 
 nnoremap <leader>ca <cmd>LspDoCodeAction<cr>
+nnoremap <leader>cs <cmd>LspDoSourceAction<cr>
 nnoremap <leader>cn <cmd>LspDoRename<cr>
 
 " p for 'prettier'
