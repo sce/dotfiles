@@ -26,6 +26,7 @@
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-vsnip'
 
   " lsp/vscode snippets needed by nvim-cmp:
   Plug 'hrsh7th/vim-vsnip'
