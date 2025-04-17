@@ -2,34 +2,63 @@
 
 set -euo pipefail
 
-fedora_packages=(
-    com.github.maoschanz.drawing
-    com.github.tchx84.Flatseal
-    org.gnome.Calculator
-    org.gnome.Shotwell
-    org.kde.krita
-)
+config_dir="$(dirname "$0")/local-flatpak.d"
 
-flathub_packages=(
-    com.google.Chrome
-    com.obsproject.Studio
-    com.vscodium.codium
-    com.yubico.yubioath
-    io.mpv.Mpv
-    org.gnome.Evince
-    org.gnome.Snapshot
-    org.inkscape.Inkscape
-    org.libreoffice.LibreOffice
-    org.libvips.vipsdisp
-    org.mozilla.firefox
-    org.pencil2d.Pencil2D
-    org.signal.Signal
-)
+find=$(which find)
+fzf=$(which fzf)
 
-(
+function select_flatpaks {
+  all_scripts=$($find "$@" -type f)
+
+  selected_scripts=$(echo "${all_scripts}" |
+    $fzf --multi --reverse \
+      --height=20 --prompt='Which flatpaks to install: ' \
+      --preview='cat {}'
+  ) || true
+
+  echo "$selected_scripts"
+}
+
+function title {
+    echo -e "\n=== $1"
+}
+
+function subtitle {
+    echo "--- $1"
+}
+
+###############################################################################
+
+flatpaks=$(select_flatpaks "$config_dir"/*)
+
+flathub=()
+fedora=()
+
+for flatpak in ${flatpaks}; do
+  source=$(basename "$flatpak"| cut -d ":" -f1)
+  package=$(basename "$flatpak"| cut -d ":" -f2)
+
+  case "$source" in
+    flathub)
+      flathub+=("$package")
+      ;;
+    fedora)
+      fedora+=("$package")
+      ;;
+    *)
+      echo "Unknown source: \"$source\""
+      ;;
+  esac
+done
+
+[[ -z "${flathub[*]}" ]] || (
+  title "Installing from flathub..."
   set -x
+  flatpak install flathub "${flathub[@]}"
+)
 
-  flatpak install -y fedora "${fedora_packages[@]}"
-
-  flatpak install -y flathub "${flathub_packages[@]}"
+[[ -z "${fedora[*]}" ]] || (
+  title "Installing from fedora..."
+  set -x
+  flatpak install fedora "${fedora[@]}"
 )
