@@ -3,9 +3,11 @@
 set -euo pipefail
 
 fedora_packages=(
+    com.github.maoschanz.drawing
     com.github.tchx84.Flatseal
     org.gnome.Calculator
     org.gnome.Shotwell
+    org.kde.krita
 )
 
 flathub_packages=(
@@ -17,6 +19,7 @@ flathub_packages=(
     org.gnome.Evince
     org.gnome.Snapshot
     org.inkscape.Inkscape
+    org.libreoffice.LibreOffice
     org.libvips.vipsdisp
     org.mozilla.firefox
     org.pencil2d.Pencil2D
