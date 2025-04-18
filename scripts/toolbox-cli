@@ -35,7 +35,7 @@ yarns=(
 
 set -x
 
-toolbox create $cname || true
+toolbox create "$@" $cname || true
 
 $run sudo dnf install -y "${packages[@]}"
 $run yarn global add "${yarns[@]}"
