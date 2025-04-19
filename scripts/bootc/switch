@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+image=${1:-localhost/$(hostname):latest}
+
+(
+  set -x
+  bootc switch --transport containers-storage "$image"
+)
