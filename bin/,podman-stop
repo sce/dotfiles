@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-(
-  set -x
-  podman stop "$(,podman-container)"
-)
