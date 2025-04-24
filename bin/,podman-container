@@ -4,5 +4,5 @@ set -euo pipefail
 
 (
   set -x
-  podman container list "$@" | sort -r | fzf --header-lines=1 --accept-nth=1 --height=10
+  podman container list --sort=runningfor "$@" | fzf --header-lines=1 --accept-nth=1 --height=10
 )
