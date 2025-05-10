@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -euo pipefail
+
+image=${1:-localhost/$(hostname)-squid}
+
+(
+  set -x
+
+  podman run -it -e TZ=UTC -p 3128:3128 "$image"
+)
+

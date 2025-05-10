@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -euo pipefail
+
+containerfile=$(readlink -f squid.Containerfile)
+
+repo=${1:-localhost/$(hostname)-squid}
+tag=latest
+#base_image=$(head "$containerfile" | grep ^FROM | awk '{print $2}')
+
+(
+  set -x
+
+  # check if there is a new base image:
+  #podman image pull "$base_image"
+
+  #buildah build --layers --tag "$repo":"$tag" --file "$containerfile"
+  podman build --layers --tag "$repo":"$tag" --file "$containerfile"
+
+  # old unlabled images will fill up quickly if we don't remove them:
+  podman image prune
+)
