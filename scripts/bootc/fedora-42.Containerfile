@@ -1,6 +1,9 @@
 ###############################################################################
 #FROM quay.io/fedora/fedora-bootc:42
-FROM quay.io/fedora/fedora-silverblue:42 AS RPMFUSION
+FROM quay.io/fedora/fedora-silverblue:42 AS BASE
+
+###############################################################################
+FROM BASE AS RPMFUSION
 
 # We want rpmfusion added first so that dependencies from that repo can be
 # pulled in when installing the rest of the packages.
@@ -22,14 +25,16 @@ RUN dnf install -y \
   gstreamer1-plugins-ugly \
   libavcodec-freeworld \
   mesa-va-drivers-freeworld \
-  mesa-vdpau-drivers-freeworld
+  mesa-vdpau-drivers-freeworld \
+  && dnf clean packages
 
 ###############################################################################
 FROM RPMFUSION AS SWAY
 
 # We'll use flatpak version of firefox and having both installed can be
 # confusing:
-RUN dnf remove -y firefox firefox-langpacks
+RUN dnf remove -y firefox firefox-langpacks \
+  && dnf clean packages
 
 RUN dnf install -y \
   # docker-buildx-plugin \
@@ -69,7 +74,7 @@ RUN dnf install -y \
   wlsunset \
   wofi \
   zenity \
-  && dnf clean all
+  && dnf clean packages
 
 WORKDIR /
 
@@ -86,4 +91,5 @@ RUN dnf config-manager addrepo \
 # /opt points to /var/opt and since /var will be mounted later we need to do
 # something else:
 RUN rm /opt && mkdir -p /opt \
-  && dnf install -y mullvad-vpn
+  && dnf install -y mullvad-vpn \
+  && dnf clean packages
