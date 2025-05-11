@@ -2,6 +2,8 @@
 #FROM quay.io/fedora/fedora-bootc:42
 FROM quay.io/fedora/fedora-silverblue:42 AS BASE
 
+RUN dnf config-manager setopt proxy=$HTTP_PROXY
+
 ###############################################################################
 FROM BASE AS RPMFUSION
 

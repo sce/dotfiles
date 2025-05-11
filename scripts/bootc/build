@@ -11,18 +11,56 @@ repo=${1:-localhost/$(hostname)}
 tag=latest
 base_image=$(head "$containerfile" | grep ^FROM | awk '{print $2}' | head -1)
 
-(
-  set -x
-  cd "$workdir"
-  pwd
+build() {
+  (
+    set -x
+    cd "$workdir"
+    pwd
 
-  # check if there is a new base image:
-  sudo podman image pull "$base_image"
+    # check if there is a new base image:
+    sudo podman image pull "$base_image"
 
-  # since `bootc switch` needs to run as root we also need to build as root to
-  # make sure the container ends up in the root users container storage:
-  sudo buildah build --layers --tag "$repo":"$tag" --file "$containerfile"
+    # since `bootc switch` needs to run as root we also need to build as root to
+    # make sure the container ends up in the root users container storage:
+    #sudo podman build --layers --tag "$repo":"$tag" --file "$containerfile"
+    sudo buildah build --layers --tag "$repo":"$tag" --file "$containerfile"
 
-  # old unlabled images will fill up quickly if we don't remove them:
-  sudo podman image prune
-)
+    # old unlabled images will fill up quickly if we don't remove them:
+    sudo podman image prune
+  )
+}
+
+build_with_proxy() {
+  (
+    set -x
+    cd "$workdir"
+    pwd
+
+    # check if there is a new base image:
+    sudo HTTP_PROXY="http://localhost:3128" HTTPS_PROXY="http://localhost:3128" podman image pull "$base_image"
+
+    # since `bootc switch` needs to run as root we also need to build as root to
+    # make sure the container ends up in the root users container storage:
+    #sudo podman build --layers --tag "$repo":"$tag" --file "$containerfile"
+    sudo buildah build --layers --tag "$repo":"$tag" --file "$containerfile" \
+      --network host \
+      --build-arg=HTTP_PROXY="http://localhost:3128" \
+      --build-arg=HTTPS_PROXY="http://localhost:3128"
+
+    # old unlabled images will fill up quickly if we don't remove them:
+    sudo podman image prune
+  )
+}
+
+scriptname=$(basename "$0")
+case "$scriptname" in
+  "build")
+    build
+    ;;
+  "build-withproxy")
+    build_with_proxy
+    ;;
+  *)
+    echo "Unknown script name: \"$scriptname\"; quitting."
+    exit 1
+esac
