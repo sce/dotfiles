@@ -9,7 +9,7 @@ containerfile=$(readlink -f Containerfile)
 
 repo=${1:-localhost/$(hostname)}
 tag=latest
-base_image=quay.io/fedora/fedora-silverblue:41
+base_image=$(head "$containerfile" | grep ^FROM | awk '{print $2}')
 
 (
   set -x

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -euo pipefail
+
+this="container-all"
+
+container=$(,podman-container --all)
+
+# first comma is removed; subsequent ones are replaced with space so that e.g.
+# `,podman,start` becomes `podman start`
+scriptname=$(basename "$0" | sed 's/^,//' | sed 's/,/ /g')
+
+# symlink to the name of a program to run that program
+if [[ "$scriptname" != "$this" ]]; then
+  (
+    set -x
+    # note: we do not want to quote scriptname here:
+    exec $scriptname "$@" "$container"
+  )
+
+
+# use trailing arguments to run that command
+elif [[ "$*" != "" ]]; then
+  (
+    set -x
+    exec "$@" "$container"
+  )
+
+# or do nothing and leave it at the container name
+else
+  echo "$container"
+fi
