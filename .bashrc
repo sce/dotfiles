@@ -1,8 +1,15 @@
 # .bashrc
 
+echo "Running .bashrc" >&2
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
+fi
+
+# User specific environment and startup programs
+if [ -f ~/.profile ]; then
+    . ~/.profile
 fi
 
 # User specific environment
