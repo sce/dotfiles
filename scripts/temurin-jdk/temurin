@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# See:
+# - https://adoptium.net/temurin/releases
+# - https://adoptium.net/installation/archives
+
+checksum="7dfd551795a8884b26cbb02e0301da95db40160bb194f48271dc2ef9367f50c2"
+pkg_url="https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.28%2B6/OpenJDK11U-jdk_x64_linux_hotspot_11.0.28_6.tar.gz"
+file=$(basename "$pkg_url")
+
+[ -e "$file" ] || ( set -x; wget "$pkg_url" )
+(
+  set -x
+  sha256sum "$file"
+)
+echo "$checksum  should be the checksum above"
