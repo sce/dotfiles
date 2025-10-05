@@ -90,11 +90,18 @@ lua<<EOF
   local builtin = require("telescope.builtin")
   local utils = require("telescope.utils")
 
+  function git_root()
+    return string.match(
+      vim.api.nvim_exec2('!git rev-parse --show-toplevel', {output=true}).output,
+      '\n(%S+)'
+    )
+  end
+
   -- lowercase letter is relative to current buffer or cwd, uppercase letter
   -- is relative to root:
   vim.keymap.set('n', '<leader>f', function() builtin.find_files({ cwd = utils.buffer_dir() }) end, {})
   vim.keymap.set('n', '<leader>g', function() builtin.git_files({ use_git_root = false }) end, {})
-  vim.keymap.set('n', '<leader>R', function() builtin.live_grep({ cwd = vim.api.nvim_exec2(':GitRoot', {output=true}).output }) end, {})
+  vim.keymap.set('n', '<leader>R', function() builtin.live_grep({ cwd = git_root() }) end, {})
   vim.keymap.set('n', '<leader>o', function() builtin.oldfiles({ cwd_only = true }) end, {})
 EOF
 
