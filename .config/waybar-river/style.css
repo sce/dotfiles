@@ -245,3 +245,27 @@ window#waybar.hidden {
 	color: #161320;
 	background: #F2CDCD;
 }
+
+#workspaces {
+  margin-top: 6px;
+}
+
+#workspaces button {
+  background: #444;
+  margin: 0 5px;
+  color: white;
+}
+
+#workspaces button.focused {
+  background: orange;
+  color: black;
+}
+
+#workspaces button:hover {
+  background: white;
+  color: black;
+}
+
+#workspaces button.focused:hover {
+  background: yellow;
+}
