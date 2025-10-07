@@ -68,7 +68,7 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
-    focus-follows-mouse max-scroll-amount="20%"
+    focus-follows-mouse max-scroll-amount="50%"
     // focus-follows-mouse
 }
 
@@ -400,7 +400,7 @@ binds {
     Mod+D hotkey-overlay-title="Run an Application" { spawn "run_menu"; }
 
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Ctrl+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "~/bin/screenlock.sway" "pixelated"; }
+    Ctrl+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "~/bin/screenlock.niri" "pixelated"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
