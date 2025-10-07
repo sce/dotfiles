@@ -1,0 +1,64 @@
+#!/bin/bash
+
+set -euo pipefail
+
+lock_pic=~/Bilder/wallpapers/screenlock
+
+choice=${1:-static}
+
+function notify {
+  msg=$1
+
+  echo "$msg"
+
+  # if the notifier daemon is drunk (or missing) then this will hang for what
+  # seems like an eternity unless we background it:
+  notify-send -t 3000 "$msg" &
+}
+
+function pixelated_pic {
+  file1=$(mktemp --tmpdir screenlock-XXXXXXXXXX.png)
+  file2=$(mktemp --tmpdir screenlock-XXXXXXXXXX.png)
+
+  # scaledown=2.5%
+  # scaleup=4000%
+
+  # we want 48x27 pixels, which is 1920x1080 scaled down to 2.5%
+  scaledown=16x9
+  scaledown=32x18
+  scaledown=48x27
+  scaleup=1920x1080
+
+  (
+    ~/bin/screenshot.niri "$file1" &&
+      # convert "$file1" -blur 0x3 "$file2" &&
+      # convert "$file1" -blur 0x5 "$file2" &&
+      convert -scale "$scaledown" -scale "$scaleup" "$file1" "$file2" &&
+      swaylock -i "$file2" -f
+  )
+  success=$?
+
+  [ -f "$file1" ] && rm "$file1"
+  [ -f "$file2" ] && rm "$file2"
+
+  return $success
+}
+
+function static_pic {
+  swaylock -i "$lock_pic" -s fill
+}
+
+notify "Locking screen..."
+
+case "$choice" in
+    "pixelated")
+        pixelated_pic || static_pic
+        ;;
+    "static")
+        static_pic
+        ;;
+    *)
+        static_pic
+        ;;
+esac
+

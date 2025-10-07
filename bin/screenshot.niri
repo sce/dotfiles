@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
+set -euo pipefail
+
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send --transient --expire-time=1000 "$msg" &
+}
+
+dir=$(xdg-user-dir PICTURES)
+
+date=$(date +"%Y-%m-%d %H-%M-%S")
+file=${1:-"$dir/${date} screenshot.png"}
+
+current_output=$(niri msg --json focused-output| jq -r '.name')
+
+# Maybe not splash up a notification dialog right before the screenshot is
+# taken :-p
+#notify "Taking screenshot of current output..."
+grim -o "$current_output" - | tee "$file" | wl-copy
+
+notify "Took screenshot of current output: Wrote $file"
+
