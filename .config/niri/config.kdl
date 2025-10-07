@@ -314,7 +314,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 
-spawn-at-startup "swaybg -i ~/Pictures/wallpapers/1 -m fill"
+spawn-sh-at-startup "swaybg -i ~/Pictures/wallpapers/1 -m fill"
 
 // Put swaybg inside the overview backdrop.
 layer-rule {
@@ -681,8 +681,11 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Shift+Print { screenshot-screen; }
+    // Ctrl+Print { screenshot-window; }
+
+    // Ctrl+Print { spawn-sh "~/bin/,screenrecord-partial.sh"; }
+    // Ctrl+Shift+Print { spawn-sh "~/bin/,screenrecord.sh"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
