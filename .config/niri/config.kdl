@@ -297,8 +297,10 @@ layout {
     struts {
         // left 8
         // right 8
-        left 16
-        right 16
+        // left 16
+        // right 16
+        left 24
+        right 24
         // top 64
         // bottom 64
     }
@@ -632,6 +634,8 @@ binds {
     Mod+F { maximize-column; }
     // GROW
     Mod+G { fullscreen-window; }
+    // tell app to go fullscreen while keeping it as a window:
+    Mod+Shift+G { toggle-windowed-fullscreen; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
