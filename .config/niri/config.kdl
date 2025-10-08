@@ -68,7 +68,7 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
-    focus-follows-mouse max-scroll-amount="50%"
+    focus-follows-mouse max-scroll-amount="60%"
     // focus-follows-mouse
 }
 
@@ -132,8 +132,8 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    // center-focused-column "never"
-    center-focused-column "on-overflow"
+    center-focused-column "never"
+    // center-focused-column "on-overflow"
     // center-focused-column "always"
 
     always-center-single-column
@@ -336,6 +336,12 @@ spawn-sh-at-startup "swaybg -i ~/Pictures/wallpapers/1 -m fill"
 layer-rule {
     match namespace="^wallpaper$"
     place-within-backdrop true
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
 }
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -561,8 +567,8 @@ binds {
 
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
+    // Mod+Shift+U         { move-workspace-down; }
+    // Mod+Shift+I         { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
@@ -629,6 +635,7 @@ binds {
     // Switches focus between the current and the previous workspace.
     // Mod+Tab { focus-workspace-previous; }
     Mod+Tab { focus-monitor-next; }
+    Mod+Shift+Tab { move-workspace-to-monitor-next; }
 
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
