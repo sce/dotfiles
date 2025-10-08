@@ -3,6 +3,7 @@
 set -euo pipefail
 
 lock_cmd=~/bin/screenlock.niri
+# FIXME: suspend would be nice
 # suspend_cmd=~/bin/suspend.sway
 screens_off='niri msg power-off-monitors'
 screens_on='niri msg power-on-monitors'
