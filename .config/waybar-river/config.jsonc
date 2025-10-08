@@ -1,13 +1,33 @@
 {
 	"layer": "top",
-	"modules-left": ["cpu","memory","custom/media","tray"],
-	"modules-center": ["niri/workspaces"],
-	"modules-right": ["backlight","pulseaudio","battery", "clock", ],
+	"modules-left": ["niri/workspaces"],
+	"modules-center": [],
+  "modules-right": [
+    "tray",
+    "cpu",
+    "memory",
+    "network",
+    "backlight",
+    "wireplumber",
+    "battery",
+    "clock",
+ ],
+
 
   "niri/workspaces": {
     "format": "{value}",
   },
 	
+	"wireplumber": {
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "🔇 {volume}%",
+		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"format-icons": {
+			"default": ["", "", ""]
+		}
+	},
 	"pulseaudio": {
 		"tooltip": false,
 		"scroll-step": 5,
@@ -52,7 +72,8 @@
 	},
     "clock": {
         // "format": "{: %I:%M %p   %d/%m/%Y}"
-        "format": "{:%F   %H:%m:%S}",
+        // "format": "{:%F   %H:%m:%S}",
+        "format": "{:%F🕓%H:%m:%S}",
         "interval": 1,
     },
     "cpu": {
