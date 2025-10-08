@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+lock_cmd=~/bin/screenlock.niri
+# suspend_cmd=~/bin/suspend.sway
+screens_off='niri msg power-off-monitors'
+screens_on='niri msg power-on-monitors'
+
+three_minutes_in_secs=180
+ten_minutes_in_secs=600
+three_hours_in_secs=$((60 * 60 * 3))
+
+lock_timeout_secs=$three_minutes_in_secs
+blank_timeout_secs=$ten_minutes_in_secs
+suspend_timeout_secs=$three_hours_in_secs
+
+# timeout $blank_timeout_secs "$screens_off" resume "$screens_on" \
+# timeout $suspend_timeout_secs $suspend_cmd \
+exec swayidle -w \
+  timeout $lock_timeout_secs $lock_cmd \
+  lock $lock_cmd \
+  before-sleep $lock_cmd
