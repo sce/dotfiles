@@ -20,14 +20,20 @@ function pixelated_pic {
   file1=$(mktemp --tmpdir screenlock-XXXXXXXXXX.png)
   file2=$(mktemp --tmpdir screenlock-XXXXXXXXXX.png)
 
-  scaledown=2.5%
-  scaleup=4000%
+  # scaledown=2.5%
+  # scaleup=4000%
+
+  # we want 48x27 pixels, which is 1920x1080 scaled down to 2.5%
+  scaledown=16x9
+  scaledown=32x18
+  scaledown=48x27
+  scaleup=1920x1080
 
   (
     ~/bin/screenshot.sway "$file1" &&
       # convert "$file1" -blur 0x3 "$file2" &&
       # convert "$file1" -blur 0x5 "$file2" &&
-      convert -scale $scaledown -scale $scaleup "$file1" "$file2" &&
+      convert -scale "$scaledown" -scale "$scaleup" "$file1" "$file2" &&
       swaylock -i "$file2" -f
   )
   success=$?
