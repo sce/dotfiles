@@ -12,6 +12,10 @@
     "battery",
     "clock",
  ],
+ "spacing": 4,
+ "reload_style_on_change": true,
+
+ "fixed-center": false,
 
   "niri/window": {
     "format": "{}",
