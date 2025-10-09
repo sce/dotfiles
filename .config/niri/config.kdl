@@ -323,6 +323,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "idlehandler.niri"
+spawn-at-startup ",wlsunset"
 
 layer-rule {
     match namespace="^waybar$"
@@ -713,7 +714,7 @@ binds {
 
     Print { screenshot; }
     Shift+Print { screenshot-screen; }
-    // Ctrl+Print { screenshot-window; }
+    Ctrl+Print { screenshot-window; }
 
     // Ctrl+Print { spawn-sh "~/bin/,screenrecord-partial.sh"; }
     // Ctrl+Shift+Print { spawn-sh "~/bin/,screenrecord.sh"; }
