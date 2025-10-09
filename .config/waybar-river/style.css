@@ -1,6 +1,6 @@
 * {
 	border: none;
-	border-radius: 10;
+	border-radius: 10px;
     font-family: "JetbrainsMono Nerd Font" ;
 	font-size: 15px;
 	min-height: 10px;
@@ -12,6 +12,10 @@ window#waybar {
 
 window#waybar.hidden {
 	opacity: 0.2;
+}
+
+window#waybar.empty  #window {
+  background: transparent;
 }
 
 #window {

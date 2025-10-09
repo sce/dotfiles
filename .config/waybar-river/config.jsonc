@@ -21,6 +21,8 @@
 
   "niri/window": {
     "format": "{}",
+    "icon": true,
+    "icon-size": 24,
     "separate-outputs": true,
   },
 	
