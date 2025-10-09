@@ -1,21 +1,23 @@
 {
 	"layer": "top",
-	"modules-left": ["niri/workspaces"],
+	"modules-left": [
+    "clock",
+    "battery",
+    "wireplumber",
+    "backlight",
+    "niri/workspaces"
+  ],
 	"modules-center": ["niri/window"],
   "modules-right": [
     "tray",
     "cpu",
     "memory",
-    "network",
-    "backlight",
-    "wireplumber",
-    "battery",
-    "clock",
+    "network"
  ],
  "spacing": 4,
  "reload_style_on_change": true,
 
- "fixed-center": false,
+ "fixed-center": true,
 
   "niri/window": {
     "format": "{}",
