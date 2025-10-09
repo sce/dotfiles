@@ -165,6 +165,7 @@ window#waybar.empty  #window {
 	color: #161320;
 	background: #DDB6F2;
 }
+
 #cpu {
 	margin-top: 6px;
 	/* margin-left: 8px; */
@@ -175,6 +176,7 @@ window#waybar.empty  #window {
 	transition: none;
 	color: #161320;
 	background: #96CDFB;
+	background: #ABE9B3;
 }
 
 #tray {
@@ -253,6 +255,13 @@ window#waybar.empty  #window {
 
 #workspaces {
   margin-top: 6px;
+}
+
+#bluetooth {
+	margin-top: 6px;
+  padding: 0 10px;
+	background: #FAE3B0;
+	background: #96CDFB;
 }
 
 #workspaces button {

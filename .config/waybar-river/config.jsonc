@@ -10,6 +10,7 @@
 	"modules-center": ["niri/window"],
   "modules-right": [
     "tray",
+    "bluetooth",
     "cpu",
     "memory",
     "network"
@@ -30,6 +31,11 @@
     "format": "{value}",
   },
 	
+  "bluetooth": {
+    "format": "",
+    "format-connected": "{device_alias} {device_battery_percentage}%",
+  },
+
 	"wireplumber": {
 		"tooltip": false,
 		"scroll-step": 5,
