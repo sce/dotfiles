@@ -266,20 +266,33 @@ window#waybar.empty  #window {
 
 #workspaces button {
   background: #444;
+	background: #6e4c41;
   margin: 0 2px;
+  color: white;
+}
+
+#workspaces button.active {
+  background: #888;
+	background: #94784c;
   color: white;
 }
 
 #workspaces button.focused {
   background: orange;
+	background: #FAE3B0;
+	background: #feb;
+	background: #ffe76a;
+	background: #e0ab5b;
   color: black;
 }
 
 #workspaces button:hover {
   background: white;
+	background: #ffe76a;
   color: black;
 }
 
 #workspaces button.focused:hover {
   background: yellow;
+	background: #ffe76a;
 }
