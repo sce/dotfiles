@@ -20,9 +20,10 @@ window#waybar.hidden {
 	padding-right: 10px;
 	border-radius: 10px;
 	transition: none;
-    color: transparent;
-	background: transparent;
+	color: #1A1826;
+	background: #FAE3B0;
 }
+
 #tags {
 	margin-top: 6px;
 	margin-left: 12px;

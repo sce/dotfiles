@@ -1,7 +1,7 @@
 {
 	"layer": "top",
 	"modules-left": ["niri/workspaces"],
-	"modules-center": [],
+	"modules-center": ["niri/window"],
   "modules-right": [
     "tray",
     "cpu",
@@ -13,7 +13,11 @@
     "clock",
  ],
 
-
+  "niri/window": {
+    "format": "{}",
+    "separate-outputs": true,
+  },
+	
   "niri/workspaces": {
     "format": "{value}",
   },
@@ -23,7 +27,20 @@
 		"scroll-step": 5,
 		"format": "{icon} {volume}%",
 		"format-muted": "🔇 {volume}%",
-		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-source": "{icon} {source_volume}%",
+    "format-source-muted": "🔇 {source_volume}%",
+		"on-click":"wpctl set-mute @DEFAULT_SINK@ toggle",
+		"format-icons": {
+			"default": ["", "", ""]
+		}
+	},
+	"wireplumber#source": {
+    "node-type": "Audio/Source",
+		"tooltip": false,
+		"scroll-step": 5,
+		"format": "{icon} {volume}%",
+		"format-muted": "🔇 {volume}%",
+		"on-click":"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
 		"format-icons": {
 			"default": ["", "", ""]
 		}
@@ -73,7 +90,7 @@
     "clock": {
         // "format": "{: %I:%M %p   %d/%m/%Y}"
         // "format": "{:%F   %H:%m:%S}",
-        "format": "{:%F🕓%H:%m:%S}",
+        "format": "{:%F🕓%H:%M:%S}",
         "interval": 1,
     },
     "cpu": {
