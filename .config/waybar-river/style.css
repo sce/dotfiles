@@ -10,6 +10,14 @@ window#waybar {
 	background: transparent;
 }
 
+.modules-left {
+  margin-left: 4px;
+}
+
+.modules-right {
+  margin-right: 4px;
+}
+
 window#waybar.hidden {
 	opacity: 0.2;
 }
