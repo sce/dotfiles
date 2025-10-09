@@ -25,10 +25,14 @@
     "icon": true,
     "icon-size": 24,
     "separate-outputs": true,
+    "on-scroll-up": "niri msg action focus-column-left",
+    "on-scroll-down": "niri msg action focus-column-right",
   },
 	
   "niri/workspaces": {
     "format": "{value}",
+    "on-scroll-up": "niri msg action focus-workspace-up",
+    "on-scroll-down": "niri msg action focus-workspace-down",
   },
 	
   "bluetooth": {
