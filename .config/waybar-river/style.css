@@ -180,11 +180,13 @@ window#waybar.empty  #window {
 	padding-left: 10px;
 	margin-bottom: 0px;
 	padding-right: 10px;
+  padding-top: 3px;
 	border-radius: 10px;
 	transition: none;
 	color: #161320;
 	background: #96CDFB;
 	background: #ABE9B3;
+  min-width: 50px;
 }
 
 #tray {

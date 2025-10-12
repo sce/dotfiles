@@ -11,9 +11,9 @@
   "modules-right": [
     "tray",
     "bluetooth",
+    "network",
     "cpu",
     "memory",
-    "network"
  ],
  "spacing": 4,
  "reload_style_on_change": true,
@@ -74,9 +74,6 @@
 		}
 	},
 
-    "river/tags": {
-		"num-tags": 6
-    },
 	"network": {
 		"tooltip": false,
 		"format-wifi": "  {essid}",
@@ -112,13 +109,13 @@
         "interval": 1,
     },
     "cpu": {
-        "interval": 15,
-        "format": " {}%",
+        "interval": 5,
+        "format": "⏲ {usage}%",
         "max-length": 10
     },
     "memory": {
         "interval": 30,
-        "format": " {}%",
+        "format": " {used}GiB",
         "max-length": 10
     },
     "custom/media": {
