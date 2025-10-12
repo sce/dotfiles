@@ -83,8 +83,10 @@
 		"tooltip": false,
 		"format": " {}%",
 		"interval":1,
-        "on-scroll-up": "light -A 5",
-		"on-scroll-down": "light -U 5"
+    // "on-scroll-up": "light -A 5",
+		// "on-scroll-down": "light -U 5"
+    "on-scroll-up": "brightnessctl --class=backlight set +10%",
+		"on-scroll-down": "brightnessctl --class=backlight set 10%-",
 	},
     "battery": {
         "states": {
