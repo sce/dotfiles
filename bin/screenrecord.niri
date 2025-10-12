@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# (e)xit on failure, no (u)nset variables, errors in piped commands are fatal:
+set -euo pipefail
+
+function notify {
+  msg=$1
+
+  echo "$msg"
+  notify-send --transient --expire-time=1000 "$msg" &
+}
+
+# fail early:
+dir=$(xdg-user-dir VIDEOS)
+record_cmd=$(which wf-recorder)
+
+date=$(date +"%Y-%m-%d %H-%M-%S")
+file="$dir/${date} recording.mkv"
+file_mp4="$dir/$(basename "$file" .mkv).mp4"
+
+current_output=$(niri msg --json focused-output | jq --raw-output '.name')
+output=${1:-$current_output}
+
+echo "Recording output $output..."
+echo "Writing to \"$file\"..."
+
+shift || true
+(
+    set -x
+    $record_cmd --output "$output" -f "$file" --codec libx264 "$@" ||
+        $record_cmd --output "$output" -f "$file" "$@"
+)
+
+notify "Recording finished: $(basename "$file")"
+
+ffmpeg=$(which ~/bin/,ffmpeg)
+
+# 20240104: mp4 h264 isn't supported by slack, but h264 is
+# https://github.com/AvdLee/RocketSimApp/issues/31
+# This suggests baseline profile is needed too:
+# https://stackoverflow.com/a/13208001
+#ffmpeg -i "$file" -c:a copy -c:v libx264 -profile:v baseline -filter:v fps=30 "$file_mp4"
+(
+    set -x
+    $ffmpeg -i "$file" -c:a copy -c:v libx264 -filter:v fps=30 "$file_mp4" ||
+        $ffmpeg -i "$file" -c copy "$file_mp4"
+)
+
+notify "Created \"$(basename "$file_mp4")\""
+
+# # convert to gif also, for convenience:
+# gif_name=$(dirname "$file")/$(basename "$file" .mp4).gif
+# ffmpeg -i "$file" "$gif_name"
+# cat "$gif_name" | wl-copy
+#
+# notify "Also wrote $gif_name"
+
