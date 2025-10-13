@@ -189,7 +189,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
         // width 2
@@ -213,6 +213,9 @@ layout {
         // where you can see its inactive-color is on other monitors.
         inactive-color "#505050"
 
+        // Color of the border around windows that request your attention.
+        urgent-color "#9b0000"
+
         // You can also use gradients. They take precedence over solid colors.
         // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
         // The angle is the same as in linear-gradient, and is optional,
@@ -233,12 +236,13 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        off
+        // off
 
-        width 1
+        width 3
         // active-color "#ffc87f"
         active-color "#ff8103"
         inactive-color "#505050"
+        // inactive-color "transparent"
 
         // Color of the border around windows that request your attention.
         urgent-color "#9b0000"
