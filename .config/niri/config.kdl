@@ -72,8 +72,8 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
-    focus-follows-mouse max-scroll-amount="90%"
-    // focus-follows-mouse
+    // focus-follows-mouse max-scroll-amount="90%"
+    focus-follows-mouse
 }
 
 gestures {
@@ -488,12 +488,19 @@ binds {
     Mod+Q repeat=false { close-window; }
     Mod+C repeat=false { close-window; }
 
-    Mod+Left  { focus-column-left; }
+    // Mod+Up    { focus-window-or-workspace-up; }
+    // Mod+Down  { focus-window-or-workspace-down; }
+    // Mod+Up    { focus-window-up; }
     // Mod+Down  { focus-window-down; }
-    Mod+Down  { focus-window-or-workspace-down; }
-    //Mod+Up    { focus-window-up; }
-    Mod+Up    { focus-window-or-workspace-up; }
-    Mod+Right { focus-column-right; }
+    // Mod+Left  { focus-monitor-next; }
+    // Mod+Right { focus-monitor-previous; }
+
+    // like niri:
+    Mod+Up    { focus-workspace-up; }
+    Mod+Down  { focus-workspace-down; }
+    // like sway:
+    Mod+Left  { focus-workspace-up; }
+    Mod+Right { focus-workspace-down; }
 
     // Mod+H     { focus-column-left; }
     // Mod+J     { focus-window-down; }
@@ -527,8 +534,10 @@ binds {
 
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    // Mod+Ctrl+Home { move-column-to-first; }
+    // Mod+Ctrl+End  { move-column-to-last; }
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
 
     // Different monitor: CTRL modifier
     Mod+CTRL+Left  { focus-monitor-left; }
