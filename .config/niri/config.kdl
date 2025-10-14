@@ -344,6 +344,18 @@ spawn-at-startup ",wlsunset"
 
 layer-rule {
     match namespace="^waybar$"
+    // screencast does not block e.g. screen mirroring or screen recording, but
+    // it does block screencasting from browsers
+    // block-out-from "screencast"
+
+    // screen-capture blocks everything
+    block-out-from "screen-capture"
+}
+
+window-rule {
+    match app-id="firefox$" title=" - Gmail"
+    match app-id="Slack$"
+
     // block-out-from "screencast"
     block-out-from "screen-capture"
 }
