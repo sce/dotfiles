@@ -689,6 +689,9 @@ binds {
     Mod+Shift+Ctrl+MouseLeft    { set-dynamic-cast-monitor; }
     Mod+Shift+MouseRight        { clear-dynamic-cast-target; }
 
+    Mod+MouseBack         { focus-workspace-up; }
+    Mod+MouseForward      { focus-workspace-down; }
+
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
     // discrete intervals.
