@@ -304,8 +304,12 @@ window#waybar.battery-critical {
 #workspaces button {
   background: #444;
 	background: #6e4c41;
-  margin: 0 2px;
+  margin-right: 4px;
   color: white;
+}
+
+#workspaces button:last-child {
+  margin-right: 0px;
 }
 
 #workspaces button.active {
