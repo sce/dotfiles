@@ -468,8 +468,7 @@ binds {
 
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Ctrl+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "~/bin/screenlock.niri" "pixelated"; }
-
-    Ctrl+Alt+S allow-when-locked=true hotkey-overlay-title="Suspend" { spawn "~/bin/suspend.sway"; }
+    Ctrl+Alt+S allow-when-locked=true hotkey-overlay-title="Suspend" { spawn "~/bin/suspend.niri"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
