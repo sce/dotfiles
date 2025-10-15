@@ -27,6 +27,10 @@
     "separate-outputs": true,
     "on-scroll-up": "niri msg action focus-column-left",
     "on-scroll-down": "niri msg action focus-column-right",
+    "rewrite": {
+      "(.*) — Mozilla Firefox.*": "$1",
+      "(.*) - Chromium.*": "$1",
+    }
   },
 	
   "niri/workspaces": {
