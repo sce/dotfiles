@@ -332,6 +332,45 @@ layout {
     }
 }
 
+// Indicate screencasted windows with different border:
+window-rule {
+    match is-window-cast-target=true
+
+    // focus-ring {
+    //     on
+    //     // width 3
+    //     // inactive-color "#7d0d2d"
+    //     inactive-gradient from="red" to="blue" angle=45
+    //     active-gradient from="red" to="green" angle=45
+    // }
+
+    border {
+        // width 6
+        inactive-gradient from="red" to="blue" angle=45
+        // active-gradient from="red" to="green" angle=45
+    }
+
+    shadow {
+        on
+
+        // Softness controls the shadow blur radius.
+        softness 30
+
+        // Spread expands the shadow.
+        spread 5
+
+        // Offset moves the shadow relative to the window.
+        offset x=0 y=5
+
+        color "red"
+    }
+
+    tab-indicator {
+        active-gradient from="red" to="green" angle=45
+        inactive-gradient from="red" to="blue" angle=45
+    }
+}
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
@@ -344,6 +383,18 @@ spawn-at-startup ",wlsunset"
 
 layer-rule {
     match namespace="^waybar$"
+    // screencast does not block e.g. screen mirroring or screen recording, but
+    // it does block screencasting from browsers
+    // block-out-from "screencast"
+
+    // screen-capture blocks everything
+    block-out-from "screen-capture"
+}
+
+window-rule {
+    match app-id="firefox$" title=" - Gmail"
+    match app-id="Slack$"
+
     // block-out-from "screencast"
     block-out-from "screen-capture"
 }
@@ -468,8 +519,7 @@ binds {
 
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Ctrl+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "~/bin/screenlock.niri" "pixelated"; }
-
-    Ctrl+Alt+S allow-when-locked=true hotkey-overlay-title="Suspend" { spawn "~/bin/suspend.sway"; }
+    Ctrl+Alt+S allow-when-locked=true hotkey-overlay-title="Suspend" { spawn "~/bin/suspend.niri"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -616,15 +666,24 @@ binds {
     // Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollDown      { focus-column-right; }
+    Mod+TouchPadScrollDown   { focus-column-right; }
+
     Mod+WheelScrollUp        { focus-column-left; }
+    Mod+TouchPadScrollUp     { focus-column-left; }
 
     // Mod+Ctrl+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
     // Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown { focus-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown    { focus-workspace-down; }
+    Mod+Ctrl+TouchPadScrollDown { focus-workspace-down; }
+    Mod+MouseForward            { focus-workspace-down; }
+
+    Mod+Ctrl+WheelScrollUp      { focus-workspace-up; }
+    Mod+Ctrl+TouchPadScrollUp   { focus-workspace-up; }
+    Mod+MouseBack               { focus-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
+
     Mod+Ctrl+WheelScrollRight { move-column-right; }
     Mod+Ctrl+WheelScrollLeft  { move-column-left; }
 
@@ -634,6 +693,10 @@ binds {
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    Mod+Shift+MouseLeft         { set-dynamic-cast-window; }
+    Mod+Shift+Ctrl+MouseLeft    { set-dynamic-cast-monitor; }
+    Mod+Shift+MouseRight        { clear-dynamic-cast-target; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
@@ -703,13 +766,12 @@ binds {
     // Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
 
-    // Mod+F { maximize-column; }
-    // Mod+Shift+F { fullscreen-window; }
     Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
     // GROW
-    Mod+G { fullscreen-window; }
+    // Mod+G { fullscreen-window; }
     // tell app to go fullscreen while keeping it as a window:
-    Mod+Shift+G { toggle-windowed-fullscreen; }
+    Mod+G { toggle-windowed-fullscreen; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".

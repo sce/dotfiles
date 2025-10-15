@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# If swayidle is not running we have to make sure to manually lock the screen
+# before suspending:
+pgrep swayidle || (
+  ~/bin/screenlock.niri &
+  sleep 1
+)
+
+systemctl suspend
