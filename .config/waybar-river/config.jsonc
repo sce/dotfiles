@@ -30,6 +30,7 @@
     "rewrite": {
       "(.*) — Mozilla Firefox.*": "$1",
       "(.*) - Chromium.*": "$1",
+      "(.*) - Slack.*": "$1",
     }
   },
 	
