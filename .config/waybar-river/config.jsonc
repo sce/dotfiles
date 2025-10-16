@@ -9,6 +9,8 @@
   ],
 	"modules-center": ["niri/window"],
   "modules-right": [
+    "custom/camera",
+    "privacy",
     "tray",
     "bluetooth",
     "network",
@@ -40,6 +42,46 @@
     "on-scroll-down": "niri msg action focus-workspace-down",
   },
 	
+  "custom/camera": {
+    "exec": ",waybar-camera",
+    "interval": 2,
+    "return-type": "json",
+  },
+
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ],
+    "ignore-monitor": false,
+    "ignore": [],
+      // {
+      // 	"type": "audio-in",
+      // 	"name": "cava"
+      // },
+      // {
+      // 	"type": "screenshare",
+      // 	"name": "obs"
+      // }
+    // ],
+  },
+
   "bluetooth": {
     "format": "",
     "format-connected": "{device_alias} {device_battery_percentage}%",

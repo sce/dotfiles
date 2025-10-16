@@ -32,8 +32,13 @@ window#waybar.hidden {
 	opacity: 0.2;
 }
 
-window#waybar.empty  #window {
-  background: transparent;
+/* default for modules: */
+window > * > * > * > * {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  background: white;
 }
 
 window#waybar.battery-good {
@@ -53,6 +58,11 @@ window#waybar.battery-critical {
   background: red;
 }
 
+#privacy, #custom-camera {
+  background: red;
+  color: white;
+}
+
 #window {
 	/* margin-top: 6px; */
 	padding-left: 10px;
@@ -61,6 +71,10 @@ window#waybar.battery-critical {
 	transition: none;
 	color: #1A1826;
 	background: #FAE3B0;
+}
+
+window#waybar.empty  #window {
+  background: transparent;
 }
 
 #tags {
@@ -291,6 +305,7 @@ window#waybar.battery-critical {
 }
 
 #workspaces {
+  background: transparent;
   /* margin-top: 6px; */
 }
 
