@@ -63,6 +63,10 @@ window#waybar.battery-critical {
   background: transparent;
 }
 
+#custom-camera {
+  font-size: 20px;
+}
+
 #privacy-item, #custom-camera {
 	padding-left: 10px;
 	padding-right: 10px;

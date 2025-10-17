@@ -9,9 +9,9 @@
   ],
 	"modules-center": ["niri/window"],
   "modules-right": [
-    "custom/camera",
     "privacy#sink",
     "privacy",
+    "custom/camera",
     "tray",
     "bluetooth",
     "network",
