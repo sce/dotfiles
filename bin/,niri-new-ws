@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# This script will jump to the empty/last workspace, which is the workspace
+# with the highest index that does not have a name.
+
+set -euo pipefail
+
+scriptname=$(basename "$0")
+MOVE_TO_NEW_WS=",niri-move-to-new-ws"
+
+workspace_index=$(niri msg --json workspaces|jq '[.[] | select(.name == null).idx] | sort | .[-1]')
+
+if [[ "$scriptname" = "$MOVE_TO_NEW_WS" ]]; then
+  set -x
+  niri msg action move-column-to-workspace "${workspace_index}"
+else
+  set -x
+  niri msg action focus-workspace "${workspace_index}"
+fi
