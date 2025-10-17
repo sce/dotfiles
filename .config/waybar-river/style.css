@@ -58,9 +58,22 @@ window#waybar.battery-critical {
   background: red;
 }
 
-#privacy, #custom-camera {
+#privacy {
+  padding: 0;
+  background: transparent;
+}
+
+#privacy-item, #custom-camera {
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
   background: red;
   color: white;
+}
+
+#privacy .audio-out {
+  background: #0a0;
+  color: #fff;
 }
 
 #window {
