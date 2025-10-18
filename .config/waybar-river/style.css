@@ -201,8 +201,8 @@ window#waybar.empty #window {
   /* margin-left: 8px; */
   padding-left: 10px;
   padding-right: 10px;
-  margin-bottom: 0px;
-  border-radius: 10px;
+  /* margin-bottom: 0px; */
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #F8BD96;
@@ -244,7 +244,6 @@ window#waybar.empty #window {
   color: #161320;
   background: #96CDFB;
   background: #ABE9B3;
-  min-width: 50px;
 }
 
 #tray {
@@ -323,7 +322,8 @@ window#waybar.empty #window {
 
 #workspaces {
   background: transparent;
-  /* margin-top: 6px; */
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #bluetooth {
