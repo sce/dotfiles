@@ -6,7 +6,7 @@
 set -euo pipefail
 
 scriptname=$(basename "$0")
-MOVE_TO_NEW_WS=",niri-move-to-new-ws"
+MOVE_TO_NEW_WS=",niri-move-to-last-workspace"
 
 workspace_index=$(niri msg --json workspaces|jq '[.[] | select(.name == null).idx] | sort | .[-1]')
 
