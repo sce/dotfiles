@@ -25,8 +25,11 @@ build() {
     #sudo podman build --layers --tag "$repo":"$tag" --file "$containerfile"
     sudo buildah build --layers --tag "$repo":"$tag" --file "$containerfile"
 
-    # old unlabled images will fill up quickly if we don't remove them:
-    sudo podman image prune
+    (
+      set +e
+      # old unlabled images will fill up quickly if we don't remove them:
+      sudo podman image prune --external
+    )
   )
 }
 
@@ -37,7 +40,10 @@ build_with_proxy() {
     pwd
 
     # check if there is a new base image:
-    sudo HTTP_PROXY="http://localhost:3128" HTTPS_PROXY="http://localhost:3128" podman image pull "$base_image"
+    sudo \
+      HTTP_PROXY="http://localhost:3128" \
+      HTTPS_PROXY="http://localhost:3128" \
+      podman image pull "$base_image"
 
     # since `bootc switch` needs to run as root we also need to build as root to
     # make sure the container ends up in the root users container storage:
