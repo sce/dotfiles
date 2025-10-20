@@ -37,13 +37,13 @@
       "(.*) - Slack.*": "$1",
     }
   },
-  
+
   "niri/workspaces": {
     "format": "{value}",
     "on-scroll-up": "niri msg action focus-workspace-up",
     "on-scroll-down": "niri msg action focus-workspace-down",
   },
-  
+
   "custom/camera": {
     "exec": ",waybar-camera",
     "interval": 2,
@@ -107,6 +107,7 @@
   "bluetooth": {
     "format": "",
     "format-connected": "{device_alias} {device_battery_percentage}%",
+    "on-click-right": ",bluetooth",
   },
 
   "wireplumber": {
@@ -175,12 +176,35 @@
     "icon-size":18,
     "spacing": 10
   },
+
     "clock": {
-        // "format": "{: %I:%M %p   %d/%m/%Y}"
-        // "format": "{:%F   %H:%m:%S}",
-        "format": "{:%F🕓%H:%M:%S}",
-        "interval": 1,
+      // "format": "{: %I:%M %p   %d/%m/%Y}"
+      // "format": "{:%F   %H:%m:%S}",
+      "format": "{:%F🕓%H:%M:%S}",
+      "locale": "en_GB",
+      "interval": 1,
+      "on-click-right": ",gnome-control-center",
+
+      "actions": {
+        "on-click": "mode",
+      },
+
+     "tooltip-format": "<tt><small>{calendar}</small></tt>",
+     "calendar": {
+         "mode" : "year",
+         "mode-mon-col" : 3,
+         "weeks-pos" : "right",
+         "on-scroll" : 1,
+         "format": {
+           "months": "<span color='#ffead3'><b>{}</b></span>",
+           "days": "<span color='#ecc6d9'><b>{}</b></span>",
+           "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+           "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+           "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+         }
+      },
     },
+
     "cpu": {
         "interval": 3,
         "format": "{icon}{usage:3}%",
