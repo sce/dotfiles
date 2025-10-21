@@ -2,9 +2,21 @@
 
 set -euo pipefail
 
-current_workspace_id=$(niri msg --json workspaces|jq '.[] | select(.is_focused) | .id')
+current_output=$(niri msg --json focused-output| jq --raw-output .name)
+output=${1:-$current_output}
 
+current_workspace_id=$(
+  niri msg --json workspaces |
+  jq ".[] | select(.output == \"$output\" and .is_focused) | .id"
+)
+
+if [[ "$current_workspace_id" = "" ]]; then
+  echo "Can't find output \"${output}\""
+  exit 1
+fi
+
+# fixme: needs to show the number of windows on the same monitor that it's located...
 niri msg --json windows |
   jq "[.[] | select(.workspace_id == ${current_workspace_id}) | .title] | \
-    if length > 1 then {text: (\"Total \" + (length | tostring))} end" |
+    if length > 1 then {text: (\"🪟 \" + (length | tostring))} else {} end" |
   jq --compact-output
