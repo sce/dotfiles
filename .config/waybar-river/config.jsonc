@@ -30,6 +30,7 @@
     "separate-outputs": true,
     "on-scroll-up": "niri msg action focus-column-left",
     "on-scroll-down": "niri msg action focus-column-right",
+    "on-click-right": "niri msg action toggle-overview",
     "rewrite": {
       "(.*) — Mozilla Firefox.*": "$1",
       "(.*) - Chromium.*": "$1",
