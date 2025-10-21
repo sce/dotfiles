@@ -1,13 +1,13 @@
 {
-	"layer": "top",
-	"modules-left": [
+  "layer": "top",
+  "modules-left": [
     "clock",
     "battery",
     "wireplumber",
     "backlight",
     "niri/workspaces"
   ],
-	"modules-center": ["niri/window"],
+  "modules-center": ["niri/window"],
   "modules-right": [
     "privacy#sink",
     "privacy",
@@ -37,13 +37,13 @@
       "(.*) - Slack.*": "$1",
     }
   },
-	
+  
   "niri/workspaces": {
     "format": "{value}",
     "on-scroll-up": "niri msg action focus-workspace-up",
     "on-scroll-down": "niri msg action focus-workspace-down",
   },
-	
+  
   "custom/camera": {
     "exec": ",waybar-camera",
     "interval": 2,
@@ -69,12 +69,12 @@
     "ignore-monitor": false,
     "ignore": [],
       // {
-      // 	"type": "audio-in",
-      // 	"name": "cava"
+      //   "type": "audio-in",
+      //   "name": "cava"
       // },
       // {
-      // 	"type": "screenshare",
-      // 	"name": "obs"
+      //   "type": "screenshare",
+      //   "name": "obs"
       // }
     // ],
   },
@@ -94,12 +94,12 @@
     "ignore-monitor": false,
     "ignore": [],
       // {
-      // 	"type": "audio-in",
-      // 	"name": "cava"
+      //   "type": "audio-in",
+      //   "name": "cava"
       // },
       // {
-      // 	"type": "screenshare",
-      // 	"name": "obs"
+      //   "type": "screenshare",
+      //   "name": "obs"
       // }
     // ],
   },
@@ -109,56 +109,56 @@
     "format-connected": "{device_alias} {device_battery_percentage}%",
   },
 
-	"wireplumber": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
-		"format-muted": "🔇 {volume}%",
+  "wireplumber": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "🔇 {volume}%",
     "format-source": "{icon} {source_volume}%",
     "format-source-muted": "🔇 {source_volume}%",
-		"on-click":"wpctl set-mute @DEFAULT_SINK@ toggle",
-		"format-icons": {
-			"default": ["", "", ""]
-		},
+    "on-click":"wpctl set-mute @DEFAULT_SINK@ toggle",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
     "on-click-right": ",pavucontrol",
-	},
-	"wireplumber#source": {
+  },
+  "wireplumber#source": {
     "node-type": "Audio/Source",
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
-		"format-muted": "🔇 {volume}%",
-		"on-click":"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "🔇 {volume}%",
+    "on-click":"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
     "on-click-right": ",pavucontrol",
-		"format-icons": {
-			"default": ["", "", ""]
-		}
-	},
-	"pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
-		"format-muted": "{icon} {volume}%",
-		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"format-icons": {
-			"default": ["", "", ""]
-		}
-	},
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+  "pulseaudio": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "{icon} {volume}%",
+    "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
 
-	"network": {
-		"tooltip": false,
-		"format-wifi": "  {essid}",
-		"format-ethernet": ""
-	},
-	"backlight": {
-		"tooltip": false,
-		"format": " {}%",
-		"interval":1,
+  "network": {
+    "tooltip": false,
+    "format-wifi": "  {essid}",
+    "format-ethernet": ""
+  },
+  "backlight": {
+    "tooltip": false,
+    "format": " {}%",
+    "interval":1,
     // "on-scroll-up": "light -A 5",
-		// "on-scroll-down": "light -U 5"
+    // "on-scroll-down": "light -U 5"
     "on-scroll-up": "brightnessctl --class=backlight set +10%",
-		"on-scroll-down": "brightnessctl --class=backlight set 10%-",
-	},
+    "on-scroll-down": "brightnessctl --class=backlight set 10%-",
+  },
     "battery": {
         "states": {
             "good": 95,
@@ -171,10 +171,10 @@
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""]
     },
-	"tray":{
-		"icon-size":18,
-		"spacing": 10
-	},
+  "tray":{
+    "icon-size":18,
+    "spacing": 10
+  },
     "clock": {
         // "format": "{: %I:%M %p   %d/%m/%Y}"
         // "format": "{:%F   %H:%m:%S}",
