@@ -12,11 +12,13 @@ window#waybar {
 }
 
 window#waybar > * {
-  margin-top: 10px;
+  margin-top: 8px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .modules-left {
-  margin-left: 10px;
+  /* margin-left: 4px; */
 }
 
 .modules-center {
@@ -25,7 +27,7 @@ window#waybar > * {
 }
 
 .modules-right {
-  margin-right: 10px;
+  /* margin-right: 4px; */
 }
 
 window#waybar.hidden {
