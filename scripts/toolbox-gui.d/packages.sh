@@ -10,7 +10,8 @@ packages=(
   # misc things:
   pavucontrol gkrellm zenity obs-studio
   wl-mirror
-  wev
+
+  xev wev
 )
 
 (
