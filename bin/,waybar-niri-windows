@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+current_workspace_id=$(niri msg --json workspaces|jq '.[] | select(.is_focused) | .id')
+
+niri msg --json windows |
+  jq "[.[] | select(.workspace_id == ${current_workspace_id}) | .title] | \
+    if length > 1 then {text: (\"Total \" + (length | tostring))} end" |
+  jq --compact-output
