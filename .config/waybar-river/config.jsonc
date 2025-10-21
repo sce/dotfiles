@@ -119,7 +119,8 @@
 		"on-click":"wpctl set-mute @DEFAULT_SINK@ toggle",
 		"format-icons": {
 			"default": ["", "", ""]
-		}
+		},
+    "on-click-right": ",pavucontrol",
 	},
 	"wireplumber#source": {
     "node-type": "Audio/Source",
@@ -128,6 +129,7 @@
 		"format": "{icon} {volume}%",
 		"format-muted": "🔇 {volume}%",
 		"on-click":"wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": ",pavucontrol",
 		"format-icons": {
 			"default": ["", "", ""]
 		}
