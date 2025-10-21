@@ -12,7 +12,7 @@ window#waybar {
 }
 
 window#waybar > * {
-  margin-top: 4px;
+  margin-top: 10px;
 }
 
 .modules-left {
