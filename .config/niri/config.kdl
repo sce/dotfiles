@@ -389,6 +389,7 @@ window-rule {
 spawn-at-startup "waybar"
 spawn-at-startup "idlehandler.niri"
 spawn-at-startup ",wlsunset"
+spawn-at-startup ",swaybg"
 
 layer-rule {
     match namespace="^waybar$"
@@ -400,6 +401,13 @@ layer-rule {
     block-out-from "screen-capture"
 }
 
+// Put swaybg inside the overview backdrop.
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+    // block-out-from "screen-capture"
+}
+
 window-rule {
     match app-id="Chrome$|Chromium$|firefox$" title=" - Gmail"
     match app-id="Chrome$|Chromium$|firefox$" title=" - Outlook"
@@ -407,14 +415,6 @@ window-rule {
 
     // block-out-from "screencast"
     block-out-from "screen-capture"
-}
-
-spawn-sh-at-startup "swaybg -i ~/Pictures/wallpapers/1 -m fill"
-
-// Put swaybg inside the overview backdrop.
-layer-rule {
-    match namespace="^wallpaper$"
-    place-within-backdrop true
 }
 
 overview {
@@ -777,6 +777,7 @@ binds {
     // R for rename:
     Mod+R { spawn "niri-ws-name.rb"; }
     Mod+Shift+R { unset-workspace-name; }
+    Mod+Delete { unset-workspace-name; }
 
     // Cycling through the presets in reverse order is also possible.
     // Mod+R { switch-preset-column-width-back; }
