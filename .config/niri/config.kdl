@@ -582,10 +582,12 @@ binds {
     // Mod+J     { focus-window-down; }
     // Mod+K     { focus-window-up; }
     // Mod+L     { focus-column-right; }
-    Mod+H     { focus-column-or-monitor-left; }
+    // Mod+H     { focus-column-or-monitor-left; }
+    // Mod+L     { focus-column-or-monitor-right; }
+    Mod+H     { focus-column-left-or-last; }
     Mod+J     { focus-window-or-workspace-down; }
     Mod+K     { focus-window-or-workspace-up; }
-    Mod+L     { focus-column-or-monitor-right; }
+    Mod+L     { focus-column-right-or-first; }
 
     // Moving: SHIFT modifier
     // Mod+Shift+Left  { move-column-left; }
