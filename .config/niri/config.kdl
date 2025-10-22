@@ -477,6 +477,8 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="^yubico-authenticator$"
+
     open-floating true
 }
 
@@ -854,5 +856,7 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    // Mod+Shift+P { power-off-monitors; }
+
+    Mod+Y { spawn "yubico-authenticator"; }
 }
