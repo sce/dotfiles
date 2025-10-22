@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euo pipefail
+
+exec swaybg --mode fill --image ~/Pictures/wallpapers/1
