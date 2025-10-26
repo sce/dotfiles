@@ -392,6 +392,7 @@ spawn-at-startup ",wlsunset"
 spawn-at-startup ",swaybg"
 
 layer-rule {
+    match namespace="^notifications$"
     match namespace="^waybar$"
     // screencast does not block e.g. screen mirroring or screen recording, but
     // it does block screencasting from browsers
