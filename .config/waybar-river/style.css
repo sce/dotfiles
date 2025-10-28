@@ -3,7 +3,7 @@
   border-radius: 10px;
   font-family: "JetbrainsMono Nerd Font" ;
   font-size: 15px;
-  min-height: 10px;
+  /* min-height: 10px; */
 }
 
 window#waybar {
@@ -12,9 +12,9 @@ window#waybar {
 }
 
 window#waybar > * {
-  margin-top: 8px;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-top: 6px;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 .modules-left {
@@ -35,12 +35,22 @@ window#waybar.hidden {
 }
 
 /* default for modules: */
-window > * > * > * > * {
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 10px;
+window > * > * > * > *,
+#workspaces button,
+#privacy-item,
+#custom-camera {
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  border-radius: 7px;
   transition: none;
   background: white;
+}
+
+#workspaces button {
+  /* padding-top: 0; */
+  /* padding-bottom: 10px; */
 }
 
 window#waybar.battery-good {
@@ -70,9 +80,10 @@ window#waybar.battery-critical {
 }
 
 #privacy-item, #custom-camera {
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 10px;
+  padding-top: 3px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+  /* border-radius: 10px; */
   background: red;
   color: white;
 }
@@ -84,9 +95,9 @@ window#waybar.battery-critical {
 
 #window {
   /* margin-top: 6px; */
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
+  /* border-radius: 10px; */
   transition: none;
   color: #1A1826;
   background: #FAE3B0;
@@ -101,7 +112,7 @@ window#waybar.empty #window {
   /* margin-left: 12px; */
   font-size: 4px;
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background: #161320;
   transition: none;
 }
@@ -143,10 +154,10 @@ window#waybar.empty #window {
 #network {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #bd93f9;
@@ -155,10 +166,10 @@ window#waybar.empty #window {
 #pulseaudio, #wireplumber {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #1A1826;
   background: #FAE3B0;
@@ -167,10 +178,10 @@ window#waybar.empty #window {
 #battery {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #B5E8E0;
@@ -201,8 +212,8 @@ window#waybar.empty #window {
 #backlight {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   /* margin-bottom: 0px; */
   /* border-radius: 10px; */
   transition: none;
@@ -212,10 +223,10 @@ window#waybar.empty #window {
 #clock {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #ABE9B3;
@@ -225,10 +236,10 @@ window#waybar.empty #window {
 #memory {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
+  /* padding-left: 10px; */
   margin-bottom: 0px;
-  padding-right: 10px;
-  border-radius: 10px;
+  /* padding-right: 10px; */
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #DDB6F2;
@@ -237,11 +248,11 @@ window#waybar.empty #window {
 #cpu {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
+  /* padding-left: 10px; */
   margin-bottom: 0px;
-  padding-right: 10px;
+  /* padding-right: 10px; */
   padding-top: 3px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #96CDFB;
@@ -251,10 +262,10 @@ window#waybar.empty #window {
 #tray {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
+  /* padding-left: 10px; */
   margin-bottom: 0px;
-  padding-right: 10px;
-  border-radius: 10px;
+  /* padding-right: 10px; */
+  /* border-radius: 10px; */
   transition: none;
   color: #B5E8E0;
   background: #161320;
@@ -264,9 +275,9 @@ window#waybar.empty #window {
   font-size: 24px;
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
+  /* padding-left: 10px; */
   padding-right: 5px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #89DCEB;
   background: #161320;
@@ -277,10 +288,10 @@ window#waybar.empty #window {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
   margin-right: 8px;
-  padding-left: 10px;
+  /* padding-left: 10px; */
   padding-right: 5px;
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #F28FAD;
@@ -289,10 +300,10 @@ window#waybar.empty #window {
 #custom-wallpaper {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #C9CBFF;
@@ -301,10 +312,10 @@ window#waybar.empty #window {
 #custom-updates {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #E8A2AF;
@@ -313,10 +324,10 @@ window#waybar.empty #window {
 #custom-media {
   /* margin-top: 6px; */
   /* margin-left: 8px; */
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 10px; */
+  /* padding-right: 10px; */
   margin-bottom: 0px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: none;
   color: #161320;
   background: #F2CDCD;
@@ -324,8 +335,7 @@ window#waybar.empty #window {
 
 #workspaces {
   background: transparent;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding: 0px;
 }
 
 #bluetooth {

@@ -157,8 +157,8 @@ layout {
         // top 64
         // bottom 64
 
-        top -4
-        bottom -4
+        top -6
+        bottom -6
 
         left -12
         right -12
