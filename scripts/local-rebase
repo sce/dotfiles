@@ -3,11 +3,13 @@
 set -euo pipefail
 
 prompt="Pick one of the base images to rebase to: "
-system_type=${1:-"x86_64/silverblue"}
+arch=$(uname -m)
+system_type=${1:-"${arch}/silverblue"}
+shift
 
 ref=$(ostree remote refs fedora|grep "$system_type"|fzf --prompt="$prompt" --height=10 --cycle --reverse --tac)
 
 (
   set -x
-  rpm-ostree rebase "$ref"
+  rpm-ostree rebase "$@" "$ref"
 )
