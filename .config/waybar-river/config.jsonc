@@ -149,7 +149,8 @@
   "network": {
     "tooltip": false,
     "format-wifi": "  {essid}",
-    "format-ethernet": ""
+    "format-ethernet": "🖧 {ifname}",
+    "format-disconnected": "🔌",
   },
   "backlight": {
     "tooltip": false,
@@ -167,8 +168,8 @@
             "critical": 20
         },
         "format": "{icon}  {capacity}% {power}W",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": " {capacity}% {power}W",
+        "format-plugged": " {capacity}% {power}W",
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""],
         // "full-at": 79,
