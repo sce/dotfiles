@@ -5,7 +5,7 @@ set -euo pipefail
 prompt="Pick one of the base images to rebase to: "
 arch=$(uname -m)
 system_type=${1:-"${arch}/silverblue"}
-shift
+shift || true
 
 ref=$(ostree remote refs fedora|grep "$system_type"|fzf --prompt="$prompt" --height=10 --cycle --reverse --tac)
 
