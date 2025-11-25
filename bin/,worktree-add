@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Example:
+#   $ ,worktree-add
+#   $ ,worktree-add some-branch/something/something
+#   $ ,worktree-add some-branch/something/something -b
+
+
+# strip "origin/" from remote branches:
+branch=${1:-$(,gitbranch --remote| sed 's/origin\///')}
+shift || true
+
+root_dir=$(git rev-parse --show-toplevel)
+branch_dir=$(echo "$branch"|sed 's/\//-/g')
+worktree_dir=$(realpath "$root_dir/../$branch_dir")
+
+set -x
+git worktree add "$worktree_dir" "$@" "$branch"
