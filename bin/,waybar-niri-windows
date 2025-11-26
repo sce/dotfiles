@@ -7,7 +7,7 @@ output=${1:-$current_output}
 
 current_workspace_id=$(
   niri msg --json workspaces |
-  jq ".[] | select(.output == \"$output\" and .is_focused) | .id"
+  jq ".[] | select(.output == \"$output\" and .is_active) | .id"
 )
 
 if [[ "$current_workspace_id" = "" ]]; then
