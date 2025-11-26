@@ -5,7 +5,7 @@ set -euo pipefail
 current_branch=$(git branch --show-current)
 
 # xargs is just to trim whitespace
-git branch --verbose --sort=creatordate \
+git branch --verbose --sort=creatordate "$@" \
   | fzf --no-sort --reverse --tac --height=10 --prompt="${current_branch} > " \
   | cut -f2-3 -d" " \
   | xargs
