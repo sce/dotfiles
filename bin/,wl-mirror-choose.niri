@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+niri_outputs=$(niri msg --json outputs | jq --raw-output 'keys.[]')
+
+output=$(echo "$niri_outputs" | fzf)
+
+set -x
+
+exec ,wl-mirror "$@" "$output"
