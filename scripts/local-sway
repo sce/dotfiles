@@ -24,6 +24,8 @@ declare -A repos
 declare -A packages_override
 declare -A packages_replace
 
+# Can/will be used by sourced config scripts:
+# shellcheck disable=SC2034
 fedora_version=${1:-$(rpm -E %fedora)}
 
 function title {
