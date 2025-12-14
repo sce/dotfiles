@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -euo pipefail
+
+app_id=$(flatpak list --app --columns=application,version,name,description | fzf --accept-nth 1)
+
+set -x
+exec flatpak run "$app_id"
