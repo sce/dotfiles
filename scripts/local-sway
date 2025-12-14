@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#
+# This script takes fedora version number as argument, in case it's different
+# from booted version.
+#
+# E.g.:
+#
+#     $ ./local-sway
+#
+#     # Override version number:
+#     $ ./local-sway 43
+#
 set -euo pipefail
 
 rpm_config_dir="$(dirname "$0")/local-sway.d"
@@ -13,7 +24,7 @@ declare -A repos
 declare -A packages_override
 declare -A packages_replace
 
-fedora_version=$(rpm -E %fedora)
+fedora_version=${1:-$(rpm -E %fedora)}
 
 function title {
     echo -e "\n=== $1"
