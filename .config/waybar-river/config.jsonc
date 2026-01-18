@@ -9,9 +9,13 @@
   ],
   "modules-center": ["niri/window"],
   "modules-right": [
+    // "wlr/taskbar",
     "privacy#sink",
     "privacy",
     "custom/camera",
+    // "custom/windows",
+    // "custom/taskbar#DP-1",
+    // "custom/taskbar#eDP-1",
     "tray",
     "bluetooth",
     "network",
@@ -44,9 +48,32 @@
     "on-scroll-down": "niri msg action focus-workspace-down",
   },
 
+  "wlr/taskbar": {
+    "all-outputs": false,
+    // "active-first": true,
+  },
+
   "custom/camera": {
     "exec": ",waybar-camera",
     "interval": 2,
+    "return-type": "json",
+  },
+
+  "custom/windows": {
+    "exec": ",waybar-niri-windows DP-1",
+    "interval": 1,
+    "return-type": "json",
+  },
+
+  "custom/taskbar#DP-1": {
+    "exec": ",waybar-niri-taskbar DP-1",
+    "interval": 1,
+    "return-type": "json",
+  },
+
+  "custom/taskbar#eDP-1": {
+    "exec": ",waybar-niri-taskbar eDP-1",
+    "interval": 1,
     "return-type": "json",
   },
 

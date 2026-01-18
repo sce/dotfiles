@@ -70,6 +70,11 @@ window#waybar.battery-critical {
   background: red;
 }
 
+#taskbar button.active {
+  /* color: transparent; */
+  background: green;
+}
+
 #privacy {
   padding: 0;
   background: transparent;
@@ -77,6 +82,33 @@ window#waybar.battery-critical {
 
 #custom-camera {
   font-size: 20px;
+}
+
+#custom-windows, #custom-taskbar {
+  background: #000;
+  background: white;
+  color: white;
+}
+
+#custom-taskbar {
+  color: transparent;
+  background: transparent;
+
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+}
+
+window.DP-1 #custom-taskbar.DP-1,
+window.eDP-1 #custom-taskbar.eDP-1 {
+  background: #000;
+  color: white;
+
+  font-size: initial;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 1px;
+  padding-bottom: 2px;
 }
 
 #privacy-item, #custom-camera {
