@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+if ARGV.length > 1 
+  workspaces_file, windows_file, output_name = ARGV
+else 
+  output_name = ARGV[0]
+end
+
+
+workspaces = JSON.parse(
+  if workspaces_file
+    IO.read(workspaces_file)
+  else
+    %x(niri msg --json workspaces)
+  end
+)
+
+windows = JSON.parse(
+  if windows_file
+    IO.read(windows_file)
+  else
+    %x(niri msg --json windows)
+  end
+)
+
+ws_to_output = workspaces.reduce({}) do |memo, ws|
+  next memo unless ws["is_active"]
+  memo[ws["id"]] = ws["output"]
+  memo
+end
+
+output_wins = 0
+
+ws_to_wins = windows.reduce({}) do |memo, win|
+  ws = win["workspace_id"]
+  win_output = ws_to_output[ws]
+  next memo unless win_output
+  if output_name and win_output == output_name
+    output_wins += 1
+  end
+
+  memo[ws] ||= 0
+  memo[ws] += 1
+  memo
+end
+
+# TODO: possible to only count off-screen windows?
+# TODO: parse streaming data from niri instead of one-shot
+if output_name
+  msg = { text: "🪟 #{output_wins}", class: output_name }
+  puts JSON.generate(msg) if output_wins > 1
+else
+  puts ws_to_wins
+end
