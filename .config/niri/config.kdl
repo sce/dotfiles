@@ -839,10 +839,12 @@ binds {
 
     Print { screenshot; }
     Shift+Print { screenshot-screen; }
-    Ctrl+Print { screenshot-window; }
+    // Ctrl+Print { screenshot-window; }
 
-    // Ctrl+Print { spawn-sh "~/bin/,screenrecord-partial.sh"; }
-    // Ctrl+Shift+Print { spawn-sh "~/bin/,screenrecord.sh"; }
+    // Need to run screenrecord commands in an explicit terminal because they
+    // apparently kill their parent when their done... :o)
+    Ctrl+Print { spawn "terminal" "--command" ",screenrecord-partial.sh"; }
+    Ctrl+Shift+Print { spawn "terminal" "--command" ",screenrecord-niri.sh"; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
