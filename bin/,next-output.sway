@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+pp outputs = %x(swaymsg --type get_outputs | jq -r '.[].name').split
+
+current_output=%x(swaymsg --type get_outputs | jq -r '.[] | select(.focused) | .name').chomp
+
+current_index = outputs.find_index { |name| name == current_output }
+
+puts "next: " + (next_output = current_index.nil? ? outputs.first : outputs[current_index+1] || outputs.first)
+
+%x(swaymsg focus output #{next_output})
