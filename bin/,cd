@@ -29,6 +29,10 @@ function change_dir {
   fi
 }
 
+if [[ "$*" != "" ]]; then
+  cd "$@"
+fi
+
 make_opts
 change_dir
 unset dir fzf_opts
