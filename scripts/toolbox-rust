@@ -21,4 +21,6 @@ function create_toolbox {
 }
 
 create_toolbox
-$in_container "$run_scripts_from" "$scripts_dir" "$@"
+
+set -x
+exec $in_container "$run_scripts_from" "$scripts_dir" "$@"
