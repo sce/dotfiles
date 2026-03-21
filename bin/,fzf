@@ -3,17 +3,14 @@
 set -euo pipefail
 
 file=$(fzf --multi --cycle --keep-right)
-echo $file | wl-copy
+echo "$file" | wl-copy
 
-if [[ "$@" = "" ]]; then
-    echo "$file"
+if [[ "$*" = "" ]]; then
+  echo "$file"
 else
-    cmd="$@ $file"
-
-
-    echo "$cmd"
-    $cmd
-
-    echo "$cmd"
+  (
+    set -x
+    "$@" "$file"
     echo "$file"
+  )
 fi
