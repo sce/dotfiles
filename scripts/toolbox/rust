@@ -5,7 +5,7 @@ set -euo pipefail
 cname=rust
 in_container="toolbox run --container $cname"
 
-scripts_dir=$(readlink -e toolbox-rust.d)
+scripts_dir=$(readlink -e rust.d)
 run_scripts_from=$(which ,run-scripts-from)
 
 packages=(
