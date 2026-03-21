@@ -2,25 +2,25 @@
 
 set -euo pipefail
 
-#
-# Go (golang) environment
-#
 cname=go
-run="toolbox run --container $cname"
+in_container="toolbox run --container $cname"
 
-dnf_misc=(
-    golang
-    golang-x-tools-gopls
+scripts_dir=$(readlink -e go.d)
+run_scripts_from=$(which ,run-scripts-from)
 
-    neovim
-    fzf bat
-    cmake # for telescope-fzf-native
-
-    graphviz # "dot" etc.
+packages=(
+  fzf bat
 )
 
+function create_toolbox {
+  (
+    set -x
+    toolbox create $cname 2>/dev/null
+    $in_container sudo dnf install -y "${packages[@]}"
+  ) || true
+}
+
+create_toolbox
+
 set -x
-
-toolbox create $cname || true
-
-$run sudo dnf install -y "${dnf_misc[@]}"
+exec $in_container "$run_scripts_from" "$scripts_dir" "$@"
