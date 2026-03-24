@@ -43,7 +43,8 @@
   },
 
   "niri/workspaces": {
-    "format": "{value}",
+    // "format": "{value}",
+    "format": "{index}∙{name}",
     "on-scroll-up": "niri msg action focus-workspace-up",
     "on-scroll-down": "niri msg action focus-workspace-down",
   },
