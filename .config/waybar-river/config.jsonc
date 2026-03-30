@@ -43,7 +43,8 @@
   },
 
   "niri/workspaces": {
-    "format": "{value}",
+    // "format": "{value}",
+    "format": "{index}∙{name}",
     "on-scroll-up": "niri msg action focus-workspace-up",
     "on-scroll-down": "niri msg action focus-workspace-down",
   },
@@ -194,11 +195,13 @@
             "warning": 20,
             "critical": 10
         },
-        "format": "{icon}  {capacity}% {power}W",
+        // "format": "{icon}  {capacity}% {power}W",
+        "format": "{icon} {capacity}% {power}W {time}",
         "format-charging": " {capacity}% {power}W",
         "format-plugged": " {capacity}% {power}W",
+        "format-time": "{H}:{m}",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": [" ", " ", " ", " ", " "],
         // "full-at": 79,
         "interval": 3,
     },
