@@ -2,40 +2,101 @@
 
 set -euo pipefail
 
-# text user interface
+# PLAN:
+# - By default swap to the cli container and run this script again
+# - If there's an argument that says we're in the cli container already (e.g.
+# `--inside-container`) then actually run the script
+#
+# Can/will be used by sourced config scripts:
+# shellcheck disable=SC2034
+#fedora_version=${1:-$(rpm -E %fedora)}
+
 cname=cli
-run="toolbox run --container $cname"
+in_container="toolbox run --container $cname"
+if [[ "${1:-}" != "--inside-container" ]]; then
+  set -x
+  exec $in_container "$0" --inside-container "$@"
+fi
 
-packages=(
-  neovim vim fzf
-  keychain
-  jq entr bat ripgrep
-  # these give us ansi2txt for stripping color codes
-  graphviz colorized-logs
+shift
 
-  # to compile things:
-  cmake make gcc
+cwd="$(dirname "$0")"
+package_utils="$cwd/package-utils.sh"
+config_dir="$cwd/cli.d"
+source_run=$(which "$HOME"/bin/,source-some-scripts)
 
-  # bashls:
-  shellcheck
+source "$package_utils"
 
-  # for bash-language-server:
-  nodejs yarnpkg
+title "Parsing configs..."
+source "$source_run" "$config_dir"/*.sh
 
-  # convenience, wl-copy etc:
-  wl-clipboard
+###############################################################################
 
-  rclone
-  NetworkManager-tui
-)
+# title "Installing repositories..."
+# for repo_filename in "${!repos[@]}"; do
+#     repo_url=${repos[$repo_filename]}
+#     output="/etc/yum.repos.d/$repo_filename"
+#     subtitle "$output from $repo_url"
+#     sudo curl --progress-bar --location --output "$output" "$repo_url"
+# done
+# unset repo_filename repo_url output
 
-yarns=(
-  bash-language-server
-)
+# title "Removing packages..."
+# for package in "${packages_remove[@]}"; do
+#     (
+#         set -x
+#         rpm-ostree override remove "${package}"
+#     ) || true
+# done
+# unset package
 
-set -x
+repository_add_exec
 
-toolbox create "$@" $cname || true
+dnf_remove_exec
+dnf_install_exec
 
-$run sudo dnf install -y "${packages[@]}"
-$run yarn global add "${yarns[@]}"
+yarn_add_exec
+
+post_run_add_exec "$config_dir"
+
+echo "Done!"
+
+# title "Adding packages..."
+# if [[ -n "${packages[*]}" ]]; then
+#     (
+#         set -x
+#         echo rpm-ostree install --idempotent -y "${packages[@]}"
+#     )
+# fi
+
+#title "Overriding specific packages..."
+#for remove_package in "${!packages_override[@]}"; do
+#    add_package=${packages_override[$remove_package]}
+#    (
+#        set -x
+#        rpm-ostree override remove "$remove_package" --install "$add_package"
+#    ) || true
+#done
+#unset remove_package add_package
+#
+#title "Replacing specific packages..."
+#if [[ -n "${packages_replace[*]}" ]]; then
+#    # Build a single command to save time:
+#    add_remove="rpm-ostree update"
+#    for remove_package in "${!packages_replace[@]}"; do
+#        add_package=${packages_replace[$remove_package]}
+#        add_remove+=" --uninstall $remove_package --install $add_package"
+#    done
+#    (
+#        set -x
+#        $add_remove
+#    ) || true
+#    unset remove_package add_package add_remove
+#fi
+#
+#title "Running post install scripts..."
+#(
+#  "$source_run" "$rpm_config_dir"/*.post
+#) || true
+#
+#echo "Done."
