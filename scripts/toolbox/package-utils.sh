@@ -8,6 +8,13 @@ function subtitle {
     echo "--- $1"
 }
 
+function run_command {
+  (
+    set -x
+    "$@"
+  ) || true
+}
+
 ###############################################################################
 
 _dnf_install=()
@@ -19,10 +26,7 @@ function dnf_install {
 function dnf_install_exec {
   title "Adding packages..."
   if [[ -n "${_dnf_install[*]}" ]]; then
-    (
-        set -x
-        echo dnf install -y "${_dnf_install[@]}"
-    ) || true
+    run_command sudo dnf install -y "${_dnf_install[@]}"
   fi
 }
 
@@ -37,10 +41,7 @@ function dnf_remove {
 function dnf_remove_exec {
   title "Removing packages..."
   if [[ -n "${_dnf_remove[*]}" ]]; then
-    (
-        set -x
-        echo dnf remove -y "${_dnf_remove[@]}"
-    ) || true
+    run_command sudo dnf remove -y "${_dnf_remove[@]}"
   fi
   unset package
 }
@@ -56,10 +57,7 @@ function rpm_ostree_install {
 function rpm_ostree_install_exec {
   title "Adding packages..."
   if [[ -n "${_rpm_ostree_install[*]}" ]]; then
-    (
-        set -x
-        echo rpm-ostree install --idempotent -y "${_rpm_ostree_install[@]}"
-    ) || true
+    run_command rpm-ostree install --idempotent -y "${_rpm_ostree_install[@]}"
   fi
 }
 
@@ -74,10 +72,7 @@ function rpm_ostree_remove {
 function rpm_ostree_remove_exec {
   title "Removing packages..."
   for package in "${_rpm_ostree_remove[@]}"; do
-      (
-          set -x
-          echo rpm-ostree override remove "${package}"
-      ) || true
+    run_command rpm-ostree override remove "${package}"
   done
   unset package
 }
@@ -103,10 +98,7 @@ function repository_add_exec {
       output="/etc/yum.repos.d/$repo_filename"
       subtitle "$output from $repo_url"
       # TODO: move to temp file first and then use sudo to move it to the right place
-      (
-        set -x
-        echo sudo curl --progress-bar --location --output "$output" "$repo_url"
-      )
+      run_command sudo curl --progress-bar --location --output "$output" "$repo_url"
   done
   unset repo_filename repo_url output
 }
@@ -133,10 +125,7 @@ function yarn_add {
 }
 
 function yarn_add_exec {
-  (
-    set -x
-    echo yarn global add "${_yarn_add[@]}"
-  )
+  run_command yarn global add "${_yarn_add[@]}"
 }
 
 ###############################################################################
