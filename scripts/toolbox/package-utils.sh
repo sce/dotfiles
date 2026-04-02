@@ -13,7 +13,7 @@ function subtitle {
 _dnf_install=()
 
 function dnf_install {
-  _dnf_install+=("$1")
+  _dnf_install+=("$@")
 }
 
 function dnf_install_exec {
@@ -21,7 +21,7 @@ function dnf_install_exec {
   if [[ -n "${_dnf_install[*]}" ]]; then
     (
         set -x
-        echo dnf install "${_dnf_install[@]}"
+        echo dnf install -y "${_dnf_install[@]}"
     ) || true
   fi
 }
@@ -31,7 +31,7 @@ function dnf_install_exec {
 _dnf_remove=()
 
 function dnf_remove {
-  _dnf_remove+=("$1")
+  _dnf_remove+=("$@")
 }
 
 function dnf_remove_exec {
@@ -50,7 +50,7 @@ function dnf_remove_exec {
 _rpm_ostree_install=()
 
 function rpm_ostree_install {
-  _rpm_ostree_install+=("$1")
+  _rpm_ostree_install+=("$@")
 }
 
 function rpm_ostree_install_exec {
@@ -68,7 +68,7 @@ function rpm_ostree_install_exec {
 _rpm_ostree_remove=()
 
 function rpm_ostree_remove {
-  _rpm_ostree_remove+=("$1")
+  _rpm_ostree_remove+=("$@")
 }
 
 function rpm_ostree_remove_exec {
@@ -102,7 +102,11 @@ function repository_add_exec {
       repo_url=${_repository_add[$repo_filename]}
       output="/etc/yum.repos.d/$repo_filename"
       subtitle "$output from $repo_url"
-      echo sudo curl --progress-bar --location --output "$output" "$repo_url"
+      # TODO: move to temp file first and then use sudo to move it to the right place
+      (
+        set -x
+        echo sudo curl --progress-bar --location --output "$output" "$repo_url"
+      )
   done
   unset repo_filename repo_url output
 }
@@ -125,11 +129,14 @@ function post_run_add_exec {
 _yarn_add=()
 
 function yarn_add {
-  _yarn_add+=("$1")
+  _yarn_add+=("$@")
 }
 
 function yarn_add_exec {
-  echo yarn global add "${_yarn_add[@]}"
+  (
+    set -x
+    echo yarn global add "${_yarn_add[@]}"
+  )
 }
 
 ###############################################################################
