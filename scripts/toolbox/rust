@@ -3,24 +3,46 @@
 set -euo pipefail
 
 cname=rust
-in_container="toolbox run --container $cname"
 
-scripts_dir=$(readlink -e rust.d)
-run_scripts_from=$(which ,run-scripts-from)
+cwd="$(dirname "$0")"
+package_utils="$cwd/package-utils.sh"
+source "$package_utils"
 
-packages=(
-  fzf bat
-)
+config_dir="$cwd/rust.d"
 
-function create_toolbox {
-  (
-    set -x
-    toolbox create $cname 2>/dev/null
-    $in_container sudo dnf install -y "${packages[@]}"
-  ) || true
-}
+# Check if we are outside the container:
 
-create_toolbox
+if [[ "${1:-}" != "--inside-container" ]]; then
+  packages=(fzf bat)
+  create_toolbox "$cname" "${packages[@]}" || true
 
-set -x
-exec $in_container "$run_scripts_from" "$scripts_dir" "$@"
+  set -x
+  run_in_container "$cname" "$0" --inside-container "$@"
+else
+  # We should now be inside the container.
+  shift
+
+  source_run=$(which "$HOME"/bin/,source-some-scripts)
+
+  # Can/will be used by sourced config scripts:
+  # shellcheck disable=SC2034
+  #fedora_version=${1:-$(rpm -E %fedora)}
+
+  #############################################################################
+
+  title "Parsing configs..."
+  source "$source_run" "$config_dir"/*.sh
+
+  #############################################################################
+
+  repository_add_exec
+
+  dnf_remove_exec
+  dnf_install_exec
+
+  yarn_add_exec
+
+  post_run_add_exec "$config_dir"
+
+  echo "Done."
+fi

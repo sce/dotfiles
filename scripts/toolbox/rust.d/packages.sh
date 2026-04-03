@@ -15,7 +15,4 @@ packages=(
   rustfmt
 )
 
-(
-  set -x
-  sudo dnf install -y "${packages[@]}"
-)
+dnf_install "${packages[@]}"
