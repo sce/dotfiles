@@ -1,5 +1,27 @@
 ###############################################################################
 
+# Takes arguments:
+# 1: name of container
+# 2..n: packages to install
+function create_toolbox {
+  local cname="$1"
+  shift
+  (
+    set -euxo pipefail
+    toolbox create "$cname" 2>/dev/null
+    $in_container sudo dnf install -y "$@"
+  )
+}
+
+# Takes argument:
+# 1: name of container
+# 2..n: command with arguments to run
+function run_in_container {
+  toolbox run --container "$@"
+}
+
+###############################################################################
+
 function title {
     echo -e "\n=== $1"
 }
@@ -108,12 +130,13 @@ function repository_add_exec {
 # Takes arguments:
 # 1: directory to look for ".post" files to execute
 function post_run_add_exec {
+  local dir="$1"
   source_run=$(which "$HOME"/bin/,source-some-scripts)
 
   title "Running post install scripts..."
-  (
-    "$source_run" "$1"/*.post
-  ) || true
+  if [[ -f "$dir/*.post" ]]; then
+    "$source_run" "$1"/*.post || true
+  fi
 }
 
 ###############################################################################
@@ -125,7 +148,10 @@ function yarn_add {
 }
 
 function yarn_add_exec {
-  run_command yarn global add "${_yarn_add[@]}"
+  title "Adding yarn packages..."
+  if [[ -n "${_yarn_add[*]}" ]]; then
+    run_command yarn global add "${_yarn_add[@]}"
+  fi
 }
 
 ###############################################################################
