@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Ref man 7 wofi `window switcher`:
+niri msg --json windows |
+  jq -r '.[] | ((.id | tostring) + " " + .app_id + " ) " + .title)' |
+  wofi --show dmenu --insensitive --matching=fuzzy | {
+    read -r id title
+    niri msg action focus-window --id "$id"
+  }
