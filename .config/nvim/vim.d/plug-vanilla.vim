@@ -66,7 +66,14 @@
 " Jumping around:
   Plug 'ggandor/leap.nvim'
 
-  " CopilotChat:
+" Instead of copilot.vim:
+  Plug 'copilotlsp-nvim/copilot-lsp'
+  Plug 'zbirenbaum/copilot.lua'
+
+" CopilotChat:
   " Config: runtime vim.d/copilot.vim
   Plug 'nvim-lua/plenary.nvim'
   Plug 'CopilotC-Nvim/CopilotChat.nvim'
+
+  " Autocomplete for Copilot:
+  Plug 'zbirenbaum/copilot-cmp'

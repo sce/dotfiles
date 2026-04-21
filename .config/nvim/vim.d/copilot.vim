@@ -9,13 +9,20 @@
 " call plug#end()
 
 lua << EOF
-  -- For copilot.vim
-  vim.g.copilot_no_tab_map = true
-  -- Use shift+tab instead to accept copilot suggestions
-  vim.keymap.set('i',
-    '<S-Tab>', 'copilot#Accept("\\<S-Tab>")',
-    { expr = true, replace_keycodes = false }
-  )
+  -- -- For copilot.vim
+  -- vim.g.copilot_no_tab_map = true
+  -- -- Use shift+tab instead to accept copilot suggestions
+  -- vim.keymap.set('i',
+  --   '<S-Tab>', 'copilot#Accept("\\<S-Tab>")',
+  --   { expr = true, replace_keycodes = false }
+  -- )
+
+  require("copilot").setup({
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+  })
+
+  require("copilot_cmp").setup()
 
   require("CopilotChat").setup({
     model = 'gpt-5.2',         -- AI model to use

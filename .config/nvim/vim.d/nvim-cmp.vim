@@ -24,15 +24,27 @@ lua <<EOF
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
+    -- sources = cmp.config.sources({
+    --   { name = 'copilot', group_index = 2 },
+    --   { name = 'nvim_lsp', group_index = 2 },
+    --   { name = 'vsnip', group_index = 2 }, -- For vsnip users.
+    --   { name = 'path', group_index = 2 },
+    --   -- { name = 'luasnip' }, -- For luasnip users.
+    --   -- { name = 'ultisnips' }, -- For ultisnips users.
+    --   -- { name = 'snippy' }, -- For snippy users.
+    -- }, {
+    --   { name = 'buffer' },
+    -- })
+    sources = {
+      { name = 'copilot', group_index = 2 },
+      { name = 'nvim_lsp', group_index = 2 },
+      { name = 'vsnip', group_index = 2 }, -- For vsnip users.
+      { name = 'path', group_index = 2 },
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
+      { name = 'buffer', group_index = 2 },
+    }
   })
 
   -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
