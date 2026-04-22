@@ -39,6 +39,7 @@ lua <<EOF
       { name = 'copilot', group_index = 2 },
       { name = 'nvim_lsp', group_index = 2 },
       { name = 'vsnip', group_index = 2 }, -- For vsnip users.
+      { name = 'treesitter', group_index = 2 },
       { name = 'path', group_index = 2 },
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
