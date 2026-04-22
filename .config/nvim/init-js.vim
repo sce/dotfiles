@@ -23,6 +23,16 @@ call plug#begin('~/.config/nvim/js/plugged')
     " Plug 'MunifTanjim/eslint.nvim'
     Plug 'mfussenegger/nvim-lint'
 
+    " Instead of copilot.vim:
+    Plug 'copilotlsp-nvim/copilot-lsp'
+    Plug 'zbirenbaum/copilot.lua'
+
+    " CopilotChat:
+    " Config: runtime vim.d/copilot.vim Plug 'nvim-lua/plenary.nvim'
+    Plug 'CopilotC-Nvim/CopilotChat.nvim'
+
+    " Autocomplete for Copilot:
+    Plug 'zbirenbaum/copilot-cmp'
 call plug#end()
 
 runtime vim.d/vanilla.vim
@@ -39,3 +49,5 @@ runtime vim.d/nvim-cmp-js.vim
 runtime vim.d/null-ls.vim
 runtime vim.d/prettier.vim
 " runtime vim.d/eslint.vim
+
+runtime vim.d/copilot.vim

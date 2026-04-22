@@ -35,8 +35,6 @@ runtime vim.d/neo-tree.vim
 
 " runtime vim.d/trouble.vim
 
-runtime vim.d/copilot.vim
-
 lua<<EOS
   require('leap').create_default_mappings()
 
