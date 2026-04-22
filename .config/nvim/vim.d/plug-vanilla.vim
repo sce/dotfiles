@@ -40,7 +40,7 @@
   Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   " fzf-native requires make, cmake and gcc
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-  " Plug 'nvim-telescope/telescope-ui-select.nvim'
+  Plug 'nvim-telescope/telescope-ui-select.nvim'
   Plug 'LukasPietzschmann/telescope-tabs'
   Plug 'debugloop/telescope-undo.nvim'
 
