@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+(
+  set -x
+
+  sudo dnf config-manager setopt adoptium-temurin-java-repository.enabled=1
+)
