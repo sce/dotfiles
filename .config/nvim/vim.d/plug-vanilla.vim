@@ -66,3 +66,6 @@
   "
 " Jumping around:
   Plug 'ggandor/leap.nvim'
+
+" Pretty markdown rendering:
+  Plug 'MeanderingProgrammer/render-markdown.nvim'
