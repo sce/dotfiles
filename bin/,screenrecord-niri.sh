@@ -14,11 +14,12 @@ trap 'trap " " SIGINT SIGTERM; kill -SIGINT 0; wait' SIGINT SIGTERM
 ask=~/bin/,zenity
 
 function wait_for_user_ok {
-  $ask --info --title="Recording current output" --text="Recording continues until it is stopped." --ok-label="Stop recording"
+  output=${1:-current}
+  $ask --info --title="Recording ${output} output" --text="Recording continues until it is stopped." --ok-label="Stop recording"
 }
 
 ~/bin/screenrecord.niri "$@" &
 
-wait_for_user_ok
+wait_for_user_ok "$@"
 kill -s SIGINT 0
 wait
