@@ -15,7 +15,8 @@ runtime vim.d/vanilla-behaviour.vim
 runtime vim.d/vim-terminal.vim
 
 set runtimepath+=,~/.vim
-"runtime ~/.vim/config/startify.vim
+
+" ~/.vim/config/startify.vim
 runtime config/startify.vim
 
 runtime vim.d/gitsigns.vim
@@ -36,13 +37,4 @@ runtime vim.d/neo-tree.vim
 runtime vim.d/render-markdown.lua
 
 " runtime vim.d/trouble.vim
-
-lua<<EOS
-  require('leap').create_default_mappings()
-
-  vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' }) -- or some grey
-  vim.api.nvim_set_hl(0, 'LeapMatch', {
-    -- For light themes, set to 'black' or similar.
-    fg = 'white', bold = true, nocombine = true,
-  })
-EOS
+runtime vim.d/leap.lua

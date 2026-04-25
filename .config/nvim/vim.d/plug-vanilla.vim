@@ -65,7 +65,9 @@
   " Plug 'folke/trouble.nvim'
   "
 " Jumping around:
-  Plug 'ggandor/leap.nvim'
+  " Plug 'ggandor/leap.nvim'
+  Plug 'https://codeberg.org/andyg/leap.nvim'
+
 
 " Pretty markdown rendering:
   Plug 'MeanderingProgrammer/render-markdown.nvim'
