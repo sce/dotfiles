@@ -1,0 +1,3 @@
+# Use fonts.toml as a link to a fonts config.
+# E.g. ln -s fonts-something.toml fonts.toml
+fonts.toml
