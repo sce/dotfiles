@@ -6,7 +6,9 @@ ExecStart=/home/cel/bin/idlehandler.wayland
 NoNewPrivileges=true
 PrivateTmp=true
 Restart=always
-RestartSec=1s
+# For some reason the idlehandler sometimes struggles to connect to the
+# compositor and will fail repeatedly, so let's give it more time:
+RestartSec=5s
 WorkingDirectory=/home/cel
 
 [Install]
