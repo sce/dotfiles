@@ -1,0 +1,3 @@
+# ln -s fonts-something.toml fonts.toml
+[font]
+size = 13.0

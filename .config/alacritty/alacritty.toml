@@ -1,3 +1,8 @@
+import = [
+  "~/.config/alacritty/fonts.d/fonts-default.toml",
+  "~/.config/alacritty/fonts.d/fonts.toml",
+]
+
 [colors]
 draw_bold_text_with_bright_colors = true
 
@@ -28,9 +33,6 @@ foreground = "0xeaeaea"
 [cursor]
 style = "Block"
 unfocused_hollow = true
-
-[font]
-size = 13.0
 
 [font.glyph_offset]
 x = 0
