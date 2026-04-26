@@ -9,7 +9,7 @@
 
 " Treesitter:
   " Config: runtime vim.d/treesitter.vim
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'tag': 'v0.10.0'}
 
 " Treesitter Enabled Color Scheme:
   " Config: runtime vim.d/material.vim
