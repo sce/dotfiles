@@ -1,3 +1,4 @@
+[general]
 import = [
   "~/.config/alacritty/fonts.d/fonts-default.toml",
   "~/.config/alacritty/fonts.d/fonts.toml",
