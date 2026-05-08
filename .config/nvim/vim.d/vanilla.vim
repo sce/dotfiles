@@ -34,7 +34,7 @@ runtime vim.d/telescope.vim
 
 runtime vim.d/neo-tree.vim
 
-runtime vim.d/render-markdown.lua
+" runtime vim.d/render-markdown.lua
 
 " runtime vim.d/trouble.vim
 runtime vim.d/leap.lua

@@ -70,4 +70,4 @@
 
 
 " Pretty markdown rendering:
-  Plug 'MeanderingProgrammer/render-markdown.nvim'
+  " Plug 'MeanderingProgrammer/render-markdown.nvim'
