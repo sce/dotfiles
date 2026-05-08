@@ -21,5 +21,5 @@ dnf_deps=(
   cargo install alacritty
 
   mkdir -pv "$dest_dir"
-  cp -v "$HOME/.cargo/bin/alacritty" "$dest_dir"
+  cp --verbose --interactive --force "$HOME/.cargo/bin/alacritty" "$dest_dir"
 )
