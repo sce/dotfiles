@@ -13,6 +13,7 @@ runtime vim.d/search.vim
 runtime vim.d/vanilla-commands.vim
 runtime vim.d/vanilla-behaviour.vim
 runtime vim.d/vim-terminal.vim
+runtime vim.d/vanilla-ui.lua
 
 set runtimepath+=,~/.vim
 

@@ -11,6 +11,7 @@ command GitRoot :lua =string.match(vim.api.nvim_exec2( '!git rev-parse --show-to
 lua<<EOF
   require('telescope').setup{
     defaults = {
+      border = false, -- rely on global winborder instead
       path_display = {
         -- hidden,
         -- tail,
@@ -65,7 +66,10 @@ lua<<EOF
 
     extensions = {
       ["ui-select"] = {
-        require("telescope.themes").get_dropdown {}
+        require("telescope.themes").get_dropdown {
+          -- rely on global winborder instead:
+          border = false
+        }
       }
     }
   }
