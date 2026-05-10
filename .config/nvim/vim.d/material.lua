@@ -19,8 +19,8 @@ require("material").setup({
 -- vim.g.material_style = "palenight";
 vim.g.material_style = "darker";
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" activate colorscheme after all plugins are loaded, to make sure it works:
-" autocmd vimenter * colorscheme material
-" autocmd vimenter * ++nested colorscheme material
+-- """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+-- activate colorscheme after all plugins are loaded, to make sure it works:
+-- autocmd vimenter * colorscheme material
+-- autocmd vimenter * ++nested colorscheme material
 vim.cmd.colorscheme('material')
