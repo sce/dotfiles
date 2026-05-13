@@ -68,19 +68,19 @@ map <Leader>9 ]'<CR>
 
 " map \= to fix space around equal signs
 """ map <Leader>= :s/\%V\(\w\)\s*=\s*\(\w\)/\1 = \2/g<CR>
-""" 
+"""
 """ " map \s to squeeze whitespace (while preserving indentation)
 """ map <Leader>s :s/\%V\(\S\)\s\+/\1 /g<CR>
-""" 
+"""
 """ " map \n to squeeze newlines
 """ map <Leader>n :s/\n\n\+/\r\r/g<CR>
-""" 
+"""
 """ " map \h to split hash arguments into separate lines
 """ map <Leader>h :s/\s*,\s\+/,\r/g<CR>
-""" 
+"""
 """ " map \, to split statements into separate lines
 """ map <Leader>, :s/\s*;\s*/\r/g<CR>
-""" 
+"""
 """ " map \- to split words into separate lines
 """ map <Leader>- :s/\s\+/\r/g<CR>
 
@@ -93,12 +93,25 @@ map <Leader>9 ]'<CR>
 
 " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
 " change global directory to that of current file:
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
-" ... alternative command instead of leader:
+" ... alternative command instead of leader: (cd current)
 command CDC cd %:p:h
 
 command CDRoot cd %:h | cd `git rev-parse --show-toplevel`
+
+" search parent directories of the current file for `package.json`and change
+" to its directory:
+command CDPackage exe 'cd' findfile('package.json', expand('%:p:h') .. ';', 1)->fnamemodify(':p:h')
+
+" nnoremap <leader>CD :CDRoot<CR>
+" nnoremap <leader>cD :CDRoot<CR>
+" change (to) file:
+nnoremap <leader>cdf :CDC<CR>:pwd<CR>
+" change (to) root:
+nnoremap <leader>cdr :CDRoot<CR>:pwd<CR>
+" change (to) package.json:
+nnoremap <leader>cdp :CDPackage<CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jumps:
