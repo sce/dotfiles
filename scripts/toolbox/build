@@ -5,7 +5,7 @@ set -euo pipefail
 build_cname=build
 run="toolbox run --container $build_cname"
 
-scripts_dir=$(readlink -e toolbox-build.d)
+scripts_dir=$(readlink -e build.d)
 run_scripts_from=$(which ,run-scripts-from)
 
 dependencies=(
