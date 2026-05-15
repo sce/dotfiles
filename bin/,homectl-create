@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+function ask_if_missing {
+  local value="$1"
+  local prompt="${2:-"> "}"
+  [[ -z "$value" ]] && read -r -p "$prompt" value
+  echo "$value"
+}
+
+username=$(ask_if_missing "${1:-}" "Username: ")
+shift || true
+
+set -x
+homectl create \
+  --storage=luks \
+  --luks-extra-mount-options=defcontext=system_u:object_r:user_home_dir_t:s0 \
+  --fs-type=btrfs \
+  "$username" "$@"
+
+# Try to fix selinux labels:
+sudo homectl with "$username" -- \
+  restorecon -vFR "/var/home/$username"
