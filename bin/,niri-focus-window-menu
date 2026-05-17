@@ -4,8 +4,10 @@ set -euo pipefail
 
 # Ref man 7 wofi `window switcher`:
 niri msg --json windows |
-  jq -r '.[] | ((.id | tostring) + " " + .app_id + " ) " + .title)' |
+  jq -r '.[] | ((.workspace_id | tostring) + " ( " + (.id | tostring) + " " + .app_id + " ) " + .title)' |
   wofi --show dmenu --insensitive --matching=fuzzy | {
-    read -r id title
+    # we need to read something after the id to make sure it is not included in
+    # the id:
+    read -r _ws_id _ id _app_id _ _title
     niri msg action focus-window --id "$id"
   }
