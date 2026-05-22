@@ -2,28 +2,32 @@
 
 set -euo pipefail
 
-workspaces=$(
+all_ws_id_name() {
   niri msg --json workspaces | \
-  jq --raw-output '.[] | (.id |tostring) + " " + .output + " " + (.idx | tostring) + ":" + .name'
-)
+  jq --raw-output '.[] | (.id |tostring) + " " + .output + " - " + (.idx | tostring) + ":" + .name'
+}
 
-declare -A ws_to_name
+all_win_ws_id_title() {
+  niri msg --json windows |
+    jq -r '.[] | ((.workspace_id | tostring) + " ( " + (.id | tostring) + " " + .app_id + " ) " + .title)'
+}
+
+declare -A workspaces
 
 while read -r id title; do
-  echo "  $id : $title"
-  ws_to_name[$id]="$title"
-done <<< "$workspaces"
+  echo "$id -- $title"
+  workspaces[$id]="$title"
+done <<< "$(all_ws_id_name)"
 
 # Ref man 7 wofi `window switcher`:
-niri msg --json windows |
-  jq -r '.[] | ((.workspace_id | tostring) + " ( " + (.id | tostring) + " " + .app_id + " ) " + .title)' | {
-    while read -r ws_id rest; do
-      echo "${ws_to_name[$ws_id]} $rest"
+all_win_ws_id_title | {
+    while read -r id title; do
+      echo "${workspaces[$id]} $title"
     done
   } |
   wofi --show dmenu --insensitive --matching=fuzzy | {
     # we need to read something after the id to make sure it is not included in
     # the id:
-    read -r _output _ws_name _ id _
+    read -r _output _ _ws_name _ id _
     niri msg action focus-window --id "$id"
   }
