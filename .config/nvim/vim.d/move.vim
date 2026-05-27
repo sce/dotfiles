@@ -1,9 +1,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings:
 
+let mapleader = ","
+
 " turn off highlighted results (set nohlsearch) when pressing enter.
 " just pressing n or N will turn the highlight back again
-nnoremap <cr> :noh <cr>
+"nnoremap <cr> :noh <cr>
+" Enter has defaults mappings that are nice to keep, so let's do leader+enter
+" instead:
+nnoremap <leader><cr> :noh <cr>
 
 " CTRL+N twice to toggle line numbers
 " (CTRL+M actually looks like "enter" to vim...)
@@ -55,8 +60,6 @@ set tabpagemax=20
 map <A-e> :tabedit<CR>
 map <A-l> :tabnext<CR>
 map <A-h> :tabprevious<CR>
-
-let mapleader = ","
 
 " map leader instead of [ for convenience
 "map <Leader>8' ['<CR>
