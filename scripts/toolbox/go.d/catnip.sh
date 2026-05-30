@@ -16,33 +16,25 @@ dnf_deps=(
 
 function install_deps {
   if [[ -n "${dnf_deps[*]}" ]]; then
-    (
-      set -x
-      sudo dnf install -y "${dnf_deps[@]}"
-    )
+    sudo dnf install -y "${dnf_deps[@]}"
   fi
 }
 
 function build_sw {
-  (
-    set -x
-    git clone --branch "$version" "$repo_url"
+  git clone --branch "$version" "$repo_url"
 
-    cd "$sw_name"
-    go build ./cmd/catnip
-  )
+  cd "$sw_name"
+  go build ./cmd/catnip
 }
 
 function install_sw {
-  (
-    set -x
-    cd "$sw_name"
-    cp -i "$sw_name" "${destination_dir}/bin"
-  )
+  cp -i "$sw_name" "${destination_dir}/bin"
 }
 
-install_deps
 (
+  set -x
+  install_deps
+
   cd "$tmp_dir"
   build_sw
   install_sw
