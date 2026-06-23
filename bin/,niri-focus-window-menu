@@ -25,7 +25,7 @@ all_win_ws_id_title | {
       echo "${workspaces[$id]} $title"
     done
   } |
-  wofi --show dmenu --insensitive --matching=fuzzy | {
+  wofi --show dmenu --insensitive --matching=fuzzy --width=80% --height=70% | {
     # we need to read something after the id to make sure it is not included in
     # the id:
     read -r _output _ _ws_name _ id _

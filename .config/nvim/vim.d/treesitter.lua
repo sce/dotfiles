@@ -1,6 +1,6 @@
 -- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-require('nvim-treesitter').setup({
+require('nvim-treesitter.configs').setup({
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
   ensure_installed = {
     "css",
@@ -54,3 +54,13 @@ require('nvim-treesitter').setup({
   },
 
 })
+
+-- -- https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#highlighting
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = { 'markdown', 'markdown_inline' },
+--   callback = function() vim.treesitter.start() end,
+-- })
+--
+-- -- https://github.com/nvim-treesitter/nvim-treesitter/tree/main?tab=readme-ov-file#folds
+-- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- vim.wo[0][0].foldmethod = 'expr'

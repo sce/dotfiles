@@ -2,15 +2,15 @@
 
 set -euo pipefail
 
-file=$(fzf --multi --cycle --keep-right)
-echo "$file" | wl-copy
+files=($(fzf --multi --cycle --keep-right))
+echo "$files[@]" | wl-copy
 
-if [[ "$*" = "" ]]; then
-  echo "$file"
+if [[ -z "$*" ]]; then
+  echo "${files[@]}"
 else
   (
     set -x
-    "$@" "$file"
-    echo "$file"
+    "$@" "${files[@]}"
+    echo "${files[@]}"
   )
 fi
