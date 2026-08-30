@@ -12,7 +12,7 @@ function create_toolbox {
   local cname="$1"
   shift
   (
-    set -x
+    set -euxo pipefail
     toolbox create "$cname" 2>/dev/null
     $in_container sudo dnf install -y "$@"
   ) || true
